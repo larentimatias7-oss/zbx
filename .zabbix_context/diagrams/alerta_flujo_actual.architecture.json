@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Arquitectura de Alertas Zabbix 7.0 LTS",
+    "quality_profile": "showcase",
+    "viewBox": [1320, 640],
+    "views": [
+      {
+        "id": "p1-path",
+        "label": "Flujo Crítico P1",
+        "focus": ["firewalls", "act_p1", "grp_guardia_p1", "telegram_channel"],
+        "note": "Incidentes High y Disaster notifican inmediatamente a Guardia P1."
+      },
+      {
+        "id": "p2-network",
+        "label": "Flujo Redes P2",
+        "focus": ["core_switches", "act_p2_net", "grp_noc_redes", "telegram_channel"],
+        "note": "Eventos de red filtrados por tags enrutan hacia NOC Redes."
+      },
+      {
+        "id": "p2-platform",
+        "label": "Flujo Plataforma P2",
+        "focus": ["servers_ups", "db_servers", "act_p2_plat", "grp_sre_plat", "telegram_channel"],
+        "note": "Alertas de servidores, bases de datos y UPS dirigidas a SRE Plataforma."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "firewalls",
+      "type": "security",
+      "label": "FortiGate & Perímetro",
+      "sublabel": "SD-WAN / VPN Satelital",
+      "tag": "group: FortiGate",
+      "pos": [70, 80],
+      "size": [180, 64]
+    },
+    {
+      "id": "core_switches",
+      "type": "cloud",
+      "label": "Switches Core & Dist",
+      "sublabel": "HP Comware & Dell",
+      "tag": "team: redes",
+      "pos": [70, 200],
+      "size": [180, 64]
+    },
+    {
+      "id": "servers_ups",
+      "type": "backend",
+      "label": "Servidores & UPS",
+      "sublabel": "Windows / Hyper-V / UPS",
+      "tag": "team: plataforma",
+      "pos": [70, 320],
+      "size": [180, 64]
+    },
+    {
+      "id": "db_servers",
+      "type": "database",
+      "label": "Bases de Datos SQL",
+      "sublabel": "SRO-SQL01 / MSSQL",
+      "tag": "team: dba",
+      "pos": [70, 440],
+      "size": [180, 64]
+    },
+    {
+      "id": "act_p1",
+      "type": "security",
+      "label": "TG-P1-Crítico",
+      "sublabel": "Severity >= High",
+      "tag": "Problem not suppressed",
+      "pos": [410, 80],
+      "size": [190, 64]
+    },
+    {
+      "id": "act_p2_net",
+      "type": "backend",
+      "label": "TG-P2-Redes",
+      "sublabel": "Severity = Average",
+      "tag": "team: redes",
+      "pos": [410, 200],
+      "size": [190, 64]
+    },
+    {
+      "id": "act_p2_plat",
+      "type": "backend",
+      "label": "TG-P2-Plataforma",
+      "sublabel": "Severity = Average",
+      "tag": "team: plataforma / dba",
+      "pos": [410, 320],
+      "size": [190, 64]
+    },
+    {
+      "id": "act_p3_prev",
+      "type": "backend",
+      "label": "TG-P3-Preventivo",
+      "sublabel": "Severity = Warning",
+      "tag": "scope: capacity / notice",
+      "pos": [410, 440],
+      "size": [190, 64]
+    },
+    {
+      "id": "grp_guardia_p1",
+      "type": "external",
+      "label": "Alertas-Guardia-P1",
+      "sublabel": "User Group (ID: 15)",
+      "tag": "RBAC: 27 Grupos",
+      "pos": [750, 80],
+      "size": [180, 64]
+    },
+    {
+      "id": "grp_noc_redes",
+      "type": "external",
+      "label": "Alertas-NOC-Redes",
+      "sublabel": "User Group (ID: 16)",
+      "tag": "RBAC: Redes & P2P",
+      "pos": [750, 200],
+      "size": [180, 64]
+    },
+    {
+      "id": "grp_sre_plat",
+      "type": "external",
+      "label": "Alertas-SRE-Plataforma",
+      "sublabel": "User Group (ID: 17)",
+      "tag": "RBAC: OS, DB, UPS",
+      "pos": [750, 320],
+      "size": [180, 64]
+    },
+    {
+      "id": "telegram_channel",
+      "type": "messagebus",
+      "label": "Telegram_Test",
+      "sublabel": "Media Type (ID: 71)",
+      "tag": "Canal 24/7",
+      "pos": [1070, 200],
+      "size": [170, 64]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Capa 1: Infraestructura y Tags",
+      "wraps": ["firewalls", "core_switches", "servers_ups", "db_servers"]
+    },
+    {
+      "kind": "security-group",
+      "label": "Capa 2: Motor de Acciones Zabbix",
+      "wraps": ["act_p1", "act_p2_net", "act_p2_plat", "act_p3_prev"]
+    },
+    {
+      "kind": "region",
+      "label": "Capa 3: Notificación y Despacho RBAC",
+      "wraps": ["grp_guardia_p1", "grp_noc_redes", "grp_sre_plat", "telegram_channel"]
+    }
+  ],
+  "connections": [
+    { "id": "fw-to-p1", "from": "firewalls", "to": "act_p1", "label": "Disaster/High", "variant": "security" },
+    { "id": "core-to-p2net", "from": "core_switches", "to": "act_p2_net", "label": "Average", "variant": "emphasis" },
+    { "id": "plat-to-p2plat", "from": "servers_ups", "to": "act_p2_plat", "label": "Average" },
+    { "id": "db-to-p3", "from": "db_servers", "to": "act_p3_prev", "label": "Warning", "variant": "dashed" },
+    { "id": "p1-to-guardia", "from": "act_p1", "to": "grp_guardia_p1", "label": "Paso 1", "variant": "security" },
+    { "id": "p2net-to-noc", "from": "act_p2_net", "to": "grp_noc_redes", "label": "Escalamiento" },
+    { "id": "p2plat-to-sre", "from": "act_p2_plat", "to": "grp_sre_plat", "label": "Escalamiento" },
+    { "id": "p3-to-sre", "from": "act_p3_prev", "to": "grp_sre_plat", "label": "Preventivo", "variant": "dashed" },
+    { "id": "guardia-to-tg", "from": "grp_guardia_p1", "to": "telegram_channel", "label": "P1 Crítico", "variant": "emphasis" },
+    { "id": "noc-to-tg", "from": "grp_noc_redes", "to": "telegram_channel" },
+    { "id": "sre-to-tg", "from": "grp_sre_plat", "to": "telegram_channel" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Capa 1: Infraestructura & Tags",
+      "items": [
+        "Switches Core con tags team: redes, tier: core",
+        "Servidores y UPS con tags team: plataforma",
+        "Bases de datos SQL con tag team: dba",
+        "Perímetro FortiGate con supervisión de túneles"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Capa 2: Motor de Acciones",
+      "items": [
+        "TG-P1-Crítico: High y Disaster a Guardia P1",
+        "TG-P2-Redes & Plataforma: Average enrutado por tags",
+        "TG-P3-Preventivo: Warning con tags capacity y notice",
+        "Condición Problem is not suppressed obligatoria"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Capa 3: Notificación RBAC",
+      "items": [
+        "Grupos de usuarios segregados (15, 16, 17)",
+        "Permisos de lectura granulares sobre host groups",
+        "Despacho final unificado vía Telegram_Test",
+        "Eliminación total del usuario individual Admin"
+      ]
+    }
+  ]
+}

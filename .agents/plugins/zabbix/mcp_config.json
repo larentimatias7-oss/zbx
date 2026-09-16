@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "zabbix": {
+      "serverUrl": "http://127.0.0.1:8080/mcp",
+      "headers": {
+        "Authorization": "Bearer zmcp_6673ac9995fe59ae960e5597530912bdebdd76bbf56e6e1007ac6755a9eb545e"
+      }
+    }
+  }
+}
