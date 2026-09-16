@@ -1,0 +1,279 @@
+{
+  "dashboardid": "410",
+  "name": "NOC - Core Network",
+  "userid": "7",
+  "private": "0",
+  "display_period": "30",
+  "auto_start": "1",
+  "uuid": "",
+  "pages": [
+    {
+      "dashboard_pageid": "22806",
+      "name": "Core Switches & Backbone",
+      "display_period": "0",
+      "widgets": [
+        {
+          "widgetid": "87055",
+          "type": "hostnavigator",
+          "name": "Switches Core & Distribución (team: redes)",
+          "x": "0",
+          "y": "0",
+          "width": "24",
+          "height": "10",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "CORNA"
+            },
+            {
+              "type": "0",
+              "name": "evaltype",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "tags.0.tag",
+              "value": "team"
+            },
+            {
+              "type": "0",
+              "name": "tags.0.operator",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "tags.0.value",
+              "value": "redes"
+            },
+            {
+              "type": "1",
+              "name": "tags.1.tag",
+              "value": "tier"
+            },
+            {
+              "type": "0",
+              "name": "tags.1.operator",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "tags.1.value",
+              "value": "core"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "25"
+            }
+          ]
+        },
+        {
+          "widgetid": "87056",
+          "type": "problems",
+          "name": "Incidentes Activos - Core Network (>= Average)",
+          "x": "24",
+          "y": "0",
+          "width": "48",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "CORPR"
+            },
+            {
+              "type": "0",
+              "name": "show",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "show_suppressed",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "severities.0",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "severities.1",
+              "value": "4"
+            },
+            {
+              "type": "0",
+              "name": "severities.2",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "evaltype",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "tags.0.tag",
+              "value": "team"
+            },
+            {
+              "type": "0",
+              "name": "tags.0.operator",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "tags.0.value",
+              "value": "redes"
+            },
+            {
+              "type": "1",
+              "name": "tags.1.tag",
+              "value": "tier"
+            },
+            {
+              "type": "0",
+              "name": "tags.1.operator",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "tags.1.value",
+              "value": "core"
+            },
+            {
+              "type": "0",
+              "name": "show_tags",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "show_timeline",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "15"
+            }
+          ]
+        },
+        {
+          "widgetid": "87057",
+          "type": "svggraph",
+          "name": "Tráfico de Red - Interfaces Troncales & Uplinks (Bits/s)",
+          "x": "24",
+          "y": "5",
+          "width": "48",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "CORTF"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-E02-PB00-CORE*"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "*Bits received*"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "00BFFF"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-E02-PB00-CORE*"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "*Bits sent*"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "26A69A"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "users": [],
+  "userGroups": [
+    {
+      "usrgrpid": "16",
+      "permission": "3"
+    },
+    {
+      "usrgrpid": "17",
+      "permission": "2"
+    },
+    {
+      "usrgrpid": "15",
+      "permission": "2"
+    }
+  ]
+}

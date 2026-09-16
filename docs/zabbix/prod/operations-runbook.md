@@ -79,3 +79,35 @@ Para evitar falsos positivos provocados por puestos de trabajo (PCs que se apaga
 4. Value: `1`.
 5. Description: `Uplink hacia servidor crítico / Switch distribución`.
 6. Haga clic en **Update**.
+
+---
+
+## 5. Tablero Operativo de Red: Dashboard "NOC - Core Network" (ID: 410)
+
+Se ha desplegado un dashboard de alta resolución diseñado específicamente para los operadores e ingenieros de redes en Zabbix 7.0 LTS:
+
+- **Acceso Directo:** [`http://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=410`](http://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=410)
+- **Visibilidad:** Tablero Público (`private: 0`), visible en el menú principal `Monitoring -> Dashboards`.
+- **Permisos de Edición:** Concedidos al grupo `Alertas-NOC-Redes` (`usrgrpid: 16`), con acceso de solo lectura para `Alertas-SRE-Plataforma` (`17`) y `Alertas-Guardia-P1` (`15`).
+
+### Arquitectura de Layout en Grid de 72 Unidades (24 Columnas Visuales):
+
+```
++------------------------------------+------------------------------------------------------------------------+
+|                                    |  Incidentes Activos - Core Network (>= Average)                        |
+|  Switches Core & Distribución      |  (Ancho: 48 / Alto: 5 - Tags: team:redes, tier:core, Supresión activa)  |
+|  (team: redes, tier: core)         +------------------------------------------------------------------------+
+|                                    |  Tráfico de Red - Interfaces Troncales & Uplinks                       |
+|  (Ancho: 24 / Alto: 10)            |  (Ancho: 48 / Alto: 5 - SRO-E02-PB00-CORE* Bits sent/received)         |
++------------------------------------+------------------------------------------------------------------------+
+```
+
+1. **Columna Izquierda (Host Navigator):**
+   - Agrupa los switches del backbone (`SRO-E02-PB00-CORE01`, `CORE02`, `CORE03` y `SRO-E01-P00-D01`) mediante filtrado dinámico por tags operacionales.
+   - Proporciona navegación instantánea y conteo de incidentes por host.
+2. **Columna Derecha Superior (Problems):**
+   - Filtra alarmas de impacto operacional (`Average`, `High`, `Disaster`).
+   - Posee activa la supresión de mantenimiento (`show_suppressed = 0`) para evitar distracciones durante ventanas programadas.
+3. **Columna Derecha Inferior (SVG Graph):**
+   - Monitoreo en tiempo real de bits recibidos y transmitidos en interfaces troncales agregadas y SFPs.
+
