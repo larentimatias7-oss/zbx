@@ -113,9 +113,9 @@ Se ha desplegado un dashboard de alta resolución diseñado específicamente par
 
 ---
 
-## 6. Centro de Comando de Directorio Activo: "Security Logs 2" (ID: 411)
+## 6. Centro de Comando Interactivo de Directorio Activo: "Active Directory Cyber SOC" (ID: 411)
 
-Se ha desplegado la reconstrucción integral enterprise del tablero de Active Directory en Zabbix 7.0.22 LTS, unificando seguridad de identidades e infraestructura de servicios en un diseño de dos páginas con rotación automática (`display_period: 30s`):
+Se ha evolucionado el dashboard a un centro de operaciones interactivo de nivel SOC ("Active Directory Cyber SOC") en Zabbix 7.0.22 LTS, implementando el patrón nativo **Broadcaster / Listener**, telemetría avanzada de eventos y auditoría forense de grupos de seguridad:
 
 - **Acceso Directo:** [`http://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=411`](http://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=411)
 - **Visibilidad:** Tablero Público (`private: 0`), visible en `Monitoring -> Dashboards`.
@@ -123,32 +123,38 @@ Se ha desplegado la reconstrucción integral enterprise del tablero de Active Di
 
 ---
 
-### PÁGINA 1: "Seguridad & Auditoría de Identidades"
+### PÁGINA 1: "Seguridad & Auditoría de Identidades (Cyber SOC)"
 
 ```
 +------------------+------------------+------------------+------------------+
-| Salud DCs        | Bloqueos 24h     | Fallos 24h       | Alertas Seguridad|
-| Honeycomb (w: 18)| Item (w: 18)     | Item (w: 18)     | Problems (w: 18) |
+| Bloqueos 24h     | Fallos Logon 24h | Preauth 4771 24h | Gauge Tasa / min |
+| Item (w: 18, h:4)| Item (w: 18, h:4)| Item (w: 18, h:4)| Gauge (w:18, h:4)|
 +------------------+------------------+------------------+------------------+
-| Tasa Horaria de Fallos de Logon (Event 4625)         | Historial Bloqueos |
-| Gráfico Temporal Multi-DC SRO-DCO01 & SRO-DCO02      | Event 4740         |
-| (x: 0, y: 4, w: 44, h: 7)                            | (x: 44, y: 4, w: 28)|
-+------------------------------------------------------+--------------------+
-| Incidentes de Active Directory y Controladores de Dominio (>= Warning)     |
-| Tabla Consolidada SRO-DCO01 + SRO-DCO02 (x: 0, y: 11, w: 72, h: 5)        |
+| DCNAV (Master)   | Tasa Horaria Fallos Logon (Listener SVG) (w: 52, h: 5) |
+| Host Navigator   +--------------------------------------------------------+
+| (x: 0, y: 4,     | Historial Forense Bloqueos 4740 (Listener Table)       |
+|  w: 20, h: 10)   | Usuario & Equipo Origen (w: 52, h: 5)                  |
++------------------+--------------------------------------------------------+
+| Auditoría Forense: Modificación de Grupos Privilegiados (4728/4732/4756)   |
+| Registro Consolidado SRO-DCO01 & SRO-DCO02 (x: 0, y: 14, w: 72, h: 6)     |
 +---------------------------------------------------------------------------+
 ```
 
-1. **Fila 1 (Métricas Rápidas & Estado):**
-   - **Salud Controladores de Dominio (w: 18, h: 4):** Celda hexagonal `honeycomb` con estado de disponibilidad de ambos DCs.
-   - **Bloqueos de Cuenta · 24h (w: 18, h: 4):** Total agregado de Event ID 4740 en ambos controladores.
-   - **Intentos Fallidos · 24h (w: 18, h: 4):** Total agregado de Event ID 4625 en ambos controladores.
-   - **Alertas de Seguridad AD (w: 18, h: 4):** Contador de incidentes de seguridad sin resolver.
-2. **Fila 2 (Análisis Forense & Detección de Fuerza Bruta):**
-   - **Tasa Horaria de Fallos de Logon (w: 44, h: 7):** Serie de tiempo SVG con tasas de eventos 4625 por hora en `SRO-DCO01` y `SRO-DCO02` para detección de picos de ataque.
-   - **Historial de Cuentas Bloqueadas (w: 28, h: 7):** Tabla forense limpia extrayendo exclusivamente `Usuario Bloqueado` y `Equipo Origen` (vía `locked.user` y `locked.pc`), erradicando texto crudo.
-3. **Fila 3 (Problemas Activos):**
-   - **Incidentes de Active Directory (w: 72, h: 5):** Tabla de alarmas de severidad `>= Warning` con supresión de mantenimiento activa.
+1. **Fila 1 (Cabecera SOC con KPIs y Gauge · y: 0, h: 4):**
+   - **Bloqueos de Cuenta · 24h (w: 18, h: 4):** Contador agregado de Event ID 4740 en ambos controladores.
+   - **Fallos de Logon · 24h (w: 18, h: 4):** Total agregado de Event ID 4625 en ambos controladores.
+   - **Fallos Preauth Kerberos · 24h (w: 18, h: 4):** Total agregado de Event ID 4771 (ataques Kerberoasting / Password Spraying).
+   - **Gauge de Tasa de Fallos / min (w: 18, h: 4):** Medidor analógico en tiempo real con umbrales en amarillo (>20) y rojo (>50).
+2. **Fila 2 (Patrón Broadcaster / Listener · y: 4, h: 10):**
+   - **Widget Maestro Emisor (`hostnavigator`, x: 0, y: 4, w: 20, h: 10):**
+     * `reference: "DCNAV"`.
+     * Filtro: `team: plataforma` AND `component: server`, restringido a `SRO-DCO01` y `SRO-DCO02`.
+     * Agrupamiento por host group y severidad de incidentes.
+   - **Widgets Receptores (`x: 20, y: 4, w: 52`):**
+     * **Gráfico SVG (`svggraph`, h: 5):** Vinculado dinámicamente con `override_hostid._reference: "DCNAV._hostid"`. Muestra la tasa horaria de fallos de logon (Event 4625) filtrando automáticamente para el host seleccionado en el navegador.
+     * **Tabla Forense (`itemhistory`, h: 5):** Vinculada con `override_hostid._reference: "DCNAV._hostid"`. Extrae de forma limpia el `Usuario Bloqueado` y `Equipo Origen` (Event 4740) del host seleccionado.
+3. **Fila 3 (Auditoría Forense de Grupos Privilegiados · y: 14, h: 6, w: 72):**
+   - **Historial Forense de Grupos (`itemhistory`):** Monitorea eventos de asignación y remoción de cuentas en grupos con altos privilegios (`Domain Admins`, `Enterprise Admins`, etc.) mediante Event IDs 4728, 4732 y 4756 en ambos controladores.
 
 ---
 
@@ -170,6 +176,7 @@ Se ha desplegado la reconstrucción integral enterprise del tablero de Active Di
 2. **Fila 2 (Sincronización Horaria & Cómputo):**
    - **Desvío NTP (w: 36, h: 6):** Gráfico SVG monitoreando la diferencia temporal en segundos (`ntp.skew.dco`) entre `SRO-DCO01` y `SRO-DCO02` para prevenir fallos en la negociación de tickets Kerberos.
    - **Rendimiento CPU y RAM (w: 36, h: 6):** Gráfico comparativo de consumo de procesador y memoria en ambos DCs.
+
 
 
 
