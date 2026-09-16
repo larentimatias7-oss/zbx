@@ -169,7 +169,6 @@
           ]
         },
         {
-          "widgetid": "87007",
           "type": "honeycomb",
           "name": "Accesibilidad ICMP — Flota de Infraestructura",
           "x": 0,
@@ -371,7 +370,6 @@
           ]
         },
         {
-          "widgetid": "87008",
           "type": "problems",
           "name": "Incidentes Operativos Activos (NOC)",
           "x": 32,
@@ -430,7 +428,6 @@
       "display_period": "0",
       "widgets": [
         {
-          "widgetid": "87009",
           "type": "honeycomb",
           "name": "Rosario — Switches Core & Distribución",
           "x": 0,
@@ -562,7 +559,6 @@
           ]
         },
         {
-          "widgetid": "87010",
           "type": "honeycomb",
           "name": "San Juan — Infraestructura Minera & Remota",
           "x": 24,
@@ -649,7 +645,6 @@
           ]
         },
         {
-          "widgetid": "87011",
           "type": "honeycomb",
           "name": "Perímetro — Gateways Fortinet (Sede & Sucursales)",
           "x": 48,
@@ -786,7 +781,6 @@
           ]
         },
         {
-          "widgetid": "87012",
           "type": "hostnavigator",
           "name": "Seleccionar Equipo",
           "x": 0,
@@ -1064,7 +1058,6 @@
           ]
         },
         {
-          "widgetid": "87013",
           "type": "problems",
           "name": "Problemas del Equipo Seleccionado",
           "x": 46,
@@ -1128,152 +1121,271 @@
       "display_period": "0",
       "widgets": [
         {
-          "type": "tophosts",
-          "name": "Matriz de Capacidad y Estado de Enlaces Troncales",
+          "type": "item",
+          "name": "Core Dell Te1/0/20 · Estado",
           "x": 0,
           "y": 0,
-          "width": 72,
-          "height": 5,
+          "width": 12,
+          "height": 3,
           "view_mode": 0,
           "fields": [
             {
-              "type": 0,
-              "name": "show_lines",
-              "value": 10
+              "type": 4,
+              "name": "itemid.0",
+              "value": "53201"
             },
             {
               "type": 0,
-              "name": "order",
+              "name": "show.0",
               "value": 2
             },
             {
               "type": 0,
-              "name": "order_column",
-              "value": 3
+              "name": "decimal_places",
+              "value": 0
+            },
+            {
+              "type": 0,
+              "name": "value_size",
+              "value": 42
+            },
+            {
+              "type": 1,
+              "name": "value_color",
+              "value": "10B981"
             },
             {
               "type": 0,
               "name": "rf_rate",
               "value": 60
-            },
-            {
-              "type": 1,
-              "name": "columns.0.name",
-              "value": "Equipo Troncal"
-            },
-            {
-              "type": 0,
-              "name": "columns.0.data",
-              "value": 1
-            },
-            {
-              "type": 1,
-              "name": "columns.1.name",
-              "value": "Estado Operativo"
-            },
-            {
-              "type": 0,
-              "name": "columns.1.data",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.1.item",
-              "value": "Operational status"
-            },
-            {
-              "type": 0,
-              "name": "columns.1.display",
-              "value": 5
-            },
-            {
-              "type": 1,
-              "name": "columns.2.name",
-              "value": "Velocidad"
-            },
-            {
-              "type": 0,
-              "name": "columns.2.data",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.2.item",
-              "value": "Interface speed"
-            },
-            {
-              "type": 0,
-              "name": "columns.2.display",
-              "value": 1
-            },
-            {
-              "type": 1,
-              "name": "columns.3.name",
-              "value": "Tráfico Entrada (Bits In)"
-            },
-            {
-              "type": 0,
-              "name": "columns.3.data",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.3.item",
-              "value": "Bits received"
-            },
-            {
-              "type": 0,
-              "name": "columns.3.display",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.3.base_color",
-              "value": "3B82F6"
-            },
-            {
-              "type": 1,
-              "name": "columns.4.name",
-              "value": "Tráfico Salida (Bits Out)"
-            },
-            {
-              "type": 0,
-              "name": "columns.4.data",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.4.item",
-              "value": "Bits sent"
-            },
-            {
-              "type": 0,
-              "name": "columns.4.display",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.4.base_color",
-              "value": "8B5CF6"
-            },
-            {
-              "type": 3,
-              "name": "hostids.0",
-              "value": "10708"
-            },
-            {
-              "type": 3,
-              "name": "hostids.1",
-              "value": "10697"
             }
           ]
         },
         {
-          "widgetid": "87014",
+          "type": "item",
+          "name": "Core Dell Te1/0/20 · Velocidad",
+          "x": 12,
+          "y": 0,
+          "width": 12,
+          "height": 3,
+          "view_mode": 0,
+          "fields": [
+            {
+              "type": 4,
+              "name": "itemid.0",
+              "value": "53047"
+            },
+            {
+              "type": 0,
+              "name": "show.0",
+              "value": 2
+            },
+            {
+              "type": 0,
+              "name": "units_show",
+              "value": 1
+            },
+            {
+              "type": 0,
+              "name": "decimal_places",
+              "value": 0
+            },
+            {
+              "type": 0,
+              "name": "value_size",
+              "value": 42
+            },
+            {
+              "type": 1,
+              "name": "value_color",
+              "value": "3B82F6"
+            },
+            {
+              "type": 0,
+              "name": "rf_rate",
+              "value": 60
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Border1 Port14 (TASA) · Estado",
+          "x": 24,
+          "y": 0,
+          "width": 12,
+          "height": 3,
+          "view_mode": 0,
+          "fields": [
+            {
+              "type": 4,
+              "name": "itemid.0",
+              "value": "56554"
+            },
+            {
+              "type": 0,
+              "name": "show.0",
+              "value": 2
+            },
+            {
+              "type": 0,
+              "name": "decimal_places",
+              "value": 0
+            },
+            {
+              "type": 0,
+              "name": "value_size",
+              "value": 42
+            },
+            {
+              "type": 1,
+              "name": "value_color",
+              "value": "10B981"
+            },
+            {
+              "type": 0,
+              "name": "rf_rate",
+              "value": 60
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Border1 Port14 (TASA) · Velocidad",
+          "x": 36,
+          "y": 0,
+          "width": 12,
+          "height": 3,
+          "view_mode": 0,
+          "fields": [
+            {
+              "type": 4,
+              "name": "itemid.0",
+              "value": "56489"
+            },
+            {
+              "type": 0,
+              "name": "show.0",
+              "value": 2
+            },
+            {
+              "type": 0,
+              "name": "units_show",
+              "value": 1
+            },
+            {
+              "type": 0,
+              "name": "decimal_places",
+              "value": 0
+            },
+            {
+              "type": 0,
+              "name": "value_size",
+              "value": 42
+            },
+            {
+              "type": 1,
+              "name": "value_color",
+              "value": "3B82F6"
+            },
+            {
+              "type": 0,
+              "name": "rf_rate",
+              "value": 60
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Border1 Port15 (Claro) · Estado",
+          "x": 48,
+          "y": 0,
+          "width": 12,
+          "height": 3,
+          "view_mode": 0,
+          "fields": [
+            {
+              "type": 4,
+              "name": "itemid.0",
+              "value": "56548"
+            },
+            {
+              "type": 0,
+              "name": "show.0",
+              "value": 2
+            },
+            {
+              "type": 0,
+              "name": "decimal_places",
+              "value": 0
+            },
+            {
+              "type": 0,
+              "name": "value_size",
+              "value": 42
+            },
+            {
+              "type": 1,
+              "name": "value_color",
+              "value": "10B981"
+            },
+            {
+              "type": 0,
+              "name": "rf_rate",
+              "value": 60
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Border1 Port15 (Claro) · Velocidad",
+          "x": 60,
+          "y": 0,
+          "width": 12,
+          "height": 3,
+          "view_mode": 0,
+          "fields": [
+            {
+              "type": 4,
+              "name": "itemid.0",
+              "value": "56483"
+            },
+            {
+              "type": 0,
+              "name": "show.0",
+              "value": 2
+            },
+            {
+              "type": 0,
+              "name": "units_show",
+              "value": 1
+            },
+            {
+              "type": 0,
+              "name": "decimal_places",
+              "value": 0
+            },
+            {
+              "type": 0,
+              "name": "value_size",
+              "value": 42
+            },
+            {
+              "type": 1,
+              "name": "value_color",
+              "value": "3B82F6"
+            },
+            {
+              "type": 0,
+              "name": "rf_rate",
+              "value": 60
+            }
+          ]
+        },
+        {
           "type": "svggraph",
           "name": "CORE01 — Te1/0/20 · Troncal Dell Backbone",
           "x": 0,
-          "y": 5,
+          "y": 3,
           "width": 36,
           "height": 6,
           "view_mode": 0,
@@ -1401,11 +1513,10 @@
           ]
         },
         {
-          "widgetid": "87015",
           "type": "svggraph",
           "name": "Border1 — Port14 (TASA) vs Port15 (Claro)",
           "x": 36,
-          "y": 5,
+          "y": 3,
           "width": 36,
           "height": 6,
           "view_mode": 0,
@@ -1603,11 +1714,10 @@
           ]
         },
         {
-          "widgetid": "87022",
           "type": "svggraph",
           "name": "Errores y Descartes — CORE01 Te1/0/20 & Border1",
           "x": 0,
-          "y": 11,
+          "y": 9,
           "width": 36,
           "height": 5,
           "view_mode": 0,
@@ -1705,11 +1815,10 @@
           ]
         },
         {
-          "widgetid": "87023",
           "type": "problems",
           "name": "Incidencias de Interfaces y Troncales",
           "x": 36,
-          "y": 11,
+          "y": 9,
           "width": 36,
           "height": 5,
           "view_mode": 0,
@@ -1774,7 +1883,6 @@
       "display_period": "0",
       "widgets": [
         {
-          "widgetid": "87024",
           "type": "tophosts",
           "name": "FortiGate — CPU, Memoria, Sesiones y Túneles IPsec",
           "x": 0,
@@ -2071,7 +2179,6 @@
           ]
         },
         {
-          "widgetid": "87025",
           "type": "itemnavigator",
           "name": "SD-WAN & Interfaces — Selección",
           "x": 0,
@@ -2188,7 +2295,6 @@
           ]
         },
         {
-          "widgetid": "87026",
           "type": "svggraph",
           "name": "SD-WAN — Telemetría del Canal Seleccionado",
           "x": 22,
@@ -2285,7 +2391,6 @@
           ]
         },
         {
-          "widgetid": "87028",
           "type": "item",
           "name": "VPN / Sensores — Muestra Seleccionada",
           "x": 54,
@@ -2337,7 +2442,6 @@
           ]
         },
         {
-          "widgetid": "87030",
           "type": "svggraph",
           "name": "Border1 HTTP — CPU & Memoria Complementarias",
           "x": 0,
@@ -2439,7 +2543,6 @@
           ]
         },
         {
-          "widgetid": "87029",
           "type": "problems",
           "name": "Problemas de Seguridad y Enlaces Fortinet",
           "x": 36,
@@ -2573,7 +2676,6 @@
       "display_period": "0",
       "widgets": [
         {
-          "widgetid": "87033",
           "type": "honeycomb",
           "name": "Switches — Accesibilidad ICMP",
           "x": 0,
@@ -2715,7 +2817,6 @@
           ]
         },
         {
-          "widgetid": "87034",
           "type": "problems",
           "name": "Problemas de Switches y Puertos",
           "x": 30,
@@ -2843,142 +2944,337 @@
         },
         {
           "type": "tophosts",
-          "name": "Inventario de Switches — Ranking de Utilización CPU & Memoria",
+          "name": "Switches HP & Enterprise — CPU %",
           "x": 0,
           "y": 5,
-          "width": 72,
+          "width": 36,
           "height": 5,
           "view_mode": 0,
           "fields": [
             {
-              "type": 0,
-              "name": "show_lines",
-              "value": 15
-            },
-            {
-              "type": 0,
-              "name": "order",
-              "value": 2
-            },
-            {
-              "type": 0,
-              "name": "order_column",
-              "value": 1
-            },
-            {
-              "type": 0,
+              "type": "0",
               "name": "rf_rate",
-              "value": 60
+              "value": "60"
             },
             {
-              "type": 1,
+              "type": "1",
+              "name": "reference",
+              "value": "NC028"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10711"
+            },
+            {
+              "type": "3",
+              "name": "hostids.1",
+              "value": "10713"
+            },
+            {
+              "type": "3",
+              "name": "hostids.2",
+              "value": "10724"
+            },
+            {
+              "type": "3",
+              "name": "hostids.3",
+              "value": "10726"
+            },
+            {
+              "type": "3",
+              "name": "hostids.4",
+              "value": "10800"
+            },
+            {
+              "type": "0",
+              "name": "maintenance",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "column",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "order",
+              "value": "2"
+            },
+            {
+              "type": "1",
               "name": "columns.0.name",
-              "value": "Switch / Dispositivo"
+              "value": "Equipo"
             },
             {
-              "type": 0,
+              "type": "0",
               "name": "columns.0.data",
-              "value": 1
+              "value": "2"
             },
             {
-              "type": 1,
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": ""
+            },
+            {
+              "type": "1",
               "name": "columns.1.name",
-              "value": "Utilización CPU (%)"
+              "value": "CPU %"
             },
             {
-              "type": 0,
+              "type": "0",
               "name": "columns.1.data",
-              "value": 2
+              "value": "1"
             },
             {
-              "type": 1,
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "59DB8F"
+            },
+            {
+              "type": "1",
               "name": "columns.1.item",
               "value": "CPU utilization"
             },
             {
-              "type": 0,
+              "type": "0",
               "name": "columns.1.display",
-              "value": 2
+              "value": "2"
             },
             {
-              "type": 1,
-              "name": "columns.1.base_color",
-              "value": "10B981"
+              "type": "0",
+              "name": "columns.1.decimal_places",
+              "value": "1"
             },
             {
-              "type": 1,
-              "name": "columns.1.thresholds.0.color",
-              "value": "F59E0B"
+              "type": "1",
+              "name": "columns.1.min",
+              "value": "0"
             },
             {
-              "type": 1,
-              "name": "columns.1.thresholds.0.threshold",
-              "value": "70"
+              "type": "1",
+              "name": "columns.1.max",
+              "value": "100"
             },
             {
-              "type": 1,
-              "name": "columns.1.thresholds.1.color",
-              "value": "EF4444"
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "FFB84D"
             },
             {
-              "type": 1,
-              "name": "columns.1.thresholds.1.threshold",
-              "value": "85"
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "80"
             },
             {
-              "type": 1,
-              "name": "columns.2.name",
-              "value": "Utilización Memoria (%)"
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E45959"
             },
             {
-              "type": 0,
-              "name": "columns.2.data",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.2.item",
-              "value": "Memory utilization"
-            },
-            {
-              "type": 0,
-              "name": "columns.2.display",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.2.base_color",
-              "value": "3B82F6"
-            },
-            {
-              "type": 1,
-              "name": "columns.3.name",
-              "value": "Latencia ICMP"
-            },
-            {
-              "type": 0,
-              "name": "columns.3.data",
-              "value": 2
-            },
-            {
-              "type": 1,
-              "name": "columns.3.item",
-              "value": "ICMP response time"
-            },
-            {
-              "type": 0,
-              "name": "columns.3.display",
-              "value": 1
-            },
-            {
-              "type": 2,
-              "name": "groupids.0",
-              "value": "34"
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "90"
             }
           ]
         },
         {
-          "widgetid": "87040",
+          "type": "tophosts",
+          "name": "Switches Comware — CPU & Memoria",
+          "x": 36,
+          "y": 5,
+          "width": 36,
+          "height": 5,
+          "view_mode": 0,
+          "fields": [
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "NC029"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10796"
+            },
+            {
+              "type": "3",
+              "name": "hostids.1",
+              "value": "10797"
+            },
+            {
+              "type": "3",
+              "name": "hostids.2",
+              "value": "10799"
+            },
+            {
+              "type": "0",
+              "name": "maintenance",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "column",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "order",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Equipo"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": ""
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "CPU %"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "59DB8F"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "Level 1 Virtual Module #1: CPU utilization"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.min",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.max",
+              "value": "100"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "FFB84D"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "80"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E45959"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "90"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.name",
+              "value": "Memoria %"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.base_color",
+              "value": "59DB8F"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.item",
+              "value": "Level 1 Virtual Module #1: Memory utilization"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.display",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.min",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.max",
+              "value": "100"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.color.0",
+              "value": "FFB84D"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.threshold.0",
+              "value": "80"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.color.1",
+              "value": "E45959"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.threshold.1",
+              "value": "90"
+            }
+          ]
+        },
+        {
           "type": "hostnavigator",
           "name": "Switches — Selección de Equipo",
           "x": 0,
@@ -3085,7 +3381,6 @@
           ]
         },
         {
-          "widgetid": "87037",
           "type": "itemnavigator",
           "name": "Interfaces — Diagnóstico de Puertos",
           "x": 20,
@@ -3202,7 +3497,6 @@
           ]
         },
         {
-          "widgetid": "87038",
           "type": "svggraph",
           "name": "Tráfico de la Interfaz Seleccionada",
           "x": 42,
@@ -3306,7 +3600,6 @@
       "display_period": "0",
       "widgets": [
         {
-          "widgetid": "87041",
           "type": "hostnavigator",
           "name": "Switches con LLDP Activo",
           "x": 0,
@@ -3403,7 +3696,6 @@
           ]
         },
         {
-          "widgetid": "87042",
           "type": "itemhistory",
           "name": "Tabla de Vecinos y Adyacencias LLDP",
           "x": 20,
@@ -3475,7 +3767,6 @@
           ]
         },
         {
-          "widgetid": "87043",
           "type": "itemnavigator",
           "name": "Puertos y Conexiones Remotas",
           "x": 0,
@@ -3582,7 +3873,6 @@
           ]
         },
         {
-          "widgetid": "87044",
           "type": "item",
           "name": "Detalle del Puerto / Vecino Remoto",
           "x": 36,
@@ -3641,7 +3931,6 @@
       "display_period": "0",
       "widgets": [
         {
-          "widgetid": "87045",
           "type": "hostavail",
           "name": "Disponibilidad de Recolección SNMP",
           "x": 0,
@@ -3688,7 +3977,6 @@
           ]
         },
         {
-          "widgetid": "87046",
           "type": "honeycomb",
           "name": "SNMP por Equipo — Estado de Recolección",
           "x": 36,
@@ -3900,7 +4188,6 @@
           ]
         },
         {
-          "widgetid": "87047",
           "type": "svggraph",
           "name": "Cola Zabbix — Total y Demora > 10m",
           "x": 0,
@@ -4002,7 +4289,6 @@
           ]
         },
         {
-          "widgetid": "87048",
           "type": "svggraph",
           "name": "Procesos de Recolección y Mantenimiento",
           "x": 36,
@@ -4109,7 +4395,6 @@
           ]
         },
         {
-          "widgetid": "87049",
           "type": "itemnavigator",
           "name": "Auditoría de Ítems No Soportados por Host",
           "x": 0,
@@ -4286,7 +4571,6 @@
           ]
         },
         {
-          "widgetid": "87050",
           "type": "problems",
           "name": "Alertas de la Plataforma Zabbix",
           "x": 30,
