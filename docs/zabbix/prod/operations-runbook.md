@@ -144,12 +144,12 @@ Se ha evolucionado el dashboard a un centro de operaciones interactivo de nivel 
    - **Bloqueos de Cuenta · 24h (w: 18, h: 4):** Contador agregado de Event ID 4740 en ambos controladores.
    - **Fallos de Logon · 24h (w: 18, h: 4):** Total agregado de Event ID 4625 en ambos controladores.
    - **Fallos Preauth Kerberos · 24h (w: 18, h: 4):** Total agregado de Event ID 4771 (ataques Kerberoasting / Password Spraying).
-   - **Gauge de Tasa de Fallos / min (w: 18, h: 4):** Medidor analógico en tiempo real con umbrales en amarillo (>20) y rojo (>50).
+   - **Gauge de Tasa de Fallos / min (w: 18, h: 4):** Medidor analógico recalibrado con escala `0 - 30` y alta sensibilidad visual: Verde Normal (`0 - 10`), Amarillo Precaución (`10 - 25`), Rojo Crítico (`> 25`).
 2. **Fila 2 (Patrón Broadcaster / Listener · y: 4, h: 10):**
    - **Widget Maestro Emisor (`hostnavigator`, x: 0, y: 4, w: 20, h: 10):**
      * `reference: "DCNAV"`.
-     * Filtro: `team: plataforma` AND `component: server`, restringido a `SRO-DCO01` y `SRO-DCO02`.
-     * Agrupamiento por host group y severidad de incidentes.
+     * Filtro: Restringido al grupo prioritario `AD` (`groupids: 29`), `team: plataforma` AND `component: server`, deduplicando los controladores `SRO-DCO01` y `SRO-DCO02` para que figuren una sola vez sin desglose por `Windows_Server`.
+     * Agrupamiento por grupo de hosts y severidad de incidentes activos.
    - **Widgets Receptores (`x: 20, y: 4, w: 52`):**
      * **Gráfico SVG (`svggraph`, h: 5):** Vinculado dinámicamente con `override_hostid._reference: "DCNAV._hostid"`. Muestra la tasa horaria de fallos de logon (Event 4625) filtrando automáticamente para el host seleccionado en el navegador.
      * **Tabla Forense (`itemhistory`, h: 5):** Vinculada con `override_hostid._reference: "DCNAV._hostid"`. Extrae de forma limpia el `Usuario Bloqueado` y `Equipo Origen` (Event 4740) del host seleccionado.
@@ -163,7 +163,7 @@ Se ha evolucionado el dashboard a un centro de operaciones interactivo de nivel 
 ```
 +------------------+------------------+------------------+------------------+
 | Servicio NTDS    | Servicio DNS     | Servicio KDC     | Servicio Netlogon|
-| (x:0, w:18, h:5) | (x:18, w:18, h:5)| (x:36, w:18, h:5)| (x:54, w:18, h:5)|
+| Top Hosts (w:18) | Top Hosts (w:18) | Top Hosts (w:18) | Top Hosts (w:18) |
 +------------------+------------------+------------------+------------------+
 | Sincronización Horaria y Desvío NTP                  | Rendimiento Cómputo|
 | Gráfico de Skew de Tiempo DCO01 vs DCO02             | CPU & Memoria DCOs |
@@ -171,8 +171,9 @@ Se ha evolucionado el dashboard a un centro de operaciones interactivo de nivel 
 +------------------------------------------------------+--------------------+
 ```
 
-1. **Fila 1 (Estado de Servicios Críticos Windows):**
-   - Cuatro paneles de telemetría comparando en tiempo real el estado de los servicios `NTDS`, `DNS Server`, `Kerberos (KDC)` y `Netlogon` en ambos controladores de dominio.
+1. **Fila 1 (Estado Compacto de Servicios Críticos · y: 0, h: 5, w: 18 c/u):**
+   - 4 tarjetas compactas tipo `tophosts` de valor único para `NTDS`, `DNS Server`, `Kerberos (KDC)` y `Netlogon`.
+   - Muestran el último estado en texto limpio para ambos controladores (`SRO-DCO01: Running` / `SRO-DCO02: Running`) con formateo condicional en verde (`#10B981` al valor `0`), eliminando scroll vertical, timestamps y filas vacías alternadas.
 2. **Fila 2 (Sincronización Horaria & Cómputo):**
    - **Desvío NTP (w: 36, h: 6):** Gráfico SVG monitoreando la diferencia temporal en segundos (`ntp.skew.dco`) entre `SRO-DCO01` y `SRO-DCO02` para prevenir fallos en la negociación de tickets Kerberos.
    - **Rendimiento CPU y RAM (w: 36, h: 6):** Gráfico comparativo de consumo de procesador y memoria en ambos DCs.
