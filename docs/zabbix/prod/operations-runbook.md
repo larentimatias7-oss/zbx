@@ -111,3 +111,39 @@ Se ha desplegado un dashboard de alta resolución diseñado específicamente par
 3. **Columna Derecha Inferior (SVG Graph):**
    - Monitoreo en tiempo real de bits recibidos y transmitidos en interfaces troncales agregadas y SFPs.
 
+---
+
+## 6. Tablero de Seguridad de Directorio Activo: "Security Logs 2" (ID: 411)
+
+Se ha creado la versión 2.0 optimizada y enterprise del panel de seguridad de Active Directory, superando las limitaciones de cobertura del tablero 403 anterior:
+
+- **Acceso Directo:** [`http://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=411`](http://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=411)
+- **Visibilidad:** Tablero Público (`private: 0`), visible en el menú principal `Monitoring -> Dashboards`.
+- **Permisos de Edición:** Concedidos al grupo `Alertas-SRE-Plataforma` (`usrgrpid: 17`), con lectura para `Alertas-Guardia-P1` (`15`) y `Alertas-NOC-Redes` (`16`).
+
+### Mejoras Clave Frente a la Versión 1.0 (Dashboard 403):
+
+| Dimensión | Security Logs 1.0 (Dashboard 403) | Security Logs 2.0 (Dashboard 411) |
+| :--- | :--- | :--- |
+| **Cobertura de Controladores** | **Parcial (Solo SRO-DCO01).** SRO-DCO02 no recolectaba eventos de seguridad (huérfano). | **Consolidación Multi-DC Total.** Telemetría simétrica en `SRO-DCO01` y `SRO-DCO02`. |
+| **KPIs de Auditoría** | Contadores dispersos solo para DCO01. | 4 tarjetas de valor con recuentos agregados Multi-DC en tiempo real (24h y 7 días). |
+| **Detección de Fuerza Bruta** | Sin visualización temporal; solo tablas de texto plano. | Gráfico SVG interactivo con tasa horaria de eventos 4625 para identificar picos de ataque. |
+| **Trazabilidad de Bloqueos** | Evidencias mezcladas con advertencias de datos no confirmados. | Tabla estructurada correlacionando Usuario Afectado y Equipo Origen en ambos DCs. |
+| **Arquitectura de Grid** | Múltiples páginas desconectadas con anchos variables. | Pantalla única de alta densidad en grid de 72 unidades (100% de la pantalla). |
+
+### Estructura de Filas del Tablero (Grid de 72 Unidades):
+
+```
++------------------+------------------+------------------+------------------+
+| Bloqueos 24h     | Bloqueos 7d      | Fallos 24h       | Fallos 7d        |
+| (w: 18, h: 3)    | (w: 18, h: 3)    | (w: 18, h: 3)    | (w: 18, h: 3)    |
++------------------+------------------+------------------+------------------+
+| Tasa de Fallos de Autenticación (Event 4625)         | Historial Bloqueos |
+| Gráfico Temporal Multi-DC (w: 44, h: 7)              | Event 4740 (w: 28) |
++------------------------------------------------------+--------------------+
+| Auditoría de Logons Fallidos Multi-DC - Event 4625                        |
+| Tabla Consolidada SRO-DCO01 + SRO-DCO02 (w: 72, h: 6)                      |
++---------------------------------------------------------------------------+
+```
+
+

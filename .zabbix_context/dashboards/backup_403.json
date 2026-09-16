@@ -1,0 +1,1334 @@
+{
+  "dashboardid": "403",
+  "name": "Security Logs",
+  "userid": "1",
+  "private": "1",
+  "display_period": "30",
+  "auto_start": "0",
+  "uuid": "",
+  "pages": [
+    {
+      "dashboard_pageid": "22788",
+      "name": "Resumen operativo",
+      "display_period": "0",
+      "widgets": [
+        {
+          "widgetid": "86940",
+          "type": "item",
+          "name": "Bloqueos · 24 h · eventos DCO01",
+          "x": "0",
+          "y": "0",
+          "width": "18",
+          "height": "2",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "83274"
+            },
+            {
+              "type": "0",
+              "name": "aggregate_function",
+              "value": "4"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "55"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "B45309"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "widgetid": "86943",
+          "type": "item",
+          "name": "Accesos fallidos · 7 días · eventos DCO01",
+          "x": "54",
+          "y": "0",
+          "width": "18",
+          "height": "2",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "83715"
+            },
+            {
+              "type": "0",
+              "name": "aggregate_function",
+              "value": "4"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "55"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "B91C1C"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "widgetid": "86944",
+          "type": "itemhistory",
+          "name": "Cobertura parcial: Security solo SRO-DCO01 · cuentas bloqueadas: estado actual desconocido",
+          "x": "0",
+          "y": "2",
+          "width": "72",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "OP001"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "100"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Usuario del evento"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83820"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Equipo informado"
+            },
+            {
+              "type": "4",
+              "name": "columns.1.itemid",
+              "value": "83821"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.max_length",
+              "value": "90"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.name",
+              "value": "4740 · abrir evidencia original"
+            },
+            {
+              "type": "4",
+              "name": "columns.2.itemid",
+              "value": "83274"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.max_length",
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "widgetid": "86945",
+          "type": "itemhistory",
+          "name": "Fallos AD · 7 días · 0 registros no certifica recolección completa",
+          "x": "0",
+          "y": "7",
+          "width": "72",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "OP002"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "100"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "4625 · abrir usuario, IP y motivo originales"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83715"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "widgetid": "86941",
+          "type": "item",
+          "name": "Accesos fallidos · 24 h · eventos DCO01",
+          "x": "36",
+          "y": "0",
+          "width": "18",
+          "height": "2",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "83715"
+            },
+            {
+              "type": "0",
+              "name": "aggregate_function",
+              "value": "4"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "55"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "B91C1C"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "widgetid": "86942",
+          "type": "item",
+          "name": "Bloqueos · 7 días · eventos DCO01",
+          "x": "18",
+          "y": "0",
+          "width": "18",
+          "height": "2",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "83274"
+            },
+            {
+              "type": "0",
+              "name": "aggregate_function",
+              "value": "4"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "55"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "B45309"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dashboard_pageid": "22785",
+      "name": "Usuarios",
+      "display_period": "0",
+      "widgets": [
+        {
+          "widgetid": "86946",
+          "type": "itemhistory",
+          "name": "Bloqueos por evento · sin ranking en vivo · estado actual desconocido",
+          "x": "0",
+          "y": "0",
+          "width": "72",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "OP003"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "100"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Cuenta"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83820"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Equipo"
+            },
+            {
+              "type": "4",
+              "name": "columns.1.itemid",
+              "value": "83821"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.max_length",
+              "value": "90"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.name",
+              "value": "4740 · abrir original"
+            },
+            {
+              "type": "4",
+              "name": "columns.2.itemid",
+              "value": "83274"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.max_length",
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "widgetid": "86947",
+          "type": "itemhistory",
+          "name": "Fallos por evento · usuario y motivo dentro del registro original",
+          "x": "0",
+          "y": "5",
+          "width": "72",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "OP004"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "100"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "4625 · abrir evidencia"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83715"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dashboard_pageid": "22786",
+      "name": "Orígenes",
+      "display_period": "0",
+      "widgets": [
+        {
+          "widgetid": "86948",
+          "type": "itemhistory",
+          "name": "IP vista por AD · puede ser intermediario · IP pública VPN: sin fuente en vivo",
+          "x": "0",
+          "y": "0",
+          "width": "72",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "OP005"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "100"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "4625 · abrir Source Network Address y motivo"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83715"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "widgetid": "86949",
+          "type": "itemhistory",
+          "name": "Equipos informados en bloqueos · no equivalen necesariamente al cliente final",
+          "x": "0",
+          "y": "6",
+          "width": "72",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "OP006"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "100"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Equipo informado"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83821"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "4740 · evidencia original"
+            },
+            {
+              "type": "4",
+              "name": "columns.1.itemid",
+              "value": "83274"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.max_length",
+              "value": "90"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dashboard_pageid": "22787",
+      "name": "Incidentes",
+      "display_period": "0",
+      "widgets": [
+        {
+          "widgetid": "86950",
+          "type": "itemhistory",
+          "name": "Evidencia AD · secuencia VPN no disponible en vivo · revisar informe histórico",
+          "x": "0",
+          "y": "0",
+          "width": "72",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "OP007"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "100"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "4740 · abrir bloqueo original"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83274"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "widgetid": "86951",
+          "type": "problems",
+          "name": "Diagnóstico de alertas · RESOLVED no confirma desbloqueo · revisar tiempos y etiquetas",
+          "x": "0",
+          "y": "4",
+          "width": "72",
+          "height": "7",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "0",
+              "name": "show",
+              "value": "2"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "0",
+              "name": "severities.0",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "tags.0.tag",
+              "value": "tipo"
+            },
+            {
+              "type": "0",
+              "name": "tags.0.operator",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "tags.0.value",
+              "value": "AD User locked"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "FUUUV"
+            },
+            {
+              "type": "0",
+              "name": "show_opdata",
+              "value": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dashboard_pageid": "22778",
+      "name": "Salud y auditoría",
+      "display_period": "0",
+      "widgets": [
+        {
+          "widgetid": "86952",
+          "type": "item",
+          "name": "SRO-DCO01 · servicio EventLog (no prueba auditoría)",
+          "x": "0",
+          "y": "0",
+          "width": "24",
+          "height": "2",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75478"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "widgetid": "86953",
+          "type": "item",
+          "name": "SRO-DCO02 · servicio EventLog (no prueba auditoría)",
+          "x": "24",
+          "y": "0",
+          "width": "24",
+          "height": "2",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75616"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "widgetid": "86954",
+          "type": "item",
+          "name": "SSJ-DCO01 · servicio EventLog (no prueba auditoría)",
+          "x": "48",
+          "y": "0",
+          "width": "24",
+          "height": "2",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "76551"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "widgetid": "86955",
+          "type": "itemhistory",
+          "name": "Cuentas creadas · clic para ver cuenta y responsable · SRO-DCO01",
+          "x": "0",
+          "y": "2",
+          "width": "72",
+          "height": "3",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "ADNEW"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "1000"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Registro Windows 4720"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83716"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "widgetid": "86956",
+          "type": "itemhistory",
+          "name": "Cuentas habilitadas · clic para ver cuenta y responsable · SRO-DCO01",
+          "x": "0",
+          "y": "5",
+          "width": "72",
+          "height": "3",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "ADENA"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "1000"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Registro Windows 4722"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83275"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "widgetid": "86957",
+          "type": "itemhistory",
+          "name": "Cuentas deshabilitadas · clic para ver cuenta y responsable · SRO-DCO01",
+          "x": "0",
+          "y": "8",
+          "width": "72",
+          "height": "3",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "ADDIS"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "1000"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Registro Windows 4725"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83714"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "widgetid": "86958",
+          "type": "itemhistory",
+          "name": "Cobertura: DCO02 y SSJ sin ítems Security · estado técnico de ítems pendiente de panel específico",
+          "x": "0",
+          "y": "11",
+          "width": "72",
+          "height": "3",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "OP008"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "100"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Último registro 4625 disponible · abrir"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83715"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
