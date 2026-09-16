@@ -113,37 +113,63 @@ Se ha desplegado un dashboard de alta resolución diseñado específicamente par
 
 ---
 
-## 6. Tablero de Seguridad de Directorio Activo: "Security Logs 2" (ID: 411)
+## 6. Centro de Comando de Directorio Activo: "Security Logs 2" (ID: 411)
 
-Se ha creado la versión 2.0 optimizada y enterprise del panel de seguridad de Active Directory, superando las limitaciones de cobertura del tablero 403 anterior:
+Se ha desplegado la reconstrucción integral enterprise del tablero de Active Directory en Zabbix 7.0.22 LTS, unificando seguridad de identidades e infraestructura de servicios en un diseño de dos páginas con rotación automática (`display_period: 30s`):
 
 - **Acceso Directo:** [`http://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=411`](http://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=411)
-- **Visibilidad:** Tablero Público (`private: 0`), visible en el menú principal `Monitoring -> Dashboards`.
+- **Visibilidad:** Tablero Público (`private: 0`), visible en `Monitoring -> Dashboards`.
 - **Permisos de Edición:** Concedidos al grupo `Alertas-SRE-Plataforma` (`usrgrpid: 17`), con lectura para `Alertas-Guardia-P1` (`15`) y `Alertas-NOC-Redes` (`16`).
 
-### Mejoras Clave Frente a la Versión 1.0 (Dashboard 403):
+---
 
-| Dimensión | Security Logs 1.0 (Dashboard 403) | Security Logs 2.0 (Dashboard 411) |
-| :--- | :--- | :--- |
-| **Cobertura de Controladores** | **Parcial (Solo SRO-DCO01).** SRO-DCO02 no recolectaba eventos de seguridad (huérfano). | **Consolidación Multi-DC Total.** Telemetría simétrica en `SRO-DCO01` y `SRO-DCO02`. |
-| **KPIs de Auditoría** | Contadores dispersos solo para DCO01. | 4 tarjetas de valor con recuentos agregados Multi-DC en tiempo real (24h y 7 días). |
-| **Detección de Fuerza Bruta** | Sin visualización temporal; solo tablas de texto plano. | Gráfico SVG interactivo con tasa horaria de eventos 4625 para identificar picos de ataque. |
-| **Trazabilidad de Bloqueos** | Evidencias mezcladas con advertencias de datos no confirmados. | Tabla estructurada correlacionando Usuario Afectado y Equipo Origen en ambos DCs. |
-| **Arquitectura de Grid** | Múltiples páginas desconectadas con anchos variables. | Pantalla única de alta densidad en grid de 72 unidades (100% de la pantalla). |
-
-### Estructura de Filas del Tablero (Grid de 72 Unidades):
+### PÁGINA 1: "Seguridad & Auditoría de Identidades"
 
 ```
 +------------------+------------------+------------------+------------------+
-| Bloqueos 24h     | Bloqueos 7d      | Fallos 24h       | Fallos 7d        |
-| (w: 18, h: 3)    | (w: 18, h: 3)    | (w: 18, h: 3)    | (w: 18, h: 3)    |
+| Salud DCs        | Bloqueos 24h     | Fallos 24h       | Alertas Seguridad|
+| Honeycomb (w: 18)| Item (w: 18)     | Item (w: 18)     | Problems (w: 18) |
 +------------------+------------------+------------------+------------------+
-| Tasa de Fallos de Autenticación (Event 4625)         | Historial Bloqueos |
-| Gráfico Temporal Multi-DC (w: 44, h: 7)              | Event 4740 (w: 28) |
+| Tasa Horaria de Fallos de Logon (Event 4625)         | Historial Bloqueos |
+| Gráfico Temporal Multi-DC SRO-DCO01 & SRO-DCO02      | Event 4740         |
+| (x: 0, y: 4, w: 44, h: 7)                            | (x: 44, y: 4, w: 28)|
 +------------------------------------------------------+--------------------+
-| Auditoría de Logons Fallidos Multi-DC - Event 4625                        |
-| Tabla Consolidada SRO-DCO01 + SRO-DCO02 (w: 72, h: 6)                      |
+| Incidentes de Active Directory y Controladores de Dominio (>= Warning)     |
+| Tabla Consolidada SRO-DCO01 + SRO-DCO02 (x: 0, y: 11, w: 72, h: 5)        |
 +---------------------------------------------------------------------------+
 ```
+
+1. **Fila 1 (Métricas Rápidas & Estado):**
+   - **Salud Controladores de Dominio (w: 18, h: 4):** Celda hexagonal `honeycomb` con estado de disponibilidad de ambos DCs.
+   - **Bloqueos de Cuenta · 24h (w: 18, h: 4):** Total agregado de Event ID 4740 en ambos controladores.
+   - **Intentos Fallidos · 24h (w: 18, h: 4):** Total agregado de Event ID 4625 en ambos controladores.
+   - **Alertas de Seguridad AD (w: 18, h: 4):** Contador de incidentes de seguridad sin resolver.
+2. **Fila 2 (Análisis Forense & Detección de Fuerza Bruta):**
+   - **Tasa Horaria de Fallos de Logon (w: 44, h: 7):** Serie de tiempo SVG con tasas de eventos 4625 por hora en `SRO-DCO01` y `SRO-DCO02` para detección de picos de ataque.
+   - **Historial de Cuentas Bloqueadas (w: 28, h: 7):** Tabla forense limpia extrayendo exclusivamente `Usuario Bloqueado` y `Equipo Origen` (vía `locked.user` y `locked.pc`), erradicando texto crudo.
+3. **Fila 3 (Problemas Activos):**
+   - **Incidentes de Active Directory (w: 72, h: 5):** Tabla de alarmas de severidad `>= Warning` con supresión de mantenimiento activa.
+
+---
+
+### PÁGINA 2: "Salud de Dominio & Servicios AD DS"
+
+```
++------------------+------------------+------------------+------------------+
+| Servicio NTDS    | Servicio DNS     | Servicio KDC     | Servicio Netlogon|
+| (x:0, w:18, h:5) | (x:18, w:18, h:5)| (x:36, w:18, h:5)| (x:54, w:18, h:5)|
++------------------+------------------+------------------+------------------+
+| Sincronización Horaria y Desvío NTP                  | Rendimiento Cómputo|
+| Gráfico de Skew de Tiempo DCO01 vs DCO02             | CPU & Memoria DCOs |
+| (x: 0, y: 5, w: 36, h: 6)                            | (x: 36, y: 5, w:36)|
++------------------------------------------------------+--------------------+
+```
+
+1. **Fila 1 (Estado de Servicios Críticos Windows):**
+   - Cuatro paneles de telemetría comparando en tiempo real el estado de los servicios `NTDS`, `DNS Server`, `Kerberos (KDC)` y `Netlogon` en ambos controladores de dominio.
+2. **Fila 2 (Sincronización Horaria & Cómputo):**
+   - **Desvío NTP (w: 36, h: 6):** Gráfico SVG monitoreando la diferencia temporal en segundos (`ntp.skew.dco`) entre `SRO-DCO01` y `SRO-DCO02` para prevenir fallos en la negociación de tickets Kerberos.
+   - **Rendimiento CPU y RAM (w: 36, h: 6):** Gráfico comparativo de consumo de procesador y memoria en ambos DCs.
+
 
 
