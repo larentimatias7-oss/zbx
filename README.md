@@ -15,6 +15,7 @@ El suite completo de documentación técnica, manuales de usuario y estándares 
 | 🏷️ [**03. Guía de Creación y Alta de Hosts**](file:///c:/zabbix_anti/docs/zabbix/manuals/03-guia-creacion-hosts.md) | Convención de nombres, plantillas oficiales, SNMP, macro `{$IFCONTROL}` y matriz de tags obligatorios (*Tag-driven Alerting*). | Operadores NOC, Administradores |
 | 🖥️ [**04. Manual de Usuario y Operador NOC**](file:///c:/zabbix_anti/docs/zabbix/manuals/04-manual-usuario-y-operador-noc.md) | Navegación de la consola web, operación de Dashboards, reconocimiento (*Acknowledge*) de problemas y rotación de guardias. | Mesa de Ayuda, NOC, Soporte |
 | 👥 [**05. Gestión de Usuarios y Notificaciones**](file:///c:/zabbix_anti/docs/zabbix/manuals/05-gestion-usuarios-y-notificaciones.md) | Alta de operadores, RBAC, configuración de Medias de Telegram, los 4 eslabones obligatorios y resolución de errores. | Administradores Zabbix |
+| 📱 [**06. Canales de Notificación en Telegram**](file:///c:/zabbix_anti/docs/zabbix/manuals/06-canales-notificacion-telegram.md) | Inventario de bots (@inframilicic_bot, @Milicic_bot), resolución de error "chat not found", formato de IDs (-100...) y vinculación paso a paso. | NOC, SRE, Administradores |
 
 ---
 
@@ -53,6 +54,7 @@ c:\zabbix_anti\
 │   ├── rules/
 │   │   └── milicic-zabbix-environment.md        # Reglas y contexto persistente para agentes IA
 │   └── skills/
+│       ├── zabbix-operations/                   # Skill de operaciones, diagnóstico y automatización Zabbix
 │       ├── zabbix-config-docs/                  # Skill de documentación y auditoría de cambios
 │       └── zabbix-dashboard-architect/          # Skill de diseño y gestión de dashboards
 ├── .zabbix_context/
