@@ -99,19 +99,19 @@ Para evitar el Single Point of Failure (SPOF) del usuario individual `Admin`, se
 
 ### A. `Alertas-Guardia-P1` (`usrgrpid: 15`)
 - **Propósito:** Recepción de incidentes críticos (High y Disaster) de toda la infraestructura.
-- **Miembros Asignados:** `Admin` (`userid: 1`), `mlarenti.zabbix` (`userid: 8`).
+- **Miembros Asignados:** `Admin` (`userid: 1`), `mlarenti.zabbix` (`userid: 8`), `fmartin.zabbix` (`userid: 4`).
 - **Permisos Asignados (27 Host Groups):**
   - IDs: `2`, `4`, `6`, `7`, `19`, `20`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `40`, `41`, `42`, `43`, `44`, `45`, `46`.
 
 ### B. `Alertas-NOC-Redes` (`usrgrpid: 16`)
 - **Propósito:** Atención de eventos de conectividad, switches, firewalls, enlaces y wireless.
-- **Miembros Asignados:** `Admin` (`userid: 1`).
+- **Miembros Asignados:** `Admin` (`userid: 1`), `fmartin.zabbix` (`userid: 4`).
 - **Permisos Asignados (9 Host Groups):**
   - `switch` (`34`), `FortiGate` (`44`), `FortiWorld` (`26`), `ANTENAS P2P` (`42`), `UBIQUITI` (`43`), `ARUBA APs` (`45`), `APs` (`24`), `Network` (`46`), `DNS` (`25`).
 
 ### C. `Alertas-SRE-Plataforma` (`usrgrpid: 17`)
 - **Propósito:** Atención de servidores de sistemas operativos, virtualización, bases de datos y energía.
-- **Miembros Asignados:** `Admin` (`userid: 1`).
+- **Miembros Asignados:** `Admin` (`userid: 1`), `fmartin.zabbix` (`userid: 4`).
 - **Permisos Asignados (11 Host Groups):**
   - `Windows_Server` (`27`), `Hypervisors` (`7`), `(hypervisor)` (`23`), `AD` (`29`), `Applications` (`19`), `Databases` (`20`), `Datacenter` (`22`), `Storage_Server` (`33`), `Backup_Server` (`32`), `File_server` (`28`), `UPS` (`41`).
 
@@ -119,7 +119,9 @@ Para evitar el Single Point of Failure (SPOF) del usuario individual `Admin`, se
 
 ## 3. Configuración y Lógica de las Acciones Activas
 
-Las 4 acciones principales de notificación operan con `status: 0` (Enabled) y canal de despacho `Telegram_Test` (`mediatypeid: 71`):
+Las 4 acciones principales de notificación operan con `status: 0` (Enabled) y cuentan con despacho sincronizado hacia los dos Media Types de Telegram:
+- **`Telegram_Test` (`mediatypeid: 71`):** Canal `Alertas Infra` (`-1004383937012`).
+- **`Telegram_Test_Milicic` (`mediatypeid: 72`):** Canal `Milicic - Monitoreo` (`-1003912373499`).
 
 ### 1. `TG-P1-Crítico` (`actionid: 8`)
 - **Lógica de Evaluación:** `AND` (`evaltype: 0`)
@@ -127,7 +129,8 @@ Las 4 acciones principales de notificación operan con `status: 0` (Enabled) y c
 - **Condiciones:**
   - `A`: `Trigger severity >= High` (`conditiontype: 4`, `operator: 5`, `value: "4"`)
   - `B`: `Problem is not suppressed` (`conditiontype: 16`, `operator: 11`)
-- **Operaciones:** Despacho inmediato en Paso 1 (`esc_step_from: 1`, `esc_step_to: 1`) al User Group `Alertas-Guardia-P1` (`usrgrpid: 15`).
+- **Operaciones:** Despacho inmediato en Paso 1 (`esc_step_from: 1`, `esc_step_to: 1`) al User Group `Alertas-Guardia-P1` (`usrgrpid: 15`) mediante `Telegram_Test` y `Telegram_Test_Milicic`.
+- **Recuperación:** Notificación automática a ambos canales al normalizarse el trigger.
 
 ### 2. `TG-P2-Redes` (`actionid: 9`)
 - **Lógica de Evaluación:** `Custom` (`evaltype: 3`)
@@ -139,7 +142,8 @@ Las 4 acciones principales de notificación operan con `status: 0` (Enabled) y c
   - `D`: Tag value `tier` equals `core`
   - `E`: Trigger severity equals `Average` (`3`)
   - `F`: `Problem is not suppressed` (`conditiontype: 16`, `operator: 11`)
-- **Operaciones:** Despacho al User Group `Alertas-NOC-Redes` (`usrgrpid: 16`).
+- **Operaciones:** Despacho en Paso 2 (10 min de persistencia) al User Group `Alertas-NOC-Redes` (`usrgrpid: 16`) mediante `Telegram_Test` y `Telegram_Test_Milicic`.
+- **Recuperación:** Notificación automática a ambos canales.
 
 ### 3. `TG-P2-Plataforma` (`actionid: 10`)
 - **Lógica de Evaluación:** `Custom` (`evaltype: 3`)
@@ -152,7 +156,8 @@ Las 4 acciones principales de notificación operan con `status: 0` (Enabled) y c
   - `K`: Tag value `component` equals `ups`
   - `L`: Trigger severity equals `Average` (`3`)
   - `M`: `Problem is not suppressed` (`conditiontype: 16`, `operator: 11`)
-- **Operaciones:** Despacho al User Group `Alertas-SRE-Plataforma` (`usrgrpid: 17`).
+- **Operaciones:** Despacho en Paso 2 (10 min de persistencia) al User Group `Alertas-SRE-Plataforma` (`usrgrpid: 17`) mediante `Telegram_Test` y `Telegram_Test_Milicic`.
+- **Recuperación:** Notificación automática a ambos canales.
 
 ### 4. `TG-P3-Preventivo` (`actionid: 11`)
 - **Lógica de Evaluación:** `Custom` (`evaltype: 3`)
@@ -166,4 +171,16 @@ Las 4 acciones principales de notificación operan con `status: 0` (Enabled) y c
   - `F`: Host group equals `switch` (`34`)
   - `G`: Trigger severity equals `Warning` (`2`)
   - `H`: `Problem is not suppressed` (`conditiontype: 16`, `operator: 11`)
-- **Operaciones:** Despacho simultáneo a `Alertas-NOC-Redes` (`16`) y `Alertas-SRE-Plataforma` (`17`).
+- **Operaciones:** Despacho en Paso 2 (30 min de persistencia) a `Alertas-NOC-Redes` (`16`) y `Alertas-SRE-Plataforma` (`17`) mediante `Telegram_Test` y `Telegram_Test_Milicic`.
+- **Recuperación:** Notificación automática a ambos canales.
+
+---
+
+## 4. Inventario de Medias de Notificación (Telegram)
+
+| Media Type | ID Zabbix | Bot de Telegram | Chat ID Destino | Nombre Canal / Grupo | Usuarios Asociados | Estado |
+| :--- | :---: | :--- | :---: | :--- | :--- | :---: |
+| **`Telegram_Test`** | `71` | `@inframilicic_bot`<br>`8899338410:AAHP9R...` | `-1004383937012` | **Alertas Infra** | `Admin` (1), `mlarenti.zabbix` (8), `svc_zabbix_audit` (7) | Habilitado |
+| **`Telegram_Test_Milicic`** | `72` | `@Milicic_bot`<br>`8666455955:AAHYjk...` | `-1003912373499` | **Milicic - Monitoreo** | `fmartin.zabbix` (4) | Habilitado |
+| **`Telegram_1`** | `70` | `@Milicic_bot` | `-1003912373499` | Milicic - Monitoreo | `Admin` (1) | Deshabilitado (Legacy) |
+
