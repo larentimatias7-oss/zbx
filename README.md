@@ -81,6 +81,11 @@ El workspace cuenta con doble integración MCP para orquestar observabilidad y t
    * **Token Service Account:** `glsa_...` (Cuenta `Ant-Local`, rol Admin)
    * **Datasource Zabbix Conectado:** `alexanderzobnin-zabbix-datasource` (UID: `efz4nzx8r30g0c`)
    * **Uso:** Creación automatizada de paneles, carpetas, gestión de datasources y despliegue de tableros.
+   * **Tableros en Producción (Carpeta Milicic Observabilidad):**
+     - 🌐 [**Networking: Switches Core y Distribución**](http://172.27.210.154:3005/d/milicic-switches-core) (`milicic-switches-core`)
+     - 🖥️ [**Virtualización y Storage: VMware & Datastores**](http://172.27.210.154:3005/d/milicic-vmware-datastores) (`milicic-vmware-datastores`)
+     - 🛡️ [**Milicic SOC / NOC: Visión Ejecutiva Global**](http://172.27.210.154:3005/d/milicic-soc-overview) (`milicic-soc-overview`)
+     - ⛰️ [**San Juan: Monitoreo Integral (SSJ)**](http://172.27.210.154:3005/d/milicic-sanjuan-infra) (`milicic-sanjuan-infra`)
 
 * **Archivos de Configuración MCP:** [`mcp_config.json`](file:///c:/zabbix_anti/mcp_config.json), [`.agents/mcp_config.json`](file:///c:/zabbix_anti/.agents/mcp_config.json) y [`.vscode/mcp.json`](file:///c:/zabbix_anti/.vscode/mcp.json).
 
