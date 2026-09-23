@@ -50,6 +50,9 @@ Antes de ejecutar consultas o modificaciones masivas:
 2. **Consultas Seguras (`get`):**
    - Utilizar herramientas dedicadas (`host_get`, `problem_get`, `alert_get`, `mediatype_get`, `user_get`, `action_get`).
    - Para parámetros avanzados (`selectOperations`, `selectMedias`, `selectInterfaces`), emplear el diccionario `extra_params`.
+3. **Principio de Solo Lectura:**
+   - Toda investigación debe ser de lectura hasta contar con autorización para cambios.
+   - Todo cambio debe documentar previamente: objetos afectados, estado previo, plan de rollback y verificación posterior.
 
 ---
 
@@ -86,6 +89,7 @@ Al dar de alta nuevos activos en Zabbix:
 
 ### C. Plantillas Oficiales Aprobadas
 - Switches Dell Networking: `Dell N-Series by SNMP` (ID: 10721).
+- Switches HP / Aruba: `HP Comware HH3C by SNMP` o `HP Enterprise Switch by SNMP`.
 - Firewalls Fortinet: `FortiGate by SNMP` (ID: 10604) o `FortiGate by HTTP` (ID: 10603).
 - Servidores Windows: `Windows by Zabbix agent 2`.
 - Servidores Linux: `Linux by Zabbix agent`.
@@ -104,7 +108,7 @@ Al dar de alta nuevos activos en Zabbix:
 1. **Membresía del Bot:** Un bot de Telegram **no puede enviar mensajes** a un grupo ni canal a menos que haya sido añadido previamente como miembro o administrador con permisos de publicación.
 2. **Formato de Chat ID:**
    - Grupos estándar: número negativo simple (ej. `-5468713329`).
-   - Supergrupos y Canales: número negativo **con prefijo `-100`** (ej. `-1005468713329`).
+   - Supergrupos y Canales: número negativo **con prefijo `-100`** (ej. `-1004383937012`).
    - Si se omite el prefijo en un supergrupo o si el bot no está agregado, Telegram responde con el error fatal `Sending failed: Bad Request: chat not found`.
 
 ### Lista de Bots Corporativos:
@@ -112,9 +116,87 @@ Al dar de alta nuevos activos en Zabbix:
 - **`Telegram_Test_Milicic` (ID: 72):** `@Milicic_bot` (Token: `8666455955:...`)
 
 ### Vinculación de Alertas a Usuarios:
-Para que un usuario reciba las alertas P1, P2 y P3 en Telegram:
 1. El usuario debe tener configurado en su perfil de Zabbix (`Users -> Media`) el medio correspondiente (`Telegram_Test` o `Telegram_Test_Milicic`) con el `Send to` configurado con el Chat ID validado.
 2. El usuario debe ser miembro de los grupos de destinatarios:
    - `Alertas-Guardia-P1` (ID: 15)
    - `Alertas-NOC-Redes` (ID: 16)
    - `Alertas-SRE-Plataforma` (ID: 17)
+
+---
+
+## 6. Diagnóstico y Mitigación de Link-Down / Microflapping
+
+Para caídas de interfaz y alertas de flapping en switches:
+
+1. **Protocolo Estricto de Recopilación de Evidencia:**
+   - Nunca silenciar o deshabilitar un trigger de *Link Down* sin antes contrastar:
+     * **LLDP:** Consultar las tablas de vecinos remotos (`lldpRemSysName`, `lldpRemPortDesc`, `lldpRemPortId`).
+     * **Alias:** Verificar la descripción del puerto (`ifAlias`).
+     * **LAG / LACP:** Comprobar si el puerto forma parte de un Port-Channel o agregado troncal.
+   - **Regla Mandatoria:** Jamás modificar ni silenciar una plantilla global por un problema en un puerto individual. Usar macros de contexto, overrides o ajustes a nivel de prototipo de trigger.
+2. **Script de Análisis de Flapping:**
+   - Utilizar el script PowerShell `scripts/Analyze-LinkDownFlapping.ps1`:
+     ```powershell
+     powershell -File scripts/Analyze-LinkDownFlapping.ps1 -Days 7 -TopN 20
+     ```
+   - Este script clasifica automáticamente los eventos en:
+     * **Microflapping:** Duración < 2 minutos en más del 80% de los casos (candidato a revisión de capa física, cableado o PoE).
+     * **Long outages:** Cortes de más de 8 horas (candidato a ventana de horario o interfaz administrativa).
+     * **Low frequency:** Eventos aislados sin recurrencia.
+
+---
+
+## 7. Troubleshooting de Entregas en Telegram (`chat not found`)
+
+Si en el log de acciones (`alert_get`) se detectan errores `Bad Request: chat not found`:
+1. Identificar el usuario y medio afectado (`mediatypeid 71` o `72`).
+2. Verificar en Zabbix (`user_get` con `selectMedias: "extend"`) el valor configurado en `sendto`.
+3. Validar:
+   - ¿Lleva el prefijo `-100` si es un supergrupo o canal?
+   - ¿Fue expulsado el bot del grupo o se recreó el grupo cambiando de ID?
+   - ¿Tiene el usuario permisos de lectura sobre el host que generó el evento?
+4. **Seguridad:** No cambiar destinatarios a ciegas ni exponer Chat IDs en la bitácora pública.
+
+---
+
+## 8. Estándar para Monitoreo de Respaldos (Veeam Backup)
+
+1. **Diferenciación Conceptual:**
+   - El estado de los servicios Windows de Veeam (`Veeam Backup Service`, `Veeam Broker Service`, etc.) **no demuestra que los backups se estén ejecutando con éxito**.
+   - El servicio `VSS` (Volume Shadow Copy) en servidores hipervisores (como `SSJ-HPV01`) inicia **bajo demanda** durante la ejecución de los backups. Configurar un disparador de ejecución permanente genera decenas de falsos positivos. Usar únicamente el disparador de tipo de inicio deshabilitado (`service.info["VSS",startup]=3`).
+2. **Extracción de Telemetría Real de Tareas:**
+   - En el servidor de backup (`SSJ-BKP01`, hostid 10718), ejecutar el script de solo lectura:
+     ```powershell
+     pwsh -File scripts/Get-VeeamVmBackupStatus.ps1 -VmName <NombreVM>
+     ```
+   - Este script utiliza los cmdlets oficiales `Get-VBRBackupSession`, `Get-VBRTaskSession` y `Get-VBRRestorePoint` y emite un JSON compacto con:
+     * Nombre del job (`matchedJobNames`).
+     * Último resultado de tarea (`taskResult: Success | Warning | Failed`).
+     * Antigüedad del último punto de restauración (`latestRestorePointUtc`).
+
+---
+
+## 9. Procedimiento de Consolidación de Hosts Duplicados
+
+Cuando dos registros en Zabbix compartan la misma dirección IP (como ocurre en G01 `192.168.0.224` con `D04` ID 10713 y `DIS01` ID 10799):
+1. **Determinar el Registro Canónico:**
+   - Evaluar qué plantilla es la más adecuada (ej. Comware vs genérica).
+   - Comparar cantidad de ítems habilitados y no soportados.
+   - Verificar si el nombre SNMP coincide con la nomenclatura de inventario.
+2. **Auditoría de Referencias Cruzadas ANTES de Deshabilitar:**
+   - **Dashboards:** Revisar si existen widgets que referencien al hostid que se desea retirar (ej. Dashboard 408 `NOC Infraestructura` contiene 9 widgets que referencian a `D04`).
+   - **Mapas:** Verificar si el host es un elemento en mapas activos (ej. Mapa Rosario 8, elemento 94).
+   - **Triggers de Dependencia:** Comprobar si otros hosts dependen de disparadores del host a retirar.
+3. **Mitigación Temporal:**
+   - Si no se puede retirar el host de inmediato debido a dependencias en dashboards, deshabilitar exclusivamente los disparadores duplicados que generan problemas abiertos simultáneos en ambos hosts.
+
+---
+
+## 10. Catálogo de Scripts Operativos Locales (`scripts/`)
+
+| Script | Lenguaje | Propósito |
+| :--- | :--- | :--- |
+| `scripts/Get-VeeamVmBackupStatus.ps1` | PowerShell | Extrae sesiones, tareas y puntos de restauración de Veeam en JSON para una VM. |
+| `scripts/Analyze-LinkDownFlapping.ps1` | PowerShell | Analiza eventos de Link-Down vía API de Zabbix y categoriza microflapping vs caídas reales. |
+| `scripts/Analyze-ZabbixNoise.ps1` | PowerShell | Mide distribución de severidades y triggers más ruidosos en los últimos 30 días. |
+| `scripts/Analyze-ZabbixItems.ps1` | PowerShell | Audita ítems no soportados agrupados por mensaje de error y host. |

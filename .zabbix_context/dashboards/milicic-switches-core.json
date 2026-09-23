@@ -1,0 +1,766 @@
+{
+  "title": "Networking: Switches Core y Distribución",
+  "uid": "milicic-switches-core",
+  "tags": [
+    "milicic",
+    "networking",
+    "core",
+    "switches"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 40,
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "CORE01 (Dell N4032) - CPU Avg 1m",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 5,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FFA059",
+                "value": 60
+              },
+              {
+                "color": "#E45959",
+                "value": 80
+              }
+            ]
+          },
+          "color": {
+            "mode": "thresholds"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "area"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "SRO-E02-PB00-CORE01"
+          },
+          "item": {
+            "filter": "Dell N-Series: CPU usage 1m"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "CORE02 (Dell N4032) - CPU Avg 1m",
+      "type": "stat",
+      "gridPos": {
+        "x": 5,
+        "y": 0,
+        "w": 5,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FFA059",
+                "value": 60
+              },
+              {
+                "color": "#E45959",
+                "value": 80
+              }
+            ]
+          },
+          "color": {
+            "mode": "thresholds"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "area"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "SRO-E02-PB00-CORE02"
+          },
+          "item": {
+            "filter": "Dell N-Series: CPU usage 1m"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "CORE03 (Aruba 1930) - Salud",
+      "type": "stat",
+      "gridPos": {
+        "x": 10,
+        "y": 0,
+        "w": 5,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#E45959",
+                "value": 1
+              }
+            ]
+          },
+          "color": {
+            "mode": "thresholds"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "SRO-E02-PB00-CORE03"
+          },
+          "item": {
+            "filter": "/ICMP ping|Operational status/"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "DIS01 Galpón 01 (Comware) - CPU",
+      "type": "stat",
+      "gridPos": {
+        "x": 15,
+        "y": 0,
+        "w": 5,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FFA059",
+                "value": 60
+              },
+              {
+                "color": "#E45959",
+                "value": 80
+              }
+            ]
+          },
+          "color": {
+            "mode": "thresholds"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "area"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "SRO-G01-P100-DIS01"
+          },
+          "item": {
+            "filter": "/CPU/i"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Problemas Activos (Switches)",
+      "type": "stat",
+      "gridPos": {
+        "x": 20,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#73BF69",
+                "value": 0
+              },
+              {
+                "color": "#FFA059",
+                "value": 1
+              },
+              {
+                "color": "#E45959",
+                "value": 3
+              }
+            ]
+          },
+          "color": {
+            "mode": "thresholds"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "4",
+          "mode": 4,
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "options": {
+            "acknowledged": 2,
+            "count": true,
+            "minSeverity": 2,
+            "hostsInMaintenance": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Utilización de CPU en Switches (USE: Utilization)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 14,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 10
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FFA059",
+                "value": 65
+              },
+              {
+                "color": "#E45959",
+                "value": 85
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/CORE01|CORE02|DIS01/"
+          },
+          "item": {
+            "filter": "/CPU usage 1m|CPU usage$/i"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Temperatura de Chasis y Módulos (°C)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 14,
+        "y": 4,
+        "w": 10,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 5
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FFA059",
+                "value": 50
+              },
+              {
+                "color": "#E45959",
+                "value": 65
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/Temperature|MODULE LEVEL1/i"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Throughput: Tráfico Inbound Troncales (Bits Received bps)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 12,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bps",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 15
+          }
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/CORE01|DIS01/"
+          },
+          "item": {
+            "filter": "/Interface (Te|Po|Gi).*Bits received/i"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Throughput: Tráfico Outbound Troncales (Bits Sent bps)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 12,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bps",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 15
+          }
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/CORE01|DIS01/"
+          },
+          "item": {
+            "filter": "/Interface (Te|Po|Gi).*Bits sent/i"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Saturación: Descartes de Paquetes (USE: Saturation)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 20,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "pps",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 1
+          }
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/packets discarded/i"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Errores: Paquetes con Error (USE: Errors)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 20,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "pps",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 1
+          }
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/packets with errors/i"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Incidentes Activos en Equipos de Red (Zabbix Triggers)",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 24,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "4",
+          "mode": 4,
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "showProblems": "problems",
+          "options": {
+            "acknowledged": 2,
+            "minSeverity": 2,
+            "hostsInMaintenance": false
+          }
+        }
+      ]
+    }
+  ]
+}
