@@ -594,6 +594,128 @@ const dashboard = {
       type: "table",
       gridPos: { x: 12, y: 27, w: 12, h: 8 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        {
+          id: "extractFields",
+          options: {
+            format: "json",
+            source: "Problems"
+          }
+        },
+        {
+          id: "organize",
+          options: {
+            excludeByName: {
+              "Problems":     true,
+              "triggerid":    true,
+              "eventid":      true,
+              "tags":         true,
+              "items":        true,
+              "groups":       true,
+              "url":          true,
+              "comments":     true,
+              "description":  true,
+              "value":        true,
+              "opdata":       true,
+              "suppressed":   true,
+              "suppression_data": true,
+              "acknowledges": true
+            },
+            indexByName: {
+              "severity":     0,
+              "timestamp":    1,
+              "name":         2,
+              "hosts":        3,
+              "acknowledged": 4
+            },
+            renameByName: {
+              "severity":     "Severidad",
+              "timestamp":    "Inicio",
+              "name":         "Problema / Alarma",
+              "hosts":        "Host",
+              "acknowledged": "ACK"
+            }
+          }
+        }
+      ],
+      fieldConfig: {
+        defaults: {
+          custom: {
+            align: "left",
+            cellOptions: { type: "auto" },
+            filterable: true
+          }
+        },
+        overrides: [
+          {
+            matcher: { id: "byName", options: "Severidad" },
+            properties: [
+              { id: "custom.width", value: 130 },
+              {
+                id: "mappings",
+                value: [
+                  { type: "value", options: { "0": { text: "—",           color: "text",   index: 0 } } },
+                  { type: "value", options: { "1": { text: "INFO",         color: "#64748b",index: 1 } } },
+                  { type: "value", options: { "2": { text: "ADVERTENCIA",  color: "#FFC859",index: 2 } } },
+                  { type: "value", options: { "3": { text: "PROMEDIO",     color: "#FF9800",index: 3 } } },
+                  { type: "value", options: { "4": { text: "ALTO",         color: "#E45959",index: 4 } } },
+                  { type: "value", options: { "5": { text: "DESASTRE",     color: "#cc44ff",index: 5 } } }
+                ]
+              },
+              { id: "custom.cellOptions", value: { type: "color-background", mode: "gradient" } }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Inicio" },
+            properties: [
+              { id: "unit", value: "dateTimeAsLocal" },
+              { id: "custom.width", value: 150 }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Problema / Alarma" },
+            properties: [
+              { id: "custom.width", value: 450 },
+              {
+                id: "links",
+                value: [
+                  {
+                    title: "🔍 Ver en Zabbix Problems",
+                    url: "https://zabbix.mlccnet.local/zabbix.php?action=problem.view",
+                    targetBlank: true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Host" },
+            properties: [
+              { id: "custom.width", value: 140 }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "ACK" },
+            properties: [
+              { id: "custom.width", value: 80 },
+              {
+                id: "mappings",
+                value: [
+                  { type: "value", options: { "0": { text: "No", color: "#6b7280", index: 0 } } },
+                  { type: "value", options: { "1": { text: "✓ Sí", color: "#16A34A", index: 1 } } }
+                ]
+              },
+              { id: "custom.cellOptions", value: { type: "color-text" } }
+            ]
+          }
+        ]
+      },
+      options: {
+        sortBy: [{ displayName: "Severidad", desc: true }],
+        frameIndex: 0,
+        showHeader: true,
+        footer: { show: false, reducer: ["sum"] }
+      },
       targets: [
         {
           refId: "A",

@@ -22,7 +22,7 @@ const dashboard = {
     list: [
       {
         name: "dc",
-        label: "Controlador de Dominio",
+        label: "🏛️ Controlador DC",
         type: "custom",
         query: "Todos : (SRO-DCO01|SRO-DCO02|SSJ-DCO01), SRO-DCO01 (Rosario - FSMO) : SRO-DCO01, SRO-DCO02 (Rosario - Sec) : SRO-DCO02, SSJ-DCO01 (San Juan) : SSJ-DCO01",
         current: { text: "Todos", value: "(SRO-DCO01|SRO-DCO02|SSJ-DCO01)" },
@@ -34,18 +34,51 @@ const dashboard = {
         ],
         includeAll: false,
         hide: 0
+      },
+      {
+        name: "forensic_window",
+        label: "⏳ Ventana Forense",
+        type: "custom",
+        query: "Últimas 24h : 24h, Últimos 7 Días : 7d, Últimos 15 Días : 15d, Últimos 30 Días : 30d, Últimos 60 Días : 60d",
+        current: { text: "Últimos 7 Días", value: "7d" },
+        options: [
+          { text: "Últimas 24h", value: "24h", selected: false },
+          { text: "Últimos 7 Días", value: "7d", selected: true },
+          { text: "Últimos 15 Días", value: "15d", selected: false },
+          { text: "Últimos 30 Días", value: "30d", selected: false },
+          { text: "Últimos 60 Días", value: "60d", selected: false }
+        ],
+        includeAll: false,
+        hide: 0
+      },
+      {
+        name: "search",
+        label: "🔍 Buscar Usuario / ID / Host / Texto",
+        type: "textbox",
+        query: "",
+        current: { text: "", value: "" },
+        options: [{ text: "", value: "", selected: true }],
+        hide: 0
       }
     ]
   },
   panels: [
     // -------------------------------------------------------------
-    // ROW 0: AUDITORÍA DE IDENTIDAD & CYBER SOC (y: 0, h: 4)
+    // ROW 0: AUDITORÍA DE IDENTIDAD & CYBER SOC
     // -------------------------------------------------------------
+    {
+      id: 100,
+      title: "🛡️ Cyber SOC & Indicadores de Alerta Temprana (Identidades y Autenticación)",
+      type: "row",
+      gridPos: { x: 0, y: 0, w: 24, h: 1 },
+      collapsed: false,
+      panels: []
+    },
     {
       id: 1,
       title: "Cuentas Bloqueadas (Event 4740)",
       type: "stat",
-      gridPos: { x: 0, y: 0, w: 4, h: 4 },
+      gridPos: { x: 0, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -62,7 +95,7 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
+        reduceOptions: { calcs: ["count"], values: false },
         colorMode: "value",
         graphMode: "none",
         textMode: "value"
@@ -71,11 +104,11 @@ const dashboard = {
         {
           refId: "A",
           schema: 12,
-          queryType: "0",
+          queryType: "2",
           group: { filter: "AD" },
           host: { filter: "/${dc:raw}/" },
           item: { filter: "Eventlog by Zabbix agent: User locked" },
-          resultFormat: "time_series"
+          resultFormat: "table"
         }
       ]
     },
@@ -83,7 +116,7 @@ const dashboard = {
       id: 2,
       title: "Fallos Pre-Auth Kerberos (Event 4771)",
       type: "stat",
-      gridPos: { x: 4, y: 0, w: 4, h: 4 },
+      gridPos: { x: 4, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -101,20 +134,20 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
+        reduceOptions: { calcs: ["count"], values: false },
         colorMode: "value",
-        graphMode: "area",
-        textMode: "auto"
+        graphMode: "none",
+        textMode: "value"
       },
       targets: [
         {
           refId: "A",
           schema: 12,
-          queryType: "0",
+          queryType: "2",
           group: { filter: "AD" },
           host: { filter: "/${dc:raw}/" },
           item: { filter: "Eventlog: Fallo de Preautenticación Kerberos (4771)" },
-          resultFormat: "time_series"
+          resultFormat: "table"
         }
       ]
     },
@@ -122,7 +155,7 @@ const dashboard = {
       id: 3,
       title: "Logons Fallidos NTLM (Event 4625)",
       type: "stat",
-      gridPos: { x: 8, y: 0, w: 4, h: 4 },
+      gridPos: { x: 8, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -140,20 +173,20 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
+        reduceOptions: { calcs: ["count"], values: false },
         colorMode: "value",
-        graphMode: "area",
-        textMode: "auto"
+        graphMode: "none",
+        textMode: "value"
       },
       targets: [
         {
           refId: "A",
           schema: 12,
-          queryType: "0",
+          queryType: "2",
           group: { filter: "AD" },
           host: { filter: "/${dc:raw}/" },
           item: { filter: "Eventlog by Zabbix agent: Failed Login" },
-          resultFormat: "time_series"
+          resultFormat: "table"
         }
       ]
     },
@@ -161,7 +194,7 @@ const dashboard = {
       id: 4,
       title: "Cambios en Grupos Admin (4728/4732)",
       type: "stat",
-      gridPos: { x: 12, y: 0, w: 4, h: 4 },
+      gridPos: { x: 12, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -178,7 +211,7 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
+        reduceOptions: { calcs: ["count"], values: false },
         colorMode: "value",
         graphMode: "none",
         textMode: "value"
@@ -187,11 +220,11 @@ const dashboard = {
         {
           refId: "A",
           schema: 12,
-          queryType: "0",
+          queryType: "2",
           group: { filter: "AD" },
           host: { filter: "/${dc:raw}/" },
           item: { filter: "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)" },
-          resultFormat: "time_series"
+          resultFormat: "table"
         }
       ]
     },
@@ -199,7 +232,7 @@ const dashboard = {
       id: 5,
       title: "Tiempo de Actividad (Uptime Controladores)",
       type: "stat",
-      gridPos: { x: 16, y: 0, w: 4, h: 4 },
+      gridPos: { x: 16, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -229,10 +262,11 @@ const dashboard = {
       id: 6,
       title: "Incidentes Activos en AD DS",
       type: "stat",
-      gridPos: { x: 20, y: 0, w: 4, h: 4 },
+      gridPos: { x: 20, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
+          noValue: "0",
           color: { mode: "thresholds" },
           thresholds: {
             mode: "absolute",
@@ -246,10 +280,10 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
+        reduceOptions: { calcs: ["count"], values: false },
         colorMode: "value",
         graphMode: "none",
-        textMode: "auto"
+        textMode: "value"
       },
       targets: [
         {
@@ -263,22 +297,29 @@ const dashboard = {
         }
       ]
     },
+
     // -------------------------------------------------------------
-    // ROW 1: SEMÁFORO DE SERVICIOS CRÍTICOS AD DS (y: 4, h: 4)
-    // NOTA: Cada servicio tiene su propio target (sin regex compuesta)
-    // para evitar timeouts en la API de Zabbix.
+    // ROW 1: SEMÁFORO DE SERVICIOS VITALES AD DS
     // -------------------------------------------------------------
+    {
+      id: 110,
+      title: "⚡ Matriz de Servicios Vitales & Replicación de Dominio",
+      type: "row",
+      gridPos: { x: 0, y: 5, w: 24, h: 1 },
+      collapsed: false,
+      panels: []
+    },
     {
       id: 10,
       title: "Matriz de Servicios Vitales de Active Directory (NTDS | DNS | Kerberos | Netlogon | DFSR | W32Time)",
-      type: "status-history",
-      gridPos: { x: 0, y: 4, w: 24, h: 4 },
+      type: "state-timeline",
+      gridPos: { x: 0, y: 6, w: 24, h: 5 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
           custom: {
             lineWidth: 1,
-            fillOpacity: 80
+            fillOpacity: 85
           },
           mappings: [
             {
@@ -294,13 +335,13 @@ const dashboard = {
         }
       },
       options: {
-        colWidth: 0.9,
+        mergeValues: true,
         showValue: "never",
-        rowHeight: 0.9,
+        rowHeight: 0.85,
+        alignValue: "left",
         legend: { displayMode: "list", placement: "bottom" }
       },
       targets: [
-        // NTDS — Active Directory Domain Services
         {
           refId: "NTDS",
           schema: 12,
@@ -310,7 +351,6 @@ const dashboard = {
           item: { filter: "State of service \"NTDS\" (Active Directory Domain Services)" },
           resultFormat: "time_series"
         },
-        // DNS Server
         {
           refId: "DNS",
           schema: 12,
@@ -320,7 +360,6 @@ const dashboard = {
           item: { filter: "State of service \"DNS\" (DNS Server)" },
           resultFormat: "time_series"
         },
-        // Kerberos KDC
         {
           refId: "KDC",
           schema: 12,
@@ -330,7 +369,6 @@ const dashboard = {
           item: { filter: "State of service \"Kdc\" (Kerberos Key Distribution Center)" },
           resultFormat: "time_series"
         },
-        // Netlogon
         {
           refId: "NETLOGON",
           schema: 12,
@@ -340,7 +378,6 @@ const dashboard = {
           item: { filter: "State of service \"Netlogon\" (Netlogon)" },
           resultFormat: "time_series"
         },
-        // DFS Replication
         {
           refId: "DFSR",
           schema: 12,
@@ -350,7 +387,6 @@ const dashboard = {
           item: { filter: "State of service \"DFSR\" (DFS Replication)" },
           resultFormat: "time_series"
         },
-        // Windows Time
         {
           refId: "W32TIME",
           schema: 12,
@@ -364,13 +400,21 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 2: CÓMPUTO EN CONTROLADORES - CPU & MEMORIA (y: 8, h: 8)
+    // ROW 2: CÓMPUTO EN CONTROLADORES - CPU & MEMORIA
     // -------------------------------------------------------------
+    {
+      id: 120,
+      title: "💻 Rendimiento de Controladores de Dominio & Carga de Autenticación",
+      type: "row",
+      gridPos: { x: 0, y: 11, w: 24, h: 1 },
+      collapsed: false,
+      panels: []
+    },
     {
       id: 20,
       title: "Utilización de CPU en Controladores de Dominio (%)",
       type: "timeseries",
-      gridPos: { x: 0, y: 8, w: 12, h: 8 },
+      gridPos: { x: 0, y: 12, w: 12, h: 8 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -409,7 +453,7 @@ const dashboard = {
       id: 21,
       title: "Consumo de Memoria RAM en Controladores de Dominio (%)",
       type: "timeseries",
-      gridPos: { x: 12, y: 8, w: 12, h: 8 },
+      gridPos: { x: 12, y: 12, w: 12, h: 8 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -444,15 +488,11 @@ const dashboard = {
         }
       ]
     },
-
-    // -------------------------------------------------------------
-    // ROW 3: CONCURRENCIA, CONTEXT SWITCHES & RED (y: 16, h: 8)
-    // -------------------------------------------------------------
     {
       id: 30,
       title: "Cola de Procesador & Concurrencia (Processor Queue Length)",
       type: "timeseries",
-      gridPos: { x: 0, y: 16, w: 8, h: 8 },
+      gridPos: { x: 0, y: 20, w: 8, h: 7 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -481,7 +521,7 @@ const dashboard = {
       id: 32,
       title: "Tasa de Actividad de Autenticación / Context Switches (switches/seg)",
       type: "timeseries",
-      gridPos: { x: 8, y: 16, w: 8, h: 8 },
+      gridPos: { x: 8, y: 20, w: 8, h: 7 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -513,7 +553,7 @@ const dashboard = {
       id: 31,
       title: "Throughput de Red en Interfaces de Dominio (Bits In / Out)",
       type: "timeseries",
-      gridPos: { x: 16, y: 16, w: 8, h: 8 },
+      gridPos: { x: 16, y: 20, w: 8, h: 7 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -540,13 +580,80 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 3.5: RENDIMIENTO & COLAS DE DISCO I/O (y: 24, h: 8)
+    // ROW 3: RENDIMIENTO & COLAS DE DISCO I/O NTDS
     // -------------------------------------------------------------
+    {
+      id: 130,
+      title: "💾 Capacidad de Almacenamiento & Rendimiento Base de Datos NTDS",
+      type: "row",
+      gridPos: { x: 0, y: 27, w: 24, h: 1 },
+      collapsed: false,
+      panels: []
+    },
+    {
+      id: 41,
+      title: "Uso de Disco C: por Controlador de Dominio (%)",
+      type: "stat",
+      gridPos: { x: 0, y: 28, w: 6, h: 8 },
+      datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      fieldConfig: {
+        defaults: {
+          color: { mode: "thresholds" },
+          thresholds: {
+            mode: "absolute",
+            steps: [
+              { color: "#16A34A", value: null },
+              { color: "#FFC859", value: 80 },
+              { color: "#E45959", value: 90 }
+            ]
+          },
+          unit: "percent",
+          min: 0,
+          max: 100
+        }
+      },
+      options: {
+        orientation: "vertical",
+        reduceOptions: { calcs: ["lastNotNull"], values: false },
+        colorMode: "value",
+        graphMode: "area",
+        textMode: "value_and_name"
+      },
+      targets: [
+        {
+          refId: "DCO01",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO01" },
+          item: { filter: "FS [(C:)]: Space: Used, in %" },
+          resultFormat: "time_series"
+        },
+        {
+          refId: "DCO02",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO02" },
+          item: { filter: "FS [(C:)]: Space: Used, in %" },
+          resultFormat: "time_series"
+        },
+        {
+          refId: "DCO03",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "AD" },
+          host: { filter: "SSJ-DCO01" },
+          item: { filter: "FS [(C:)]: Space: Used, in %" },
+          resultFormat: "time_series"
+        }
+      ]
+    },
     {
       id: 35,
       title: "Longitud de Colas de E/S de Disco (Avg Disk Read & Write Queue Length)",
       type: "timeseries",
-      gridPos: { x: 0, y: 24, w: 12, h: 8 },
+      gridPos: { x: 6, y: 28, w: 9, h: 8 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -587,7 +694,7 @@ const dashboard = {
       id: 36,
       title: "Latencia de E/S de Disco (Avg sec/Read & sec/Write en ms)",
       type: "timeseries",
-      gridPos: { x: 12, y: 24, w: 12, h: 8 },
+      gridPos: { x: 15, y: 28, w: 9, h: 8 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -605,7 +712,7 @@ const dashboard = {
       },
       targets: [
         {
-          refId: "ReadLatency",
+          refId: "ReadTime",
           schema: 12,
           queryType: "0",
           group: { filter: "AD" },
@@ -614,7 +721,7 @@ const dashboard = {
           resultFormat: "time_series"
         },
         {
-          refId: "WriteLatency",
+          refId: "WriteTime",
           schema: 12,
           queryType: "0",
           group: { filter: "AD" },
@@ -626,74 +733,144 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 4: MAPA HORARIO DE ACTIVIDAD & ALMACENAMIENTO (y: 32, h: 8)
+    // ROW 4: ALARMAS E INCIDENTES ACTIVOS
     // -------------------------------------------------------------
     {
-      id: 38,
-      title: "Matriz 24x7: Densidad Horaria de Carga y Autenticación en Controladores (Hourly Heatmap)",
-      type: "marcusolsson-hourly-heatmap-panel",
-      gridPos: { x: 0, y: 32, w: 12, h: 8 },
-      datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
-      options: {
-        from: 0,
-        to: 23
-      },
-      targets: [
-        {
-          refId: "A",
-          schema: 12,
-          queryType: "0",
-          group: { filter: "AD" },
-          host: { filter: "/${dc:raw}/" },
-          item: { filter: "Context switches per second" },
-          resultFormat: "time_series"
-        }
-      ]
+      id: 140,
+      title: "🚨 Alarmas e Incidentes Activos en Dominio (Zabbix 7.0 LTS Triggers)",
+      type: "row",
+      gridPos: { x: 0, y: 36, w: 24, h: 1 },
+      collapsed: false,
+      panels: []
     },
-    {
-      id: 41,
-      title: "Distribución Jerárquica de Capacidad NTDS/SYSVOL (Treemap)",
-      type: "marcusolsson-treemap-panel",
-      gridPos: { x: 12, y: 32, w: 12, h: 8 },
-      datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
-      options: {
-        tilingAlgorithm: "squarify"
-      },
-      fieldConfig: {
-        defaults: {
-          unit: "percent",
-          thresholds: {
-            mode: "absolute",
-            steps: [
-              { color: "#16A34A", value: null },
-              { color: "#FFC859", value: 75 },
-              { color: "#E45959", value: 90 }
-            ]
-          }
-        }
-      },
-      targets: [
-        {
-          refId: "Disk",
-          schema: 12,
-          queryType: "0",
-          group: { filter: "AD" },
-          host: { filter: "/${dc:raw}/" },
-          item: { filter: "/FS \\[(\\(?C:\\)?)\\]: Space: Used, in %/" },
-          resultFormat: "time_series"
-        }
-      ]
-    },
-
-    // -------------------------------------------------------------
-    // ROW 5: INCIDENTES ACTIVOS EN CONTROLADORES (y: 40, h: 6)
-    // -------------------------------------------------------------
     {
       id: 50,
-      title: "Incidentes y Alarmas Activas en Active Directory (Zabbix Problems)",
+      title: "Incidentes y Alarmas Activas en Active Directory",
       type: "table",
-      gridPos: { x: 0, y: 40, w: 24, h: 6 },
+      gridPos: { x: 0, y: 37, w: 24, h: 8 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        {
+          id: "extractFields",
+          options: {
+            format: "json",
+            source: "Problems"
+          }
+        },
+        {
+          id: "organize",
+          options: {
+            excludeByName: {
+              "Problems":     true,
+              "triggerid":    true,
+              "eventid":      true,
+              "tags":         true,
+              "items":        true,
+              "groups":       true,
+              "url":          true,
+              "comments":     true,
+              "description":  true,
+              "value":        true,
+              "opdata":       true,
+              "suppressed":   true,
+              "suppression_data": true,
+              "acknowledges": true
+            },
+            indexByName: {
+              "severity":     0,
+              "timestamp":    1,
+              "name":         2,
+              "hosts":        3,
+              "acknowledged": 4
+            },
+            renameByName: {
+              "severity":     "Severidad",
+              "timestamp":    "Inicio",
+              "name":         "Problema / Alarma",
+              "hosts":        "Host",
+              "acknowledged": "ACK"
+            }
+          }
+        }
+      ],
+      fieldConfig: {
+        defaults: {
+          custom: {
+            align: "left",
+            cellOptions: { type: "auto" },
+            filterable: true
+          }
+        },
+        overrides: [
+          {
+            matcher: { id: "byName", options: "Severidad" },
+            properties: [
+              { id: "custom.width", value: 130 },
+              {
+                id: "mappings",
+                value: [
+                  { type: "value", options: { "0": { text: "—",           color: "text",   index: 0 } } },
+                  { type: "value", options: { "1": { text: "INFO",         color: "#64748b",index: 1 } } },
+                  { type: "value", options: { "2": { text: "ADVERTENCIA",  color: "#FFC859",index: 2 } } },
+                  { type: "value", options: { "3": { text: "PROMEDIO",     color: "#FF9800",index: 3 } } },
+                  { type: "value", options: { "4": { text: "ALTO",         color: "#E45959",index: 4 } } },
+                  { type: "value", options: { "5": { text: "DESASTRE",     color: "#cc44ff",index: 5 } } }
+                ]
+              },
+              { id: "custom.cellOptions", value: { type: "color-background", mode: "gradient" } }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Inicio" },
+            properties: [
+              { id: "unit", value: "dateTimeAsLocal" },
+              { id: "custom.width", value: 160 }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Problema / Alarma" },
+            properties: [
+              { id: "custom.width", value: 500 },
+              {
+                id: "links",
+                value: [
+                  {
+                    title: "🔍 Ver en Zabbix Problems",
+                    url: "https://zabbix.mlccnet.local/zabbix.php?action=problem.view",
+                    targetBlank: true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Host" },
+            properties: [
+              { id: "custom.width", value: 140 }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "ACK" },
+            properties: [
+              { id: "custom.width", value: 80 },
+              {
+                id: "mappings",
+                value: [
+                  { type: "value", options: { "0": { text: "No", color: "#6b7280", index: 0 } } },
+                  { type: "value", options: { "1": { text: "✓ Sí", color: "#16A34A", index: 1 } } }
+                ]
+              },
+              { id: "custom.cellOptions", value: { type: "color-text" } }
+            ]
+          }
+        ]
+      },
+      options: {
+        sortBy: [{ displayName: "Severidad", desc: true }],
+        frameIndex: 0,
+        showHeader: true,
+        footer: { show: false, reducer: ["sum"] }
+      },
       targets: [
         {
           refId: "A",
@@ -703,6 +880,375 @@ const dashboard = {
           host: { filter: "/${dc:raw}/" },
           trigger: { filter: "/.*/" },
           options: { acknowledged: 2, minSeverity: 1 }
+        }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // ROW 5: AUDITORÍA FORENSE DE SEGURIDAD
+    // -------------------------------------------------------------
+    {
+      id: 55,
+      title: "🔐 Auditoría Forense de Seguridad — Active Directory (Filtro por Usuario/ID/Texto)",
+      type: "row",
+      gridPos: { x: 0, y: 45, w: 24, h: 1 },
+      collapsed: false,
+      panels: []
+    },
+    {
+      id: 60,
+      title: "🔒 Historial de Bloqueos de Cuenta (Event ID 4740)",
+      type: "table",
+      gridPos: { x: 0, y: 46, w: 24, h: 9 },
+      timeFrom: "${forensic_window}",
+      datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        { id: "merge", options: {} },
+        {
+          id: "filterByValue",
+          options: {
+            type: "include",
+            match: "regex",
+            filters: [
+              {
+                fieldName: "Last value",
+                config: {
+                  id: "regex",
+                  options: {
+                    value: ".*${search:raw}.*"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          id: "organize",
+          options: {
+            excludeByName: {
+              "Item": true,
+              "Key": true
+            },
+            indexByName: {
+              "Host": 0,
+              "Last value": 1,
+              "Value": 1
+            },
+            renameByName: {
+              "Host": "Controlador DC",
+              "Last value": "Detalle del Bloqueo Forense (Usuario · Equipo de Origen)",
+              "Value": "Detalle del Bloqueo Forense (Usuario · Equipo de Origen)"
+            }
+          }
+        }
+      ],
+      fieldConfig: {
+        defaults: {
+          custom: {
+            align: "left",
+            cellOptions: { type: "auto" },
+            filterable: true,
+            minWidth: 140
+          }
+        },
+        overrides: [
+          {
+            matcher: { id: "byName", options: "Controlador DC" },
+            properties: [
+              { id: "custom.width", value: 140 },
+              { id: "custom.filterable", value: true }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Detalle del Bloqueo Forense (Usuario · Equipo de Origen)" },
+            properties: [
+              { id: "custom.filterable", value: true },
+              { id: "custom.inspect", value: true },
+              {
+                id: "links",
+                value: [
+                  {
+                    title: "🔍 Ver Logs en Zabbix",
+                    url: "https://zabbix.mlccnet.local/history.php?action=showlatest",
+                    targetBlank: true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      options: {
+        sortBy: [{ displayName: "Controlador DC", desc: false }],
+        showHeader: true,
+        footer: { show: false, reducer: ["sum"] }
+      },
+      targets: [
+        {
+          refId: "DCO01_4740",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User locked" },
+          functions: [],
+          resultFormat: "table",
+          options: { showDisabledItems: false }
+        },
+        {
+          refId: "DCO02_4740",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO02" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User locked" },
+          functions: [],
+          resultFormat: "table",
+          options: { showDisabledItems: false }
+        }
+      ]
+    },
+    {
+      id: 61,
+      title: "👥 Modificación de Grupos Privilegiados (Event IDs 4728 · 4732 · 4756)",
+      type: "table",
+      gridPos: { x: 0, y: 55, w: 24, h: 9 },
+      timeFrom: "${forensic_window}",
+      datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        { id: "merge", options: {} },
+        {
+          id: "filterByValue",
+          options: {
+            type: "include",
+            match: "regex",
+            filters: [
+              {
+                fieldName: "Last value",
+                config: {
+                  id: "regex",
+                  options: {
+                    value: ".*${search:raw}.*"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          id: "organize",
+          options: {
+            excludeByName: {
+              "Item": true,
+              "Key": true
+            },
+            indexByName: {
+              "Host": 0,
+              "Last value": 1,
+              "Value": 1
+            },
+            renameByName: {
+              "Host": "Controlador DC",
+              "Last value": "Detalle de Modificación (Operador · Miembro Afectado · Grupo)",
+              "Value": "Detalle de Modificación (Operador · Miembro Afectado · Grupo)"
+            }
+          }
+        }
+      ],
+      fieldConfig: {
+        defaults: {
+          custom: {
+            align: "left",
+            cellOptions: { type: "auto" },
+            filterable: true,
+            minWidth: 140
+          }
+        },
+        overrides: [
+          {
+            matcher: { id: "byName", options: "Controlador DC" },
+            properties: [
+              { id: "custom.width", value: 140 },
+              { id: "custom.filterable", value: true }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Detalle de Modificación (Operador · Miembro Afectado · Grupo)" },
+            properties: [
+              { id: "custom.filterable", value: true },
+              { id: "custom.inspect", value: true },
+              {
+                id: "links",
+                value: [
+                  {
+                    title: "🔍 Ver Logs en Zabbix",
+                    url: "https://zabbix.mlccnet.local/history.php?action=showlatest",
+                    targetBlank: true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      options: {
+        sortBy: [{ displayName: "Controlador DC", desc: false }],
+        showHeader: true,
+        footer: { show: false, reducer: ["sum"] }
+      },
+      targets: [
+        {
+          refId: "DCO01_GRP",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)" },
+          functions: [],
+          resultFormat: "table",
+          options: { showDisabledItems: false }
+        },
+        {
+          refId: "DCO02_GRP",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO02" },
+          application: { filter: "" },
+          item: { filter: "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)" },
+          functions: [],
+          resultFormat: "table",
+          options: { showDisabledItems: false }
+        }
+      ]
+    },
+    {
+      id: 62,
+      title: "👤 Ciclo de Vida de Cuentas — Creación · Habilitación · Deshabilitación (4720 · 4722 · 4725)",
+      type: "table",
+      gridPos: { x: 0, y: 64, w: 24, h: 8 },
+      timeFrom: "${forensic_window}",
+      datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        { id: "merge", options: {} },
+        {
+          id: "filterByValue",
+          options: {
+            type: "include",
+            match: "regex",
+            filters: [
+              {
+                fieldName: "Last value",
+                config: {
+                  id: "regex",
+                  options: {
+                    value: ".*${search:raw}.*"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          id: "organize",
+          options: {
+            excludeByName: {
+              "Item": true,
+              "Key": true
+            },
+            indexByName: {
+              "Host": 0,
+              "Last value": 1,
+              "Value": 1
+            },
+            renameByName: {
+              "Host": "Controlador DC",
+              "Last value": "Registro de Actividad (Creación / Habilitación / Deshabilitación)",
+              "Value": "Registro de Actividad (Creación / Habilitación / Deshabilitación)"
+            }
+          }
+        }
+      ],
+      fieldConfig: {
+        defaults: {
+          custom: {
+            align: "left",
+            cellOptions: { type: "auto" },
+            filterable: true,
+            minWidth: 140
+          }
+        },
+        overrides: [
+          {
+            matcher: { id: "byName", options: "Controlador DC" },
+            properties: [
+              { id: "custom.width", value: 140 },
+              { id: "custom.filterable", value: true }
+            ]
+          },
+          {
+            matcher: { id: "byName", options: "Registro de Actividad (Creación / Habilitación / Deshabilitación)" },
+            properties: [
+              { id: "custom.filterable", value: true },
+              { id: "custom.inspect", value: true },
+              {
+                id: "links",
+                value: [
+                  {
+                    title: "🔍 Ver Logs en Zabbix",
+                    url: "https://zabbix.mlccnet.local/history.php?action=showlatest",
+                    targetBlank: true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      options: {
+        sortBy: [{ displayName: "Controlador DC", desc: false }],
+        showHeader: true,
+        footer: { show: false, reducer: ["sum"] }
+      },
+      targets: [
+        {
+          refId: "DCO01_4720",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User Created" },
+          functions: [],
+          resultFormat: "table",
+          options: { showDisabledItems: false }
+        },
+        {
+          refId: "DCO01_4722",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User enabled" },
+          functions: [],
+          resultFormat: "table",
+          options: { showDisabledItems: false }
+        },
+        {
+          refId: "DCO01_4725",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User disabled" },
+          functions: [],
+          resultFormat: "table",
+          options: { showDisabledItems: false }
         }
       ]
     }

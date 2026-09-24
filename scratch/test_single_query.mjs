@@ -8,37 +8,37 @@ if (!token) {
 
 const now = Date.now();
 const payload = JSON.stringify({
-  from: String(now - 3600000),
+  from: String(now - 30 * 24 * 3600000),
   to: String(now),
   queries: [
     {
-      refId: 'CPU',
+      refId: 'QT_0_Table',
       schema: 12,
       queryType: '0',
       group: { filter: 'AD' },
       host: { filter: 'SRO-DCO01' },
-      item: { filter: 'CPU utilization' },
-      resultFormat: 'time_series',
+      item: { filter: 'Eventlog by Zabbix agent: Failed Login' },
+      resultFormat: 'table',
       datasource: { type: 'alexanderzobnin-zabbix-datasource', uid: 'efz4nzx8r30g0c' }
     },
     {
-      refId: 'RAM',
+      refId: 'QT_2_Logs',
       schema: 12,
-      queryType: '0',
+      queryType: '2',
       group: { filter: 'AD' },
       host: { filter: 'SRO-DCO01' },
-      item: { filter: 'Memory utilization' },
-      resultFormat: 'time_series',
+      item: { filter: 'Eventlog by Zabbix agent: Failed Login' },
+      resultFormat: 'table',
       datasource: { type: 'alexanderzobnin-zabbix-datasource', uid: 'efz4nzx8r30g0c' }
     },
     {
-      refId: 'Services',
+      refId: 'QT_4_ItemValue',
       schema: 12,
-      queryType: '0',
+      queryType: '4',
       group: { filter: 'AD' },
       host: { filter: 'SRO-DCO01' },
-      item: { filter: '/State of service .*("DNS"|"Kdc"|"DFSR"|"ADWS").*/' },
-      resultFormat: 'time_series',
+      item: { filter: 'Eventlog by Zabbix agent: Failed Login' },
+      resultFormat: 'table',
       datasource: { type: 'alexanderzobnin-zabbix-datasource', uid: 'efz4nzx8r30g0c' }
     }
   ]
@@ -61,13 +61,7 @@ const req = http.request({
     try {
       const data = JSON.parse(b);
       console.log('STATUS:', res.statusCode);
-      for (const k of Object.keys(data.results)) {
-        const r = data.results[k];
-        console.log(`Query ${k}: ${r.frames ? r.frames.length + ' frames' : 'error: ' + r.error}`);
-        if (r.frames && r.frames.length > 0) {
-          console.log(`  Sample name:`, r.frames[0].schema?.name, `values:`, r.frames[0].data?.values?.[1]?.slice(-3));
-        }
-      }
+      console.log('FULL DATA:', JSON.stringify(data, null, 2));
     } catch (e) {
       console.log('Error parsing response:', b);
     }

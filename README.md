@@ -2,6 +2,8 @@
 
 Repositorio central de configuración, automatización con agentes IA, inventarios, directivas de gobernanza y documentación técnica oficial para la plataforma de monitoreo de **Milicic S.A.**
 
+> **Última actualización:** 24 de Septiembre de 2026 — Dashboards de observabilidad y Cyber SOC optimizados, auditoría forense interactiva desplegada, pipeline de incidentes Zabbix estandarizado.
+
 ---
 
 ## 1. Reglas y Estándares Globales del Workspace
@@ -34,7 +36,8 @@ En [`docs/zabbix/prod/`](file:///c:/zabbix_anti/docs/zabbix/prod/) y [`.zabbix_c
 * 🛠️ [**Runbook de Operaciones SRE**](file:///c:/zabbix_anti/docs/zabbix/prod/operations-runbook.md): Procedimientos operativos avanzados, control de interfaces y ventanas de mantenimiento.
 * 📊 [**Matriz de Cambios (Change Matrix)**](file:///c:/zabbix_anti/docs/zabbix/prod/change-matrix-ZBX-prod-20260916-ALERT-OPT.md): Trazabilidad de refactorizaciones y optimizaciones aplicadas.
 * ⏪ [**Plan de Rollback**](file:///c:/zabbix_anti/docs/zabbix/prod/rollback-plan-ZBX-prod-20260916-ALERT-OPT.md): Procedimiento de contingencia y marcha atrás.
-* 🗄️ [**Contexto Operativo e Histórico (ChatGPT/OneDrive)**](file:///c:/zabbix_anti/.zabbix_context/operational_context_chatgpt.md): Matriz completa de hallazgos (`AUD-001` a `AUD-009`), bitácoras cronológicas de remediación (08/09 al 23/09/2026), mapa de red LLDP y matriz de VLANs.
+* 🗄️ [**Contexto Operativo e Histórico**](file:///c:/zabbix_anti/.zabbix_context/operational_context_chatgpt.md): Matriz completa de hallazgos (`AUD-001` a `AUD-009`), bitácoras cronológicas de remediación (08/09 al 23/09/2026), mapa de red LLDP y matriz de VLANs.
+* 📊 [**Inventario de Dashboards Grafana**](file:///c:/zabbix_anti/.zabbix_context/grafana_dashboards.md): Catálogo completo de los 12 tableros en producción, plugins instalados y estado de paneles.
 * 📁 **Repositorio Maestro en OneDrive:** `C:\Users\matias.larenti\OneDrive - Milicic SA\Documentos\Zabbix`
 
 ---
@@ -50,48 +53,102 @@ El proyecto cuenta con skills altamente especializadas y workflows deterministas
 | 🛠️ [**grafana-mcp-tools**](file:///c:/zabbix_anti/.agents/skills/grafana-mcp-tools/SKILL.md) | Skill | Skill oficial de Grafana Labs para interactuar con el servidor MCP `uvx mcp-grafana`, RBAC y gestión de context window. |
 | ⚙️ [**zabbix-operations**](file:///c:/zabbix_anti/.agents/skills/zabbix-operations/SKILL.md) | Skill | Operaciones seguras, diagnóstico de microflapping con LLDP, resolución de errores Telegram (`chat not found`), monitoreo Veeam y desduplicación. |
 | 📝 [**zabbix-config-docs**](file:///c:/zabbix_anti/.agents/skills/zabbix-config-docs/SKILL.md) | Skill | Auditoría, matrices de cambios y documentación de configuraciones tras cambios de API. |
+| 🎨 [**milicic-corporate-docs**](file:///c:/zabbix_anti/.agents/skills/milicic-corporate-docs/SKILL.md) | Skill | Generación de reportes PDF, Excel, Word y dashboards con estándar corporativo de Milicic. |
 | 🚀 [**nuevo-dashboard**](file:///c:/zabbix_anti/.agents/workflows/nuevo-dashboard.md) | Workflow | Guía de ejecución para `/nuevo-dashboard <servicio>` con pre-flight discovery, validación JSON y despliegue MCP. |
 
 ---
 
-## 5. Scripts de Diagnóstico y Automatización Local
+## 5. Plataforma de Observabilidad Grafana
 
-En [`scripts/`](file:///c:/zabbix_anti/scripts/):
-* `Get-VeeamVmBackupStatus.ps1`: Recolector de tareas, sesiones y puntos de restauración de Veeam en JSON para VMs (ej. `SSJ-HPV01`).
-* `Analyze-LinkDownFlapping.ps1`: Analizador de caídas de interfaz vía API de Zabbix; categoriza microflapping vs caídas reales.
-* `Analyze-ZabbixNoise.ps1`: Distribución de severidades y análisis de concentración de eventos ruidosos.
-* `Analyze-ZabbixItems.ps1`: Auditoría de ítems no soportados clasificados por host y causa.
-* Scripts para generación de dashboards (`Build-NocInfrastructureDashboard.mjs`, `Prepare-AD-OperationalDashboard.mjs`, `Build-AD-Report.ps1`).
+**Grafana v11.5.2** desplegado en Dokploy (`http://172.27.210.154:3005`), con datasource Zabbix integrado y **11 plugins de visualización** instalados.
+
+### Plugins Instalados (docker-compose)
+
+```
+alexanderzobnin-zabbix-app
+yesoreyeram-infinity-datasource
+marcusolsson-dynamictext-panel
+volkovlabs-table-panel
+grafana-polystat-panel
+marcusolsson-treemap-panel
+marcusolsson-hourly-heatmap-panel
+nline-plotlyjs-panel
+knightss27-weathermap-plugin
+isaozler-paretochart-panel
+marcusolsson-sankey-panel
+```
+
+### Dashboards en Producción (Carpeta `Milicic Observabilidad`)
+
+| UID | Dashboard | URL |
+| :--- | :--- | :--- |
+| `milicic-switches-core` | 🌐 Networking: Switches Core y Distribución | [Abrir](http://172.27.210.154:3005/d/milicic-switches-core) |
+| `milicic-vmware-datastores` | 🖥️ Virtualización y Storage: VMware & Datastores | [Abrir](http://172.27.210.154:3005/d/milicic-vmware-datastores) |
+| `milicic-soc-overview` | 🛡️ Milicic SOC / NOC: Visión Ejecutiva Global | [Abrir](http://172.27.210.154:3005/d/milicic-soc-overview) |
+| `milicic-sanjuan-infra` | ⛰️ San Juan: Monitoreo Integral (SSJ) | [Abrir](http://172.27.210.154:3005/d/milicic-sanjuan-infra) |
+| `milicic-activedirectory-soc` | 🔐 Active Directory & Cyber SOC | [Abrir](http://172.27.210.154:3005/d/milicic-activedirectory-soc) |
+| `milicic-servers-plataforma` | 🖥️ Servidores & Plataforma | [Abrir](http://172.27.210.154:3005/d/milicic-servers-plataforma) |
+| `milicic-backup-continuidad` | 💾 Backup & Continuidad (Veeam) | [Abrir](http://172.27.210.154:3005/d/milicic-backup-continuidad) |
+| `milicic-facilities-ups` | ⚡ Energía & Facilities (UPS) | [Abrir](http://172.27.210.154:3005/d/milicic-facilities-ups) |
+| `milicic-fortigate-wan` | 🔥 FortiGate & WAN | [Abrir](http://172.27.210.154:3005/d/milicic-fortigate-wan) |
+| `milicic-aruba-wifi` | 📡 Aruba Wi-Fi & Switches Instant On | [Abrir](http://172.27.210.154:3005/d/milicic-aruba-wifi) |
+| `milicic-nuevos-plugins` | 🎨 Galería de Nuevos Plugins | [Abrir](http://172.27.210.154:3005/d/milicic-nuevos-plugins) |
+
+> 📖 Ver inventario completo en [**grafana_dashboards.md**](file:///c:/zabbix_anti/.zabbix_context/grafana_dashboards.md)
 
 ---
 
-## 6. Integración con Antigravity & Conectores MCP
+## 6. Scripts de Diagnóstico y Automatización Local
+
+En [`scripts/`](file:///c:/zabbix_anti/scripts/):
+
+### Scripts de Build de Dashboards (`.mjs`)
+
+| Script | Dashboard | Descripción |
+| :--- | :--- | :--- |
+| `build_activedirectory_dashboard.mjs` | AD & Cyber SOC | DC health, servicios AD (6 targets exactos), Eventlog security, heatmap 7d |
+| `build_switches_dashboard.mjs` | Switches Core | Polystat de estado, heatmap de tráfico por puerto |
+| `build_servers_dashboard.mjs` | Servidores | CPU, RAM, disco, servicios Windows/Linux |
+| `build_vmware_dashboard.mjs` | VMware | VMs, datastores, hosts ESXi |
+| `build_soc_dashboard.mjs` | SOC/NOC | Visión ejecutiva global, problems, triggers críticos |
+| `build_sanjuan_dashboard.mjs` | San Juan | Infraestructura SSJ, Polystat + Treemap |
+| `build_fortigate_dashboard.mjs` | FortiGate | WAN, interfaces, CPU/RAM, VPN |
+| `build_facilities_ups_dashboard.mjs` | Facilities/UPS | Baterías, carga, autonomía, temperatura |
+| `build_backup_dashboard.mjs` | Backup/Veeam | Jobs, sesiones, ventana de backup |
+| `build_aruba_dashboard.mjs` | Aruba Wi-Fi | APs, radios, SSIDs, switches Instant On |
+| `build_new_plugins_gallery.mjs` | Galería Plugins | Showcase de los 11 nuevos plugins |
+
+### Scripts de Diagnóstico PowerShell
+
+| Script | Descripción |
+| :--- | :--- |
+| `Get-VeeamVmBackupStatus.ps1` | Extracción de jobs/sesiones Veeam en JSON |
+| `Analyze-LinkDownFlapping.ps1` | Discriminación microflapping vs caídas reales |
+| `Analyze-ZabbixNoise.ps1` | Distribución de severidades y eventos ruidosos |
+| `Analyze-ZabbixItems.ps1` | Auditoría de ítems no soportados por host |
+
+---
+
+## 7. Integración con Antigravity & Conectores MCP
 
 El workspace cuenta con doble integración MCP para orquestar observabilidad y tableros:
 
 1. **Zabbix MCP Server (initMAX):**
    * **Endpoint:** `http://127.0.0.1:8080/mcp` (Admin UI: `http://127.0.0.1:9090`)
    * **Transporte:** Native Streamable HTTP
-   * **Token MCP:** `zmcp_6673ac9995fe59ae960e5597530912bdebdd76bbf56e6e1007ac6755a9eb545e`
    * **Uso:** Extracción de telemetría, validación pre-flight de métricas, gestión de alertas y hosts.
 
 2. **Grafana MCP Server (Oficial Grafana Labs):**
-   * **Endpoint Web Grafana:** `http://172.27.210.154:3005` (Dokploy)
+   * **Endpoint Web Grafana:** `http://172.27.210.154:3005` (Dokploy en `172.27.210.154`)
    * **Comando:** `uvx mcp-grafana`
    * **Token Service Account:** `glsa_...` (Cuenta `Ant-Local`, rol Admin)
-   * **Datasource Zabbix Conectado:** `alexanderzobnin-zabbix-datasource` (UID: `efz4nzx8r30g0c`)
-   * **Uso:** Creación automatizada de paneles, carpetas, gestión de datasources y despliegue de tableros.
-   * **Tableros en Producción (Carpeta Milicic Observabilidad):**
-     - 🌐 [**Networking: Switches Core y Distribución**](http://172.27.210.154:3005/d/milicic-switches-core) (`milicic-switches-core`)
-     - 🖥️ [**Virtualización y Storage: VMware & Datastores**](http://172.27.210.154:3005/d/milicic-vmware-datastores) (`milicic-vmware-datastores`)
-     - 🛡️ [**Milicic SOC / NOC: Visión Ejecutiva Global**](http://172.27.210.154:3005/d/milicic-soc-overview) (`milicic-soc-overview`)
-     - ⛰️ [**San Juan: Monitoreo Integral (SSJ)**](http://172.27.210.154:3005/d/milicic-sanjuan-infra) (`milicic-sanjuan-infra`)
+   * **Datasource Zabbix:** `alexanderzobnin-zabbix-datasource` (UID: `efz4nzx8r30g0c`)
 
-* **Archivos de Configuración MCP:** [`mcp_config.json`](file:///c:/zabbix_anti/mcp_config.json), [`.agents/mcp_config.json`](file:///c:/zabbix_anti/.agents/mcp_config.json) y [`.vscode/mcp.json`](file:///c:/zabbix_anti/.vscode/mcp.json).
+* **Archivos de Configuración MCP:** [`mcp_config.json`](file:///c:/zabbix_anti/mcp_config.json), [`.agents/mcp_config.json`](file:///c:/zabbix_anti/.agents/mcp_config.json)
 
 ---
 
-## 7. Estructura del Repositorio
+## 8. Estructura del Repositorio
 
 ```text
 c:\zabbix_anti\
@@ -99,23 +156,26 @@ c:\zabbix_anti\
 │   ├── rules/
 │   │   └── milicic-zabbix-environment.md        # Reglas operativas y contexto vivo del entorno
 │   ├── skills/
-│   │   ├── zabbix-dashboard-architect/          # Skill de diseño de dashboards Zabbix (estándar Milicic)
-│   │   ├── grafana-milicic-standards/           # Skill de dashboards Grafana (USE/RED y esquemas Milicic)
-│   │   ├── grafana-mcp-tools/                   # Skill oficial de Grafana Labs (uvx mcp-grafana)
-│   │   ├── zabbix-operations/                   # Skill de operaciones, diagnóstico y troubleshooting
+│   │   ├── zabbix-dashboard-architect/          # Skill de diseño de dashboards Zabbix
+│   │   ├── grafana-milicic-standards/           # Skill de dashboards Grafana (USE/RED)
+│   │   ├── grafana-mcp-tools/                   # Skill oficial de Grafana Labs
+│   │   ├── milicic-corporate-docs/              # Skill de documentación corporativa
+│   │   ├── zabbix-operations/                   # Skill de operaciones y troubleshooting
 │   │   └── zabbix-config-docs/                  # Skill de documentación y matrices de cambio
 │   └── workflows/
 │       └── nuevo-dashboard.md                   # Workflow /nuevo-dashboard <servicio>
 ├── .zabbix_context/
-│   ├── audit_baseline.md                        # Estado de línea base de la auditoría inicial
+│   ├── audit_baseline.md                        # Estado de línea base auditoría inicial (16/09)
 │   ├── tagging_plan.md                          # Plan de etiquetado y taxonomía de tags
-│   ├── operational_context_chatgpt.md           # Acervo histórico y matriz de hallazgos ChatGPT
+│   ├── operational_context_chatgpt.md           # Acervo histórico y matriz de hallazgos
+│   ├── grafana_dashboards.md                    # Inventario completo de dashboards Grafana
 │   └── dashboards/                              # Exportaciones JSON y backups de tableros
 ├── docs/
 │   └── zabbix/
 │       ├── manuals/                             # Manuales técnicos oficiales (01 a 06)
-│       └── prod/                                # Inventarios, runbooks y matrices de cambios
-├── scripts/                                     # Scripts de diagnóstico PowerShell y Node.js
+│       └── prod/                               # Inventarios, runbooks y matrices de cambios
+├── scripts/                                     # Scripts de build (.mjs) y diagnóstico (.ps1)
+├── scratch/                                     # Scripts de diagnóstico temporales y pruebas
 ├── GEMINI.md                                    # Directivas universales mandatorias del workspace
 └── README.md                                    # Portal principal y mapa de navegación
 ```

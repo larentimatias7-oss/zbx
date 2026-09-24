@@ -6,20 +6,18 @@ if (!token) {
   token = execSync('powershell.exe -NoProfile -Command "[System.Environment]::GetEnvironmentVariable(\'GRAFANA_SERVICE_ACCOUNT_TOKEN\', \'User\')"', { encoding: 'utf8' }).trim();
 }
 
-const req = http.request('http://172.27.210.154:3005/api/plugins?embedded=0', {
+const req = http.request('http://172.27.210.154:3005/api/dashboards/uid/test-canvas-panel', {
   headers: { 'Authorization': 'Bearer ' + token }
 }, res => {
   let b = '';
   res.on('data', c => b += c);
   res.on('end', () => {
     try {
-      const list = JSON.parse(b);
-      console.log('Total plugins installed:', list.length);
-      list.forEach(p => console.log(`- ${p.id} (${p.name}) [${p.type}]`));
+      const data = JSON.parse(b);
+      console.log('Options root:', JSON.stringify(data.dashboard.panels[0].options, null, 2));
     } catch (e) {
-      console.error('Raw response:', b);
+      console.error(e, b);
     }
   });
 });
-req.on('error', e => console.error('Request error:', e.message));
 req.end();
