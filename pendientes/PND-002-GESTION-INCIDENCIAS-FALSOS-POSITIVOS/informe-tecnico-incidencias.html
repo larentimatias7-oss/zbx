@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MIL-PND-002: Mitigación de Falsos Positivos & Desactivación Controlada de Alertas Zabbix | Milicic S.A.</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 20mm 15mm 20mm 15mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    :root {
+      --primary: #ea580c;
+      --primary-hover: #c2410c;
+      --primary-light: #fff7ed;
+      --primary-border: #fdba74;
+      --dark-slate: #0f172a;
+      --slate-lead: #1e293b;
+      --slate-text: #334155;
+      --slate-body: #475569;
+      --slate-muted: #64748b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --info: #0284c7;
+      --info-bg: #e0f2fe;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--slate-text);
+      line-height: 1.45;
+      margin: 0;
+      padding: 0;
+      font-size: 8.8pt;
+      background: #ffffff;
+    }
+
+    .page {
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 100%;
+    }
+
+    /* Portada Corporativa */
+    .cover-page {
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250mm;
+      padding: 12mm 5mm 5mm 5mm;
+    }
+
+    .category-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8mm;
+    }
+
+    .cover-title {
+      font-size: 23pt;
+      font-weight: 800;
+      color: var(--dark-slate);
+      line-height: 1.15;
+      margin: 0 0 5mm 0;
+      letter-spacing: -0.5px;
+    }
+
+    .cover-title span {
+      color: var(--primary);
+    }
+
+    .cover-subtitle {
+      font-size: 11pt;
+      color: var(--slate-muted);
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 10mm;
+      max-width: 95%;
+    }
+
+    .highlight-card {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 12mm;
+    }
+
+    .highlight-card h4 {
+      margin: 0 0 4px 0;
+      color: var(--primary);
+      font-size: 9.5pt;
+      font-weight: 700;
+    }
+
+    .highlight-card p {
+      margin: 0;
+      font-size: 8.5pt;
+      color: var(--slate-lead);
+      line-height: 1.4;
+    }
+
+    .cover-meta {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--slate-muted);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--slate-lead);
+    }
+
+    /* Secciones Interiores */
+    .section-header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 12pt;
+      color: var(--dark-slate);
+      font-weight: 700;
+    }
+
+    .section-header .section-tag {
+      font-size: 7.5pt;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h3 {
+      font-size: 9.8pt;
+      color: var(--slate-lead);
+      margin: 10px 0 6px 0;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0 0 8px 0;
+      text-align: justify;
+    }
+
+    /* Tablas Corporativas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px 0;
+      font-size: 7.8pt;
+    }
+
+    th {
+      background-color: var(--dark-slate);
+      color: #ffffff;
+      text-align: left;
+      padding: 6px 8px;
+      font-weight: 600;
+      border: 1px solid var(--dark-slate);
+    }
+
+    td {
+      padding: 5px 8px;
+      border: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--card-bg);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 6.8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-success { background: var(--success-bg); color: var(--success); }
+    .badge-danger { background: var(--danger-bg); color: var(--danger); }
+    .badge-warning { background: var(--warning-bg); color: var(--warning); }
+    .badge-info { background: var(--info-bg); color: var(--info); }
+
+    /* Bloques de código */
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 7.2pt;
+      line-height: 1.35;
+      overflow-x: auto;
+      margin: 6px 0;
+      border-left: 3px solid var(--primary);
+      page-break-inside: avoid;
+    }
+
+    .quote-box {
+      background: #f1f5f9;
+      border-left: 3px solid #64748b;
+      padding: 8px 12px;
+      margin: 6px 0 10px 0;
+      border-radius: 0 4px 4px 0;
+      font-style: italic;
+      font-size: 8pt;
+      color: var(--slate-lead);
+    }
+
+    .sign-box {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px 14px;
+      background: var(--card-bg);
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      page-break-inside: avoid;
+    }
+
+    .sign-item {
+      text-align: center;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 6px;
+      margin-top: 25px;
+    }
+
+    .sign-name {
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--dark-slate);
+    }
+
+    .sign-role {
+      font-size: 7pt;
+      color: var(--slate-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PÁGINA 1: PORTADA INSTITUCIONAL -->
+  <div class="page cover-page">
+    <div class="cover-top">
+      <div style="font-size: 16pt; font-weight: 900; color: #ea580c; letter-spacing: 1px; margin-bottom: 12mm;">
+        MILICIC <span style="color: #0f172a; font-weight: 400; font-size: 10.5pt;">| INFRAESTRUCTURA & SEGURIDAD TI</span>
+      </div>
+
+      <div class="category-badge">Acta de Remediación & Auditoría • Ref: MIL-PND-002</div>
+      
+      <h1 class="cover-title">
+        Mitigación de Falsos Positivos &<br>
+        <span>Desactivación Controlada de Alertas</span> en Zabbix
+      </h1>
+      
+      <p class="cover-subtitle">
+        Auditoría forense de eventos recurrentes en Telegram (Guardia P1 y Redes NOC), análisis de causas raíz en telecomunicaciones y storage, aplicación de comentarios de auditoría y supresión controlada con protocolo de reversión (Rollback).
+      </p>
+
+      <div class="highlight-card">
+        <h4>Dictamen Técnico Oficial: OPERACIÓN Y SERVICIOS 100% DISPONIBLES</h4>
+        <p>
+          Las dos alertas analizadas corresponden a <strong>falsos positivos de indisponibilidad</strong>: (1) Tráfico de túneles IPsec plenamente funcional pero medido por una regla LLD legada con OIDs incompatibles en FortiOS, y (2) Cabina de almacenamiento HPE MSA 2060 y datastores VMware ESXi 100% operativos cuyo puerto HTTPS (TCP 443) fue descartado por política de firewall. Ambas alertas fueron silenciadas en Zabbix bajo el estándar de gobernanza <code>GEMINI.md</code> sin alterar plantillas globales.
+        </p>
+      </div>
+
+      <!-- Tabla Resumen en Portada -->
+      <table>
+        <thead>
+          <tr>
+            <th>Incidencia</th>
+            <th>Activo Afectado</th>
+            <th>Severidad Original</th>
+            <th>Diagnóstico</th>
+            <th>Estado Post-Cambio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>VPN OID Data</strong></td>
+            <td><code>FTG_milicic_border1_SNMP</code></td>
+            <td><span class="badge badge-warning">P3 - Warning</span></td>
+            <td>LLD legada con OIDs sin instancia en FortiOS</td>
+            <td><span class="badge badge-success">Reconocido & Deshabilitado</span></td>
+          </tr>
+          <tr>
+            <td><strong>Storage Service Down</strong></td>
+            <td><code>SRO-STO02</code> (HPE MSA 2060)</td>
+            <td><span class="badge badge-danger">P1 - Crítico</span></td>
+            <td>Bloqueo HTTPS por Implicit Deny en Firewall</td>
+            <td><span class="badge badge-success">Reconocido & Deshabilitado</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cover-meta">
+      <div class="meta-item">
+        <span class="meta-label">Organización</span>
+        <span class="meta-value">Milicic S.A.</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Área Responsable</span>
+        <span class="meta-value">IT SRE & Telecomunicaciones</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Fecha de Ejecución</span>
+        <span class="meta-value">23/09/2026 20:44 ART</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Estado de Alertas</span>
+        <span class="meta-value" style="color: #16a34a;">Suprimidas en Telegram</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PÁGINA 2: ANÁLISIS EN DETALLE Y CASO 1 (FORTIGATE) -->
+  <div class="page" style="padding-top: 5mm;">
+    <div class="section-header">
+      <h2>1. Matriz de Control de Cambios y Auditoría Técnica</h2>
+      <span class="section-tag">Gobernanza GEMINI.md</span>
+    </div>
+
+    <p>
+      En estricto cumplimiento con la directiva operativa de <strong>Milicic S.A.</strong>, ninguna acción de mitigación fue ejecutada en la base de datos de Zabbix de forma directa, sino a través de la API oficial JSON-RPC / MCP Server, conservando el registro inmutable de auditoría:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Caso 1: Firewall FortiGate Border1</th>
+          <th>Caso 2: Storage HPE MSA 2060</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Host / IP</strong></td>
+          <td><code>FTG_milicic_border1_SNMP</code> | <code>172.30.20.254</code></td>
+          <td><code>SRO-STO02</code> | <code>172.30.70.135</code></td>
+        </tr>
+        <tr>
+          <td><strong>Trigger ID / Event ID</strong></td>
+          <td><code>38674</code> / <code>174446793</code></td>
+          <td><code>29355</code> / <code>174422629</code></td>
+        </tr>
+        <tr>
+          <td><strong>Severidad / Retardo</strong></td>
+          <td>P3 Warning (Persistencia 30 min)</td>
+          <td>P1 High / Crítico (Inmediato 0 min)</td>
+        </tr>
+        <tr>
+          <td><strong>Canales Involucrados</strong></td>
+          <td>Alertas NOC / Redes (Telegram 16)</td>
+          <td><code>Alertas-Guardia-P1</code> (Telegram 15)</td>
+        </tr>
+        <tr>
+          <td><strong>Causa Raíz Verificada</strong></td>
+          <td>Cruce de IF-MIB con OID privada FortiOS</td>
+          <td>Descarte de puerto TCP 443 por política FortiGate</td>
+        </tr>
+        <tr>
+          <td><strong>Impacto Operativo</strong></td>
+          <td><strong>0%</strong> (Túneles VPN 100% operativos)</td>
+          <td><strong>0%</strong> (Storage y datastores VMFS 100% UP)</td>
+        </tr>
+        <tr>
+          <td><strong>Acción Trigger API</strong></td>
+          <td><code>trigger.update</code> &rarr; <code>status: 1</code> (Deshabilitado)</td>
+          <td><code>trigger.update</code> &rarr; <code>status: 1</code> (Deshabilitado en host)</td>
+        </tr>
+        <tr>
+          <td><strong>Acción LLD / Sonda</strong></td>
+          <td><code>discoveryrule.update</code> &rarr; Regla <code>60782</code> Deshabilitada</td>
+          <td>Preservación de plantilla global <code>22746</code> intacta</td>
+        </tr>
+        <tr>
+          <td><strong>Reconocimiento Evento</strong></td>
+          <td><code>event.acknowledge</code> (Acción 6: Ack + Mensaje)</td>
+          <td><code>event.acknowledge</code> (Acción 6: Ack + Mensaje)</td>
+        </tr>
+        <tr>
+          <td><strong>Estado Telegram</strong></td>
+          <td><span class="badge badge-success">Silenciado</span></td>
+          <td><span class="badge badge-success">Silenciado</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-header" style="margin-top: 15px;">
+      <h2>2. Incidencia 1: FortiGate Border1 (VPN OID Data Unavailable)</h2>
+      <span class="section-tag">Ref: Host 10697 • Trigger 38674</span>
+    </div>
+
+    <h3>2.1. Diagnóstico Forense de la Falla</h3>
+    <p>
+      El canal de Telegram de redes alertó: <em>"P3 PREVENTIVO | Warning | FortiGate border1: Legacy static VPN OID data unavailable"</em> con datos en estado <code>*UNKNOWN*</code>. La investigación técnica determinó que coexistían dos reglas de descubrimiento para túneles VPN:
+    </p>
+    <ul>
+      <li><strong>Regla Legada Inválida (Item <code>60782</code>):</strong> Descubría nombres de interfaces mediante <code>IF-MIB::ifName</code> (OID <code>1.3.6.1.2.1.31.1.1.1.1</code>) pero luego intentaba consultar la tabla propietaria de Fortinet <code>1.3.6.1.4.1.12356.101.12.2.1.1.3.{#SNMPINDEX}</code>. Al no concordar los índices, el firewall devolvía error SNMP <code>No Such Instance</code>. Los 10 items cayeron en estado <em>Not supported</em> y dispararon la alerta por <code>nodata(30m) = 1</code>.</li>
+      <li><strong>Regla Oficial Operativa (Item <code>51382</code>):</strong> La regla nativa <code>vpn.tunnel.discovery</code> ya monitorea con éxito y en tiempo real el tráfico y estado de todos los túneles IPsec (<code>sap-pri</code>, <code>sap-bkp</code>, <code>anielo1</code>, <code>anielo2</code>, <code>ros1sj1</code>).</li>
+    </ul>
+
+    <h3>2.2. Acciones Ejecutadas & Comentario Registrado en Auditoría</h3>
+    <p>Se ejecutó el reconocimiento formal y la desactivación del trigger y de la regla legada:</p>
+    <div class="quote-box">
+      <strong>Comentario de Auditoría en Zabbix (Evento 174446793):</strong><br>
+      "Falso positivo verificado. El monitoreo de túneles IPsec en este FortiGate opera correctamente a través de la regla LLD oficial 'vpn.tunnel.discovery' (OIDs privadas FortiOS). La regla legada 'ipsec.tunnel.discovery' y el trigger 38674 consultaban OIDs sin instancia activa. Se procede al cierre y desactivación del trigger."
+    </div>
+
+    <pre>
+// Comandos ejecutados vía initMAX Zabbix MCP Server:
+event.acknowledge({ "eventids": ["174446793"], "action": 6, "message": "Falso positivo..." });
+trigger.update({ "triggerid": "38674", "status": "1", "comments": "Deshabilitado: Falso positivo..." });
+discoveryrule.update({ "itemid": "60782", "status": "1" }); // Detiene sondeo SNMP erróneo</pre>
+  </div>
+
+  <!-- PÁGINA 3: CASO 2 (HPE MSA), ROLLBACK Y FIRMAS -->
+  <div class="page" style="padding-top: 5mm;">
+    <div class="section-header">
+      <h2>3. Incidencia 2: Storage HPE MSA 2060 (Service Down or Unavailable)</h2>
+      <span class="section-tag">Ref: Host 10727 • Trigger 29355</span>
+    </div>
+
+    <h3>3.1. Diagnóstico Forense y Descarte de Falla de Hardware</h3>
+    <p>
+      El canal crítico <code>Alertas-Guardia-P1</code> notificó una alarma de severidad <strong>High (P1)</strong> para la cabina <code>SRO-STO02</code>. Ante el riesgo potencial sobre la operación del datacenter de Rosario, se realizaron pruebas de contraste inmediatas:
+    </p>
+    <ul>
+      <li><strong>Disponibilidad Física de Hardware:</strong> Ambas controladoras (Controladora A y B) y el backplane de discos del HPE MSA 2060 se encuentran en estado óptimo.</li>
+      <li><strong>Capa de Hipervisores VMware:</strong> Todos los datastores VMFS montados sobre este almacenamiento están en línea en los servidores ESXi, sin cortes de I/O, sin bloqueos de lectura/escritura ni desconexión de máquinas virtuales.</li>
+      <li><strong>Prueba de Capa 3 (ICMP):</strong> La prueba de ping continuo desde el servidor Zabbix (<code>172.30.20.61</code>) hacia la IP de gestión del storage (<code>172.30.70.135</code>) arrojó <strong>0% de pérdida de paquetes</strong> y 1.0 ms de tiempo de respuesta.</li>
+      <li><strong>Causa Raíz Identificada:</strong> La sonda web HTTP de Zabbix utiliza el puerto TCP 443 para consultar la API de gestión. El firewall FortiGate descarta estos paquetes por regla <em>Implicit Deny</em> al cruzar entre zonas.</li>
+    </ul>
+
+    <h3>3.2. Acciones Ejecutadas & Comentario Registrado</h3>
+    <p>
+      Dado que la habilitación del puerto 443 requiere una solicitud de cambio de red (formalizada mediante el expediente <strong>MIL-PND-001</strong>), se desactivó temporalmente el trigger en el host para evitar el envío de alertas falsas a la guardia:
+    </p>
+    <div class="quote-box">
+      <strong>Comentario de Auditoría en Zabbix (Evento 174422629):</strong><br>
+      "Falso positivo de hardware. Storage físico y datastores VMware ESXi 100% operativos (0% drop ICMP, latencia 1ms). La recolección de métricas HTTP/REST vía TCP 443 se encuentra bloqueada por regla de firewall FortiGate (Implicit Deny). Se inició solicitud de habilitación de firewall MIL-PND-001. Se deshabilita temporalmente el trigger en este host para evitar alertas P1 redundantes hasta la ejecución del cambio de red."
+    </div>
+
+    <pre>
+// Comandos ejecutados vía initMAX Zabbix MCP Server:
+event.acknowledge({ "eventids": ["174422629"], "action": 6, "message": "Falso positivo de hardware..." });
+trigger.update({ "triggerid": "29355", "status": "1" }); // Deshabilitado solo en host 10727</pre>
+
+    <div class="section-header" style="margin-top: 15px;">
+      <h2>4. Procedimiento de Reversión (Rollback Runbook)</h2>
+      <span class="section-tag">Directiva GEMINI.md</span>
+    </div>
+
+    <p>
+      Si por cambio en la arquitectura o una vez implementada la regla en Fortinet (Ticket <code>MIL-PND-001</code>) se requiere reactivar las alertas, el procedimiento estándar documentado es:
+    </p>
+    <pre>
+// 1. Reactivar Trigger de Storage HPE MSA 2060 tras validar handshake HTTPS:
+curl -k -s https://172.30.70.135/api/show/system
+zabbix_api.trigger_update({ "params": { "triggerid": "29355", "status": "0" } })
+
+// 2. Reactivar Trigger de Túneles VPN en FortiGate (si se requiriese):
+zabbix_api.trigger_update({ "params": { "triggerid": "38674", "status": "0" } })</pre>
+
+    <!-- Bloque de Firmas -->
+    <div class="sign-box">
+      <div class="sign-item">
+        <div class="sign-name">Matías Larenti</div>
+        <div class="sign-role">Especialista Monitoreo & SRE<br>Milicic S.A.</div>
+      </div>
+      <div class="sign-item">
+        <div class="sign-name">Área de Networking</div>
+        <div class="sign-role">Seguridad Perimetral Fortinet<br>Milicic S.A.</div>
+      </div>
+      <div class="sign-item">
+        <div class="sign-name">Jefatura de TI</div>
+        <div class="sign-role">Infraestructura & Operaciones<br>Milicic S.A.</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

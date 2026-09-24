@@ -1,6 +1,7 @@
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const dashboard = {
   title: "San Juan: Monitoreo Integral de Infraestructura (SSJ)",
@@ -371,13 +372,61 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 2: CONECTIVIDAD, LATENCIA Y CALIDAD DE ENLACE (y: 4, h: 7)
+    // ROW 1.5: MALLA OPERATIVA DE DISPONIBILIDAD (y: 4, h: 6)
+    // -------------------------------------------------------------
+    {
+      id: 100,
+      title: "Malla Hexagonal de Disponibilidad de Infraestructura San Juan (SSJ)",
+      type: "grafana-polystat-panel",
+      gridPos: { x: 0, y: 4, w: 24, h: 6 },
+      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      options: {
+        polystat: {
+          shape: "hexagon",
+          displayMode: "all",
+          columns: 4,
+          rows: 2,
+          fontSize: 12,
+          fontColor: "#FFFFFF"
+        },
+        thresholds: [
+          { color: "#E45959", state: 0, value: 0 },
+          { color: "#16A34A", state: 1, value: 1 }
+        ]
+      },
+      fieldConfig: {
+        defaults: {
+          thresholds: {
+            mode: "absolute",
+            steps: [
+              { color: "#E45959", value: null },
+              { color: "#16A34A", value: 1 }
+            ]
+          }
+        }
+      },
+      targets: [
+        {
+          refId: "Ping",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "sanJuan" },
+          host: { filter: "/.*/" },
+          item: { filter: "/(ICMP ping|Zabbix agent ping)/" },
+          resultFormat: "time_series",
+          options: { showDisabledItems: false }
+        }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // ROW 2: CONECTIVIDAD, LATENCIA Y CALIDAD DE ENLACE (y: 10, h: 7)
     // -------------------------------------------------------------
     {
       id: 9,
       title: "Latencia y RTT de Enlace a Dispositivos San Juan (ms)",
       type: "timeseries",
-      gridPos: { x: 0, y: 4, w: 14, h: 7 },
+      gridPos: { x: 0, y: 10, w: 14, h: 7 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -410,7 +459,7 @@ const dashboard = {
       id: 10,
       title: "Pérdida de Paquetes en Enlaces de San Juan (%)",
       type: "timeseries",
-      gridPos: { x: 14, y: 4, w: 10, h: 7 },
+      gridPos: { x: 14, y: 10, w: 10, h: 7 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -450,13 +499,13 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 3: CÓMPUTO & SATURACIÓN: CPU Y MEMORIA RAM (y: 11, h: 8)
+    // ROW 3: CÓMPUTO & SATURACIÓN: CPU Y MEMORIA RAM (y: 17, h: 8)
     // -------------------------------------------------------------
     {
       id: 11,
       title: "Consumo de Cómputo CPU (%) - Servidores San Juan",
       type: "timeseries",
-      gridPos: { x: 0, y: 11, w: 12, h: 8 },
+      gridPos: { x: 0, y: 17, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -500,7 +549,7 @@ const dashboard = {
       id: 12,
       title: "Saturación de Memoria RAM (%) - Servidores San Juan",
       type: "timeseries",
-      gridPos: { x: 12, y: 11, w: 12, h: 8 },
+      gridPos: { x: 12, y: 17, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -542,19 +591,20 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 4: ALMACENAMIENTO, DATASTORES Y BACKUPS (y: 19, h: 7)
+    // ROW 4: ALMACENAMIENTO - TREEMAP Y BAR GAUGE (y: 25, h: 8)
     // -------------------------------------------------------------
     {
-      id: 13,
-      title: "Particiones de Datos, Respaldo y VMs (D:, E:, F:) - San Juan",
-      type: "bargauge",
-      gridPos: { x: 0, y: 19, w: 12, h: 7 },
+      id: 120,
+      title: "Almacenamiento: Capacidad y Distribución de Volúmenes San Juan (Treemap)",
+      type: "marcusolsson-treemap-panel",
+      gridPos: { x: 0, y: 25, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      options: {
+        tilingAlgorithm: "squarify"
+      },
       fieldConfig: {
         defaults: {
           unit: "percent",
-          min: 0,
-          max: 100,
           thresholds: {
             mode: "absolute",
             steps: [
@@ -562,15 +612,8 @@ const dashboard = {
               { color: "#FFA059", value: 80 },
               { color: "#E45959", value: 90 }
             ]
-          },
-          color: { mode: "thresholds" }
+          }
         }
-      },
-      options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
-        orientation: "horizontal",
-        displayMode: "gradient",
-        showUnfilled: true
       },
       targets: [
         {
@@ -578,38 +621,18 @@ const dashboard = {
           schema: 12,
           queryType: "0",
           group: { filter: "sanJuan" },
-          host: { filter: "SSJ-HPV01" },
-          item: { filter: "/FS \\[DATA\\(D:\\)\\]: Space: Used, in %/" },
-          resultFormat: "time_series",
-          options: { showDisabledItems: false }
-        },
-        {
-          refId: "B",
-          schema: 12,
-          queryType: "0",
-          group: { filter: "sanJuan" },
-          host: { filter: "SSJ-FIL01" },
-          item: { filter: "/FS \\[DATOS\\(E:\\)\\]: Space: Used, in %/" },
-          resultFormat: "time_series",
-          options: { showDisabledItems: false }
-        },
-        {
-          refId: "C",
-          schema: 12,
-          queryType: "0",
-          group: { filter: "sanJuan" },
-          host: { filter: "SSJ-BKP01" },
-          item: { filter: "/FS \\[DATA-BKP\\(F:\\)\\]: Space: Used, in %/" },
+          host: { filter: "/.*/" },
+          item: { filter: "/FS \\[.*?\\]: Space: Used, in %/" },
           resultFormat: "time_series",
           options: { showDisabledItems: false }
         }
       ]
     },
     {
-      id: 14,
-      title: "Volúmenes de Sistema Operativo C: (%) - San Juan",
+      id: 13,
+      title: "Utilización de Particiones de Datos y Volúmenes de Sistema (Bar Gauge)",
       type: "bargauge",
-      gridPos: { x: 12, y: 19, w: 12, h: 7 },
+      gridPos: { x: 12, y: 25, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -635,11 +658,21 @@ const dashboard = {
       },
       targets: [
         {
-          refId: "A",
+          refId: "Data",
           schema: 12,
           queryType: "0",
           group: { filter: "sanJuan" },
-          host: { filter: "/${device_type:raw}/" },
+          host: { filter: "/SSJ-(HPV01|FIL01|BKP01)/" },
+          item: { filter: "/FS \\[(DATA\\(D:\\)|DATOS\\(E:\\)|DATA-BKP\\(F:\\)|VM\\(E:\\))\\]: Space: Used, in %/" },
+          resultFormat: "time_series",
+          options: { showDisabledItems: false }
+        },
+        {
+          refId: "Sys",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "sanJuan" },
+          host: { filter: "/.*/" },
           item: { filter: "/FS \\[\\(C:\\)\\]: Space: Used, in %/" },
           resultFormat: "time_series",
           options: { showDisabledItems: false }
@@ -648,13 +681,13 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 5: INCIDENTES ACTIVOS EN SAN JUAN (y: 26, h: 7)
+    // ROW 5: INCIDENTES ACTIVOS EN SAN JUAN (y: 33, h: 8)
     // -------------------------------------------------------------
     {
       id: 15,
       title: "Incidentes y Alarmas Activas en Localidad San Juan (Zabbix Triggers)",
       type: "table",
-      gridPos: { x: 0, y: 26, w: 24, h: 7 },
+      gridPos: { x: 0, y: 33, w: 24, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       options: {
         showHeader: true
@@ -692,7 +725,14 @@ const payload = JSON.stringify({
   overwrite: true
 });
 
-const grafanaToken = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || "";
+let grafanaToken = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || "";
+if (!grafanaToken) {
+  try {
+    grafanaToken = execSync('powershell.exe -NoProfile -Command "[System.Environment]::GetEnvironmentVariable(\'GRAFANA_SERVICE_ACCOUNT_TOKEN\', \'User\')"', { encoding: 'utf8' }).trim();
+  } catch (e) {
+    console.error('Error al obtener token:', e.message);
+  }
+}
 
 const req = http.request("http://172.27.210.154:3005/api/dashboards/db", {
   method: "POST",

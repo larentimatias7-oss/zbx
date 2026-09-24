@@ -1,6 +1,7 @@
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const dashboard = {
   title: "Virtualización y Storage: VMware, Hypervisors & Datastores",
@@ -250,13 +251,48 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 2: Datastores & Storage Utilization (y: 4, h: 7)
+    // ROW 2: Datastores & Storage Utilization (y: 4, h: 8)
     // -------------------------------------------------------------
     {
+      id: 100,
+      title: "Distribución Jerárquica de Capacidad de Almacenamiento & Datastores (Treemap)",
+      type: "marcusolsson-treemap-panel",
+      gridPos: { x: 0, y: 4, w: 12, h: 8 },
+      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      options: {
+        tilingAlgorithm: "squarify"
+      },
+      fieldConfig: {
+        defaults: {
+          unit: "percent",
+          thresholds: {
+            mode: "absolute",
+            steps: [
+              { color: "#73BF69", value: null },
+              { color: "#FFA059", value: 80 },
+              { color: "#E45959", value: 90 }
+            ]
+          }
+        }
+      },
+      targets: [
+        {
+          refId: "A",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "/.*(Windows_Server|Backup_Server|Storage_Server).*/" },
+          host: { filter: "/.*(FIL01|BKP01|APP01|APP03|SQL01).*/" },
+          item: { filter: "/FS \\[.*?\\]: Space: Used, in %/" },
+          resultFormat: "time_series",
+          options: { showDisabledItems: false }
+        }
+      ]
+    },
+    {
       id: 7,
-      title: "File Server Storage (SRO-FIL01) - Uso de Volúmenes C: y D:",
+      title: "Utilización de Volúmenes y Unidades Críticas (Bar Gauge)",
       type: "bargauge",
-      gridPos: { x: 0, y: 4, w: 8, h: 7 },
+      gridPos: { x: 12, y: 4, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -285,90 +321,8 @@ const dashboard = {
           refId: "A",
           schema: 12,
           queryType: "0",
-          group: { filter: "Windows_Server" },
-          host: { filter: "SRO-FIL01" },
-          item: { filter: "/FS \\[.*?\\]: Space: Used, in %/" },
-          resultFormat: "time_series",
-          options: { showDisabledItems: false }
-        }
-      ]
-    },
-    {
-      id: 8,
-      title: "Veeam Backup Server (SRO-BKP01) - Uso de Almacenamiento C:",
-      type: "bargauge",
-      gridPos: { x: 8, y: 4, w: 8, h: 7 },
-      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
-      fieldConfig: {
-        defaults: {
-          unit: "percent",
-          min: 0,
-          max: 100,
-          thresholds: {
-            mode: "absolute",
-            steps: [
-              { color: "#73BF69", value: null },
-              { color: "#FFA059", value: 80 },
-              { color: "#E45959", value: 90 }
-            ]
-          },
-          color: { mode: "thresholds" }
-        }
-      },
-      options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
-        orientation: "horizontal",
-        displayMode: "gradient",
-        showUnfilled: true
-      },
-      targets: [
-        {
-          refId: "A",
-          schema: 12,
-          queryType: "0",
-          group: { filter: "Backup_Server" },
-          host: { filter: "SRO-BKP01" },
-          item: { filter: "/FS \\[.*?\\]: Space: Used, in %/" },
-          resultFormat: "time_series",
-          options: { showDisabledItems: false }
-        }
-      ]
-    },
-    {
-      id: 9,
-      title: "Servidores de Aplicación (SRO-APP01 / SRO-APP03) - Almacenamiento Crítico C:",
-      type: "bargauge",
-      gridPos: { x: 16, y: 4, w: 8, h: 7 },
-      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
-      fieldConfig: {
-        defaults: {
-          unit: "percent",
-          min: 0,
-          max: 100,
-          thresholds: {
-            mode: "absolute",
-            steps: [
-              { color: "#73BF69", value: null },
-              { color: "#FFA059", value: 80 },
-              { color: "#E45959", value: 90 }
-            ]
-          },
-          color: { mode: "thresholds" }
-        }
-      },
-      options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
-        orientation: "horizontal",
-        displayMode: "gradient",
-        showUnfilled: true
-      },
-      targets: [
-        {
-          refId: "A",
-          schema: 12,
-          queryType: "0",
-          group: { filter: "Windows_Server" },
-          host: { filter: "/SRO-APP.*/" },
+          group: { filter: "/.*(Windows_Server|Backup_Server|Storage_Server).*/" },
+          host: { filter: "/.*(FIL01|BKP01|APP01|APP03).*/" },
           item: { filter: "/FS \\[.*?\\]: Space: Used, in %/" },
           resultFormat: "time_series",
           options: { showDisabledItems: false }
@@ -377,13 +331,13 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 3: Workload & Saturation: CPU & Memory (y: 11, h: 8)
+    // ROW 3: Workload & Saturation: CPU & Memory (y: 12, h: 8)
     // -------------------------------------------------------------
     {
       id: 10,
       title: "CPU Utilization - Carga de Cómputo Servidores Core (%)",
       type: "timeseries",
-      gridPos: { x: 0, y: 11, w: 12, h: 8 },
+      gridPos: { x: 0, y: 12, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -427,7 +381,7 @@ const dashboard = {
       id: 11,
       title: "Memory Utilization - Saturación de Memoria Servidores Core (%)",
       type: "timeseries",
-      gridPos: { x: 12, y: 11, w: 12, h: 8 },
+      gridPos: { x: 12, y: 12, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -469,13 +423,13 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 4: Saturation & Paging (y: 19, h: 6)
+    // ROW 4: Saturation & Paging (y: 20, h: 6)
     // -------------------------------------------------------------
     {
       id: 12,
       title: "Saturación de Cómputo: Longitud de Cola de Procesador (Processor Queue Length)",
       type: "timeseries",
-      gridPos: { x: 0, y: 19, w: 12, h: 6 },
+      gridPos: { x: 0, y: 20, w: 12, h: 6 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -507,7 +461,7 @@ const dashboard = {
       id: 13,
       title: "Frecuencia de Paginación y Faltas de Página (Page Faults / sec)",
       type: "timeseries",
-      gridPos: { x: 12, y: 19, w: 12, h: 6 },
+      gridPos: { x: 12, y: 20, w: 12, h: 6 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -537,13 +491,13 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 5: Incidentes Activos en Virtualización y Almacenamiento (y: 25, h: 7)
+    // ROW 5: Incidentes Activos en Virtualización y Almacenamiento (y: 26, h: 7)
     // -------------------------------------------------------------
     {
       id: 14,
       title: "Incidentes Activos en Virtualización, Servidores y Almacenamiento (Zabbix Triggers)",
       type: "table",
-      gridPos: { x: 0, y: 25, w: 24, h: 7 },
+      gridPos: { x: 0, y: 26, w: 24, h: 7 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       options: {
         showHeader: true
@@ -581,7 +535,10 @@ const payload = JSON.stringify({
   overwrite: true
 });
 
-const grafanaToken = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || "";
+let grafanaToken = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || "";
+if (!grafanaToken) {
+  grafanaToken = execSync('powershell.exe -NoProfile -Command "[System.Environment]::GetEnvironmentVariable(\'GRAFANA_SERVICE_ACCOUNT_TOKEN\', \'User\')"', { encoding: 'utf8' }).trim();
+}
 
 const req = http.request("http://172.27.210.154:3005/api/dashboards/db", {
   method: "POST",

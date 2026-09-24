@@ -17,7 +17,7 @@ Durante la fase de diagnóstico inicial y saneamiento se identificaron y catalog
 | **AUD-001A**| Alta | VMware | Errores de endpoint VMware | 430 ítems reportando `Invalid URL: missing /sdk`. Causa: macro `{$VMWARE.URL}` sin el sufijo `/sdk`. | Ajuste de macro en template/hosts VMware. |
 | **AUD-001B**| Alta | SNMP | Sesiones SNMP fallidas | 390 errores `zbx_snmp_open_session() failed`. | Verificación de ACLs, timeouts y credenciales UDP/161. |
 | **AUD-001C**| Alta | FortiGate | Fallas masivas en `FTG_ar-368-acueducto_SNMP` | 260 ítems no soportados por falla de sesión SNMP. | Corrección de parámetros de conectividad SNMP. |
-| **AUD-001D**| Media | Wireless | AP Gerencias y AP Administración sin respuesta SNMP | 65 y 64 ítems no soportados respectivamente. | Diagnóstico de conectividad y template de fabricante. |
+| **AUD-001D**| Media | Wireless | AP Gerencias y AP Administración sin respuesta SNMP | 65 y 64 ítems no soportados respectivamente por uso de template ProCurve. | **Resuelto:** Desvinculación de template 10250; implementación de templates nativos 10818 (Aruba Instant AP) y 10826 (Aruba Instant On 1930). |
 | **AUD-001E**| Media | Calculados | División por cero en cálculo de filesystem | `Cannot evaluate expression: division by zero` con `vfs.fs.total[fgSysDiskCapacity.0]`. | Inclusión de guardas condicionales en el cálculo. |
 | **AUD-002** | Media | Operación | Ausencia de ventanas de mantenimiento | Cero mantenimientos configurados en Zabbix. Generación de alertas evitables en cambios planificados. | Definición del procedimiento de ventanas de mantenimiento. |
 | **AUD-003** | Alta | Alerting | Acción global sin condiciones (*Alert Storms*) | La acción por defecto `Report problems to Zabbix administrators` escalaba sin filtros ni persistencia. | **Resuelto:** Deshabilitada y reemplazada por las 4 acciones P1, P2 (Redes), P2 (Plataforma) y P3. |
@@ -56,6 +56,14 @@ Durante la fase de diagnóstico inicial y saneamiento se identificaron y catalog
 - **Restauración de Destinatarios Telegram:** Acciones 8 a 11 configuradas para entregar a `Admin` y `mlarenti.zabbix` por `Telegram_Test` (71) y `fmartin.zabbix` por `Telegram_Test_Milicic` (72).
 
 ### 23/09/2026 (Estado Vivo Actual):
+- **Saneamiento Infraestructura Aruba (Wi-Fi y Switches Instant On):**
+  * **Causa Raíz Identificada:** Consultora externa había asociado el template de switches ProCurve `HP Enterprise Switch by SNMP` (10250) a los 14 APs Aruba Instant Enterprise (AOS-8) y a los 2 switches Instant On 1930. Esto causaba más de 42 ítems no soportados, 7 LLDs espurios (sensores térmicos, fuentes y ventiladores de chasis) y alertas Average recurrentes por link down del puerto auxiliar desconectado `eth1`.
+  * **Remediación Ejecutada:**
+    - Purga limpia y desvinculación de template 10250 en los 16 hosts.
+    - Creación e implementación de `Aruba Instant AP by SNMP` (10818): incluye recolección de modelo y firmware vía items dependientes de `sysDescr`, uptime, ICMP ping, estado SNMP y LLD de interfaces físicas (`eth0`, `eth1`), bridge (`BR0`) y radios Wi-Fi (`radio0_ssid_id*` en 5 GHz, `radio1_ssid_id*` en 2.4 GHz).
+    - Desactivación de prototype trigger `Interface {#IFNAME}: Link down` (36393) erradicando alertas de `eth1`.
+    - Creación de `Aruba Instant On 1930 Switch by SNMP` (10826) con telemetría de CPU (`1.3.6.1.4.1.11.2.1.8.0`) y consumo PoE (`1.3.6.1.2.1.105.1.3.1.1.2.1`).
+    - Resultado: Mapa `Wi-Fi - 14` 100% OK/Verde y eliminación masiva de ítems no soportados.
 - **Limpieza de Ítems Temporales:** Eliminado de la API el ítem de diagnóstico 98124 (`noc.sdwan.schema`) en el firewall Fortinet.
 - **Auditoría de Acciones y Entregas:** Revalidada la ventana de entrega de 12 a 24 horas: 30 operaciones procesadas (22 exitosas, 8 fallidas).
   * Las 8 fallas corresponden a `mlarenti.zabbix` mediante `Telegram_Test` con `Bad Request: chat not found`.
@@ -63,6 +71,27 @@ Durante la fase de diagnóstico inicial y saneamiento se identificaron y catalog
 - **Clasificación P1 Fortinet:** 4 incidentes ICMP independientes con sus respectivas recuperaciones en Posco, San Luis, Santa Fe y Río Tinto. Sin evidencia de reincidencia o flapping anómalo.
 - **UPS E02 PA:** Deshabilitado el disparador 35455 que reportaba falsamente que la salida del UPS no era normal (basado en un ítem sin muestras). Conservada la telemetría SNMP real.
 - **Switch G01:** Deshabilitados triggers 26297 y 26298 en `D04` (puertos 11 y 12) para eliminar duplicación visible con `DIS01`. Identificados 9 widgets en el Dashboard NOC 408 que referencian a D04.
+- **Mapa Topológico Integral `Network SRO v2` (`sysmapid: 12`):**
+  * **Análisis de Inconsistencias en Mapa Original 6 (`Network SRO`):**
+    - Host `10708` (`SRO-E02-PB00-CORE01`) figuraba triplicado y erróneamente etiquetado como `SRO-E01-PB01-SW01`.
+    - Omisión del switch de acceso de Edificio E03 (`10726` - `SRO-E03-P00-D03`).
+    - Enlaces P2P modelados como imágenes decorativas sin entidad host ni telemetría real.
+    - Cero integración con el parque Wi-Fi corporativo (14 APs Aruba AOS-8).
+    - Elementos residuales o huérfanos sin host asignado (selements 77 y 78).
+  * **Construcción y Despliegue de `Network SRO v2` (`sysmapid: 12`):**
+    - 18 elementos distribuidos y jerarquizados en 5 macrozonas arquitectónicas con delimitación visual (`shapes`):
+      1. Datacenter Core & Perímetro WAN (`E02 PB`)
+      2. Edificio E03 (Anexo Switching & Taller)
+      3. Galpón 01 (`G01` - Taller, Logística & Radioenlaces)
+      4. Edificio Blanco (`E01` - Administración & Directorio)
+      5. Infraestructura Wi-Fi Corporativa (Aruba AOS-8 & Clúster 45)
+    - **Refactorización de Layout y Buenas Prácticas (Eliminación de Solapamiento):**
+      * Separación visual ampliada (canvas 1550 x 960) evitando colisiones en puntos medios.
+      * Telemetría selectiva: etiquetas con ancho de banda `{?last(...)}` reservadas exclusivamente para los troncales de fibra y enlaces perimetrales (WAN, Te1/0/6, Te1/0/20, Te1/0/8, Te1/0/5). Enlaces terminales de acceso, radioenlaces y APs limpios sin cajas verdes invasivas.
+      * Disparadores dinámicos en enlaces (`linktriggers`): troncales asociados a triggers de caída de interfaz que colorean el enlace en rojo (`#DD0000`) en caso de falla.
+      * Corrección de macros: CPU en Dell N4032 ajustada a `system.cpu.usage.avg1m[system]` (eliminando `*UNKNOWN*%`) y PoE en Aruba 1930 corregido (eliminando duplicidad `WW`).
+      * Bordes sutiles en Slate (`#94A3B8`) y tipografía técnica (`#1E293B`).
+    - Acceso directo: `https://zabbix.mlccnet.local/zabbix.php?action=map.view&sysmapid=12`.
 
 ---
 

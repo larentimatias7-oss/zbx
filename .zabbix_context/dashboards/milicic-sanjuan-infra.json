@@ -723,12 +723,86 @@
       ]
     },
     {
+      "id": 100,
+      "title": "Malla Hexagonal de Disponibilidad de Infraestructura San Juan (SSJ)",
+      "type": "grafana-polystat-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 24,
+        "h": 6
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "polystat": {
+          "shape": "hexagon",
+          "displayMode": "all",
+          "columns": 4,
+          "rows": 2,
+          "fontSize": 12,
+          "fontColor": "#FFFFFF"
+        },
+        "thresholds": [
+          {
+            "color": "#E45959",
+            "state": 0,
+            "value": 0
+          },
+          {
+            "color": "#16A34A",
+            "state": 1,
+            "value": 1
+          }
+        ]
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E45959",
+                "value": null
+              },
+              {
+                "color": "#16A34A",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "refId": "Ping",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "sanJuan"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/(ICMP ping|Zabbix agent ping)/"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
       "id": 9,
       "title": "Latencia y RTT de Enlace a Dispositivos San Juan (ms)",
       "type": "timeseries",
       "gridPos": {
         "x": 0,
-        "y": 4,
+        "y": 10,
         "w": 14,
         "h": 7
       },
@@ -785,7 +859,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 14,
-        "y": 4,
+        "y": 10,
         "w": 10,
         "h": 7
       },
@@ -855,7 +929,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 0,
-        "y": 11,
+        "y": 17,
         "w": 12,
         "h": 8
       },
@@ -932,7 +1006,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 12,
-        "y": 11,
+        "y": 17,
         "w": 12,
         "h": 8
       },
@@ -1004,24 +1078,25 @@
       ]
     },
     {
-      "id": 13,
-      "title": "Particiones de Datos, Respaldo y VMs (D:, E:, F:) - San Juan",
-      "type": "bargauge",
+      "id": 120,
+      "title": "Almacenamiento: Capacidad y Distribución de Volúmenes San Juan (Treemap)",
+      "type": "marcusolsson-treemap-panel",
       "gridPos": {
         "x": 0,
-        "y": 19,
+        "y": 25,
         "w": 12,
-        "h": 7
+        "h": 8
       },
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
+      "options": {
+        "tilingAlgorithm": "squarify"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "percent",
-          "min": 0,
-          "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1038,22 +1113,8 @@
                 "value": 90
               }
             ]
-          },
-          "color": {
-            "mode": "thresholds"
           }
         }
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "values": false
-        },
-        "orientation": "horizontal",
-        "displayMode": "gradient",
-        "showUnfilled": true
       },
       "targets": [
         {
@@ -1064,46 +1125,10 @@
             "filter": "sanJuan"
           },
           "host": {
-            "filter": "SSJ-HPV01"
+            "filter": "/.*/"
           },
           "item": {
-            "filter": "/FS \\[DATA\\(D:\\)\\]: Space: Used, in %/"
-          },
-          "resultFormat": "time_series",
-          "options": {
-            "showDisabledItems": false
-          }
-        },
-        {
-          "refId": "B",
-          "schema": 12,
-          "queryType": "0",
-          "group": {
-            "filter": "sanJuan"
-          },
-          "host": {
-            "filter": "SSJ-FIL01"
-          },
-          "item": {
-            "filter": "/FS \\[DATOS\\(E:\\)\\]: Space: Used, in %/"
-          },
-          "resultFormat": "time_series",
-          "options": {
-            "showDisabledItems": false
-          }
-        },
-        {
-          "refId": "C",
-          "schema": 12,
-          "queryType": "0",
-          "group": {
-            "filter": "sanJuan"
-          },
-          "host": {
-            "filter": "SSJ-BKP01"
-          },
-          "item": {
-            "filter": "/FS \\[DATA-BKP\\(F:\\)\\]: Space: Used, in %/"
+            "filter": "/FS \\[.*?\\]: Space: Used, in %/"
           },
           "resultFormat": "time_series",
           "options": {
@@ -1113,14 +1138,14 @@
       ]
     },
     {
-      "id": 14,
-      "title": "Volúmenes de Sistema Operativo C: (%) - San Juan",
+      "id": 13,
+      "title": "Utilización de Particiones de Datos y Volúmenes de Sistema (Bar Gauge)",
       "type": "bargauge",
       "gridPos": {
         "x": 12,
-        "y": 19,
+        "y": 25,
         "w": 12,
-        "h": 7
+        "h": 8
       },
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
@@ -1166,14 +1191,32 @@
       },
       "targets": [
         {
-          "refId": "A",
+          "refId": "Data",
           "schema": 12,
           "queryType": "0",
           "group": {
             "filter": "sanJuan"
           },
           "host": {
-            "filter": "/${device_type:raw}/"
+            "filter": "/SSJ-(HPV01|FIL01|BKP01)/"
+          },
+          "item": {
+            "filter": "/FS \\[(DATA\\(D:\\)|DATOS\\(E:\\)|DATA-BKP\\(F:\\)|VM\\(E:\\))\\]: Space: Used, in %/"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "Sys",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "sanJuan"
+          },
+          "host": {
+            "filter": "/.*/"
           },
           "item": {
             "filter": "/FS \\[\\(C:\\)\\]: Space: Used, in %/"
@@ -1191,9 +1234,9 @@
       "type": "table",
       "gridPos": {
         "x": 0,
-        "y": 26,
+        "y": 33,
         "w": 24,
-        "h": 7
+        "h": 8
       },
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",

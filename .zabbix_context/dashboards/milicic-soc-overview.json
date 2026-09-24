@@ -18,13 +18,48 @@
   "refresh": "15s",
   "panels": [
     {
+      "id": 100,
+      "title": "Centro de Comando NOC / SOC - Milicic S.A.",
+      "type": "marcusolsson-dynamictext-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "content": "\n<div style=\"background: linear-gradient(90deg, #0F172A 0%, #1E293B 100%); border-left: 6px solid #EA580C; padding: 14px 20px; border-radius: 8px; color: #F8FAFC;\">\n  <div style=\"display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;\">\n    <div>\n      <h2 style=\"margin: 0; color: #EA580C; font-size: 20px; font-weight: 700; letter-spacing: 0.5px;\">MILICIC S.A. | Observabilidad Global SOC / NOC</h2>\n      <p style=\"margin: 4px 0 0 0; color: #94A3B8; font-size: 13px;\">Consola Unificada de Operaciones: Perímetro SD-WAN, Core Campus, Hipervisores, Ciberseguridad & Energía Crítica</p>\n    </div>\n    <div style=\"display: flex; gap: 12px; margin-top: 4px;\">\n      <span style=\"background: #16A34A; color: white; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700;\">PERÍMETRO: ACTIVO</span>\n      <span style=\"background: #0284C7; color: white; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700;\">BACKBONE: 100% ONLINE</span>\n      <span style=\"background: #D97706; color: white; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700;\">ENERGÍA DC: PROTEGIDA</span>\n    </div>\n  </div>\n</div>\n        "
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "FTG_milicic_border1_SNMP"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
       "id": 1,
       "title": "Perímetro: FortiGate Border1",
       "type": "stat",
       "gridPos": {
         "x": 0,
-        "y": 0,
-        "w": 4,
+        "y": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -102,9 +137,9 @@
       "title": "Sesiones Activas IPv4 (Border1)",
       "type": "stat",
       "gridPos": {
-        "x": 4,
-        "y": 0,
-        "w": 4,
+        "x": 3,
+        "y": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -169,12 +204,12 @@
     },
     {
       "id": 3,
-      "title": "Core Backbone: Dell N4032 CPU Avg",
+      "title": "Core Backbone: Dell CPU",
       "type": "stat",
       "gridPos": {
-        "x": 8,
-        "y": 0,
-        "w": 4,
+        "x": 6,
+        "y": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -239,12 +274,12 @@
     },
     {
       "id": 4,
-      "title": "Energía: UPS SRO Core (Carga %)",
+      "title": "Potencia Datacenter (Watts)",
       "type": "stat",
       "gridPos": {
-        "x": 12,
-        "y": 0,
-        "w": 4,
+        "x": 9,
+        "y": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -253,26 +288,10 @@
       },
       "fieldConfig": {
         "defaults": {
-          "unit": "percent",
+          "unit": "watt",
           "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#73BF69",
-                "value": null
-              },
-              {
-                "color": "#FFA059",
-                "value": 65
-              },
-              {
-                "color": "#E45959",
-                "value": 85
-              }
-            ]
+            "mode": "fixed",
+            "fixedColor": "#5794F2"
           }
         }
       },
@@ -283,7 +302,7 @@
           ],
           "values": false
         },
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "area"
       },
       "targets": [
@@ -292,13 +311,13 @@
           "schema": 12,
           "queryType": "0",
           "group": {
-            "filter": "UPS"
+            "filter": "/.*/"
           },
           "host": {
             "filter": "UPS SRO CORE"
           },
           "item": {
-            "filter": "UPS Load (%)"
+            "filter": "UPS Power Consumption (W)"
           },
           "resultFormat": "time_series",
           "options": {
@@ -309,12 +328,82 @@
     },
     {
       "id": 5,
-      "title": "Directorio Activo: Controladores de Dominio",
+      "title": "Autonomía Mínima Flota",
       "type": "stat",
       "gridPos": {
-        "x": 16,
-        "y": 0,
-        "w": 4,
+        "x": 12,
+        "y": 4,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E45959",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 30
+              },
+              {
+                "color": "#16A34A",
+                "value": 60
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "min"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/UPS/"
+          },
+          "host": {
+            "filter": "/UPS/"
+          },
+          "item": {
+            "filter": "Battery Time Remaining"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Controladores de Dominio",
+      "type": "stat",
+      "gridPos": {
+        "x": 15,
+        "y": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -388,13 +477,13 @@
       ]
     },
     {
-      "id": 6,
-      "title": "Hipervisores ESXi Datacenter",
+      "id": 14,
+      "title": "Hipervisores ESXi",
       "type": "stat",
       "gridPos": {
-        "x": 20,
-        "y": 0,
-        "w": 4,
+        "x": 18,
+        "y": 4,
+        "w": 3,
         "h": 4
       },
       "datasource": {
@@ -412,7 +501,7 @@
                   "color": "#E45959"
                 },
                 "1": {
-                  "text": "CLUSTER ONLINE",
+                  "text": "ONLINE",
                   "color": "#73BF69"
                 }
               }
@@ -468,12 +557,81 @@
       ]
     },
     {
+      "id": 15,
+      "title": "Disponibilidad BDR (SLA %)",
+      "type": "stat",
+      "gridPos": {
+        "x": 21,
+        "y": 4,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E45959",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 95
+              },
+              {
+                "color": "#16A34A",
+                "value": 99
+              }
+            ]
+          },
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/.*(BKP|NAS|STO).*/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
       "id": 7,
       "title": "Perímetro FortiGate Border1: Ancho de Banda WAN (port14 tasa)",
       "type": "timeseries",
       "gridPos": {
         "x": 0,
-        "y": 4,
+        "y": 8,
         "w": 12,
         "h": 8
       },
@@ -549,7 +707,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 12,
-        "y": 4,
+        "y": 8,
         "w": 12,
         "h": 8
       },
@@ -591,7 +749,7 @@
             "filter": "SRO-E02-PB00-CORE01"
           },
           "item": {
-            "filter": "/Interface (Te1\\/0\\/1|Port-Channel1): Bits (received|sent)/"
+            "filter": "/Interface (Te1\\/0\\/[5689]|Port-Channel[0-9]).*Bits (received|sent)/"
           },
           "resultFormat": "time_series",
           "options": {
@@ -609,7 +767,7 @@
             "filter": "SRO-E02-PB00-CORE02"
           },
           "item": {
-            "filter": "/Interface (Te1\\/0\\/1|Port-Channel1): Bits (received|sent)/"
+            "filter": "/Interface (Te1\\/0\\/[5689]|Port-Channel[0-9]).*Bits (received|sent)/"
           },
           "resultFormat": "time_series",
           "options": {
@@ -624,7 +782,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 0,
-        "y": 12,
+        "y": 16,
         "w": 8,
         "h": 8
       },
@@ -740,7 +898,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 8,
-        "y": 12,
+        "y": 16,
         "w": 8,
         "h": 8
       },
@@ -815,7 +973,7 @@
       "type": "bargauge",
       "gridPos": {
         "x": 16,
-        "y": 12,
+        "y": 16,
         "w": 8,
         "h": 8
       },
@@ -884,38 +1042,42 @@
     },
     {
       "id": 12,
-      "title": "Conectividad Perimetral Sedes & Proyectos Remotos (FortiGate)",
-      "type": "stat",
+      "title": "Mosaico Hexagonal de Salud de Infraestructura Global (Polystat)",
+      "type": "grafana-polystat-panel",
       "gridPos": {
         "x": 0,
-        "y": 20,
+        "y": 24,
         "w": 24,
-        "h": 4
+        "h": 6
       },
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
+      "options": {
+        "polystat": {
+          "shape": "hexagon",
+          "displayMode": "all",
+          "columns": 8,
+          "rows": 2,
+          "fontSize": 11,
+          "fontColor": "#FFFFFF"
+        },
+        "thresholds": [
+          {
+            "color": "#E45959",
+            "state": 0,
+            "value": 0
+          },
+          {
+            "color": "#16A34A",
+            "state": 1,
+            "value": 1
+          }
+        ]
+      },
       "fieldConfig": {
         "defaults": {
-          "mappings": [
-            {
-              "type": "value",
-              "options": {
-                "0": {
-                  "text": "DESCONECTADO",
-                  "color": "#E45959"
-                },
-                "1": {
-                  "text": "ENLACE OK",
-                  "color": "#73BF69"
-                }
-              }
-            }
-          ],
-          "color": {
-            "mode": "thresholds"
-          },
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -924,23 +1086,12 @@
                 "value": null
               },
               {
-                "color": "#73BF69",
+                "color": "#16A34A",
                 "value": 1
               }
             ]
           }
         }
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "values": false
-        },
-        "colorMode": "background",
-        "graphMode": "none",
-        "orientation": "horizontal"
       },
       "targets": [
         {
@@ -948,13 +1099,13 @@
           "schema": 12,
           "queryType": "0",
           "group": {
-            "filter": "FortiGate"
+            "filter": "/(FortiGate|switch|AD|Datacenter|Hypervisors)/"
           },
           "host": {
-            "filter": "/FTG_ar-223-rio_tinto_SNMP|FTG_ar-341-san_luis_SNMP|FTG_ar-341-santa_fe_SNMP|FTG_milicic_border1_SNMP/"
+            "filter": "/(FTG_milicic_border1_SNMP|FTG_ar-223-rio_tinto_SNMP|FTG_ar-341-santa_fe_SNMP|SRO-E02-PB00-CORE01|SRO-E02-PB00-CORE02|SRO-DCO01|172.30.70.131|172.30.70.132)/"
           },
           "item": {
-            "filter": "ICMP ping"
+            "filter": "/(ICMP ping|Hypervisor ping|Zabbix agent ping)/"
           },
           "resultFormat": "time_series",
           "options": {
@@ -969,7 +1120,7 @@
       "type": "table",
       "gridPos": {
         "x": 0,
-        "y": 24,
+        "y": 30,
         "w": 24,
         "h": 8
       },

@@ -1,0 +1,990 @@
+{
+  "title": "Respaldo y Continuidad del Negocio: Veeam Backup & Repositorios de Datos",
+  "uid": "milicic-backup-veeam",
+  "tags": [
+    "milicic",
+    "backup",
+    "veeam",
+    "almacenamiento",
+    "bdr",
+    "continuidad",
+    "infraestructura"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 40,
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "refresh": "30s",
+  "templating": {
+    "list": [
+      {
+        "name": "server",
+        "label": "Servidor / Repositorio",
+        "type": "custom",
+        "query": "Todos : (.*BKP.*|.*NAS.*|.*STO.*), Servidores Backup : .*BKP.*, SRO-BKP01 (Rosario) : SRO-BKP01, SSJ-BKP01 (San Juan) : SSJ-BKP01, Almacenamiento NAS/STO : (.*NAS.*|.*STO.*)",
+        "current": {
+          "text": "Todos",
+          "value": "(.*BKP.*|.*NAS.*|.*STO.*)"
+        },
+        "options": [
+          {
+            "text": "Todos",
+            "value": "(.*BKP.*|.*NAS.*|.*STO.*)",
+            "selected": true
+          },
+          {
+            "text": "Servidores Backup",
+            "value": ".*BKP.*",
+            "selected": false
+          },
+          {
+            "text": "SRO-BKP01 (Rosario)",
+            "value": "SRO-BKP01",
+            "selected": false
+          },
+          {
+            "text": "SSJ-BKP01 (San Juan)",
+            "value": "SSJ-BKP01",
+            "selected": false
+          },
+          {
+            "text": "Almacenamiento NAS/STO",
+            "value": "(.*NAS.*|.*STO.*)",
+            "selected": false
+          }
+        ],
+        "includeAll": false,
+        "hide": 0
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Servidores Backup en Línea",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#16A34A"
+          },
+          "unit": "none"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Disponibilidad BDR (SLA %)",
+      "type": "stat",
+      "gridPos": {
+        "x": 3,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E45959",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 95
+              },
+              {
+                "color": "#16A34A",
+                "value": 99
+              }
+            ]
+          },
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/.*(BKP|NAS|STO).*/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Salud Servicios Core Veeam",
+      "type": "stat",
+      "gridPos": {
+        "x": 6,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#16A34A",
+                "value": null
+              },
+              {
+                "color": "#E45959",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "100% OK",
+                  "color": "#16A34A"
+                }
+              }
+            },
+            {
+              "type": "range",
+              "options": {
+                "from": 1,
+                "to": 99,
+                "result": {
+                  "text": "Atención",
+                  "color": "#E45959"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "SRO-BKP01"
+          },
+          "item": {
+            "filter": "/State of service \"(VeeamBackupSvc|VeeamBrokerSvc|VeeamTransportSvc)\"/"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Transferencia en Backup",
+      "type": "stat",
+      "gridPos": {
+        "x": 9,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#5794F2"
+          },
+          "unit": "bps"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "/.*Bits received.*/"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Espacio Usado en C: (%)",
+      "type": "stat",
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#16A34A",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 75
+              },
+              {
+                "color": "#E45959",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "/.*FS.*Space.*Used, in %.*/"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Cola de CPU (Queue)",
+      "type": "stat",
+      "gridPos": {
+        "x": 15,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#16A34A",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 3
+              },
+              {
+                "color": "#E45959",
+                "value": 8
+              }
+            ]
+          },
+          "unit": "none"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "CPU queue length"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Uptime Servidores BDR",
+      "type": "stat",
+      "gridPos": {
+        "x": 18,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#16A34A"
+          },
+          "unit": "s"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "Uptime"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Incidentes Activos en Backup",
+      "type": "stat",
+      "gridPos": {
+        "x": 21,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#16A34A",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 1
+              },
+              {
+                "color": "#E45959",
+                "value": 2
+              }
+            ]
+          },
+          "unit": "none"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "5",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "trigger": {
+            "filter": "/.*/"
+          },
+          "options": {
+            "acknowledged": 2,
+            "minSeverity": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Capacidad de Almacenamiento en Repositorios y Discos de Backup (%)",
+      "type": "bargauge",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 100,
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#16A34A",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 75
+              },
+              {
+                "color": "#E45959",
+                "value": 90
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      },
+      "targets": [
+        {
+          "refId": "Disks",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "/.*FS.*Space.*Used, in %.*/"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Distribución Jerárquica de Capacidad de Discos (Treemap)",
+      "type": "marcusolsson-treemap-panel",
+      "gridPos": {
+        "x": 12,
+        "y": 4,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "tilingAlgorithm": "squarify"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#16A34A",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 75
+              },
+              {
+                "color": "#E45959",
+                "value": 90
+              }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "refId": "Disks",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "/.*FS.*Space.*Used, in %.*/"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Utilización de CPU durante Ventanas de Respaldo (%)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 11,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 12
+          },
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 70
+              },
+              {
+                "color": "#E45959",
+                "value": 90
+              }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "refId": "CPU",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "CPU utilization"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Consumo de Memoria RAM en Servidores de Respaldo (%)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 11,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 12
+          },
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#FFC859",
+                "value": 75
+              },
+              {
+                "color": "#E45959",
+                "value": 90
+              }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "refId": "RAM",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "Memory utilization"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "title": "Cola de Procesamiento & Paging durante Jobs de Veeam",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 19,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 10
+          },
+          "unit": "short"
+        }
+      },
+      "targets": [
+        {
+          "refId": "Queue",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "CPU queue length"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "title": "Throughput de Red: Tráfico In/Out en Transferencia de Datos",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 19,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 1.5,
+            "fillOpacity": 10
+          },
+          "unit": "bps"
+        }
+      },
+      "targets": [
+        {
+          "refId": "Net",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "item": {
+            "filter": "/.*Bits (received|sent).*/"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "title": "Calendario Operativo Mensual de Ventanas de Respaldo Veeam",
+      "type": "marcusolsson-calendar-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "calendarType": "month",
+        "timeField": "Time"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "SRO-BKP01"
+          },
+          "item": {
+            "filter": "/Interface.*Bits received/i"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "title": "Incidentes y Alarmas Activas en Infraestructura de Backup (Zabbix)",
+      "type": "table",
+      "gridPos": {
+        "x": 12,
+        "y": 27,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "5",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "/${server:raw}/"
+          },
+          "trigger": {
+            "filter": "/.*/"
+          },
+          "options": {
+            "acknowledged": 2,
+            "minSeverity": 1
+          }
+        }
+      ]
+    }
+  ]
+}

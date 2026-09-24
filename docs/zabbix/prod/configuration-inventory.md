@@ -184,3 +184,17 @@ Las 4 acciones principales de notificación operan con `status: 0` (Enabled) y c
 | **`Telegram_Test_Milicic`** | `72` | `@Milicic_bot`<br>`8666455955:AAHYjk...` | `-1003912373499` | **Milicic - Monitoreo** | `fmartin.zabbix` (4) | Habilitado |
 | **`Telegram_1`** | `70` | `@Milicic_bot` | `-1003912373499` | Milicic - Monitoreo | `Admin` (1) | Deshabilitado (Legacy) |
 
+---
+
+## 5. Inventario de Mapas Topológicos (Sysmaps)
+
+| Sysmap ID | Nombre del Mapa | Dimensiones | Elementos | Enlaces | Estado / Notas |
+| :---: | :--- | :---: | :---: | :---: | :--- |
+| `6` | **Network SRO** | 1200 x 800 | 12 | 11 | **Legacy / Parcial:** Host 10708 triplicado, falta switch E03 (10726), P2P sin host real, sin Wi-Fi. |
+| `12` | **Network SRO v2** | 1550 x 960 | 18 | 17 | **Producción / Completo & Optimizado:** 5 macrozonas arquitectónicas (shapes en Slate), separación ortogonal anti-colisión, telemetría selectiva en troncales, linktriggers dinámicos y macros corregidas (CPU Dell, PoE Aruba). |
+| `11` | **NOC Infraestructura** | - | - | - | Mapa maestro de infraestructura global. |
+| `7` | **NOC Infraestructura \| San Juan** | - | - | - | Submapa sede San Juan. |
+| `8` | **NOC Infraestructura \| Rosario** | - | - | - | Submapa sede Rosario. |
+| `9` | **NOC Infraestructura \| Fortinet y sedes remotas** | - | - | - | Submapa perimetral y túneles SD-WAN / IPsec. |
+
+

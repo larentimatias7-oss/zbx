@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MIL-PND-001: Habilitación HTTPS FortiGate hacia Storages HPE MSA | Milicic S.A.</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 20mm 15mm 20mm 15mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    :root {
+      --primary: #ea580c;
+      --primary-hover: #c2410c;
+      --primary-light: #fff7ed;
+      --primary-border: #fdba74;
+      --dark-slate: #0f172a;
+      --slate-lead: #1e293b;
+      --slate-text: #334155;
+      --slate-body: #475569;
+      --slate-muted: #64748b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--slate-text);
+      line-height: 1.45;
+      margin: 0;
+      padding: 0;
+      font-size: 9pt;
+      background: #ffffff;
+    }
+
+    .page {
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 100%;
+    }
+
+    /* Portada Corporativa */
+    .cover-page {
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250mm;
+      padding: 15mm 5mm 5mm 5mm;
+    }
+
+    .category-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8mm;
+    }
+
+    .cover-title {
+      font-size: 24pt;
+      font-weight: 800;
+      color: var(--dark-slate);
+      line-height: 1.15;
+      margin: 0 0 5mm 0;
+      letter-spacing: -0.5px;
+    }
+
+    .cover-title span {
+      color: var(--primary);
+    }
+
+    .cover-subtitle {
+      font-size: 12pt;
+      color: var(--slate-muted);
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 12mm;
+      max-width: 90%;
+    }
+
+    .highlight-card {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 15mm;
+    }
+
+    .highlight-card h4 {
+      margin: 0 0 4px 0;
+      color: var(--primary);
+      font-size: 10pt;
+      font-weight: 700;
+    }
+
+    .highlight-card p {
+      margin: 0;
+      font-size: 8.5pt;
+      color: var(--slate-lead);
+      line-height: 1.4;
+    }
+
+    .cover-meta {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--slate-muted);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--slate-lead);
+    }
+
+    /* Secciones Interiores */
+    .section-header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-title {
+      font-size: 12pt;
+      font-weight: 700;
+      color: var(--dark-slate);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 14px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* Tablas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+      font-size: 8pt;
+      background: #ffffff;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: var(--dark-slate);
+      color: #ffffff;
+      text-align: left;
+      padding: 6px 10px;
+      font-weight: 600;
+      border: 1px solid var(--dark-slate);
+    }
+
+    td {
+      padding: 6px 10px;
+      border: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--card-bg);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-success { background: var(--success-bg); color: var(--success); }
+    .badge-danger { background: var(--danger-bg); color: var(--danger); }
+    .badge-warning { background: var(--warning-bg); color: var(--warning); }
+
+    /* Bloques de código */
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 4px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 7.5pt;
+      line-height: 1.35;
+      overflow-x: auto;
+      margin: 8px 0;
+      border-left: 3px solid var(--primary);
+      page-break-inside: avoid;
+    }
+
+    .evidence-box {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 8px;
+      background: var(--card-bg);
+      margin: 10px 0;
+      text-align: center;
+      page-break-inside: avoid;
+    }
+
+    .evidence-box img {
+      max-width: 95%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .evidence-caption {
+      font-size: 7.5pt;
+      color: var(--slate-muted);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .steps-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 8.5pt;
+    }
+
+    .steps-list li {
+      margin-bottom: 6px;
+    }
+
+    .steps-list strong {
+      color: var(--slate-lead);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PÁGINA 1: PORTADA Y RESUMEN EJECUTIVO -->
+  <div class="page cover-page">
+    <div class="cover-top">
+      <div style="font-size: 16pt; font-weight: 900; color: #ea580c; letter-spacing: 1px; margin-bottom: 15mm;">
+        MILICIC <span style="color: #0f172a; font-weight: 400; font-size: 11pt;">| INFRAESTRUCTURA & SEGURIDAD</span>
+      </div>
+
+      <div class="category-badge">Caso Operativo Pendiente • Ref: MIL-PND-001</div>
+      
+      <h1 class="cover-title">
+        Habilitación de Tráfico HTTPS en FortiGate<br>
+        hacia <span>Storages HPE MSA</span> y Tratamiento de Alerta P1
+      </h1>
+      
+      <p class="cover-subtitle">
+        Diagnóstico pericial de falso positivo en Zabbix 7.0 LTS, evidencia en firewall FortiGate Border1, procedimiento paso a paso de habilitación de reglas y protocolo de reconocimiento formal.
+      </p>
+
+      <div class="highlight-card">
+        <h4>Veredicto Técnico Ejecutivo: FALSO POSITIVO CONFIRMADO</h4>
+        <p>
+          Las cabinas de almacenamiento físico (HPE MSA 2040 y 2060) y los datastores de hipervisores VMware ESXi operan al 100% de capacidad sin afectación ni pérdida de datos. La alerta crítica P1 en Zabbix fue detonada porque el firewall FortiGate descarta el tráfico TCP puerto 443 (HTTPS) bajo la regla <em>Implicit Deny</em>.
+        </p>
+      </div>
+    </div>
+
+    <div class="cover-meta">
+      <div class="meta-item">
+        <span class="meta-label">Organización</span>
+        <span class="meta-value">Milicic S.A.</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Área Emisora</span>
+        <span class="meta-value">IT SRE & Networking</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Fecha de Detección</span>
+        <span class="meta-value">23/09/2026 19:12 ART</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Estado del Caso</span>
+        <span class="meta-value" style="color: #ea580c;">Pendiente en Firewall</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PÁGINA 2: EVIDENCIA TÉCNICA Y DIAGNÓSTICO -->
+  <div class="page" style="padding-top: 10mm;">
+    <div class="section-header">
+      <h2 class="section-title">1. Ficha Técnica del Incidente</h2>
+      <span style="font-size: 7.5pt; color: var(--slate-muted);">Zabbix 7.0.22 LTS & FortiOS 7.4</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Parámetro</th>
+          <th>Detalle Técnico</th>
+          <th>Impacto Operativo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Host Afectado</strong></td>
+          <td><code>SRO-STO02</code> (Host ID: 10727 - IP: 172.30.70.135 - HPE MSA 2060)</td>
+          <td><span class="badge badge-success">Sin Impacto (100% Vivo)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Segundo Host</strong></td>
+          <td><code>SRO-STO01</code> (Host ID: 10706 - IP: 172.30.70.134 - HPE MSA 2040)</td>
+          <td><span class="badge badge-success">Sin Impacto (100% Vivo)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Disparador (Trigger)</strong></td>
+          <td>Trigger ID <code>29355</code>: <em>HPE MSA 2060 Storage: Service is down or unavailable</em></td>
+          <td><span class="badge badge-danger">Alerta P1 (High)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Ítem Detonante</strong></td>
+          <td><code>net.tcp.service["https", "172.30.70.135", "443"]</code> (Item ID: 60442)</td>
+          <td>Retorna 0 por timeout</td>
+        </tr>
+        <tr>
+          <td><strong>Firewall Decisor</strong></td>
+          <td>FortiGate Border1 (<code>milicic-borde1</code> - IP Gateway 172.30.70.1)</td>
+          <td>Descarta TCP SYN 443</td>
+        </tr>
+        <tr>
+          <td><strong>Regla Aplicada</strong></td>
+          <td><strong>Policy ID: Implicit Deny</strong> (Descarte por defecto)</td>
+          <td>Bloqueo Inter-VLAN</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-header">
+      <h2 class="section-title">2. Evidencia Gráfica en FortiGate (Forward Traffic)</h2>
+    </div>
+
+    <div class="evidence-box">
+      <img src="evidencia-fortigate-deny.png" alt="Logs de FortiGate Forward Traffic mostrando Implicit Deny">
+      <div class="evidence-caption">
+        Figura 1: Log en vivo de FortiGate Border1 filtrado por Destination 172.30.70.135. Se evidencia que los paquetes provenientes de Zabbix Server (172.30.20.61) al puerto HTTPS son descartados con Result: Deny por Policy ID: Implicit Deny.
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2 class="section-title">3. Matriz de Comprobación Cruzada (Capa 3 vs Capa 7)</h2>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Prueba de Conectividad</th>
+          <th>Método de Validación</th>
+          <th>Resultado Obtenido</th>
+          <th>Diagnóstico</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ping ICMP a Storage</strong></td>
+          <td><code>icmpping</code> desde Zabbix Server</td>
+          <td><code>1 (rtt: 1.06 ms, loss: 0%)</code></td>
+          <td><span class="badge badge-success">Controladora OK</span></td>
+        </tr>
+        <tr>
+          <td><strong>Almacenamiento ESXi</strong></td>
+          <td>Telemetría VMware y Datastores</td>
+          <td>Datastores montados, 0 caídas I/O</td>
+          <td><span class="badge badge-success">Producción OK</span></td>
+        </tr>
+        <tr>
+          <td><strong>Socket TCP 443 (HTTPS)</strong></td>
+          <td><code>net.tcp.service[https, 443]</code></td>
+          <td><code>0 (Timeout reached)</code></td>
+          <td><span class="badge badge-danger">Bloqueado en Firewall</span></td>
+        </tr>
+        <tr>
+          <td><strong>API REST HPE MSA</strong></td>
+          <td><code>hpe.msa.get.data</code></td>
+          <td><code>Error: cannot get URL</code></td>
+          <td><span class="badge badge-danger">Sin Acceso API</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PÁGINA 3: PLAN DE ACCIÓN EN FORTINET Y ZABBIX -->
+  <div class="page" style="padding-top: 10mm;">
+    <div class="section-header">
+      <h2 class="section-title">4. Plan de Acción en Fortinet FortiGate</h2>
+      <span style="font-size: 7.5pt; color: var(--slate-muted);">Procedimiento de Remediación</span>
+    </div>
+
+    <p style="font-size: 8.5pt; margin-top: 0;">
+      Para restablecer la recolección de métricas de hardware de las cabinas HPE MSA y normalizar la supervisión sin alertas espurias, se debe crear la política de seguridad correspondiente:
+    </p>
+
+    <h4 style="color: var(--primary); margin: 6px 0; font-size: 9pt;">Opción A: Configuración por GUI (FortiOS Web)</h4>
+    <ol class="steps-list">
+      <li>Ir a <strong>Policy & Objects</strong> &rarr; <strong>Addresses</strong> y crear el grupo <code>GRP-HPE-MSA-STORAGES</code> conteniendo las IPs <code>172.30.70.134/32</code> y <code>172.30.70.135/32</code>.</li>
+      <li>Ir a <strong>Policy & Objects</strong> &rarr; <strong>Firewall Policy</strong> y hacer clic en <strong>Create New</strong>.</li>
+      <li>Completar los siguientes parámetros:
+        <ul>
+          <li><strong>Name:</strong> <code>MON-Zabbix-to-MSA-Storages</code></li>
+          <li><strong>Incoming Interface:</strong> Interfaz de VLAN 20 (Monitoreo / servers-sede).</li>
+          <li><strong>Outgoing Interface:</strong> Interfaz de VLAN 70 (Management Servidores / servers-sede).</li>
+          <li><strong>Source:</strong> <code>172.30.20.61</code> (Host Zabbix Server).</li>
+          <li><strong>Destination:</strong> <code>GRP-HPE-MSA-STORAGES</code>.</li>
+          <li><strong>Service:</strong> <code>HTTPS</code> (TCP 443) y <code>PING</code>.</li>
+          <li><strong>Action:</strong> <strong>ACCEPT</strong> | <strong>NAT:</strong> Deshabilitado.</li>
+        </ul>
+      </li>
+      <li>Guardar la política y asegurarse de que quede posicionada antes de reglas de bloqueo general.</li>
+    </ol>
+
+    <h4 style="color: var(--primary); margin: 8px 0 4px 0; font-size: 9pt;">Opción B: Bloque de Comandos CLI (FortiOS Console)</h4>
+    <pre>config firewall address
+    edit "HPE-MSA-STORAGE-A"
+        set subnet 172.30.70.134 255.255.255.255
+    next
+    edit "HPE-MSA-STORAGE-B"
+        set subnet 172.30.70.135 255.255.255.255
+    next
+end
+config firewall addrgrp
+    edit "GRP-HPE-MSA-STORAGES"
+        set member "HPE-MSA-STORAGE-A" "HPE-MSA-STORAGE-B"
+    next
+end
+config firewall policy
+    edit 0
+        set name "MON-Zabbix-to-MSA-Storages"
+        set srcintf "servers-sede"
+        set dstintf "servers-sede"
+        set srcaddr "172.30.20.61"
+        set dstaddr "GRP-HPE-MSA-STORAGES"
+        set action accept
+        set schedule "always"
+        set service "HTTPS" "PING"
+        set logtraffic all
+    next
+end</pre>
+
+    <div class="section-header">
+      <h2 class="section-title">5. Gestión del Incidente en Zabbix (Reconocimiento y Cierre)</h2>
+    </div>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; margin-bottom: 8px;">
+      <h4 style="margin: 0 0 4px 0; color: var(--slate-lead); font-size: 8.5pt;">A. Reconocimiento Oficial (Acknowledge)</h4>
+      <p style="margin: 0; font-size: 8pt; color: var(--slate-text);">
+        Ingresar al evento en Zabbix (<code>tr_events.php?triggerid=29355&eventid=174422629</code>) y en <em>Update problem</em> marcar <strong>Acknowledge</strong> con el siguiente mensaje de auditoría:
+        <br><em style="color: #64748b;">"Falso positivo de hardware comprobado: cabinas HPE MSA y VMware ESXi operativos (ping 1.0 ms). El tráfico HTTPS TCP 443 es bloqueado por regla Implicit Deny en FortiGate. En proceso de habilitación de política."</em>
+      </p>
+    </div>
+
+    <div style="background: var(--success-bg); border: 1px solid #86efac; border-radius: 6px; padding: 10px;">
+      <h4 style="margin: 0 0 4px 0; color: var(--success); font-size: 8.5pt;">B. Resolución Automática (Auto-Recovery)</h4>
+      <p style="margin: 0; font-size: 8pt; color: var(--slate-lead);">
+        El trigger tiene <code>manual_close: 0</code> para evitar cierres manuales sin respaldo. Apenas el FortiGate permita el tráfico HTTPS, la métrica <code>net.tcp.service</code> pasará de 0 a 1 y <strong>Zabbix cerrará la alerta automáticamente</strong> enviando la notificación de normalización (RESOLVED) a Telegram.
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

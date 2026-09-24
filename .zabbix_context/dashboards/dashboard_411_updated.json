@@ -1,0 +1,4750 @@
+{
+  "dashboardid": "411",
+  "name": "Security Logs 2 - Active Directory Cyber SOC & Controladores de Dominio",
+  "display_period": "30",
+  "auto_start": "1",
+  "pages": [
+    {
+      "dashboard_pageid": "22808",
+      "name": "Seguridad & Auditoría de Identidades (Cyber SOC)",
+      "display_period": "30",
+      "widgets": [
+        {
+          "widgetid": "87113",
+          "type": "item",
+          "name": "Ratio NTLM / Kerberos (24h)",
+          "x": "58",
+          "y": "9",
+          "width": "14",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "96762"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "6366F1"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "widgetid": "87114",
+          "type": "itemhistory",
+          "name": "Auditoría Forense: Modificación de Grupos Privilegiados (Event IDs 4728 / 4732 / 4756)",
+          "x": "0",
+          "y": "14",
+          "width": "72",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "GRPAU"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "15"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Registro Grupos Privilegiados · SRO-DCO01"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "96736"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "120"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Registro Grupos Privilegiados · SRO-DCO02"
+            },
+            {
+              "type": "4",
+              "name": "columns.1.itemid",
+              "value": "96737"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.max_length",
+              "value": "120"
+            }
+          ]
+        },
+        {
+          "widgetid": "87106",
+          "type": "item",
+          "name": "Bloqueos de Cuenta · 24h (Multi-DC)",
+          "x": "0",
+          "y": "0",
+          "width": "18",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "96716"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "45"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "D97706"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "widgetid": "87107",
+          "type": "item",
+          "name": "Fallos de Logon · 24h (Event 4625)",
+          "x": "18",
+          "y": "0",
+          "width": "18",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "96718"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "45"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "EF4444"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "widgetid": "87108",
+          "type": "item",
+          "name": "Fallos Preauth Kerberos · 24h (Event 4771)",
+          "x": "36",
+          "y": "0",
+          "width": "18",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "96742"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "45"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "8B5CF6"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "widgetid": "87109",
+          "type": "gauge",
+          "name": "Tasa Fallos Logon / min (Event 4625)",
+          "x": "54",
+          "y": "0",
+          "width": "18",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "96743"
+            },
+            {
+              "type": "1",
+              "name": "min",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "max",
+              "value": "30"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "show.1",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "show.2",
+              "value": "4"
+            },
+            {
+              "type": "1",
+              "name": "thresholds.0.color",
+              "value": "0EC9AC"
+            },
+            {
+              "type": "1",
+              "name": "thresholds.0.threshold",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "thresholds.1.color",
+              "value": "E5A91A"
+            },
+            {
+              "type": "1",
+              "name": "thresholds.1.threshold",
+              "value": "10"
+            },
+            {
+              "type": "1",
+              "name": "thresholds.2.color",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "thresholds.2.threshold",
+              "value": "25"
+            },
+            {
+              "type": "0",
+              "name": "th_show_labels",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "th_show_arc",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "10"
+            }
+          ]
+        },
+        {
+          "widgetid": "87110",
+          "type": "hostnavigator",
+          "name": "Controladores de Dominio (team: plataforma)",
+          "x": "0",
+          "y": "4",
+          "width": "20",
+          "height": "10",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "DCNAV"
+            },
+            {
+              "type": "2",
+              "name": "groupids.0",
+              "value": "29"
+            },
+            {
+              "type": "1",
+              "name": "hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "hosts.1",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "0",
+              "name": "host_tags_evaltype",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "host_tags.0.tag",
+              "value": "team"
+            },
+            {
+              "type": "0",
+              "name": "host_tags.0.operator",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "host_tags.0.value",
+              "value": "plataforma"
+            },
+            {
+              "type": "1",
+              "name": "host_tags.1.tag",
+              "value": "component"
+            },
+            {
+              "type": "0",
+              "name": "host_tags.1.operator",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "host_tags.1.value",
+              "value": "server"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "group_by.0.attribute",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "group_by.1.attribute",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "10"
+            },
+            {
+              "type": "1",
+              "name": "hosts.2",
+              "value": "SSJ-DCO01"
+            }
+          ]
+        },
+        {
+          "widgetid": "87111",
+          "type": "svggraph",
+          "name": "Telemetría de Autenticación Comparada (NTLM vs Kerberos) - Host Seleccionado",
+          "x": "20",
+          "y": "4",
+          "width": "52",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "SVGDC"
+            },
+            {
+              "type": "1",
+              "name": "override_hostid._reference",
+              "value": "DCNAV._hostid"
+            },
+            {
+              "type": "1",
+              "name": "time_period._reference",
+              "value": "DASHBOARD._timeperiod"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO*"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "Tasa de Fallos de Autenticación (1h)*"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "EF4444"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.data_set_label",
+              "value": "NTLM · Fallos Logon (4625)"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO*"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "Tasa Fallos Preauth Kerberos (1h)*"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "8B5CF6"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.data_set_label",
+              "value": "Kerberos · Fallos Preauth (4771)"
+            }
+          ]
+        },
+        {
+          "widgetid": "87112",
+          "type": "itemhistory",
+          "name": "Historial Forense de Bloqueos (Event 4740) - Usuario & Equipo Origen",
+          "x": "20",
+          "y": "9",
+          "width": "38",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "LK474"
+            },
+            {
+              "type": "1",
+              "name": "override_hostid._reference",
+              "value": "DCNAV._hostid"
+            },
+            {
+              "type": "0",
+              "name": "layout",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timestamp",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_column_header",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "50"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-7d"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Usuario Bloqueado"
+            },
+            {
+              "type": "4",
+              "name": "columns.0.itemid",
+              "value": "83820"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.max_length",
+              "value": "90"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Equipo Origen"
+            },
+            {
+              "type": "4",
+              "name": "columns.1.itemid",
+              "value": "83821"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "5"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.max_length",
+              "value": "90"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Salud del Bosque & Matriz Multi-DC",
+      "display_period": "30",
+      "widgets": [
+        {
+          "type": "tophosts",
+          "name": "Servicio NTDS (AD DS)",
+          "x": "0",
+          "y": "0",
+          "width": "12",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "3",
+              "name": "hostids.1",
+              "value": "10701"
+            },
+            {
+              "type": "3",
+              "name": "hostids.2",
+              "value": "10715"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Estado"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"NTDS\" (Active Directory Domain Services)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "tophosts",
+          "name": "Servicio DNS Server",
+          "x": "12",
+          "y": "0",
+          "width": "12",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "3",
+              "name": "hostids.1",
+              "value": "10701"
+            },
+            {
+              "type": "3",
+              "name": "hostids.2",
+              "value": "10715"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Estado"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"DNS\" (DNS Server)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "tophosts",
+          "name": "Servicio Kerberos (KDC)",
+          "x": "24",
+          "y": "0",
+          "width": "12",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "3",
+              "name": "hostids.1",
+              "value": "10701"
+            },
+            {
+              "type": "3",
+              "name": "hostids.2",
+              "value": "10715"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Estado"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"Kdc\" (Kerberos Key Distribution Center)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "tophosts",
+          "name": "Servicio Netlogon",
+          "x": "36",
+          "y": "0",
+          "width": "12",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "3",
+              "name": "hostids.1",
+              "value": "10701"
+            },
+            {
+              "type": "3",
+              "name": "hostids.2",
+              "value": "10715"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Estado"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"Netlogon\" (Netlogon)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "tophosts",
+          "name": "Servicio DFSR (SYSVOL)",
+          "x": "48",
+          "y": "0",
+          "width": "12",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "3",
+              "name": "hostids.1",
+              "value": "10701"
+            },
+            {
+              "type": "3",
+              "name": "hostids.2",
+              "value": "10715"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Estado"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"DFSR\" (DFS Replication)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "tophosts",
+          "name": "Servicio W32Time (Hora)",
+          "x": "60",
+          "y": "0",
+          "width": "12",
+          "height": "5",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "3",
+              "name": "hostids.1",
+              "value": "10701"
+            },
+            {
+              "type": "3",
+              "name": "hostids.2",
+              "value": "10715"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "Estado"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"W32Time\" (Windows Time)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Uso de CPU Comparado (DCO01 vs DCO02 vs SSJ-DCO01)",
+          "x": "0",
+          "y": "5",
+          "width": "36",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "CPUCMP"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_min",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_max",
+              "value": "100"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "CPU utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "EF4444"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "CPU utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "F59E0B"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "ds.2.hosts.0",
+              "value": "SSJ-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.2.items.0",
+              "value": "CPU utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.2.color",
+              "value": "3B82F6"
+            },
+            {
+              "type": "0",
+              "name": "ds.2.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.2.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.2.fill",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Uso de Memoria RAM Comparado (DCO01 vs DCO02 vs SSJ-DCO01)",
+          "x": "36",
+          "y": "5",
+          "width": "36",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "RAMCMP"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_min",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_max",
+              "value": "100"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "Memory utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "Memory utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "06B6D4"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "ds.2.hosts.0",
+              "value": "SSJ-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.2.items.0",
+              "value": "Memory utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.2.color",
+              "value": "8B5CF6"
+            },
+            {
+              "type": "0",
+              "name": "ds.2.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.2.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.2.fill",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Sincronización Horaria y Desvío NTP (DCO01 vs DCO02)",
+          "x": "0",
+          "y": "11",
+          "width": "36",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "NTPSV"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "Desvío de Sincronización Horaria NTP (DCO01 vs DCO02)"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "00BFFF"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "problems",
+          "name": "Alertas e Incidentes Activos en Bosque Active Directory",
+          "x": "36",
+          "y": "11",
+          "width": "36",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "ADPRB"
+            },
+            {
+              "type": "2",
+              "name": "groupids.0",
+              "value": "29"
+            },
+            {
+              "type": "0",
+              "name": "show",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "sort_triggers",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timeline",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "10"
+            },
+            {
+              "type": "0",
+              "name": "show_tags",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_opdata",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "show_suppressed",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "highlight_row",
+              "value": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DC01: SRO-DCO01 (Rosario - Primario / FSMO)",
+      "display_period": "30",
+      "widgets": [
+        {
+          "type": "item",
+          "name": "Latencia Ping ICMP",
+          "x": "0",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "51481"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Agente Zabbix",
+          "x": "12",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75415"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Uptime Servidor",
+          "x": "24",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75408"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "3B82F6"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Carga CPU Actual",
+          "x": "36",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75400"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "F59E0B"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Memoria RAM Usada",
+          "x": "48",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75412"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "6366F1"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Espacio Disco C:",
+          "x": "60",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75525"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "EC4899"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Carga de Cómputo (CPU y Memoria RAM)",
+          "x": "0",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D1CPURAM"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_min",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_max",
+              "value": "100"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "CPU utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "EF4444"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "Memory utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Tráfico de Red Primaria (In / Out bps)",
+          "x": "24",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D1NET"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "Bits received"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "Bits sent"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "06B6D4"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Almacenamiento Volumen C: (Usado vs Total)",
+          "x": "48",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D1DSK"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "FS [(C:)]: Space: Used"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "F43F5E"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "FS [(C:)]: Space: Total"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "64748B"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "tophosts",
+          "name": "Estado de Servicios de Directorio Activo (SRO-DCO01)",
+          "x": "0",
+          "y": "10",
+          "width": "44",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D1SRV"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "NTDS"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"NTDS\" (Active Directory Domain Services)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.name",
+              "value": "DNS"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.item",
+              "value": "State of service \"DNS\" (DNS Server)"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.name",
+              "value": "KDC"
+            },
+            {
+              "type": "0",
+              "name": "columns.3.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.item",
+              "value": "State of service \"Kdc\" (Kerberos Key Distribution Center)"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.3.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.name",
+              "value": "Netlogon"
+            },
+            {
+              "type": "0",
+              "name": "columns.4.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.item",
+              "value": "State of service \"Netlogon\" (Netlogon)"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.4.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.name",
+              "value": "DFSR"
+            },
+            {
+              "type": "0",
+              "name": "columns.5.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.item",
+              "value": "State of service \"DFSR\" (DFS Replication)"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.5.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.name",
+              "value": "W32Time"
+            },
+            {
+              "type": "0",
+              "name": "columns.6.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.item",
+              "value": "State of service \"W32Time\" (Windows Time)"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.6.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.name",
+              "value": "ADWS"
+            },
+            {
+              "type": "0",
+              "name": "columns.7.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.item",
+              "value": "State of service \"ADWS\" (Active Directory Web Services)"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.7.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.threshold.1",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "problems",
+          "name": "Alertas e Incidentes Activos en SRO-DCO01",
+          "x": "44",
+          "y": "10",
+          "width": "28",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D1PRB"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10699"
+            },
+            {
+              "type": "0",
+              "name": "show",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "sort_triggers",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timeline",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "10"
+            },
+            {
+              "type": "0",
+              "name": "show_tags",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_opdata",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "show_suppressed",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "highlight_row",
+              "value": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DC02: SRO-DCO02 (Rosario - Secundario)",
+      "display_period": "30",
+      "widgets": [
+        {
+          "type": "item",
+          "name": "Latencia Ping ICMP",
+          "x": "0",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "51487"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Agente Zabbix",
+          "x": "12",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75561"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Uptime Servidor",
+          "x": "24",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75554"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "3B82F6"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Carga CPU Actual",
+          "x": "36",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75546"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "F59E0B"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Memoria RAM Usada",
+          "x": "48",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75558"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "6366F1"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Espacio Disco C:",
+          "x": "60",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "75663"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "EC4899"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Carga de Cómputo (CPU y Memoria RAM)",
+          "x": "0",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D2CPURAM"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_min",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_max",
+              "value": "100"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "CPU utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "EF4444"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "Memory utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Tráfico de Red Primaria (In / Out bps)",
+          "x": "24",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D2NET"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "Bits received"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "Bits sent"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "06B6D4"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Almacenamiento Volumen C: (Usado vs Total)",
+          "x": "48",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D2DSK"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "FS [(C:)]: Space: Used"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "F43F5E"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SRO-DCO02"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "FS [(C:)]: Space: Total"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "64748B"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "tophosts",
+          "name": "Estado de Servicios de Directorio Activo (SRO-DCO02)",
+          "x": "0",
+          "y": "10",
+          "width": "44",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D2SRV"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10701"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "NTDS"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"NTDS\" (Active Directory Domain Services)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.name",
+              "value": "DNS"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.item",
+              "value": "State of service \"DNS\" (DNS Server)"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.name",
+              "value": "KDC"
+            },
+            {
+              "type": "0",
+              "name": "columns.3.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.item",
+              "value": "State of service \"Kdc\" (Kerberos Key Distribution Center)"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.3.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.name",
+              "value": "Netlogon"
+            },
+            {
+              "type": "0",
+              "name": "columns.4.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.item",
+              "value": "State of service \"Netlogon\" (Netlogon)"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.4.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.name",
+              "value": "DFSR"
+            },
+            {
+              "type": "0",
+              "name": "columns.5.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.item",
+              "value": "State of service \"DFSR\" (DFS Replication)"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.5.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.name",
+              "value": "W32Time"
+            },
+            {
+              "type": "0",
+              "name": "columns.6.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.item",
+              "value": "State of service \"W32Time\" (Windows Time)"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.6.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.name",
+              "value": "ADWS"
+            },
+            {
+              "type": "0",
+              "name": "columns.7.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.item",
+              "value": "State of service \"ADWS\" (Active Directory Web Services)"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.7.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.threshold.1",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "problems",
+          "name": "Alertas e Incidentes Activos en SRO-DCO02",
+          "x": "44",
+          "y": "10",
+          "width": "28",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D2PRB"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10701"
+            },
+            {
+              "type": "0",
+              "name": "show",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "sort_triggers",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timeline",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "10"
+            },
+            {
+              "type": "0",
+              "name": "show_tags",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_opdata",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "show_suppressed",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "highlight_row",
+              "value": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DC03: SSJ-DCO01 (San Juan - Sucursal)",
+      "display_period": "30",
+      "widgets": [
+        {
+          "type": "item",
+          "name": "Latencia Ping ICMP",
+          "x": "0",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "51529"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Agente Zabbix",
+          "x": "12",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "76483"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Uptime Servidor",
+          "x": "24",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "76476"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "3B82F6"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Carga CPU Actual",
+          "x": "36",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "76468"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "F59E0B"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Memoria RAM Usada",
+          "x": "48",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "76480"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "6366F1"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "Espacio Disco C:",
+          "x": "60",
+          "y": "0",
+          "width": "12",
+          "height": "4",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "4",
+              "name": "itemid.0",
+              "value": "76515"
+            },
+            {
+              "type": "0",
+              "name": "show.0",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "decimal_places",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "units_show",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "value_size",
+              "value": "42"
+            },
+            {
+              "type": "1",
+              "name": "value_color",
+              "value": "EC4899"
+            },
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Carga de Cómputo (CPU y Memoria RAM)",
+          "x": "0",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D3CPURAM"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_min",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "lefty_max",
+              "value": "100"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SSJ-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "CPU utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "EF4444"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SSJ-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "Memory utilization"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Tráfico de Red Primaria (In / Out bps)",
+          "x": "24",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D3NET"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SSJ-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "Bits received"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SSJ-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "Bits sent"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "06B6D4"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "svggraph",
+          "name": "Almacenamiento Volumen C: (Usado vs Total)",
+          "x": "48",
+          "y": "4",
+          "width": "24",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D3DSK"
+            },
+            {
+              "type": "0",
+              "name": "show_problems",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "legend",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "righty",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "time_period.from",
+              "value": "now-24h"
+            },
+            {
+              "type": "1",
+              "name": "time_period.to",
+              "value": "now"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.hosts.0",
+              "value": "SSJ-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.items.0",
+              "value": "FS [(C:)]: Space: Used"
+            },
+            {
+              "type": "1",
+              "name": "ds.0.color",
+              "value": "F43F5E"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.width",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.transparency",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "ds.0.fill",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.hosts.0",
+              "value": "SSJ-DCO01"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.items.0",
+              "value": "FS [(C:)]: Space: Total"
+            },
+            {
+              "type": "1",
+              "name": "ds.1.color",
+              "value": "64748B"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.width",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.transparency",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "ds.1.fill",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "tophosts",
+          "name": "Estado de Servicios de Directorio Activo (SSJ-DCO01)",
+          "x": "0",
+          "y": "10",
+          "width": "44",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D3SRV"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10715"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.name",
+              "value": "Controlador"
+            },
+            {
+              "type": "0",
+              "name": "columns.0.data",
+              "value": "2"
+            },
+            {
+              "type": "1",
+              "name": "columns.0.base_color",
+              "value": "FFFFFF"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.name",
+              "value": "NTDS"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.item",
+              "value": "State of service \"NTDS\" (Active Directory Domain Services)"
+            },
+            {
+              "type": "1",
+              "name": "columns.1.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.1.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.1.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.name",
+              "value": "DNS"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.item",
+              "value": "State of service \"DNS\" (DNS Server)"
+            },
+            {
+              "type": "1",
+              "name": "columns.2.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.2.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.2.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.name",
+              "value": "KDC"
+            },
+            {
+              "type": "0",
+              "name": "columns.3.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.item",
+              "value": "State of service \"Kdc\" (Kerberos Key Distribution Center)"
+            },
+            {
+              "type": "1",
+              "name": "columns.3.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.3.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.3.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.name",
+              "value": "Netlogon"
+            },
+            {
+              "type": "0",
+              "name": "columns.4.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.item",
+              "value": "State of service \"Netlogon\" (Netlogon)"
+            },
+            {
+              "type": "1",
+              "name": "columns.4.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.4.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.4.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.name",
+              "value": "DFSR"
+            },
+            {
+              "type": "0",
+              "name": "columns.5.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.item",
+              "value": "State of service \"DFSR\" (DFS Replication)"
+            },
+            {
+              "type": "1",
+              "name": "columns.5.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.5.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.5.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.name",
+              "value": "W32Time"
+            },
+            {
+              "type": "0",
+              "name": "columns.6.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.item",
+              "value": "State of service \"W32Time\" (Windows Time)"
+            },
+            {
+              "type": "1",
+              "name": "columns.6.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.6.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.6.threshold.1",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.name",
+              "value": "ADWS"
+            },
+            {
+              "type": "0",
+              "name": "columns.7.data",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.item",
+              "value": "State of service \"ADWS\" (Active Directory Web Services)"
+            },
+            {
+              "type": "1",
+              "name": "columns.7.base_color",
+              "value": "10B981"
+            },
+            {
+              "type": "0",
+              "name": "columns.7.display",
+              "value": "1"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.color.0",
+              "value": "10B981"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.threshold.0",
+              "value": "0"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.color.1",
+              "value": "E53935"
+            },
+            {
+              "type": "1",
+              "name": "columnsthresholds.7.threshold.1",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "problems",
+          "name": "Alertas e Incidentes Activos en SSJ-DCO01",
+          "x": "44",
+          "y": "10",
+          "width": "28",
+          "height": "6",
+          "view_mode": "0",
+          "fields": [
+            {
+              "type": "0",
+              "name": "rf_rate",
+              "value": "60"
+            },
+            {
+              "type": "1",
+              "name": "reference",
+              "value": "D3PRB"
+            },
+            {
+              "type": "3",
+              "name": "hostids.0",
+              "value": "10715"
+            },
+            {
+              "type": "0",
+              "name": "show",
+              "value": "3"
+            },
+            {
+              "type": "0",
+              "name": "sort_triggers",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_timeline",
+              "value": "0"
+            },
+            {
+              "type": "0",
+              "name": "show_lines",
+              "value": "10"
+            },
+            {
+              "type": "0",
+              "name": "show_tags",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "show_opdata",
+              "value": "2"
+            },
+            {
+              "type": "0",
+              "name": "show_suppressed",
+              "value": "1"
+            },
+            {
+              "type": "0",
+              "name": "highlight_row",
+              "value": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

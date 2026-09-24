@@ -1,6 +1,7 @@
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const dashboard = {
   title: "Milicic SOC / NOC: Visión Ejecutiva de Infraestructura Global",
@@ -12,13 +13,52 @@ const dashboard = {
   refresh: "15s",
   panels: [
     // -------------------------------------------------------------
-    // ROW 1: EXECUTIVE KPI RIBBON (y: 0, h: 4)
+    // ROW 0: ENCABEZADO EJECUTIVO SOC / NOC (y: 0, h: 4)
+    // -------------------------------------------------------------
+    {
+      id: 100,
+      title: "Centro de Comando NOC / SOC - Milicic S.A.",
+      type: "marcusolsson-dynamictext-panel",
+      gridPos: { x: 0, y: 0, w: 24, h: 4 },
+      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      options: {
+        content: `
+<div style="background: linear-gradient(90deg, #0F172A 0%, #1E293B 100%); border-left: 6px solid #EA580C; padding: 14px 20px; border-radius: 8px; color: #F8FAFC;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <div>
+      <h2 style="margin: 0; color: #EA580C; font-size: 20px; font-weight: 700; letter-spacing: 0.5px;">MILICIC S.A. | Observabilidad Global SOC / NOC</h2>
+      <p style="margin: 4px 0 0 0; color: #94A3B8; font-size: 13px;">Consola Unificada de Operaciones: Perímetro SD-WAN, Core Campus, Hipervisores, Ciberseguridad & Energía Crítica</p>
+    </div>
+    <div style="display: flex; gap: 12px; margin-top: 4px;">
+      <span style="background: #16A34A; color: white; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700;">PERÍMETRO: ACTIVO</span>
+      <span style="background: #0284C7; color: white; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700;">BACKBONE: 100% ONLINE</span>
+      <span style="background: #D97706; color: white; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700;">ENERGÍA DC: PROTEGIDA</span>
+    </div>
+  </div>
+</div>
+        `
+      },
+      targets: [
+        {
+          refId: "A",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "FortiGate" },
+          host: { filter: "FTG_milicic_border1_SNMP" },
+          item: { filter: "ICMP ping" },
+          resultFormat: "time_series"
+        }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // ROW 1: EXECUTIVE KPI RIBBON (y: 4, h: 4) - 8 CARDS (w: 3)
     // -------------------------------------------------------------
     {
       id: 1,
       title: "Perímetro: FortiGate Border1",
       type: "stat",
-      gridPos: { x: 0, y: 0, w: 4, h: 4 },
+      gridPos: { x: 0, y: 4, w: 3, h: 4 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -57,7 +97,7 @@ const dashboard = {
       id: 2,
       title: "Sesiones Activas IPv4 (Border1)",
       type: "stat",
-      gridPos: { x: 4, y: 0, w: 4, h: 4 },
+      gridPos: { x: 3, y: 4, w: 3, h: 4 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -93,9 +133,9 @@ const dashboard = {
     },
     {
       id: 3,
-      title: "Core Backbone: Dell N4032 CPU Avg",
+      title: "Core Backbone: Dell CPU",
       type: "stat",
-      gridPos: { x: 8, y: 0, w: 4, h: 4 },
+      gridPos: { x: 6, y: 4, w: 3, h: 4 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -131,27 +171,19 @@ const dashboard = {
     },
     {
       id: 4,
-      title: "Energía: UPS SRO Core (Carga %)",
+      title: "Potencia Datacenter (Watts)",
       type: "stat",
-      gridPos: { x: 12, y: 0, w: 4, h: 4 },
+      gridPos: { x: 9, y: 4, w: 3, h: 4 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
-          unit: "percent",
-          color: { mode: "thresholds" },
-          thresholds: {
-            mode: "absolute",
-            steps: [
-              { color: "#73BF69", value: null },
-              { color: "#FFA059", value: 65 },
-              { color: "#E45959", value: 85 }
-            ]
-          }
+          unit: "watt",
+          color: { mode: "fixed", fixedColor: "#5794F2" }
         }
       },
       options: {
         reduceOptions: { calcs: ["lastNotNull"], values: false },
-        colorMode: "background",
+        colorMode: "value",
         graphMode: "area"
       },
       targets: [
@@ -159,9 +191,9 @@ const dashboard = {
           refId: "A",
           schema: 12,
           queryType: "0",
-          group: { filter: "UPS" },
+          group: { filter: "/.*/" },
           host: { filter: "UPS SRO CORE" },
-          item: { filter: "UPS Load (%)" },
+          item: { filter: "UPS Power Consumption (W)" },
           resultFormat: "time_series",
           options: { showDisabledItems: false }
         }
@@ -169,9 +201,47 @@ const dashboard = {
     },
     {
       id: 5,
-      title: "Directorio Activo: Controladores de Dominio",
+      title: "Autonomía Mínima Flota",
       type: "stat",
-      gridPos: { x: 16, y: 0, w: 4, h: 4 },
+      gridPos: { x: 12, y: 4, w: 3, h: 4 },
+      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      fieldConfig: {
+        defaults: {
+          unit: "m",
+          color: { mode: "thresholds" },
+          thresholds: {
+            mode: "absolute",
+            steps: [
+              { color: "#E45959", value: null },
+              { color: "#FFC859", value: 30 },
+              { color: "#16A34A", value: 60 }
+            ]
+          }
+        }
+      },
+      options: {
+        reduceOptions: { calcs: ["min"], values: false },
+        colorMode: "background",
+        graphMode: "none"
+      },
+      targets: [
+        {
+          refId: "A",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "/UPS/" },
+          host: { filter: "/UPS/" },
+          item: { filter: "Battery Time Remaining" },
+          resultFormat: "time_series",
+          options: { showDisabledItems: false }
+        }
+      ]
+    },
+    {
+      id: 6,
+      title: "Controladores de Dominio",
+      type: "stat",
+      gridPos: { x: 15, y: 4, w: 3, h: 4 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -207,15 +277,15 @@ const dashboard = {
       ]
     },
     {
-      id: 6,
-      title: "Hipervisores ESXi Datacenter",
+      id: 14,
+      title: "Hipervisores ESXi",
       type: "stat",
-      gridPos: { x: 20, y: 0, w: 4, h: 4 },
+      gridPos: { x: 18, y: 4, w: 3, h: 4 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
           mappings: [
-            { type: "value", options: { "0": { text: "DOWN", color: "#E45959" }, "1": { text: "CLUSTER ONLINE", color: "#73BF69" } } }
+            { type: "value", options: { "0": { text: "DOWN", color: "#E45959" }, "1": { text: "ONLINE", color: "#73BF69" } } }
           ],
           color: { mode: "thresholds" },
           thresholds: {
@@ -245,15 +315,54 @@ const dashboard = {
         }
       ]
     },
+    {
+      id: 15,
+      title: "Disponibilidad BDR (SLA %)",
+      type: "stat",
+      gridPos: { x: 21, y: 4, w: 3, h: 4 },
+      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      fieldConfig: {
+        defaults: {
+          color: { mode: "thresholds" },
+          thresholds: {
+            mode: "absolute",
+            steps: [
+              { color: "#E45959", value: null },
+              { color: "#FFC859", value: 95 },
+              { color: "#16A34A", value: 99 }
+            ]
+          },
+          unit: "percent",
+          min: 0,
+          max: 100
+        }
+      },
+      options: {
+        reduceOptions: { calcs: ["mean"], values: false },
+        colorMode: "value",
+        graphMode: "none"
+      },
+      targets: [
+        {
+          refId: "A",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "/(Backup_Server|Storage_Server)/" },
+          host: { filter: "/.*(BKP|NAS|STO).*/" },
+          item: { filter: "ICMP ping" },
+          resultFormat: "time_series"
+        }
+      ]
+    },
 
     // -------------------------------------------------------------
-    // ROW 2: NETWORK PERIMETER & CORE BACKBONE THROUGHPUT (y: 4, h: 8)
+    // ROW 2: NETWORK PERIMETER & CORE BACKBONE THROUGHPUT (y: 8, h: 8)
     // -------------------------------------------------------------
     {
       id: 7,
       title: "Perímetro FortiGate Border1: Ancho de Banda WAN (port14 tasa)",
       type: "timeseries",
-      gridPos: { x: 0, y: 4, w: 12, h: 8 },
+      gridPos: { x: 0, y: 8, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -297,7 +406,7 @@ const dashboard = {
       id: 8,
       title: "Core Backbone: Tráfico en Uplinks y Port-Channels (bps)",
       type: "timeseries",
-      gridPos: { x: 12, y: 4, w: 12, h: 8 },
+      gridPos: { x: 12, y: 8, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -321,7 +430,7 @@ const dashboard = {
           queryType: "0",
           group: { filter: "switch" },
           host: { filter: "SRO-E02-PB00-CORE01" },
-          item: { filter: "/Interface (Te1\\/0\\/1|Port-Channel1): Bits (received|sent)/" },
+          item: { filter: "/Interface (Te1\\/0\\/[5689]|Port-Channel[0-9]).*Bits (received|sent)/" },
           resultFormat: "time_series",
           options: { showDisabledItems: false }
         },
@@ -331,7 +440,7 @@ const dashboard = {
           queryType: "0",
           group: { filter: "switch" },
           host: { filter: "SRO-E02-PB00-CORE02" },
-          item: { filter: "/Interface (Te1\\/0\\/1|Port-Channel1): Bits (received|sent)/" },
+          item: { filter: "/Interface (Te1\\/0\\/[5689]|Port-Channel[0-9]).*Bits (received|sent)/" },
           resultFormat: "time_series",
           options: { showDisabledItems: false }
         }
@@ -339,13 +448,13 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 3: INFRASTRUCTURE HEALTH MATRIX & WORKLOAD (y: 12, h: 8)
+    // ROW 3: INFRASTRUCTURE HEALTH MATRIX & WORKLOAD (y: 16, h: 8)
     // -------------------------------------------------------------
     {
       id: 9,
       title: "Data Center Facilities: Telemetría UPS Emerson (Carga & Batería)",
       type: "timeseries",
-      gridPos: { x: 0, y: 12, w: 8, h: 8 },
+      gridPos: { x: 0, y: 16, w: 8, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -403,7 +512,7 @@ const dashboard = {
       id: 10,
       title: "Cómputo & Servidores: Consumo de CPU Core (%)",
       type: "timeseries",
-      gridPos: { x: 8, y: 12, w: 8, h: 8 },
+      gridPos: { x: 8, y: 16, w: 8, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -446,7 +555,7 @@ const dashboard = {
       id: 11,
       title: "Almacenamiento Crítico: Uso de Volúmenes C: y D: (%)",
       type: "bargauge",
-      gridPos: { x: 16, y: 12, w: 8, h: 8 },
+      gridPos: { x: 16, y: 16, w: 8, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -485,43 +594,47 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 4: MULTI-SITE PERIMETER SITES (y: 20, h: 4)
+    // ROW 4: MOSAICO HEXAGONAL DE INFRAESTRUCTURA GLOBAL (y: 24, h: 6)
     // -------------------------------------------------------------
     {
       id: 12,
-      title: "Conectividad Perimetral Sedes & Proyectos Remotos (FortiGate)",
-      type: "stat",
-      gridPos: { x: 0, y: 20, w: 24, h: 4 },
+      title: "Mosaico Hexagonal de Salud de Infraestructura Global (Polystat)",
+      type: "grafana-polystat-panel",
+      gridPos: { x: 0, y: 24, w: 24, h: 6 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      options: {
+        polystat: {
+          shape: "hexagon",
+          displayMode: "all",
+          columns: 8,
+          rows: 2,
+          fontSize: 11,
+          fontColor: "#FFFFFF"
+        },
+        thresholds: [
+          { color: "#E45959", state: 0, value: 0 },
+          { color: "#16A34A", state: 1, value: 1 }
+        ]
+      },
       fieldConfig: {
         defaults: {
-          mappings: [
-            { type: "value", options: { "0": { text: "DESCONECTADO", color: "#E45959" }, "1": { text: "ENLACE OK", color: "#73BF69" } } }
-          ],
-          color: { mode: "thresholds" },
           thresholds: {
             mode: "absolute",
             steps: [
               { color: "#E45959", value: null },
-              { color: "#73BF69", value: 1 }
+              { color: "#16A34A", value: 1 }
             ]
           }
         }
-      },
-      options: {
-        reduceOptions: { calcs: ["lastNotNull"], values: false },
-        colorMode: "background",
-        graphMode: "none",
-        orientation: "horizontal"
       },
       targets: [
         {
           refId: "A",
           schema: 12,
           queryType: "0",
-          group: { filter: "FortiGate" },
-          host: { filter: "/FTG_ar-223-rio_tinto_SNMP|FTG_ar-341-san_luis_SNMP|FTG_ar-341-santa_fe_SNMP|FTG_milicic_border1_SNMP/" },
-          item: { filter: "ICMP ping" },
+          group: { filter: "/(FortiGate|switch|AD|Datacenter|Hypervisors)/" },
+          host: { filter: "/(FTG_milicic_border1_SNMP|FTG_ar-223-rio_tinto_SNMP|FTG_ar-341-santa_fe_SNMP|SRO-E02-PB00-CORE01|SRO-E02-PB00-CORE02|SRO-DCO01|172.30.70.131|172.30.70.132)/" },
+          item: { filter: "/(ICMP ping|Hypervisor ping|Zabbix agent ping)/" },
           resultFormat: "time_series",
           options: { showDisabledItems: false }
         }
@@ -529,13 +642,13 @@ const dashboard = {
     },
 
     // -------------------------------------------------------------
-    // ROW 5: INCIDENT COMMAND CENTER (y: 24, h: 8)
+    // ROW 5: INCIDENT COMMAND CENTER (y: 30, h: 8)
     // -------------------------------------------------------------
     {
       id: 13,
       title: "Incident Command Center: Alarmas e Incidentes Activos en Tiempo Real (Zabbix Triggers)",
       type: "table",
-      gridPos: { x: 0, y: 24, w: 24, h: 8 },
+      gridPos: { x: 0, y: 30, w: 24, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       options: {
         showHeader: true
@@ -565,15 +678,23 @@ const dashboardsDir = path.resolve(import.meta.dirname, '../.zabbix_context/dash
 if (!fs.existsSync(dashboardsDir)) {
   fs.mkdirSync(dashboardsDir, { recursive: true });
 }
-fs.writeFileSync(path.join(dashboardsDir, 'milicic-soc-overview.json'), JSON.stringify(dashboard, null, 2));
+fs.writeFileSync(path.join(dashboardsDir, 'milicic-soc-overview.json'), JSON.stringify(dashboard, null, 2), 'utf8');
+console.log(`Copia local guardada en: ${path.join(dashboardsDir, 'milicic-soc-overview.json')}`);
+
+let grafanaToken = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || "";
+if (!grafanaToken) {
+  try {
+    grafanaToken = execSync('powershell.exe -NoProfile -Command "[System.Environment]::GetEnvironmentVariable(\'GRAFANA_SERVICE_ACCOUNT_TOKEN\', \'User\')"', { encoding: 'utf8' }).trim();
+  } catch (e) {
+    console.error('Error al obtener token:', e.message);
+  }
+}
 
 const payload = JSON.stringify({
   dashboard,
   folderUid: "milicic-observability",
   overwrite: true
 });
-
-const grafanaToken = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || "";
 
 const req = http.request("http://172.27.210.154:3005/api/dashboards/db", {
   method: "POST",

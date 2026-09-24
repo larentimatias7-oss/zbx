@@ -202,11 +202,62 @@ const dashboard = {
         }
       ]
     },
+    // -------------------------------------------------------------
+    // ROW 1: MOSAICO HEXAGONAL DE DISPONIBILIDAD (y: 4, h: 6)
+    // -------------------------------------------------------------
+    {
+      id: 100,
+      title: "Malla Hexagonal de Disponibilidad: Switches Core, Distribución y Acceso",
+      type: "grafana-polystat-panel",
+      gridPos: { x: 0, y: 4, w: 24, h: 6 },
+      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      options: {
+        polystat: {
+          shape: "hexagon",
+          displayMode: "all",
+          columns: 6,
+          rows: 2,
+          fontSize: 12,
+          fontColor: "#FFFFFF"
+        },
+        thresholds: [
+          { color: "#E45959", state: 0, value: 0 },
+          { color: "#16A34A", state: 1, value: 1 }
+        ]
+      },
+      fieldConfig: {
+        defaults: {
+          thresholds: {
+            mode: "absolute",
+            steps: [
+              { color: "#E45959", value: null },
+              { color: "#16A34A", value: 1 }
+            ]
+          }
+        }
+      },
+      targets: [
+        {
+          refId: "Ping",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "switch" },
+          host: { filter: "/.*/" },
+          item: { filter: "ICMP ping" },
+          resultFormat: "time_series",
+          options: { showDisabledItems: false }
+        }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // ROW 2: COMPUTO Y TEMPERATURA (y: 10, h: 8)
+    // -------------------------------------------------------------
     {
       id: 6,
       title: "Utilización de CPU en Switches (USE: Utilization)",
       type: "timeseries",
-      gridPos: { x: 0, y: 4, w: 14, h: 8 },
+      gridPos: { x: 0, y: 10, w: 14, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -249,7 +300,7 @@ const dashboard = {
       id: 7,
       title: "Temperatura de Chasis y Módulos (°C)",
       type: "timeseries",
-      gridPos: { x: 14, y: 4, w: 10, h: 8 },
+      gridPos: { x: 14, y: 10, w: 10, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -286,11 +337,15 @@ const dashboard = {
         }
       ]
     },
+
+    // -------------------------------------------------------------
+    // ROW 3: THROUGHPUT DE TRONCALES (y: 18, h: 8)
+    // -------------------------------------------------------------
     {
       id: 8,
       title: "Throughput: Tráfico Inbound Troncales (Bits Received bps)",
       type: "timeseries",
-      gridPos: { x: 0, y: 12, w: 12, h: 8 },
+      gridPos: { x: 0, y: 18, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -323,7 +378,7 @@ const dashboard = {
       id: 9,
       title: "Throughput: Tráfico Outbound Troncales (Bits Sent bps)",
       type: "timeseries",
-      gridPos: { x: 12, y: 12, w: 12, h: 8 },
+      gridPos: { x: 12, y: 18, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -352,11 +407,43 @@ const dashboard = {
         }
       ]
     },
+
+    // -------------------------------------------------------------
+    // ROW 4: INTELIGENCIA HORARIA & SATURACIÓN (y: 26, h: 8)
+    // -------------------------------------------------------------
+    {
+      id: 105,
+      title: "Matriz 24x7: Patrón Horario de Tráfico Trunk Core a Firewall (Po4 SW-to-FGT bps)",
+      type: "marcusolsson-hourly-heatmap-panel",
+      gridPos: { x: 0, y: 26, w: 12, h: 8 },
+      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
+      options: {
+        from: 0,
+        to: 23
+      },
+      fieldConfig: {
+        defaults: {
+          unit: "bps"
+        }
+      },
+      targets: [
+        {
+          refId: "A",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "switch" },
+          host: { filter: "SRO-E02-PB00-CORE01" },
+          item: { filter: "Interface Po4(SW-to-FGT): Bits received" },
+          resultFormat: "time_series",
+          options: { showDisabledItems: false }
+        }
+      ]
+    },
     {
       id: 10,
-      title: "Saturación: Descartes de Paquetes (USE: Saturation)",
+      title: "Saturación & Errores: Descartes y Paquetes Dañados en Troncales (USE)",
       type: "timeseries",
-      gridPos: { x: 0, y: 20, w: 12, h: 7 },
+      gridPos: { x: 12, y: 26, w: 12, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       fieldConfig: {
         defaults: {
@@ -368,57 +455,40 @@ const dashboard = {
         }
       },
       options: {
-        legend: { displayMode: "list", placement: "bottom" }
+        legend: { displayMode: "table", placement: "bottom", calcs: ["lastNotNull", "max"] }
       },
       targets: [
         {
-          refId: "A",
+          refId: "Discards",
           schema: 12,
           queryType: "0",
           group: { filter: "switch" },
-          host: { filter: "/.*/" },
-          item: { filter: "/packets discarded/i" },
+          host: { filter: "/CORE01|CORE02|DIS01/" },
+          item: { filter: "/Interface (Te|Po|Gi).*packets discarded/i" },
+          resultFormat: "time_series",
+          options: { showDisabledItems: false }
+        },
+        {
+          refId: "Errors",
+          schema: 12,
+          queryType: "0",
+          group: { filter: "switch" },
+          host: { filter: "/CORE01|CORE02|DIS01/" },
+          item: { filter: "/Interface (Te|Po|Gi).*packets with errors/i" },
           resultFormat: "time_series",
           options: { showDisabledItems: false }
         }
       ]
     },
-    {
-      id: 11,
-      title: "Errores: Paquetes con Error (USE: Errors)",
-      type: "timeseries",
-      gridPos: { x: 12, y: 20, w: 12, h: 7 },
-      datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
-      fieldConfig: {
-        defaults: {
-          unit: "pps",
-          custom: {
-            drawStyle: "line",
-            lineWidth: 1
-          }
-        }
-      },
-      options: {
-        legend: { displayMode: "list", placement: "bottom" }
-      },
-      targets: [
-        {
-          refId: "A",
-          schema: 12,
-          queryType: "0",
-          group: { filter: "switch" },
-          host: { filter: "/.*/" },
-          item: { filter: "/packets with errors/i" },
-          resultFormat: "time_series",
-          options: { showDisabledItems: false }
-        }
-      ]
-    },
+
+    // -------------------------------------------------------------
+    // ROW 5: INCIDENTES ACTIVOS EN RED (y: 34, h: 8)
+    // -------------------------------------------------------------
     {
       id: 12,
       title: "Incidentes Activos en Equipos de Red (Zabbix Triggers)",
       type: "table",
-      gridPos: { x: 0, y: 27, w: 24, h: 7 },
+      gridPos: { x: 0, y: 34, w: 24, h: 8 },
       datasource: { type: "alexanderzobnin-zabbix-datasource", uid: "efz4nzx8r30g0c" },
       options: {
         showHeader: true
@@ -443,13 +513,32 @@ const dashboard = {
   ]
 };
 
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const outputPath = path.resolve(__dirname, '../.zabbix_context/dashboards/milicic-switches-core.json');
+fs.writeFileSync(outputPath, JSON.stringify(dashboard, null, 2), 'utf8');
+console.log(`Copia local guardada en ${outputPath}`);
+
+let grafanaToken = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || "";
+if (!grafanaToken) {
+  try {
+    grafanaToken = execSync('powershell.exe -NoProfile -Command "[System.Environment]::GetEnvironmentVariable(\'GRAFANA_SERVICE_ACCOUNT_TOKEN\', \'User\')"', { encoding: 'utf8' }).trim();
+  } catch (e) {
+    console.error('Error al obtener token de variable de entorno:', e.message);
+  }
+}
+
 const payload = JSON.stringify({
   dashboard,
   folderUid: "milicic-observability",
   overwrite: true
 });
-
-const grafanaToken = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || "";
 
 const req = http.request("http://172.27.210.154:3005/api/dashboards/db", {
   method: "POST",

@@ -365,12 +365,86 @@
       ]
     },
     {
+      "id": 100,
+      "title": "Malla Hexagonal de Disponibilidad: Switches Core, Distribución y Acceso",
+      "type": "grafana-polystat-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 24,
+        "h": 6
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "polystat": {
+          "shape": "hexagon",
+          "displayMode": "all",
+          "columns": 6,
+          "rows": 2,
+          "fontSize": 12,
+          "fontColor": "#FFFFFF"
+        },
+        "thresholds": [
+          {
+            "color": "#E45959",
+            "state": 0,
+            "value": 0
+          },
+          {
+            "color": "#16A34A",
+            "state": 1,
+            "value": 1
+          }
+        ]
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E45959",
+                "value": null
+              },
+              {
+                "color": "#16A34A",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "refId": "Ping",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ]
+    },
+    {
       "id": 6,
       "title": "Utilización de CPU en Switches (USE: Utilization)",
       "type": "timeseries",
       "gridPos": {
         "x": 0,
-        "y": 4,
+        "y": 10,
         "w": 14,
         "h": 8
       },
@@ -445,7 +519,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 14,
-        "y": 4,
+        "y": 10,
         "w": 10,
         "h": 8
       },
@@ -518,7 +592,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 0,
-        "y": 12,
+        "y": 18,
         "w": 12,
         "h": 8
       },
@@ -574,7 +648,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 12,
-        "y": 12,
+        "y": 18,
         "w": 12,
         "h": 8
       },
@@ -625,32 +699,26 @@
       ]
     },
     {
-      "id": 10,
-      "title": "Saturación: Descartes de Paquetes (USE: Saturation)",
-      "type": "timeseries",
+      "id": 105,
+      "title": "Matriz 24x7: Patrón Horario de Tráfico Trunk Core a Firewall (Po4 SW-to-FGT bps)",
+      "type": "marcusolsson-hourly-heatmap-panel",
       "gridPos": {
         "x": 0,
-        "y": 20,
+        "y": 26,
         "w": 12,
-        "h": 7
+        "h": 8
       },
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
+      "options": {
+        "from": 0,
+        "to": 23
+      },
       "fieldConfig": {
         "defaults": {
-          "unit": "pps",
-          "custom": {
-            "drawStyle": "line",
-            "lineWidth": 1
-          }
-        }
-      },
-      "options": {
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom"
+          "unit": "bps"
         }
       },
       "targets": [
@@ -662,10 +730,10 @@
             "filter": "switch"
           },
           "host": {
-            "filter": "/.*/"
+            "filter": "SRO-E02-PB00-CORE01"
           },
           "item": {
-            "filter": "/packets discarded/i"
+            "filter": "Interface Po4(SW-to-FGT): Bits received"
           },
           "resultFormat": "time_series",
           "options": {
@@ -675,14 +743,14 @@
       ]
     },
     {
-      "id": 11,
-      "title": "Errores: Paquetes con Error (USE: Errors)",
+      "id": 10,
+      "title": "Saturación & Errores: Descartes y Paquetes Dañados en Troncales (USE)",
       "type": "timeseries",
       "gridPos": {
         "x": 12,
-        "y": 20,
+        "y": 26,
         "w": 12,
-        "h": 7
+        "h": 8
       },
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
@@ -699,23 +767,45 @@
       },
       "options": {
         "legend": {
-          "displayMode": "list",
-          "placement": "bottom"
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
         }
       },
       "targets": [
         {
-          "refId": "A",
+          "refId": "Discards",
           "schema": 12,
           "queryType": "0",
           "group": {
             "filter": "switch"
           },
           "host": {
-            "filter": "/.*/"
+            "filter": "/CORE01|CORE02|DIS01/"
           },
           "item": {
-            "filter": "/packets with errors/i"
+            "filter": "/Interface (Te|Po|Gi).*packets discarded/i"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "Errors",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/CORE01|CORE02|DIS01/"
+          },
+          "item": {
+            "filter": "/Interface (Te|Po|Gi).*packets with errors/i"
           },
           "resultFormat": "time_series",
           "options": {
@@ -730,9 +820,9 @@
       "type": "table",
       "gridPos": {
         "x": 0,
-        "y": 27,
+        "y": 34,
         "w": 24,
-        "h": 7
+        "h": 8
       },
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",

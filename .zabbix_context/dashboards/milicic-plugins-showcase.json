@@ -1,0 +1,301 @@
+{
+  "title": "Showcase & Catálogo de Nuevos Plugins: Observabilidad Avanzada",
+  "uid": "milicic-plugins-showcase",
+  "tags": [
+    "milicic",
+    "plugins",
+    "showcase",
+    "polystat",
+    "treemap",
+    "calendar",
+    "sankey",
+    "echarts"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 40,
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Centro de Comando NOC - Resumen Ejecutivo (Business Text / Dynamic Text)",
+      "type": "marcusolsson-dynamictext-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "content": "\n<div style=\"background: linear-gradient(90deg, #0F172A 0%, #1E293B 100%); border-left: 6px solid #EA580C; padding: 16px; border-radius: 8px; color: #F8FAFC;\">\n  <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n    <div>\n      <h2 style=\"margin: 0; color: #EA580C; font-size: 20px; font-weight: 700;\">MILICIC S.A. | Observabilidad e Infraestructura Global</h2>\n      <p style=\"margin: 4px 0 0 0; color: #94A3B8; font-size: 13px;\">Estatus Operativo Consolidado: Zabbix 7.0 LTS & Grafana Enterprise</p>\n    </div>\n    <div style=\"display: flex; gap: 16px;\">\n      <span style=\"background: #16A34A; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold;\">SERVICIOS CRÍTICOS: ONLINE</span>\n      <span style=\"background: #0284C7; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold;\">BACKUP SLA: 100%</span>\n      <span style=\"background: #D97706; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold;\">ENERGÍA DC: 2.02 kW</span>\n    </div>\n  </div>\n</div>\n        "
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Mosaico Hexagonal de Red: Access Points Aruba & Switches (Polystat Panel)",
+      "type": "grafana-polystat-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "polystat": {
+          "shape": "hexagon",
+          "displayMode": "all",
+          "columns": 6,
+          "rows": 3,
+          "fontSize": 12,
+          "fontColor": "#FFFFFF"
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/(AP|SW|CORE|DIS).*/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Mapa Jerárquico de Capacidad de Almacenamiento y Datastores (Treemap Panel)",
+      "type": "marcusolsson-treemap-panel",
+      "gridPos": {
+        "x": 12,
+        "y": 4,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "tilingAlgorithm": "squarify"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/(ESX|STO|BKP).*/"
+          },
+          "item": {
+            "filter": "/.*Space.*Used, in %.*/"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Calendario Mensual de Ventana de Resguardo Veeam (Calendar Panel)",
+      "type": "marcusolsson-calendar-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 12,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "calendarType": "month",
+        "timeField": "Time"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Backup_Server|Storage_Server)/"
+          },
+          "host": {
+            "filter": "SRO-BKP01"
+          },
+          "item": {
+            "filter": "/Interface.*Bits received/i"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Matriz 24x7: Patrón Horario de Saturación de Internet WAN (Hourly Heatmap)",
+      "type": "marcusolsson-hourly-heatmap-panel",
+      "gridPos": {
+        "x": 12,
+        "y": 12,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "from": 0,
+        "to": 23
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(FortiGate|FortiWorld)/"
+          },
+          "host": {
+            "filter": "FTG_milicic_border1_SNMP"
+          },
+          "item": {
+            "filter": "Interface port14(tasa): Bits sent"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Flujo de Conectividad SD-WAN y Tráfico Multi-Sitio (Sankey Panel)",
+      "type": "netsage-sankey-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 20,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(FortiGate|FortiWorld)/"
+          },
+          "host": {
+            "filter": "/FTG_.*_SNMP/"
+          },
+          "item": {
+            "filter": "/Interface (port14|port15|wan1|wan2).*Bits (received|sent)/i"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Topología y Densidad de Cobertura RF Wi-Fi (Apache ECharts Panel)",
+      "type": "volkovlabs-echarts-panel",
+      "gridPos": {
+        "x": 12,
+        "y": 20,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "options": {
+        "radar": {
+          "indicator": [
+            {
+              "name": "AP01 - Comedor",
+              "max": 50
+            },
+            {
+              "name": "AP02 - Finanzas",
+              "max": 50
+            },
+            {
+              "name": "AP03 - Presidencia",
+              "max": 50
+            },
+            {
+              "name": "AP04 - Obras",
+              "max": 50
+            },
+            {
+              "name": "AP05 - Logística",
+              "max": 50
+            },
+            {
+              "name": "AP06 - Galpón",
+              "max": 50
+            }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "switch"
+          },
+          "host": {
+            "filter": "/AP.*/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    }
+  ]
+}

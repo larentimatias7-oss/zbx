@@ -1,0 +1,914 @@
+[
+  {
+    "uid": "milicic-activedirectory-soc",
+    "title": "Active Directory & Cyber SOC: Identidades, Seguridad y Salud del Bosque",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Cuentas Bloqueadas (Event 4740)",
+        "type": "stat",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:/.*4740.*/]"
+      },
+      {
+        "id": 2,
+        "title": "Fallos Pre-Auth Kerberos (Event 4771)",
+        "type": "stat",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:/.*4771.*/]"
+      },
+      {
+        "id": 3,
+        "title": "Logons Fallidos NTLM (Event 4625)",
+        "type": "stat",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:/.*4625.*/]"
+      },
+      {
+        "id": 4,
+        "title": "Cambios en Grupos Admin (4728/4732)",
+        "type": "stat",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:/.*(4728|4732|4756).*/]"
+      },
+      {
+        "id": 5,
+        "title": "Desvío NTP de Reloj",
+        "type": "stat",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:/.*time.*offset.*/]"
+      },
+      {
+        "id": 6,
+        "title": "Incidentes Activos en AD DS",
+        "type": "stat",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:*]"
+      },
+      {
+        "id": 10,
+        "title": "Matriz de Servicios Vitales de Active Directory (NTDS | DNS | Kerberos | Netlogon | DFSR | W32Time)",
+        "type": "status-history",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:/State of service (NTDS|DNS|Kdc|Netlogon|DFSR|W32Time)/]"
+      },
+      {
+        "id": 20,
+        "title": "Utilización de CPU en Controladores de Dominio (%)",
+        "type": "timeseries",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:CPU utilization]"
+      },
+      {
+        "id": 21,
+        "title": "Consumo de Memoria RAM en Controladores de Dominio (%)",
+        "type": "timeseries",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:Memory utilization]"
+      },
+      {
+        "id": 30,
+        "title": "Cola de Procesador & Concurrencia (Processor Queue Length)",
+        "type": "timeseries",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:CPU queue length]"
+      },
+      {
+        "id": 31,
+        "title": "Throughput de Red en Interfaces de Dominio (Bits In / Out)",
+        "type": "timeseries",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:/.*Bits (received|sent).*/]"
+      },
+      {
+        "id": 40,
+        "title": "Almacenamiento en Disco C: (Base de Datos NTDS & SYSVOL)",
+        "type": "bargauge",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:/.*FS.*Space.*Used, in %.*/]"
+      },
+      {
+        "id": 50,
+        "title": "Incidentes y Alarmas Activas en Active Directory (Zabbix Problems)",
+        "type": "table",
+        "targetDesc": "[G:AD H:/${dc:raw}/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-facilities-ups",
+    "title": "Datacenter Facilities & Energía Crítica: Monitoreo de UPS & Suministro Eléctrico",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Autonomía de Batería Restante",
+        "type": "stat",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:Battery Time Remaining]"
+      },
+      {
+        "id": 2,
+        "title": "Carga de Baterías (%)",
+        "type": "stat",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:Battery Charge Remaining]"
+      },
+      {
+        "id": 3,
+        "title": "Carga del Inversor (%)",
+        "type": "stat",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:UPS Load (%)]"
+      },
+      {
+        "id": 4,
+        "title": "Tensión de Entrada AC (Red Comercial)",
+        "type": "stat",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:Ups Input Voltage]"
+      },
+      {
+        "id": 5,
+        "title": "Tensión de Salida AC (Carga TI)",
+        "type": "stat",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:Ups Output Voltage]"
+      },
+      {
+        "id": 6,
+        "title": "Incidentes de Energía Activos",
+        "type": "stat",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:*]"
+      },
+      {
+        "id": 10,
+        "title": "Matriz Operativa de Sistemas de Energía Ininterrumpida (UPS)",
+        "type": "table",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:UPS Load (%)], [G:UPS H:/${ups:raw}/ I:Battery Charge Remaining], [G:UPS H:/${ups:raw}/ I:Battery Time Remaining], [G:UPS H:/${ups:raw}/ I:Ups Input Voltage], [G:UPS H:/${ups:raw}/ I:Ups Output Current]"
+      },
+      {
+        "id": 20,
+        "title": "Calidad de Suministro Eléctrico: Tensión Entrada vs Salida (VAC)",
+        "type": "timeseries",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:/Ups (Input|Output) Voltage/]"
+      },
+      {
+        "id": 21,
+        "title": "Porcentaje de Carga del Inversor (%) en el Tiempo",
+        "type": "timeseries",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:UPS Load (%)]"
+      },
+      {
+        "id": 30,
+        "title": "Autonomía Estimada de Batería (Minutos de Backup)",
+        "type": "timeseries",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:Battery Time Remaining]"
+      },
+      {
+        "id": 31,
+        "title": "Tensión de Banco de Baterías (VDC) & Corriente de Carga (A)",
+        "type": "timeseries",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:Battery Voltage], [G:UPS H:/${ups:raw}/ I:Ups Output Current]"
+      },
+      {
+        "id": 40,
+        "title": "Alarmas e Incidentes de Energía Crítica y UPS (Zabbix)",
+        "type": "table",
+        "targetDesc": "[G:UPS H:/${ups:raw}/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-soc-overview",
+    "title": "Milicic SOC / NOC: Visión Ejecutiva de Infraestructura Global",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Perímetro: FortiGate Border1",
+        "type": "stat",
+        "targetDesc": "[G:FortiGate H:FTG_milicic_border1_SNMP I:ICMP ping]"
+      },
+      {
+        "id": 2,
+        "title": "Sesiones Activas IPv4 (Border1)",
+        "type": "stat",
+        "targetDesc": "[G:FortiGate H:FTG_milicic_border1_SNMP I:IPv4 Active sessions]"
+      },
+      {
+        "id": 3,
+        "title": "Core Backbone: Dell N4032 CPU Avg",
+        "type": "stat",
+        "targetDesc": "[G:switch H:/SRO-E02-PB00-CORE0[12]/ I:Dell N-Series: CPU usage 1m]"
+      },
+      {
+        "id": 4,
+        "title": "Energía: UPS SRO Core (Carga %)",
+        "type": "stat",
+        "targetDesc": "[G:UPS H:UPS SRO CORE I:UPS Load (%)]"
+      },
+      {
+        "id": 5,
+        "title": "Directorio Activo: Controladores de Dominio",
+        "type": "stat",
+        "targetDesc": "[G:AD H:SRO-DCO01 I:Zabbix agent ping]"
+      },
+      {
+        "id": 6,
+        "title": "Hipervisores ESXi Datacenter",
+        "type": "stat",
+        "targetDesc": "[G:Datacenter H:172.30.70.131 I:Hypervisor ping]"
+      },
+      {
+        "id": 7,
+        "title": "Perímetro FortiGate Border1: Ancho de Banda WAN (port14 tasa)",
+        "type": "timeseries",
+        "targetDesc": "[G:FortiGate H:FTG_milicic_border1_SNMP I:/Interface port14\\(tasa\\): Bits received/], [G:FortiGate H:FTG_milicic_border1_SNMP I:/Interface port14\\(tasa\\): Bits sent/]"
+      },
+      {
+        "id": 8,
+        "title": "Core Backbone: Tráfico en Uplinks y Port-Channels (bps)",
+        "type": "timeseries",
+        "targetDesc": "[G:switch H:SRO-E02-PB00-CORE01 I:/Interface (Te1\\/0\\/1|Port-Channel1): Bits (received|sent)/], [G:switch H:SRO-E02-PB00-CORE02 I:/Interface (Te1\\/0\\/1|Port-Channel1): Bits (received|sent)/]"
+      },
+      {
+        "id": 9,
+        "title": "Data Center Facilities: Telemetría UPS Emerson (Carga & Batería)",
+        "type": "timeseries",
+        "targetDesc": "[G:UPS H:UPS SRO CORE I:UPS Load (%)], [G:UPS H:UPS SRO CORE I:Battery Voltage]"
+      },
+      {
+        "id": 10,
+        "title": "Cómputo & Servidores: Consumo de CPU Core (%)",
+        "type": "timeseries",
+        "targetDesc": "[G:/Windows_Server|AD|Backup_Server/ H:/SRO-DCO01|SRO-DCO02|SRO-FIL01|SRO-BKP01|SRO-SQL01/ I:CPU utilization]"
+      },
+      {
+        "id": 11,
+        "title": "Almacenamiento Crítico: Uso de Volúmenes C: y D: (%)",
+        "type": "bargauge",
+        "targetDesc": "[G:/Windows_Server|Backup_Server/ H:/SRO-FIL01|SRO-BKP01|SRO-APP01|SRO-APP03/ I:/FS \\[.*?\\]: Space: Used, in %/]"
+      },
+      {
+        "id": 12,
+        "title": "Conectividad Perimetral Sedes & Proyectos Remotos (FortiGate)",
+        "type": "stat",
+        "targetDesc": "[G:FortiGate H:/FTG_ar-223-rio_tinto_SNMP|FTG_ar-341-san_luis_SNMP|FTG_ar-341-santa_fe_SNMP|FTG_milicic_border1_SNMP/ I:ICMP ping]"
+      },
+      {
+        "id": 13,
+        "title": "Incident Command Center: Alarmas e Incidentes Activos en Tiempo Real (Zabbix Triggers)",
+        "type": "table",
+        "targetDesc": "[G:/.*/ H:/.*/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-aruba-wifi-switches",
+    "title": "Networking: Infraestructura Wi-Fi Aruba Instant & Switches 1930",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Matriz de Salud y Conectividad ICMP - Puntos de Acceso (14 APs)",
+        "type": "stat",
+        "targetDesc": "[G:ARUBA APs H:/.*/ I:ICMP ping]"
+      },
+      {
+        "id": 2,
+        "title": "Tráfico de Uplink Ethernet (eth0) - $AP",
+        "type": "timeseries",
+        "targetDesc": "[G:ARUBA APs H:$AP I:/Interface eth0.*: Bits received/i], [G:ARUBA APs H:$AP I:/Interface eth0.*: Bits sent/i]"
+      },
+      {
+        "id": 3,
+        "title": "Distribución de Tráfico RF (5 GHz vs 2.4 GHz) - $AP",
+        "type": "timeseries",
+        "targetDesc": "[G:ARUBA APs H:$AP I:/Interface radio0_ssid.*: Bits received/i], [G:ARUBA APs H:$AP I:/Interface radio1_ssid.*: Bits received/i]"
+      },
+      {
+        "id": 4,
+        "title": "Consumo Eléctrico PoE - Switches Aruba Instant On 1930",
+        "type": "gauge",
+        "targetDesc": "[G:/.*/ H:/(SRO-E03-P00-D03|SRO-E02-PB00-CORE03)/ I:/PoE.*power/i]"
+      },
+      {
+        "id": 5,
+        "title": "Carga de Procesador (CPU) - Switches Aruba 1930",
+        "type": "timeseries",
+        "targetDesc": "[G:/.*/ H:/(SRO-E03-P00-D03|SRO-E02-PB00-CORE03)/ I:/CPU utilization/i]"
+      },
+      {
+        "id": 6,
+        "title": "Tiempo de Actividad (Uptime) - Switches Aruba 1930",
+        "type": "stat",
+        "targetDesc": "[G:/.*/ H:/(SRO-E03-P00-D03|SRO-E02-PB00-CORE03)/ I:/Uptime \\(network\\)/]"
+      },
+      {
+        "id": 7,
+        "title": "Inventario Consolidado de Puntos de Acceso Aruba Instant (AOS-8)",
+        "type": "table",
+        "targetDesc": "[G:ARUBA APs H:/.*/ I:/(Hardware model name|Firmware version|Uptime \\(network\\))/]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-switches-core",
+    "title": "Networking: Switches Core y Distribución",
+    "panels": [
+      {
+        "id": 1,
+        "title": "CORE01 (Dell N4032) - CPU Avg 1m",
+        "type": "stat",
+        "targetDesc": "[G:switch H:SRO-E02-PB00-CORE01 I:Dell N-Series: CPU usage 1m]"
+      },
+      {
+        "id": 2,
+        "title": "CORE02 (Dell N4032) - CPU Avg 1m",
+        "type": "stat",
+        "targetDesc": "[G:switch H:SRO-E02-PB00-CORE02 I:Dell N-Series: CPU usage 1m]"
+      },
+      {
+        "id": 3,
+        "title": "CORE03 (Aruba 1930) - Salud",
+        "type": "stat",
+        "targetDesc": "[G:switch H:SRO-E02-PB00-CORE03 I:/ICMP ping|Operational status/]"
+      },
+      {
+        "id": 4,
+        "title": "DIS01 Galpón 01 (Comware) - CPU",
+        "type": "stat",
+        "targetDesc": "[G:switch H:SRO-G01-P100-DIS01 I:/CPU/i]"
+      },
+      {
+        "id": 5,
+        "title": "Problemas Activos (Switches)",
+        "type": "stat",
+        "targetDesc": "[G:switch H:/.*/ I:*]"
+      },
+      {
+        "id": 6,
+        "title": "Utilización de CPU en Switches (USE: Utilization)",
+        "type": "timeseries",
+        "targetDesc": "[G:switch H:/CORE01|CORE02|DIS01/ I:/CPU usage 1m|CPU usage$/i]"
+      },
+      {
+        "id": 7,
+        "title": "Temperatura de Chasis y Módulos (°C)",
+        "type": "timeseries",
+        "targetDesc": "[G:switch H:/.*/ I:/Temperature|MODULE LEVEL1/i]"
+      },
+      {
+        "id": 8,
+        "title": "Throughput: Tráfico Inbound Troncales (Bits Received bps)",
+        "type": "timeseries",
+        "targetDesc": "[G:switch H:/CORE01|DIS01/ I:/Interface (Te|Po|Gi).*Bits received/i]"
+      },
+      {
+        "id": 9,
+        "title": "Throughput: Tráfico Outbound Troncales (Bits Sent bps)",
+        "type": "timeseries",
+        "targetDesc": "[G:switch H:/CORE01|DIS01/ I:/Interface (Te|Po|Gi).*Bits sent/i]"
+      },
+      {
+        "id": 10,
+        "title": "Saturación: Descartes de Paquetes (USE: Saturation)",
+        "type": "timeseries",
+        "targetDesc": "[G:switch H:/.*/ I:/packets discarded/i]"
+      },
+      {
+        "id": 11,
+        "title": "Errores: Paquetes con Error (USE: Errors)",
+        "type": "timeseries",
+        "targetDesc": "[G:switch H:/.*/ I:/packets with errors/i]"
+      },
+      {
+        "id": 12,
+        "title": "Incidentes Activos en Equipos de Red (Zabbix Triggers)",
+        "type": "table",
+        "targetDesc": "[G:switch H:/.*/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-backup-veeam",
+    "title": "Respaldo y Continuidad del Negocio: Veeam Backup & Repositorios de Datos",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Servidores Backup en Línea",
+        "type": "stat",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:ICMP ping]"
+      },
+      {
+        "id": 2,
+        "title": "Espacio Usado en Volúmenes C: (%)",
+        "type": "stat",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:/.*FS.*Space.*Used, in %.*/]"
+      },
+      {
+        "id": 3,
+        "title": "Transferencia de Red en Backup",
+        "type": "stat",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:/.*Bits received.*/]"
+      },
+      {
+        "id": 4,
+        "title": "Cola de Procesador (Queue Length)",
+        "type": "stat",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:CPU queue length]"
+      },
+      {
+        "id": 5,
+        "title": "Uptime de Servidores de Backup",
+        "type": "stat",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:Uptime]"
+      },
+      {
+        "id": 6,
+        "title": "Incidentes Activos en Backup",
+        "type": "stat",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:*]"
+      },
+      {
+        "id": 10,
+        "title": "Capacidad de Almacenamiento en Repositorios y Discos de Backup (%)",
+        "type": "bargauge",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:/.*FS.*Space.*Used, in %.*/]"
+      },
+      {
+        "id": 20,
+        "title": "Utilización de CPU durante Ventanas de Respaldo (%)",
+        "type": "timeseries",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:CPU utilization]"
+      },
+      {
+        "id": 21,
+        "title": "Consumo de Memoria RAM en Servidores de Respaldo (%)",
+        "type": "timeseries",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:Memory utilization]"
+      },
+      {
+        "id": 30,
+        "title": "Cola de Procesamiento & Paging durante Jobs de Veeam",
+        "type": "timeseries",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:CPU queue length]"
+      },
+      {
+        "id": 31,
+        "title": "Throughput de Red: Tráfico In/Out en Transferencia de Datos",
+        "type": "timeseries",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:/.*Bits (received|sent).*/]"
+      },
+      {
+        "id": 40,
+        "title": "Incidentes y Alarmas Activas en Infraestructura de Backup (Zabbix)",
+        "type": "table",
+        "targetDesc": "[G:/(Backup_Server|Storage_Server)/ H:/${server:raw}/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-sanjuan-infra",
+    "title": "San Juan: Monitoreo Integral de Infraestructura (SSJ)",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Core Switch (SSJ-CORE01)",
+        "type": "stat",
+        "targetDesc": "[G:sanJuan H:SSJ-CORE01 I:ICMP ping]"
+      },
+      {
+        "id": 2,
+        "title": "Switch Adm (SSJ-SWADM)",
+        "type": "stat",
+        "targetDesc": "[G:sanJuan H:SSJ-SWADM I:ICMP ping]"
+      },
+      {
+        "id": 3,
+        "title": "Hyper-V Físico (SSJ-HPV01)",
+        "type": "stat",
+        "targetDesc": "[G:sanJuan H:SSJ-HPV01 I:ICMP ping]"
+      },
+      {
+        "id": 4,
+        "title": "Veeam BKP (SSJ-BKP01)",
+        "type": "stat",
+        "targetDesc": "[G:sanJuan H:SSJ-BKP01 I:Zabbix agent ping]"
+      },
+      {
+        "id": 5,
+        "title": "File Server (SSJ-FIL01)",
+        "type": "stat",
+        "targetDesc": "[G:sanJuan H:SSJ-FIL01 I:Zabbix agent ping]"
+      },
+      {
+        "id": 6,
+        "title": "QNAP NAS (SSJ-NAS01)",
+        "type": "stat",
+        "targetDesc": "[G:sanJuan H:SSJ-NAS01 I:ICMP ping]"
+      },
+      {
+        "id": 7,
+        "title": "Domain Controller (SSJ-DCO01)",
+        "type": "stat",
+        "targetDesc": "[G:sanJuan H:SSJ-DCO01 I:Zabbix agent ping]"
+      },
+      {
+        "id": 8,
+        "title": "Servicios/Print (SSJ-SVC01)",
+        "type": "stat",
+        "targetDesc": "[G:sanJuan H:SSJ-SVC01 I:Zabbix agent ping]"
+      },
+      {
+        "id": 9,
+        "title": "Latencia y RTT de Enlace a Dispositivos San Juan (ms)",
+        "type": "timeseries",
+        "targetDesc": "[G:sanJuan H:/${device_type:raw}/ I:ICMP response time]"
+      },
+      {
+        "id": 10,
+        "title": "Pérdida de Paquetes en Enlaces de San Juan (%)",
+        "type": "timeseries",
+        "targetDesc": "[G:sanJuan H:/${device_type:raw}/ I:ICMP loss]"
+      },
+      {
+        "id": 11,
+        "title": "Consumo de Cómputo CPU (%) - Servidores San Juan",
+        "type": "timeseries",
+        "targetDesc": "[G:sanJuan H:/${device_type:raw}/ I:CPU utilization]"
+      },
+      {
+        "id": 12,
+        "title": "Saturación de Memoria RAM (%) - Servidores San Juan",
+        "type": "timeseries",
+        "targetDesc": "[G:sanJuan H:/${device_type:raw}/ I:Memory utilization]"
+      },
+      {
+        "id": 13,
+        "title": "Particiones de Datos, Respaldo y VMs (D:, E:, F:) - San Juan",
+        "type": "bargauge",
+        "targetDesc": "[G:sanJuan H:SSJ-HPV01 I:/FS \\[DATA\\(D:\\)\\]: Space: Used, in %/], [G:sanJuan H:SSJ-FIL01 I:/FS \\[DATOS\\(E:\\)\\]: Space: Used, in %/], [G:sanJuan H:SSJ-BKP01 I:/FS \\[DATA-BKP\\(F:\\)\\]: Space: Used, in %/]"
+      },
+      {
+        "id": 14,
+        "title": "Volúmenes de Sistema Operativo C: (%) - San Juan",
+        "type": "bargauge",
+        "targetDesc": "[G:sanJuan H:/${device_type:raw}/ I:/FS \\[\\(C:\\)\\]: Space: Used, in %/]"
+      },
+      {
+        "id": 15,
+        "title": "Incidentes y Alarmas Activas en Localidad San Juan (Zabbix Triggers)",
+        "type": "table",
+        "targetDesc": "[G:sanJuan H:/${device_type:raw}/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-fortigate-sdwan",
+    "title": "Seguridad Perimetral & SD-WAN: FortiGate Multi-Site & Sucursales",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Firewalls en Línea",
+        "type": "stat",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:ICMP ping]"
+      },
+      {
+        "id": 2,
+        "title": "Sesiones Concurrentes IPv4",
+        "type": "stat",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:IPv4 Active sessions]"
+      },
+      {
+        "id": 3,
+        "title": "Intrusiones Bloqueadas (IPS)",
+        "type": "stat",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:Blocked intrusions]"
+      },
+      {
+        "id": 4,
+        "title": "Latencia Media WAN (ICMP)",
+        "type": "stat",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:ICMP response time]"
+      },
+      {
+        "id": 5,
+        "title": "Estado Sincronización HA",
+        "type": "stat",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:HA config sync]"
+      },
+      {
+        "id": 6,
+        "title": "Incidentes Activos en Firewall",
+        "type": "stat",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:*]"
+      },
+      {
+        "id": 10,
+        "title": "Matriz Operativa de Sitios & Dispositivos FortiGate",
+        "type": "table",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:ICMP ping], [G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:CPU utilization], [G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:Memory utilization], [G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:IPv4 Active sessions], [G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:ICMP response time]"
+      },
+      {
+        "id": 20,
+        "title": "Sesiones Concurrentes IPv4 por Firewall (Capacidad de Conexiones)",
+        "type": "timeseries",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:IPv4 Active sessions]"
+      },
+      {
+        "id": 21,
+        "title": "Detección y Bloqueo de Amenazas (Motor IPS FortiOS)",
+        "type": "timeseries",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:/(Blocked intrusions|Detected critical intrusions|Detected high intrusions|Detected anomaly based intrusions)/]"
+      },
+      {
+        "id": 30,
+        "title": "Utilización de CPU en Firewalls (fgSysCpuUsage)",
+        "type": "timeseries",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:CPU utilization]"
+      },
+      {
+        "id": 31,
+        "title": "Saturación de Memoria RAM en Firewalls (memoryUsedPercentage)",
+        "type": "timeseries",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:Memory utilization]"
+      },
+      {
+        "id": 40,
+        "title": "Throughput de Red en Interfaces FortiGate (Bits In / Out)",
+        "type": "timeseries",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:/.*Bits (received|sent).*/]"
+      },
+      {
+        "id": 41,
+        "title": "Calidad de Enlace WAN (Latencia ICMP & Jitter)",
+        "type": "timeseries",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:ICMP response time]"
+      },
+      {
+        "id": 50,
+        "title": "Incidentes Activos en Equipamiento FortiGate (Alertas Zabbix)",
+        "type": "table",
+        "targetDesc": "[G:/(FortiGate|FortiWorld)/ H:/${firewall:regex}/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-servers-overview",
+    "title": "Servidores: Monitoreo Integral & Métricas de Cómputo",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Servidores Monitoreados",
+        "type": "stat",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:ICMP ping]"
+      },
+      {
+        "id": 2,
+        "title": "Disponibilidad Agentes Zabbix",
+        "type": "stat",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:/(Zabbix agent ping|agent.ping)/]"
+      },
+      {
+        "id": 3,
+        "title": "Carga Media CPU Flota (%)",
+        "type": "stat",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:CPU utilization]"
+      },
+      {
+        "id": 4,
+        "title": "Uso Medio Memoria RAM Flota (%)",
+        "type": "stat",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:Memory utilization]"
+      },
+      {
+        "id": 5,
+        "title": "Latencia Media Ping RTT (ms)",
+        "type": "stat",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:ICMP response time]"
+      },
+      {
+        "id": 6,
+        "title": "Alarmas Activas en Servidores",
+        "type": "stat",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:*]"
+      },
+      {
+        "id": 7,
+        "title": "DC Primario Rosario: SRO-DCO01 (FSMO)",
+        "type": "stat",
+        "targetDesc": "[G:AD H:SRO-DCO01 I:/(CPU utilization|Memory utilization)/]"
+      },
+      {
+        "id": 8,
+        "title": "DC Secundario Rosario: SRO-DCO02",
+        "type": "stat",
+        "targetDesc": "[G:AD H:SRO-DCO02 I:/(CPU utilization|Memory utilization)/]"
+      },
+      {
+        "id": 9,
+        "title": "DC Sucursal San Juan: SSJ-DCO01",
+        "type": "stat",
+        "targetDesc": "[G:AD H:SSJ-DCO01 I:/(CPU utilization|Memory utilization)/]"
+      },
+      {
+        "id": 10,
+        "title": "Cómputo: Utilización de CPU (%) por Servidor",
+        "type": "timeseries",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:CPU utilization]"
+      },
+      {
+        "id": 11,
+        "title": "Memoria: Utilización de Memoria RAM (%) por Servidor",
+        "type": "timeseries",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:Memory utilization]"
+      },
+      {
+        "id": 12,
+        "title": "Almacenamiento: Espacio Ocupado en Volúmenes de Sistema (C: / Root) (%)",
+        "type": "bargauge",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:/(FS \\[.*Space: Used, in %|.*: Space: Used, in %|Space utilization)/]"
+      },
+      {
+        "id": 13,
+        "title": "Throughput de Red: Tráfico en Placas Principales (Bits In / Out bps)",
+        "type": "timeseries",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:/(Bits received|Inbound packets)/], [G:/.*/ H:/${server:regex}/ I:/(Bits sent|Outbound packets)/]"
+      },
+      {
+        "id": 14,
+        "title": "Salud de Servicios Críticos (NTDS, DNS, KDC, Netlogon, DFSR, W32Time, SQL)",
+        "type": "stat",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:/State of service (\"NTDS\"|\"DNS\"|\"Kdc\"|\"Netlogon\"|\"DFSR\"|\"W32Time\"|\"MSSQLSERVER\")/]"
+      },
+      {
+        "id": 15,
+        "title": "Incident Command Center: Alarmas e Incidentes Activos en Servidores (Zabbix Triggers)",
+        "type": "table",
+        "targetDesc": "[G:/.*/ H:/${server:regex}/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "milicic-vmware-datastores",
+    "title": "Virtualización y Storage: VMware, Hypervisors & Datastores",
+    "panels": [
+      {
+        "id": 1,
+        "title": "ESXi Node 131 (172.30.70.131)",
+        "type": "stat",
+        "targetDesc": "[G:Datacenter H:172.30.70.131 I:Hypervisor ping]"
+      },
+      {
+        "id": 2,
+        "title": "ESXi Node 132 (172.30.70.132)",
+        "type": "stat",
+        "targetDesc": "[G:Datacenter H:172.30.70.132 I:Hypervisor ping]"
+      },
+      {
+        "id": 3,
+        "title": "vCenter Accessibility",
+        "type": "stat",
+        "targetDesc": "[G:Hypervisors H:vCenter I:ICMP ping]"
+      },
+      {
+        "id": 4,
+        "title": "San Juan Hyper-V (SSJ-HPV01)",
+        "type": "stat",
+        "targetDesc": "[G:Hypervisors H:SSJ-HPV01 I:ICMP ping]"
+      },
+      {
+        "id": 5,
+        "title": "File Server (SRO-FIL01)",
+        "type": "stat",
+        "targetDesc": "[G:Windows_Server H:SRO-FIL01 I:Zabbix agent ping]"
+      },
+      {
+        "id": 6,
+        "title": "Veeam Backup (SRO-BKP01)",
+        "type": "stat",
+        "targetDesc": "[G:Backup_Server H:SRO-BKP01 I:Zabbix agent ping]"
+      },
+      {
+        "id": 7,
+        "title": "File Server Storage (SRO-FIL01) - Uso de Volúmenes C: y D:",
+        "type": "bargauge",
+        "targetDesc": "[G:Windows_Server H:SRO-FIL01 I:/FS \\[.*?\\]: Space: Used, in %/]"
+      },
+      {
+        "id": 8,
+        "title": "Veeam Backup Server (SRO-BKP01) - Uso de Almacenamiento C:",
+        "type": "bargauge",
+        "targetDesc": "[G:Backup_Server H:SRO-BKP01 I:/FS \\[.*?\\]: Space: Used, in %/]"
+      },
+      {
+        "id": 9,
+        "title": "Servidores de Aplicación (SRO-APP01 / SRO-APP03) - Almacenamiento Crítico C:",
+        "type": "bargauge",
+        "targetDesc": "[G:Windows_Server H:/SRO-APP.*/ I:/FS \\[.*?\\]: Space: Used, in %/]"
+      },
+      {
+        "id": 10,
+        "title": "CPU Utilization - Carga de Cómputo Servidores Core (%)",
+        "type": "timeseries",
+        "targetDesc": "[G:/Windows_Server|AD|Backup_Server/ H:/SRO-FIL01|SRO-DCO01|SRO-DCO02|SRO-BKP01|SRO-SQL01/ I:CPU utilization]"
+      },
+      {
+        "id": 11,
+        "title": "Memory Utilization - Saturación de Memoria Servidores Core (%)",
+        "type": "timeseries",
+        "targetDesc": "[G:/Windows_Server|AD|Backup_Server/ H:/SRO-FIL01|SRO-DCO01|SRO-DCO02|SRO-BKP01|SRO-SQL01/ I:Memory utilization]"
+      },
+      {
+        "id": 12,
+        "title": "Saturación de Cómputo: Longitud de Cola de Procesador (Processor Queue Length)",
+        "type": "timeseries",
+        "targetDesc": "[G:Windows_Server H:/.*/ I:CPU queue length]"
+      },
+      {
+        "id": 13,
+        "title": "Frecuencia de Paginación y Faltas de Página (Page Faults / sec)",
+        "type": "timeseries",
+        "targetDesc": "[G:Windows_Server H:/.*/ I:Memory page faults per second]"
+      },
+      {
+        "id": 14,
+        "title": "Incidentes Activos en Virtualización, Servidores y Almacenamiento (Zabbix Triggers)",
+        "type": "table",
+        "targetDesc": "[G:/Hypervisors|Datacenter|Windows_Server|Backup_Server|Storage_Server|Virtual machines/ H:/.*/ I:*]"
+      }
+    ]
+  },
+  {
+    "uid": "fe0ylyg4cdd6oc",
+    "title": "Zabbix Server Dashboard",
+    "panels": [
+      {
+        "id": 3,
+        "title": "Host name",
+        "type": "stat",
+        "targetDesc": "[G:Zabbix servers H:Zabbix server I:System name]"
+      },
+      {
+        "id": 4,
+        "title": "Uptime",
+        "type": "stat",
+        "targetDesc": "[G:Zabbix servers H:Zabbix server I:System uptime]"
+      },
+      {
+        "id": 5,
+        "title": "Required performance, NVPS",
+        "type": "stat",
+        "targetDesc": "[G:Zabbix servers H:Zabbix server I:Zabbix server: Number of processed values per second]"
+      },
+      {
+        "id": 1,
+        "title": "CPU",
+        "type": "timeseries",
+        "targetDesc": "[G:Zabbix servers H:Zabbix server I:CPU idle time]"
+      },
+      {
+        "id": 2,
+        "title": "Zabbix processes",
+        "type": "table",
+        "targetDesc": "[G:Zabbix servers H:Zabbix server I:/.* process/]"
+      },
+      {
+        "id": 6,
+        "title": "Zabbix busy processes",
+        "type": "timeseries",
+        "targetDesc": "[G:Zabbix servers H:Zabbix server I:Zabbix server: Utilization of task manager internal processes, in %]"
+      },
+      {
+        "id": 7,
+        "title": "Zabbix Queue",
+        "type": "timeseries",
+        "targetDesc": "[G:Zabbix servers H:Zabbix server I:Zabbix server: Queue], [G:Zabbix servers H:Zabbix server I:Number of running processes]"
+      }
+    ]
+  },
+  {
+    "uid": "ae0yciqutx2iob",
+    "title": "Zabbix System Status",
+    "panels": [
+      {
+        "id": 9,
+        "title": "System status",
+        "type": "table",
+        "targetDesc": "[G:$group H:/.*/ I:[object Object]]"
+      },
+      {
+        "id": 1,
+        "title": "$group",
+        "type": "stat",
+        "targetDesc": "[G:$group H:/.*/ I:[object Object]]"
+      }
+    ]
+  },
+  {
+    "uid": "be0yks0sqf7y8e",
+    "title": "Zabbix Template Linux Server",
+    "panels": [
+      {
+        "id": 1,
+        "title": "CPU",
+        "type": "timeseries",
+        "targetDesc": "[G:$group H:$host I:/CPU/]"
+      },
+      {
+        "id": 2,
+        "title": "System load",
+        "type": "timeseries",
+        "targetDesc": "[G:$group H:$host I:Processor load (15 min average per core)]"
+      },
+      {
+        "id": 3,
+        "title": "Network traffic on $netif",
+        "type": "timeseries",
+        "targetDesc": "[G:$group H:$host I:/$netif/]"
+      }
+    ]
+  }
+]
