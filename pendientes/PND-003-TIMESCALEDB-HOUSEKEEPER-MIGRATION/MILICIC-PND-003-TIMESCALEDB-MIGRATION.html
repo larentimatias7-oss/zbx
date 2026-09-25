@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PND-003 | Migración TimescaleDB — Zabbix SRO-ZAB01 | Milicic S.A.</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 22mm 16mm 20mm 16mm;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    :root {
+      --primary: #ea580c;
+      --primary-light: #fff7ed;
+      --primary-border: #fdba74;
+      --dark-slate: #0f172a;
+      --slate-lead: #1e293b;
+      --slate-text: #334155;
+      --slate-body: #475569;
+      --slate-muted: #64748b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
+      --warning-border: #fcd34d;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --danger-border: #fca5a5;
+      --info: #0891b2;
+      --info-bg: #ecfeff;
+      --info-border: #a5f3fc;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+      font-family: var(--font-family);
+      color: var(--slate-text);
+      line-height: 1.5;
+      margin: 0; padding: 0;
+      font-size: 9.5pt;
+      background: #ffffff;
+    }
+    .page { page-break-after: always; break-after: page; }
+    .no-break { page-break-inside: avoid; break-inside: avoid; }
+
+    /* ── PORTADA ── */
+    .cover-page {
+      page-break-after: always; break-after: page;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 250mm;
+      padding: 16mm 10mm 10mm 10mm;
+      position: relative;
+    }
+    .cover-top { display: flex; flex-direction: column; align-items: flex-start; }
+    .cover-logo-area {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 18mm;
+    }
+    .logo-svg { width: 140px; }
+    .cover-badge {
+      display: inline-block;
+      background: var(--primary); color: #fff;
+      font-size: 7.5pt; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; padding: 4px 12px;
+      border-radius: 3px; margin-bottom: 8mm;
+    }
+    .cover-title {
+      font-size: 26pt; font-weight: 800;
+      color: var(--dark-slate); line-height: 1.1;
+      margin: 0 0 4mm 0;
+    }
+    .cover-title span { color: var(--primary); }
+    .cover-subtitle {
+      font-size: 12pt; color: var(--slate-body);
+      margin: 0 0 10mm 0; font-weight: 400;
+    }
+    .cover-divider {
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-border) 60%, transparent 100%);
+      margin-bottom: 8mm; border-radius: 2px;
+    }
+    .cover-meta-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4px 24px; margin-bottom: 8mm;
+    }
+    .cover-meta-item { font-size: 8.5pt; }
+    .cover-meta-label { color: var(--slate-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .cover-meta-value { color: var(--slate-lead); font-weight: 500; }
+    .cover-bottom {
+      background: var(--dark-slate); color: #fff;
+      padding: 10px 16px; border-radius: 6px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 8pt;
+    }
+    .cover-bottom-left { opacity: 0.8; }
+    .cover-bottom-right { font-weight: 600; color: var(--primary-border); }
+
+    /* ── ENCABEZADO DE SECCIÓN ── */
+    .section-header {
+      background: var(--dark-slate); color: #fff;
+      padding: 8px 14px; margin: 0 0 10px 0;
+      border-left: 4px solid var(--primary);
+      border-radius: 4px;
+    }
+    .section-header h2 {
+      margin: 0; font-size: 11pt; font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .section-header .section-num {
+      color: var(--primary-border); font-size: 8pt;
+      margin-right: 6px;
+    }
+    h3 { color: var(--slate-lead); font-size: 10pt; font-weight: 700; margin: 12px 0 6px 0; border-bottom: 1px solid var(--border-color); padding-bottom: 3px; }
+    p { margin: 0 0 7px 0; }
+
+    /* ── KPI CARDS ── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+    .kpi-card {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      border-top: 3px solid var(--primary); border-radius: 6px;
+      padding: 10px; text-align: center;
+    }
+    .kpi-card.danger { border-top-color: var(--danger); }
+    .kpi-card.success { border-top-color: var(--success); }
+    .kpi-card.warning { border-top-color: var(--warning); }
+    .kpi-card.info { border-top-color: var(--info); }
+    .kpi-value { font-size: 20pt; font-weight: 800; color: var(--slate-lead); line-height: 1; }
+    .kpi-value.danger { color: var(--danger); }
+    .kpi-value.success { color: var(--success); }
+    .kpi-value.warning { color: var(--warning); }
+    .kpi-value.info { color: var(--info); }
+    .kpi-title { font-size: 7.5pt; color: var(--slate-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+    /* ── TABLAS ── */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 8.5pt; }
+    thead th {
+      background: var(--dark-slate); color: #fff;
+      padding: 7px 10px; text-align: left; font-weight: 600;
+    }
+    thead th:first-child { border-radius: 4px 0 0 0; }
+    thead th:last-child { border-radius: 0 4px 0 0; }
+    tbody tr:nth-child(even) { background: var(--card-bg); }
+    tbody tr:nth-child(odd) { background: #ffffff; }
+    tbody td { padding: 6px 10px; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+    .col-center { text-align: center; }
+    .col-mono { font-family: "Courier New", monospace; font-size: 8pt; }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-block; padding: 2px 8px;
+      border-radius: 100px; font-size: 7.5pt; font-weight: 700;
+    }
+    .badge-danger { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger-border); }
+    .badge-success { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+    .badge-warning { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
+    .badge-info { background: var(--info-bg); color: var(--info); border: 1px solid var(--info-border); }
+    .badge-orange { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary-border); }
+
+    /* ── CALLOUTS ── */
+    .callout {
+      border-left: 4px solid var(--info);
+      background: var(--info-bg); padding: 8px 12px;
+      margin-bottom: 10px; border-radius: 0 4px 4px 0; font-size: 8.5pt;
+    }
+    .callout.warning { border-color: var(--warning); background: var(--warning-bg); }
+    .callout.danger { border-color: var(--danger); background: var(--danger-bg); }
+    .callout.success { border-color: var(--success); background: var(--success-bg); }
+    .callout.orange { border-color: var(--primary); background: var(--primary-light); }
+    .callout-title { font-weight: 700; margin-bottom: 3px; font-size: 8.5pt; }
+
+    /* ── DIAGRAMA ARQUITECTURA ── */
+    .arch-diagram {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      border-radius: 8px; padding: 14px; margin-bottom: 12px;
+      font-family: "Courier New", monospace; font-size: 8pt;
+    }
+    .arch-flow {
+      display: flex; align-items: center; gap: 0;
+      margin: 8px 0;
+    }
+    .arch-box {
+      padding: 8px 12px; border-radius: 6px;
+      text-align: center; font-size: 8pt; font-weight: 600;
+      min-width: 100px; font-family: var(--font-family);
+    }
+    .arch-box.before { background: var(--danger-bg); color: var(--danger); border: 2px solid var(--danger-border); }
+    .arch-box.after { background: var(--success-bg); color: var(--success); border: 2px solid var(--success-border); }
+    .arch-box.neutral { background: var(--card-bg); color: var(--slate-text); border: 2px solid var(--border-color); }
+    .arch-box.orange { background: var(--primary-light); color: var(--primary); border: 2px solid var(--primary-border); }
+    .arch-arrow {
+      flex: 1; height: 2px; background: var(--slate-muted);
+      position: relative; margin: 0 4px;
+    }
+    .arch-arrow::after {
+      content: "▶"; position: absolute; right: -6px; top: -7px;
+      color: var(--slate-muted); font-size: 8pt;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { margin: 0; padding: 0; list-style: none; }
+    .timeline-item {
+      display: flex; gap: 12px; margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+    .timeline-dot {
+      width: 28px; min-width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8pt; font-weight: 700; margin-top: 2px;
+    }
+    .timeline-dot.success { background: var(--success); }
+    .timeline-dot.warning { background: var(--warning); }
+    .timeline-content { flex: 1; }
+    .timeline-title { font-weight: 700; color: var(--slate-lead); font-size: 9pt; }
+    .timeline-time { color: var(--slate-muted); font-size: 7.5pt; margin-bottom: 3px; }
+    .timeline-desc { font-size: 8.5pt; }
+
+    /* ── COMPARATIVA ANTES/DESPUÉS ── */
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .compare-card {
+      border-radius: 6px; padding: 12px;
+      border: 1px solid var(--border-color);
+    }
+    .compare-card.before { border-top: 3px solid var(--danger); background: #fff; }
+    .compare-card.after { border-top: 3px solid var(--success); background: #fff; }
+    .compare-card-title {
+      font-weight: 700; font-size: 9pt; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .compare-card ul { margin: 0; padding: 0 0 0 14px; }
+    .compare-card li { font-size: 8.5pt; margin-bottom: 4px; }
+
+    /* ── PIE DE PÁGINA ── */
+    .footer {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      border-top: 1px solid var(--border-color);
+      padding: 4px 16mm;
+      display: flex; justify-content: space-between;
+      font-size: 7.5pt; color: var(--slate-muted);
+      background: #fff;
+    }
+    .content-wrapper { margin-bottom: 12mm; }
+
+    /* ── UTILIDADES ── */
+    .mono { font-family: "Courier New", monospace; font-size: 8pt; }
+    .code-block {
+      background: var(--dark-slate); color: #e2e8f0;
+      padding: 10px 14px; border-radius: 6px;
+      font-family: "Courier New", monospace; font-size: 7.5pt;
+      margin-bottom: 10px; line-height: 1.6;
+      page-break-inside: avoid;
+    }
+    .code-block .comment { color: #64748b; }
+    .code-block .cmd { color: #86efac; }
+    .code-block .kw { color: #fbbf24; }
+    .mb-8 { margin-bottom: 8px; }
+    .mb-12 { margin-bottom: 12px; }
+    .text-muted { color: var(--slate-muted); font-size: 8pt; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     PORTADA
+═══════════════════════════════════════════════════════ -->
+<div class="cover-page">
+  <div class="cover-top">
+    <div class="cover-logo-area">
+      <!-- Logo SVG embebido -->
+      <svg class="logo-svg" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="10" width="8" height="60" fill="#EA580C" rx="2"/>
+        <rect x="14" y="10" width="8" height="60" fill="#EA580C" rx="2"/>
+        <text x="30" y="58" font-family="Arial Black, Arial" font-weight="900" font-size="44" fill="#0F172A">MILICIC</text>
+        <text x="31" y="73" font-family="Arial, sans-serif" font-size="11" fill="#64748B" letter-spacing="3">S.A.</text>
+      </svg>
+      <div style="width:1px; height:48px; background:#e2e8f0; margin:0 6px;"></div>
+      <div style="font-size:8pt; color:#64748b; line-height:1.6;">
+        <div style="font-weight:700; color:#0f172a;">Infraestructura & TI</div>
+        <div>Área de Monitoreo y Operaciones</div>
+        <div>Zabbix 7.0.22 LTS — SRO-ZAB01</div>
+      </div>
+    </div>
+
+    <div class="cover-badge">Informe Técnico Operativo · PND-003</div>
+
+    <h1 class="cover-title">
+      Migración a<br>
+      <span>TimescaleDB Hypertables</span><br>
+      <span style="font-size:18pt; color:#334155;">Zabbix Server — SRO-ZAB01</span>
+    </h1>
+
+    <p class="cover-subtitle">
+      Diagnóstico, justificación técnica y procedimiento aplicado para resolver<br>
+      la saturación crónica del proceso <em>housekeeper</em> en producción.
+    </p>
+
+    <div class="cover-divider"></div>
+
+    <div class="cover-meta-grid">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">ID del Caso</div>
+        <div class="cover-meta-value">PND-003</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Fecha de Ejecución</div>
+        <div class="cover-meta-value">25 de Septiembre de 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Plataforma Afectada</div>
+        <div class="cover-meta-value">Zabbix 7.0.22 LTS — SRO-ZAB01</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Clasificación</div>
+        <div class="cover-meta-value">AUD-006 — Sobrecarga Plataforma</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Estado</div>
+        <div class="cover-meta-value" style="color:#16a34a;">✔ Resuelto — En Producción</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Responsable</div>
+        <div class="cover-meta-value">Matias Larenti — Infraestructura TI</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Versión del Documento</div>
+        <div class="cover-meta-value">1.0 — Inicial</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Confidencialidad</div>
+        <div class="cover-meta-value">Interno — Uso Restringido</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-bottom-left">Milicic S.A. · Infraestructura &amp; TI · Sede Rosario</div>
+    <div class="cover-bottom-right">PND-003 · v1.0 · 2026-09-25</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PÁGINA 2: RESUMEN EJECUTIVO + DIAGNÓSTICO
+═══════════════════════════════════════════════════════ -->
+<div class="page content-wrapper">
+
+  <div class="section-header">
+    <h2><span class="section-num">1.</span> Resumen Ejecutivo</h2>
+  </div>
+
+  <p>
+    El proceso <strong>housekeeper</strong> del Zabbix Server (<code>SRO-ZAB01</code>) mantuvo una utilización
+    del <strong>100%</strong> de forma crónica y continua, generando alertas recurrentes clasificadas como
+    <span class="badge badge-warning">AUD-006 / P2 Plataforma</span>. La causa raíz fue identificada como
+    una <strong>discrepancia de configuración</strong>: TimescaleDB 2.24.0 estaba instalado en el motor
+    PostgreSQL 16 pero sus tablas de series temporales (<code>history*</code>, <code>trends*</code>)
+    nunca habían sido convertidas a <em>hypertables</em> ni el servidor Zabbix tenía conocimiento de ello.
+    Como resultado, el housekeeper realizaba operaciones <code>DELETE</code> fila por fila sobre tablas
+    PostgreSQL planas de hasta <strong>33 GB</strong>, un proceso extremadamente ineficiente para el
+    volumen de datos en producción.
+  </p>
+
+  <div class="kpi-grid no-break">
+    <div class="kpi-card danger">
+      <div class="kpi-value danger">100%</div>
+      <div class="kpi-title">Utilización HK<br>antes del cambio</div>
+    </div>
+    <div class="kpi-card warning">
+      <div class="kpi-value warning">~46 GB</div>
+      <div class="kpi-title">Datos migrados<br>a hypertables</div>
+    </div>
+    <div class="kpi-card info">
+      <div class="kpi-value info">7</div>
+      <div class="kpi-title">Hypertables<br>creadas</div>
+    </div>
+    <div class="kpi-card success">
+      <div class="kpi-value success">&lt;5%</div>
+      <div class="kpi-title">Utilización HK<br>esperada post-cambio</div>
+    </div>
+  </div>
+
+  <div class="callout warning no-break">
+    <div class="callout-title">⚠ Impacto Operativo Previo</div>
+    La alerta <em>"Utilization of housekeeper processes over 75%"</em> se activaba y desactivaba
+    cíclicamente (duración de hasta 10 horas por evento), generando ruido en los canales P2 de Telegram
+    y enmascarando potenciales alertas legítimas de plataforma.
+  </div>
+
+  <div class="section-header">
+    <h2><span class="section-num">2.</span> Diagnóstico Técnico — Estado Pre-Cambio</h2>
+  </div>
+
+  <h3>2.1 Arquitectura del Servidor de Monitoreo</h3>
+  <table class="no-break">
+    <thead>
+      <tr>
+        <th>Componente</th>
+        <th>Imagen / Versión</th>
+        <th>Estado</th>
+        <th>Observación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Zabbix Server</strong></td>
+        <td class="mono">zabbix-server-pgsql:alpine-7.0-latest</td>
+        <td><span class="badge badge-success">Operativo</span></td>
+        <td>v7.0.22 LTS — Puerto 10051</td>
+      </tr>
+      <tr>
+        <td><strong>Zabbix Frontend</strong></td>
+        <td class="mono">zabbix-web-nginx-pgsql:alpine-7.0-latest</td>
+        <td><span class="badge badge-success">Operativo</span></td>
+        <td>HTTPS — Nginx</td>
+      </tr>
+      <tr>
+        <td><strong>Base de Datos</strong></td>
+        <td class="mono">timescale/timescaledb:latest-pg16</td>
+        <td><span class="badge badge-warning">Mal configurado</span></td>
+        <td>TimescaleDB 2.24.0 instalado, sin hypertables</td>
+      </tr>
+      <tr>
+        <td><strong>Zabbix Agent 2</strong></td>
+        <td class="mono">zabbix-agent2:alpine-7.0-latest</td>
+        <td><span class="badge badge-success">Operativo</span></td>
+        <td>Puerto 10050</td>
+      </tr>
+      <tr>
+        <td><strong>Nginx Proxy Manager</strong></td>
+        <td class="mono">jc21/nginx-proxy-manager:latest</td>
+        <td><span class="badge badge-success">Operativo</span></td>
+        <td>Puertos 80/443</td>
+      </tr>
+      <tr>
+        <td><strong>Portainer CE</strong></td>
+        <td class="mono">portainer/portainer-ce:lts</td>
+        <td><span class="badge badge-success">Operativo</span></td>
+        <td>Gestión de stacks — Puerto 9443</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>2.2 Diagnóstico de Procesos Zabbix Server</h3>
+  <p>Mapa completo de utilización de procesos al momento del diagnóstico (25/09/2026 ~09:54 ART):</p>
+
+  <table class="no-break">
+    <thead>
+      <tr>
+        <th>Proceso</th>
+        <th class="col-center">Utilización</th>
+        <th class="col-center">Estado</th>
+        <th>Diagnóstico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Housekeeper</strong></td>
+        <td class="col-center"><strong style="color:#dc2626;">100%</strong></td>
+        <td class="col-center"><span class="badge badge-danger">Crítico</span></td>
+        <td>DELETE masivo en tablas planas — saturación total</td>
+      </tr>
+      <tr>
+        <td>ICMP Pinger</td>
+        <td class="col-center">51%</td>
+        <td class="col-center"><span class="badge badge-warning">Observación</span></td>
+        <td>Carga normal para la cantidad de hosts monitoreados</td>
+      </tr>
+      <tr>
+        <td>Unreachable Poller</td>
+        <td class="col-center">50.9%</td>
+        <td class="col-center"><span class="badge badge-warning">Observación</span></td>
+        <td>Hosts inalcanzables — esperable con equipos offline</td>
+      </tr>
+      <tr>
+        <td>Poller</td>
+        <td class="col-center">33.8%</td>
+        <td class="col-center"><span class="badge badge-info">Normal</span></td>
+        <td>Carga de polling dentro de parámetros aceptables</td>
+      </tr>
+      <tr>
+        <td>VMware Collector</td>
+        <td class="col-center">6.8%</td>
+        <td class="col-center"><span class="badge badge-success">Óptimo</span></td>
+        <td>5 colectores configurados para vCenter</td>
+      </tr>
+      <tr>
+        <td>Todos los demás</td>
+        <td class="col-center">&lt;2%</td>
+        <td class="col-center"><span class="badge badge-success">Óptimo</span></td>
+        <td>Preprocessing, alerter, escalator, etc.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>2.3 Hallazgo Crítico: Configuración Incoherente de TimescaleDB</h3>
+  <div class="compare-grid no-break">
+    <div class="compare-card before">
+      <div class="compare-card-title"><span style="color:#dc2626;">✗</span> Estado Pre-Migración</div>
+      <ul>
+        <li><code>ZBX_ENABLE_TIMESCALEDB=true</code> en el contenedor</li>
+        <li><code>ZBX_DBEXTENSION=timescaledb</code> configurado</li>
+        <li>Extensión TimescaleDB 2.24.0 instalada en PostgreSQL</li>
+        <li><strong>0 hypertables</strong> en la base de datos</li>
+        <li>Tablas <code>history*</code> y <code>trends*</code> como PostgreSQL planas</li>
+        <li>HK interno de History y Trends habilitado en UI</li>
+        <li><code>ZBX_MAXHOUSEKEEPERDELETE=2000</code> (muy bajo)</li>
+      </ul>
+    </div>
+    <div class="compare-card after">
+      <div class="compare-card-title"><span style="color:#16a34a;">✓</span> Estado Post-Migración</div>
+      <ul>
+        <li><code>ZBX_ENABLE_TIMESCALEDB=true</code> operativo</li>
+        <li><code>ZBX_DBEXTENSION=timescaledb</code> activo</li>
+        <li>TimescaleDB 2.24.0 gestionando los datos</li>
+        <li><strong>7 hypertables</strong> con 90 chunks c/u</li>
+        <li>Función <code>unix_now()</code> registrada para dimensiones enteras</li>
+        <li>HK de History/Trends deshabilitado en UI de Zabbix</li>
+        <li>7 retention policies automáticas activas</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PÁGINA 3: JUSTIFICACIÓN DE DECISIÓN
+═══════════════════════════════════════════════════════ -->
+<div class="page content-wrapper">
+
+  <div class="section-header">
+    <h2><span class="section-num">3.</span> Justificación de la Decisión Técnica</h2>
+  </div>
+
+  <h3>3.1 ¿Por qué no agregar vCPUs a la VM?</h3>
+  <p>
+    La primera hipótesis ante alertas de utilización elevada es habitualmente escalar los recursos de cómputo.
+    En este caso, dicha acción habría sido <strong>ineficaz y costosa</strong> por las siguientes razones técnicas:
+  </p>
+
+  <div class="callout danger no-break">
+    <div class="callout-title">✗ Por qué agregar vCPUs no resuelve el problema</div>
+    El proceso <strong>housekeeper</strong> de Zabbix es un <em>proceso único</em> —
+    no paralelizable y no vinculado a la capacidad de CPU sino al rendimiento de I/O de la base de datos.
+    Incrementar vCPUs no reduce el tiempo de las operaciones <code>DELETE</code> en PostgreSQL.
+    El cuello de botella es estructural: <strong>diseño de almacenamiento de datos</strong>.
+  </div>
+
+  <table class="no-break">
+    <thead>
+      <tr>
+        <th>Alternativa Evaluada</th>
+        <th class="col-center">¿Resuelve el problema?</th>
+        <th>Razón</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Agregar vCPUs a la VM</td>
+        <td class="col-center"><span class="badge badge-danger">No</span></td>
+        <td>HK es single-thread, no CPU-bound sino I/O-bound</td>
+      </tr>
+      <tr>
+        <td>Aumentar <code>MaxHousekeeperDelete</code></td>
+        <td class="col-center"><span class="badge badge-warning">Parcial</span></td>
+        <td>Mejora throughput pero no elimina el problema estructural</td>
+      </tr>
+      <tr>
+        <td>Reducir retención de history</td>
+        <td class="col-center"><span class="badge badge-warning">Parcial</span></td>
+        <td>Reduce la deuda pero el HK sigue siendo ineficiente</td>
+      </tr>
+      <tr>
+        <td>Activar TimescaleDB Hypertables + deshabilitar HK</td>
+        <td class="col-center"><span class="badge badge-success">Sí — Solución Definitiva</span></td>
+        <td>Elimina DELETE fila-por-fila; TimescaleDB descarta chunks completos en O(1)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 ¿Cómo mejora TimescaleDB la retención de datos?</h3>
+  <p>
+    TimescaleDB organiza los datos de series temporales en <strong>chunks</strong>: particiones inmutables
+    de tiempo (p.ej., 1 día para <code>history</code>, 30 días para <code>trends</code>).
+    Cuando un chunk supera su período de retención, TimescaleDB lo elimina con un simple
+    <code>DROP TABLE</code> — una operación casi instantánea independientemente del volumen de datos.
+  </p>
+
+  <div style="background:var(--card-bg); border:1px solid var(--border-color); border-radius:8px; padding:14px; margin-bottom:12px;" class="no-break">
+    <div style="font-weight:700; color:var(--slate-lead); margin-bottom:10px; font-size:9pt;">
+      📊 Comparativa de Eficiencia: DELETE vs DROP CHUNK
+    </div>
+    <table style="margin-bottom:0;">
+      <thead>
+        <tr>
+          <th>Métricas</th>
+          <th class="col-center">PostgreSQL Plano (Antes)</th>
+          <th class="col-center">TimescaleDB Hypertable (Después)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Operación de borrado</td>
+          <td class="col-center"><code>DELETE WHERE clock &lt; epoch</code></td>
+          <td class="col-center"><code>DROP TABLE chunk_X</code></td>
+        </tr>
+        <tr>
+          <td>Complejidad algorítmica</td>
+          <td class="col-center" style="color:var(--danger);">O(n) — lineal por filas</td>
+          <td class="col-center" style="color:var(--success);">O(1) — constante</td>
+        </tr>
+        <tr>
+          <td>Lock durante operación</td>
+          <td class="col-center" style="color:var(--danger);">ROW EXCLUSIVE — lento</td>
+          <td class="col-center" style="color:var(--success);">ACCESS EXCLUSIVE — instantáneo</td>
+        </tr>
+        <tr>
+          <td>Impacto en tablas de 33 GB</td>
+          <td class="col-center" style="color:var(--danger);">HK al 100% contínuamente</td>
+          <td class="col-center" style="color:var(--success);">Drop de chunk en &lt;1 segundo</td>
+        </tr>
+        <tr>
+          <td>Fragmentación de índices</td>
+          <td class="col-center" style="color:var(--danger);">Alta — requiere VACUUM</td>
+          <td class="col-center" style="color:var(--success);">Nula — chunks inmutables</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout success no-break">
+    <div class="callout-title">✔ Conclusión de Justificación</div>
+    La decisión de migrar a TimescaleDB Hypertables es la <strong>solución arquitecturalmente correcta</strong>
+    para Zabbix en producción con volúmenes superiores a 10 GB de datos históricos. La infraestructura ya
+    contaba con TimescaleDB instalado — la migración aprovechó la inversión existente sin costo adicional
+    de licenciamiento.
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PÁGINA 4: VOLUMEN DE DATOS Y PROCEDIMIENTO
+═══════════════════════════════════════════════════════ -->
+<div class="page content-wrapper">
+
+  <div class="section-header">
+    <h2><span class="section-num">4.</span> Inventario de Datos y Plan de Migración</h2>
+  </div>
+
+  <h3>4.1 Volumen de Tablas Pre-Migración</h3>
+  <table class="no-break">
+    <thead>
+      <tr>
+        <th>Tabla</th>
+        <th class="col-center">Tamaño</th>
+        <th class="col-center">Tipo de Dato</th>
+        <th class="col-center">Chunk Interval</th>
+        <th class="col-center">Tiempo Estimado</th>
+        <th class="col-center">Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">history_log</td>
+        <td class="col-center">28 MB</td>
+        <td class="col-center">Log</td>
+        <td class="col-center">86.400 seg (1d)</td>
+        <td class="col-center">~segundos</td>
+        <td class="col-center"><span class="badge badge-success">✓ OK</span></td>
+      </tr>
+      <tr>
+        <td class="mono">history_str</td>
+        <td class="col-center">194 MB</td>
+        <td class="col-center">String</td>
+        <td class="col-center">86.400 seg (1d)</td>
+        <td class="col-center">~30 seg</td>
+        <td class="col-center"><span class="badge badge-success">✓ OK</span></td>
+      </tr>
+      <tr>
+        <td class="mono">history_text</td>
+        <td class="col-center">461 MB</td>
+        <td class="col-center">Text</td>
+        <td class="col-center">86.400 seg (1d)</td>
+        <td class="col-center">~1 min</td>
+        <td class="col-center"><span class="badge badge-success">✓ OK</span></td>
+      </tr>
+      <tr>
+        <td class="mono">trends</td>
+        <td class="col-center">715 MB</td>
+        <td class="col-center">Float</td>
+        <td class="col-center">2.592.000 seg (30d)</td>
+        <td class="col-center">~2 min</td>
+        <td class="col-center"><span class="badge badge-success">✓ OK</span></td>
+      </tr>
+      <tr>
+        <td class="mono">trends_uint</td>
+        <td class="col-center">5.3 GB</td>
+        <td class="col-center">Uint</td>
+        <td class="col-center">2.592.000 seg (30d)</td>
+        <td class="col-center">~8 min</td>
+        <td class="col-center"><span class="badge badge-success">✓ OK</span></td>
+      </tr>
+      <tr>
+        <td class="mono">history</td>
+        <td class="col-center">6.8 GB</td>
+        <td class="col-center">Float</td>
+        <td class="col-center">86.400 seg (1d)</td>
+        <td class="col-center">~10 min</td>
+        <td class="col-center"><span class="badge badge-success">✓ OK</span></td>
+      </tr>
+      <tr style="background:#fff7ed;">
+        <td class="mono"><strong>history_uint</strong></td>
+        <td class="col-center"><strong>33 GB</strong></td>
+        <td class="col-center">Uint</td>
+        <td class="col-center">86.400 seg (1d)</td>
+        <td class="col-center"><strong>~2.5 horas</strong></td>
+        <td class="col-center"><span class="badge badge-success">✓ OK</span></td>
+      </tr>
+      <tr style="background:var(--card-bg); font-weight:700;">
+        <td><strong>TOTAL</strong></td>
+        <td class="col-center"><strong>~46 GB</strong></td>
+        <td class="col-center" colspan="2">—</td>
+        <td class="col-center"><strong>~2h 50min</strong></td>
+        <td class="col-center"><span class="badge badge-success">7/7 ✓</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning no-break">
+    <div class="callout-title">⚠ Nota sobre el parámetro de intervalo</div>
+    La columna <code>clock</code> en Zabbix está almacenada como <strong>integer</strong> (Unix timestamp en segundos),
+    no como tipo <code>TIMESTAMP</code> de PostgreSQL. TimescaleDB requiere que el intervalo de chunk se especifique
+    en <strong>segundos como entero</strong> y no como <code>INTERVAL '1 day'</code>. Este fue el error inicial
+    que causó el mensaje <em>"invalid interval type for integer dimension"</em>.
+  </div>
+
+  <div class="section-header">
+    <h2><span class="section-num">5.</span> Procedimiento de Ejecución</h2>
+  </div>
+
+  <ul class="timeline">
+    <li class="timeline-item no-break">
+      <div class="timeline-dot">1</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Detención del Zabbix Server</div>
+        <div class="timeline-time">25/09/2026 — ~10:20 ART</div>
+        <div class="timeline-desc">
+          Se detuvo únicamente el contenedor <code>zabbix-server</code>.
+          La base de datos (<code>zabbix-postgresql</code>) y el frontend continuaron operativos.
+          Esto permitió realizar la migración sin interrumpir la UI de Zabbix ni las vistas históricas.
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item no-break">
+      <div class="timeline-dot">2</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Corrección del Tipo de Intervalo y Primer Intento</div>
+        <div class="timeline-time">25/09/2026 — ~10:22 ART</div>
+        <div class="timeline-desc">
+          El primer intento con <code>INTERVAL '1 day'</code> falló. Se corrigió la sintaxis
+          a intervalos enteros en segundos: <strong>86.400</strong> para tablas de history (1 día)
+          y <strong>2.592.000</strong> para tables de trends (30 días).
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item no-break">
+      <div class="timeline-dot success">3</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Migración de 6 Tablas Menores (28 MB — 5.3 GB)</div>
+        <div class="timeline-time">25/09/2026 — 10:23 a 10:40 ART</div>
+        <div class="timeline-desc">
+          Las tablas <code>history_log</code>, <code>history_str</code>, <code>history_text</code>,
+          <code>trends</code>, <code>trends_uint</code> e <code>history</code> completaron exitosamente.
+          Resultado acumulado: <strong>IDs de hypertable 1 al 6 confirmados</strong>.
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item no-break">
+      <div class="timeline-dot warning">4</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Migración de history_uint (33 GB) — Corte de VPN</div>
+        <div class="timeline-time">25/09/2026 — 10:40 a 12:43 ART (~2h)</div>
+        <div class="timeline-desc">
+          La migración de la tabla más grande comenzó con <code>PID 1584904</code>. A mitad del proceso
+          se perdió la sesión SSH por caída de VPN. El proceso <strong>sobrevivió</strong> porque se
+          ejecutó dentro del contenedor Docker (el proceso psql en el contenedor es independiente de la
+          sesión SSH). Al reconectar se confirmó que el PID seguía activo. A las 12:43 ART el PID
+          desapareció indicando finalización exitosa.
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item no-break">
+      <div class="timeline-dot success">5</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Verificación: 7 Hypertables Confirmadas</div>
+        <div class="timeline-time">25/09/2026 — 12:45 ART</div>
+        <div class="timeline-desc">
+          Consulta a <code>timescaledb_information.hypertables</code> confirmó las 7 tablas con
+          <strong>90 chunks cada una</strong> (history*) y <strong>10 chunks</strong> (trends*).
+          Tamaño post-migración total: ~47 GB (overhead mínimo de metadatos TimescaleDB).
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item no-break">
+      <div class="timeline-dot success">6</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Reinicio del Zabbix Server y Configuración de HK</div>
+        <div class="timeline-time">25/09/2026 — 12:46 ART</div>
+        <div class="timeline-desc">
+          <code>docker start zabbix-server</code> exitoso. En la UI de Zabbix:
+          <strong>Administration → General → Housekeeping</strong> → deshabilitado el HK interno
+          para History y Trends. Events, Audit y Sessions permanecen con HK activo.
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item no-break">
+      <div class="timeline-dot success">7</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Configuración de Retention Policies TimescaleDB</div>
+        <div class="timeline-time">25/09/2026 — 12:52 ART</div>
+        <div class="timeline-desc">
+          Creación de la función <code>unix_now()</code> (tipo integer para compatibilidad con la
+          columna <code>clock</code>) y registro de 7 retention policies automáticas:
+          <strong>31 días</strong> para history*, <strong>365 días</strong> para trends*.
+          Schedule de ejecución: <strong>diario</strong>. Job IDs: 1000 al 1006.
+        </div>
+      </div>
+    </li>
+  </ul>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PÁGINA 5: RESULTADO FINAL Y CONFIGURACIÓN POST-CAMBIO
+═══════════════════════════════════════════════════════ -->
+<div class="page content-wrapper">
+
+  <div class="section-header">
+    <h2><span class="section-num">6.</span> Resultado Final y Estado Post-Cambio</h2>
+  </div>
+
+  <h3>6.1 Inventario de Hypertables Creadas</h3>
+  <table class="no-break">
+    <thead>
+      <tr>
+        <th>Hypertable ID</th>
+        <th>Nombre</th>
+        <th class="col-center">N° Chunks</th>
+        <th class="col-center">Tamaño Final</th>
+        <th class="col-center">Retención</th>
+        <th class="col-center">Job ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-center">1</td>
+        <td class="mono">history_log</td>
+        <td class="col-center">33</td>
+        <td class="col-center">9.4 MB</td>
+        <td class="col-center">31 días</td>
+        <td class="col-center">1003</td>
+      </tr>
+      <tr>
+        <td class="col-center">2</td>
+        <td class="mono">history_str</td>
+        <td class="col-center">90</td>
+        <td class="col-center">211 MB</td>
+        <td class="col-center">31 días</td>
+        <td class="col-center">1002</td>
+      </tr>
+      <tr>
+        <td class="col-center">3</td>
+        <td class="mono">history_text</td>
+        <td class="col-center">90</td>
+        <td class="col-center">415 MB</td>
+        <td class="col-center">31 días</td>
+        <td class="col-center">1004</td>
+      </tr>
+      <tr>
+        <td class="col-center">4</td>
+        <td class="mono">trends</td>
+        <td class="col-center">10</td>
+        <td class="col-center">786 MB</td>
+        <td class="col-center">365 días</td>
+        <td class="col-center">1005</td>
+      </tr>
+      <tr>
+        <td class="col-center">5</td>
+        <td class="mono">trends_uint</td>
+        <td class="col-center">10</td>
+        <td class="col-center">5.1 GB</td>
+        <td class="col-center">365 días</td>
+        <td class="col-center">1006</td>
+      </tr>
+      <tr>
+        <td class="col-center">6</td>
+        <td class="mono">history</td>
+        <td class="col-center">90</td>
+        <td class="col-center">7.4 GB</td>
+        <td class="col-center">31 días</td>
+        <td class="col-center">1000</td>
+      </tr>
+      <tr>
+        <td class="col-center">7</td>
+        <td class="mono">history_uint</td>
+        <td class="col-center">90</td>
+        <td class="col-center">34 GB</td>
+        <td class="col-center">31 días</td>
+        <td class="col-center">1001</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>6.2 Configuración Final del Contenedor zabbix-server</h3>
+  <table class="no-break">
+    <thead>
+      <tr>
+        <th>Variable de Entorno</th>
+        <th class="col-center">Valor Anterior</th>
+        <th class="col-center">Valor Actual</th>
+        <th>Efecto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">ZBX_ENABLE_TIMESCALEDB</td>
+        <td class="col-center">true</td>
+        <td class="col-center" style="color:#16a34a;"><strong>true ✓ activo</strong></td>
+        <td>Ahora sí tiene efecto real con hypertables presentes</td>
+      </tr>
+      <tr>
+        <td class="mono">ZBX_DBEXTENSION</td>
+        <td class="col-center">timescaledb</td>
+        <td class="col-center" style="color:#16a34a;"><strong>timescaledb ✓ activo</strong></td>
+        <td>Confirma el uso de extensión en las queries</td>
+      </tr>
+      <tr>
+        <td class="mono">ZBX_MAXHOUSEKEEPERDELETE</td>
+        <td class="col-center" style="color:#dc2626;">2000</td>
+        <td class="col-center" style="color:#d97706;"><strong>5000 (pendiente)</strong></td>
+        <td>Mejora throughput para Events/Audit (vía Portainer)</td>
+      </tr>
+      <tr>
+        <td class="mono">ZBX_HOUSEKEEPINGFREQUENCY</td>
+        <td class="col-center">1</td>
+        <td class="col-center">1</td>
+        <td>Sin cambio — HK corre cada hora</td>
+      </tr>
+      <tr>
+        <td class="mono">ZBX_CACHESIZE</td>
+        <td class="col-center">1024M</td>
+        <td class="col-center">1024M</td>
+        <td>Sin cambio</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>6.3 Configuración de Housekeeping en UI de Zabbix</h3>
+  <table class="no-break">
+    <thead>
+      <tr>
+        <th>Sección</th>
+        <th class="col-center">HK Interno Habilitado</th>
+        <th class="col-center">Responsable del Borrado</th>
+        <th class="col-center">Período de Retención</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Events &amp; Alerts</td>
+        <td class="col-center"><span class="badge badge-success">✓ Sí</span></td>
+        <td class="col-center">Zabbix HK</td>
+        <td class="col-center">365 días (triggers)</td>
+      </tr>
+      <tr>
+        <td>Services</td>
+        <td class="col-center"><span class="badge badge-success">✓ Sí</span></td>
+        <td class="col-center">Zabbix HK</td>
+        <td class="col-center">365 días</td>
+      </tr>
+      <tr>
+        <td>User Sessions</td>
+        <td class="col-center"><span class="badge badge-success">✓ Sí</span></td>
+        <td class="col-center">Zabbix HK</td>
+        <td class="col-center">365 días</td>
+      </tr>
+      <tr style="background:#dcfce7;">
+        <td><strong>History</strong></td>
+        <td class="col-center"><span class="badge badge-danger">✗ Deshabilitado</span></td>
+        <td class="col-center"><strong>TimescaleDB</strong></td>
+        <td class="col-center">31 días (retention policy)</td>
+      </tr>
+      <tr style="background:#dcfce7;">
+        <td><strong>Trends</strong></td>
+        <td class="col-center"><span class="badge badge-danger">✗ Deshabilitado</span></td>
+        <td class="col-center"><strong>TimescaleDB</strong></td>
+        <td class="col-center">365 días (retention policy)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout success no-break">
+    <div class="callout-title">✔ Impacto Esperado en la Utilización del Housekeeper</div>
+    Con el HK de History y Trends delegado a TimescaleDB, el proceso housekeeper de Zabbix solo gestiona
+    <strong>Events, Audit, Services y Sessions</strong> — tablas de menor volumen. La utilización debería
+    caer de <strong>100% crónico</strong> a <strong>&lt;5%</strong> en los próximos ciclos (1-2 horas
+    post-implementación). La alerta <em>"Utilization of housekeeper processes over 75%"</em> no debería
+    volver a dispararse bajo condiciones normales de operación.
+  </div>
+
+  <div class="section-header">
+    <h2><span class="section-num">7.</span> Rollback y Contingencias</h2>
+  </div>
+
+  <div class="no-break">
+  <p>En caso de que se detecten comportamientos anómalos post-migración, el procedimiento de rollback es:</p>
+  <ol style="font-size:8.5pt; padding-left:20px;">
+    <li style="margin-bottom:5px;">
+      <strong>Re-habilitar HK interno en la UI:</strong> Administration → General → Housekeeping →
+      marcar nuevamente "Enable internal housekeeping" para History y Trends.
+    </li>
+    <li style="margin-bottom:5px;">
+      <strong>Eliminar retention policies de TimescaleDB</strong> si se desea:
+      <code>SELECT remove_retention_policy('history', if_not_exists => true);</code> (repetir para cada tabla).
+    </li>
+    <li style="margin-bottom:5px;">
+      <strong>Las hypertables son compatibles con el HK de Zabbix</strong> — no es necesario revertirlas
+      a tablas planas para que el HK vuelva a funcionar. La coexistencia es posible y sin riesgo de pérdida de datos.
+    </li>
+  </ol>
+  </div>
+
+  <div class="section-header">
+    <h2><span class="section-num">8.</span> Pendientes y Seguimiento</h2>
+  </div>
+
+  <table class="no-break">
+    <thead>
+      <tr>
+        <th>Ítem</th>
+        <th>Descripción</th>
+        <th class="col-center">Prioridad</th>
+        <th class="col-center">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Actualizar <code>ZBX_MAXHOUSEKEEPERDELETE</code></td>
+        <td>Cambiar de 2000 a 5000 en el stack de Portainer para optimizar el HK de Events/Audit</td>
+        <td class="col-center"><span class="badge badge-warning">Media</span></td>
+        <td class="col-center"><span class="badge badge-warning">Pendiente</span></td>
+      </tr>
+      <tr>
+        <td>Monitorear utilización HK</td>
+        <td>Verificar que el ítem <code>zabbix[process,housekeeper,avg,busy]</code> baje a &lt;5% en las próximas horas</td>
+        <td class="col-center"><span class="badge badge-info">Alta</span></td>
+        <td class="col-center"><span class="badge badge-info">En curso</span></td>
+      </tr>
+      <tr>
+        <td>Documentar en docker-compose</td>
+        <td>Crear archivo <code>docker-compose.yml</code> en Portainer con toda la configuración actual para trazabilidad</td>
+        <td class="col-center"><span class="badge badge-warning">Media</span></td>
+        <td class="col-center"><span class="badge badge-warning">Pendiente</span></td>
+      </tr>
+      <tr>
+        <td>Revisar retención de Events</td>
+        <td>El período de 1d para Internal, Service y Network Discovery events parece corto. Evaluar si corresponde ampliarlo</td>
+        <td class="col-center"><span class="badge badge-info">Baja</span></td>
+        <td class="col-center"><span class="badge badge-warning">Pendiente</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Footer visual -->
+  <div style="margin-top:16mm; border-top:1px solid var(--border-color); padding-top:8px; display:flex; justify-content:space-between; font-size:7.5pt; color:var(--slate-muted);">
+    <div>Milicic S.A. · Infraestructura &amp; TI · Monitoreo · PND-003 v1.0</div>
+    <div>Fecha: 25 de Septiembre de 2026 · Confidencial — Uso Interno</div>
+  </div>
+
+</div>
+
+</body>
+</html>

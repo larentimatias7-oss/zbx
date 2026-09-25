@@ -23,7 +23,7 @@ Durante la fase de diagnóstico inicial y saneamiento se identificaron y catalog
 | **AUD-003** | Alta | Alerting | Acción global sin condiciones (*Alert Storms*) | La acción por defecto `Report problems to Zabbix administrators` escalaba sin filtros ni persistencia. | **Resuelto:** Deshabilitada y reemplazada por las 4 acciones P1, P2 (Redes), P2 (Plataforma) y P3. |
 | **AUD-004** | Alta | Ruido | Volumen crítico de alertas | 8.406 eventos en 30 días (promedio 280/día) concentrados en solo 5 disparadores recurrentes. | **Resuelto:** Ajuste de persistencia (10 min en P2, 30 min en P3) y filtros por severidad/tags. |
 | **AUD-005** | Alta | Red | Microflapping en switches | Puerto `Gi1/0/4` de `SRO-G01-P100-ACC01` generó 176 problemas en 7 días (93.8% duraron < 5 min). | Clasificación con `Analyze-LinkDownFlapping.ps1` y diagnóstico físico. |
-| **AUD-006** | Media | Plataforma | Sobrecarga de pollers Zabbix Server | Procesos housekeeper y unreachable poller saturados > 75% por reintentos de equipos offline. | Ajuste de lógicas de timeout y revisión de equipos inalcanzables. |
+| **AUD-006** | Media | Plataforma | Sobrecarga de pollers Zabbix Server | Proceso housekeeper al 100% crónico. Causa raíz: `ZBX_ENABLE_TIMESCALEDB=true` sin hypertables — Zabbix realizaba DELETE fila por fila en tablas planas de hasta 33 GB. | **Resuelto 25/09/2026:** Migración de 7 tablas (~46 GB) a TimescaleDB Hypertables, 7 retention policies configuradas (31d history / 365d trends), HK interno de History/Trends deshabilitado en UI. Ver PND-003. |
 | **AUD-007** | Alta | Energía | UPS GALPON 01 con batería baja recurrente | 168 eventos High en 30 días por autonomía reportada < 10 minutos. | Inspección física del banco de baterías y control de carga. |
 | **AUD-008** | Media | Windows | Falsas alarmas por servicio VSS | 162 eventos en 30 días en hipervisores porque VSS inicia bajo demanda. | **Resuelto en SSJ-HPV01:** Trigger 34062 deshabilitado; reemplazado por 37635 (startup=disabled). |
 | **AUD-009** | Media | Resiliencia | Monitoreo en San Juan (Proxy y HA) | Proxy `SSJ-ZAB01` y servidores de San Juan sin visibilidad de estado HA. | Documentación de topología e inspección de proxy. |
@@ -246,9 +246,25 @@ Se crearon 11 dashboards en la carpeta `Milicic Observabilidad`:
     - URL Directa: `http://172.27.210.154:3005/d/milicic-sanjuan-infra/ea24b36`.
   * **Acceso Directo al Mapa de Zabbix:** `https://zabbix.mlccnet.local/zabbix.php?action=map.view&sysmapid=12&severity_min=1`.
 
+### 25/09/2026: Migración TimescaleDB — Resolución AUD-006 (PND-003)
+- **Diagnóstico:** Alerta recurrente `Utilization of housekeeper processes over 75%` (triggerid: 13473). Housekeeper al 100% constante durante semanas.
+- **Causa Raíz Identificada:** `ZBX_ENABLE_TIMESCALEDB=true` estaba configurado en el contenedor `zabbix-server` y la extensión TimescaleDB 2.24.0 estaba instalada en `zabbix-postgresql`, pero las 7 tablas de series temporales (`history*`, `trends*`) nunca fueron convertidas a **hypertables**. Zabbix realizaba `DELETE` fila por fila sobre tablas PostgreSQL planas de hasta 33 GB (`history_uint`).
+- **Descartado:** Agregar vCPUs a la VM (el housekeeper es single-thread e I/O-bound, no CPU-bound).
+- **Solución Aplicada — PND-003:**
+  - Detención del contenedor `zabbix-server` para migración sin bloqueos de escritura.
+  - Migración de 7 tablas (~46 GB totales) a hypertables con `create_hypertable()` y `by_range('clock', segundos)` (intervalo entero, no INTERVAL, porque `clock` es tipo `integer`).
+  - La migración de `history_uint` (33 GB) tomó ~2.5 horas. Sobrevivió un corte de VPN porque el proceso `psql` corre dentro del contenedor Docker, independiente de la sesión SSH.
+  - Creación de función `unix_now() RETURNS integer` y registro con `set_integer_now_func()` en las 7 hypertables.
+  - 7 retention policies configuradas: 2.678.400 seg (31 días) para history*, 31.536.000 seg (365 días) para trends*.
+  - HK interno de History y Trends deshabilitado en **Administration → General → Housekeeping**.
+  - `ZBX_MAXHOUSEKEEPERDELETE`: pendiente de actualización de 2000 → 5000 vía Portainer (stack `zabbix`).
+    - Acceso a Portainer desde VPN/remoto: `ssh -L 9443:127.0.0.1:9443 root@172.30.20.61` → `https://127.0.0.1:9443`
+- **Estado Post-Cambio:** 7 hypertables operativas (90 chunks en history*, 10 en trends*). Utilización del housekeeper esperada: <5%.
+- **Entregable:** [PND-003 PDF](../pendientes/PND-003-TIMESCALEDB-HOUSEKEEPER-MIGRATION/MILICIC-PND-003-TIMESCALEDB-MIGRATION.pdf) | [Runbook](../pendientes/PND-003-TIMESCALEDB-HOUSEKEEPER-MIGRATION/runbook-tecnico.md)
+
 ---
 
-## 4. Tareas Pendientes Priorizadas (Actualizadas 24/09/2026)
+## 4. Tareas Pendientes Priorizadas (Actualizadas 25/09/2026)
 
 1. **Resolver Destino de Telegram para `mlarenti.zabbix`:**
    - Validar en el perfil de Zabbix el Chat ID configurado en el medio 71 (`Telegram_Test`).
