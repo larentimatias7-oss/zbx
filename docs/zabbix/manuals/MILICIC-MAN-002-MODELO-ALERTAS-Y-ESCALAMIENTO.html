@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MIL-DOC-ZBX-002: Modelo de Alertas, Escalamiento y Notificaciones Zabbix 7.0 LTS | Milicic S.A.</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 20mm 15mm 20mm 15mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    :root {
+      --primary: #ea580c;
+      --primary-hover: #c2410c;
+      --primary-light: #fff7ed;
+      --primary-border: #fdba74;
+      --dark-slate: #0f172a;
+      --slate-lead: #1e293b;
+      --slate-text: #334155;
+      --slate-body: #475569;
+      --slate-muted: #64748b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --info: #0284c7;
+      --info-bg: #e0f2fe;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--slate-text);
+      line-height: 1.45;
+      margin: 0;
+      padding: 0;
+      font-size: 8.8pt;
+      background: #ffffff;
+    }
+
+    .page {
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 100%;
+    }
+
+    /* Portada Corporativa */
+    .cover-page {
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250mm;
+      padding: 10mm 5mm 5mm 5mm;
+    }
+
+    .category-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8mm;
+    }
+
+    .cover-title {
+      font-size: 22pt;
+      font-weight: 800;
+      color: var(--dark-slate);
+      line-height: 1.15;
+      margin: 0 0 5mm 0;
+      letter-spacing: -0.5px;
+    }
+
+    .cover-title span {
+      color: var(--primary);
+    }
+
+    .cover-subtitle {
+      font-size: 10.5pt;
+      color: var(--slate-muted);
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 8mm;
+      max-width: 95%;
+    }
+
+    .highlight-card {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 10mm;
+    }
+
+    .highlight-card h4 {
+      margin: 0 0 4px 0;
+      color: var(--primary);
+      font-size: 9.5pt;
+      font-weight: 700;
+    }
+
+    .highlight-card p {
+      margin: 0;
+      font-size: 8.5pt;
+      color: var(--slate-lead);
+      line-height: 1.4;
+    }
+
+    .cover-meta {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 7pt;
+      color: var(--slate-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-size: 8.5pt;
+      color: var(--slate-lead);
+      font-weight: 700;
+    }
+
+    /* Encabezados y Secciones */
+    .section-title {
+      font-size: 12pt;
+      font-weight: 800;
+      color: var(--dark-slate);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+      margin: 14px 0 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title span.tag {
+      font-size: 7.5pt;
+      background: var(--dark-slate);
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    .subsection-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--slate-lead);
+      margin: 10px 0 4px 0;
+      border-left: 3px solid var(--primary);
+      padding-left: 6px;
+    }
+
+    /* Grid y Tarjetas */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 8px 0 12px 0;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      padding: 8px 10px;
+      text-align: center;
+    }
+
+    .kpi-val {
+      font-size: 13pt;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .kpi-label {
+      font-size: 6.8pt;
+      color: var(--slate-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    /* Tablas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px 0;
+      font-size: 7.8pt;
+    }
+
+    th {
+      background-color: var(--dark-slate);
+      color: #ffffff;
+      text-align: left;
+      padding: 6px 8px;
+      font-weight: 600;
+      border: 1px solid var(--dark-slate);
+    }
+
+    td {
+      padding: 5px 8px;
+      border: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--card-bg);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 6.8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-success { background: var(--success-bg); color: var(--success); }
+    .badge-danger { background: var(--danger-bg); color: var(--danger); }
+    .badge-warning { background: var(--warning-bg); color: var(--warning); }
+    .badge-info { background: var(--info-bg); color: var(--info); }
+    .badge-p1 { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-weight: 800; }
+    .badge-p2 { background: #fef3c7; color: #b45309; border: 1px solid #fbbf24; font-weight: 700; }
+    .badge-p3 { background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; font-weight: 700; }
+
+    /* Bloques de código */
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 7.2pt;
+      line-height: 1.35;
+      overflow-x: auto;
+      margin: 6px 0;
+      border-left: 3px solid var(--primary);
+      page-break-inside: avoid;
+    }
+
+    .quote-box {
+      background: #f1f5f9;
+      border-left: 3px solid #64748b;
+      padding: 8px 12px;
+      margin: 6px 0 10px 0;
+      border-radius: 0 4px 4px 0;
+      font-style: italic;
+      font-size: 8pt;
+    }
+
+    .signatures {
+      margin-top: 15mm;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      page-break-inside: avoid;
+    }
+
+    .sign-item {
+      text-align: center;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 6px;
+      margin-top: 25px;
+    }
+
+    .sign-name {
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--dark-slate);
+    }
+
+    .sign-role {
+      font-size: 7pt;
+      color: var(--slate-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PÁGINA 1: PORTADA INSTITUCIONAL -->
+  <div class="page cover-page">
+    <div class="cover-top">
+      <div style="font-size: 16pt; font-weight: 900; color: #ea580c; letter-spacing: 1px; margin-bottom: 10mm;">
+        MILICIC <span style="color: #0f172a; font-weight: 400; font-size: 10.5pt;">| INFRAESTRUCTURA, SERVICIOS & TI</span>
+      </div>
+
+      <div class="category-badge">Manual Operativo & Estándar SRE • Ref: MIL-DOC-ZBX-002</div>
+      
+      <h1 class="cover-title">
+        Modelo de Alertas, Escalamiento &<br>
+        <span>Notificaciones en Telegram</span> (Zabbix 7.0 LTS)
+      </h1>
+      
+      <p class="cover-subtitle">
+        Arquitectura unificada de despacho operativo de incidentes para Milicic S.A. Consolidación de canales en 2 grupos clave (Alertas P1 Críticas y Alertas Generales P1/P2/P3), ruteo guiado por persistencia y supresión inteligente de fatiga de alertas.
+      </p>
+
+      <div class="highlight-card">
+        <h4>Objetivo de la Arquitectura: Cero Falsos Positivos & Notificaciones con Sentido Operativo</h4>
+        <p>
+          Este documento formaliza el modelo de escalamiento y notificación vigente en la plataforma Zabbix 7.0 LTS (Producción). Se eliminó la dispersión de canales mediante la unificación bajo el bot oficial corporativo <code>@inframilicic_bot</code> (Media Type: <code>Telegram_OFICIAL</code>, ID: 71), estableciendo una política clara de sonoridad: las emergencias críticas (P1) despiertan a la guardia sin demora, mientras que los eventos operativos (P2) y preventivos (P3) respetan ventanas mínimas de persistencia (10m y 30m) para filtrar microcortes transitorios.
+        </p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-val">2</div>
+          <div class="kpi-label">Grupos Telegram</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">1</div>
+          <div class="kpi-label">Bot Oficial Único</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">0 min</div>
+          <div class="kpi-label">Demora P1 Crítico</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">10/30m</div>
+          <div class="kpi-label">Filtro Persistencia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-meta">
+        <div class="meta-item">
+          <span class="meta-label">Organización</span>
+          <span class="meta-value">Milicic S.A.</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Plataforma</span>
+          <span class="meta-value">Zabbix 7.0.22 LTS</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Fecha de Entrada en Vigor</span>
+          <span class="meta-value">26/09/2026</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Estado Operativo</span>
+          <span class="meta-value" style="color: #16a34a;">VIGENTE EN PROD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PÁGINA 2: FILOSOFÍA, PIRÁMIDE Y CANALES TELEGRAM -->
+  <div class="page" style="padding-top: 5mm;">
+    <div class="section-title">
+      <span>1. Filosofía SRE & Matriz de Criticidad de Alertas</span>
+      <span class="tag">ESTÁNDAR OPERATIVO</span>
+    </div>
+
+    <p style="margin: 4px 0 8px 0; font-size: 8.5pt;">
+      El esquema de alertas de Milicic S.A. sigue los principios de <strong>Site Reliability Engineering (SRE)</strong> para garantizar que el equipo no sufra de <em>Alert Fatigue</em> (desensibilización por exceso de notificaciones irrelevantes):
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 5px; padding: 8px;">
+        <strong style="color: var(--primary); font-size: 8.2pt;">1. Acción Inmediata (P1)</strong>
+        <p style="font-size: 7.6pt; margin: 3px 0 0 0; color: var(--slate-body);">
+          Solo se notifica con sonido 24/7 y de forma inmediata aquello que impacte directamente en la producción: enlaces core, sedes sin enlace, hipervisores caídos o cabinas de storage inaccesibles.
+        </p>
+      </div>
+      <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 5px; padding: 8px;">
+        <strong style="color: var(--primary); font-size: 8.2pt;">2. Filtro de Persistencia (P2/P3)</strong>
+        <p style="font-size: 7.6pt; margin: 3px 0 0 0; color: var(--slate-body);">
+          Ningún incidente de nivel medio o preventivo notifica en el segundo cero. Se requiere que la anomalía persista al menos 10m (P2) o 30m (P3) para descartar flapping y microcortes.
+        </p>
+      </div>
+      <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 5px; padding: 8px;">
+        <strong style="color: var(--primary); font-size: 8.2pt;">3. Silencio en Mantenimiento</strong>
+        <p style="font-size: 7.6pt; margin: 3px 0 0 0; color: var(--slate-body);">
+          Si un equipo ingresa en ventana de mantenimiento programado (<code>Problem is not suppressed</code>), Zabbix almacena telemetría pero bloquea el despacho de mensajes a Telegram.
+        </p>
+      </div>
+    </div>
+
+    <div class="subsection-title">Matriz Oficial de Canales, Severidades y Temporización</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 14%;">Nivel</th>
+          <th style="width: 16%;">Severidad Zabbix</th>
+          <th style="width: 18%;">Temporización</th>
+          <th style="width: 27%;">Grupo Destino en Telegram</th>
+          <th style="width: 25%;">Política de Notificación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-p1">P1 - Crítico</span></td>
+          <td><code>Disaster</code>, <code>High</code></td>
+          <td><strong>Inmediato (0 min)</strong><br>Paso 1 (Escalón 1)</td>
+          <td>
+            <code>🚨 Alertas P1 CRITICAS</code><br>
+            <span style="font-size: 6.8pt; color: var(--slate-muted);">y <code>📋 Alertas General P1 P2 P3</code></span>
+          </td>
+          <td><strong style="color: #dc2626;">Sonido prioritario 24/7</strong>. Guardia activa obligatoria. Atención inmediata.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-p2">P2 - Redes</span></td>
+          <td><code>Average</code></td>
+          <td><strong>Persistencia 10 min</strong><br>Paso 2 (Escalón 2)</td>
+          <td><code>📋 Alertas General P1 P2 P3</code></td>
+          <td><strong>Silenciado / Diurno</strong>. Switches de distribución, enlaces secundarios.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-p2">P2 - Plataforma</span></td>
+          <td><code>Average</code></td>
+          <td><strong>Persistencia 10 min</strong><br>Paso 2 (Escalón 2)</td>
+          <td><code>📋 Alertas General P1 P2 P3</code></td>
+          <td><strong>Silenciado / Diurno</strong>. Servidores virtuales, servicios Windows/Linux, DBs.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-p3">P3 - Preventivo</span></td>
+          <td><code>Warning</code></td>
+          <td><strong>Persistencia 30 min</strong><br>Paso 2 (Escalón 2)</td>
+          <td><code>📋 Alertas General P1 P2 P3</code></td>
+          <td><strong>Seguimiento de Capacidad</strong>. Discos > 85%, flapping leve de interfaz, picos de uso.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title" style="margin-top: 12px;">
+      <span>2. Inventario de Canales y Bots de Telegram en Producción</span>
+      <span class="tag">INFRAESTRUCTURA</span>
+    </div>
+
+    <p style="margin: 4px 0 6px 0; font-size: 8.5pt;">
+      Toda la plataforma Zabbix canaliza sus webhooks salientes a través de un único bot verificado en la API de Telegram Messenger:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Nombre del Canal / Grupo</th>
+          <th style="width: 20%;">Chat ID de Telegram</th>
+          <th style="width: 18%;">Bot Asociado</th>
+          <th style="width: 20%;">Media Type en Zabbix</th>
+          <th style="width: 17%;">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>🚨 Alertas P1 CRITICAS</strong></td>
+          <td><code>-1004383937012</code></td>
+          <td><code>@inframilicic_bot</code></td>
+          <td><code>Telegram_OFICIAL</code> (71)</td>
+          <td><span class="badge badge-success">ACTIVO / OFICIAL</span></td>
+        </tr>
+        <tr>
+          <td><strong>📋 Alertas General P1 P2 P3</strong></td>
+          <td><code>-1004396424523</code></td>
+          <td><code>@inframilicic_bot</code></td>
+          <td><code>Telegram_OFICIAL</code> (71)</td>
+          <td><span class="badge badge-success">ACTIVO / OFICIAL</span></td>
+        </tr>
+        <tr style="opacity: 0.6;">
+          <td>Milicic - Monitoreo (Legacy)</td>
+          <td><code>-1003912373499</code></td>
+          <td><code>@Milicic_bot</code></td>
+          <td><code>Telegram_Test_Milicic</code> (72)</td>
+          <td><span class="badge badge-danger">DESHABILITADO</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="quote-box">
+      <strong>Regla de Oro en Telegram API:</strong> Todos los identificadores de supergrupos y canales corporativos deben comenzar obligatoriamente con el prefijo <code>-100</code>. Omitir este prefijo provoca que la API de Telegram devuelva el error <code>Bad Request: chat not found</code>.
+    </div>
+  </div>
+
+  <!-- PÁGINA 3: ARQUITECTURA DE DESPACHO Y ACCIONES ACTIVAS -->
+  <div class="page" style="padding-top: 5mm;">
+    <div class="section-title">
+      <span>3. Arquitectura Técnica de Despacho en Zabbix</span>
+      <span class="tag">CONFIGURACIÓN INTERNA</span>
+    </div>
+
+    <p style="margin: 4px 0 8px 0; font-size: 8.5pt;">
+      Para evitar la duplicación de alertas en Telegram cuando un equipo atiende integralmente las operaciones, Zabbix utiliza el <strong>filtro de severidades nativo en la configuración de Medias</strong> del usuario de despacho central (<code>Admin</code>):
+    </p>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; margin-bottom: 10px;">
+      <div style="font-weight: 700; color: var(--dark-slate); font-size: 8.5pt; margin-bottom: 4px;">Lógica de Ruteo Automático:</div>
+      <ul style="margin: 0; padding-left: 18px; font-size: 8pt; color: var(--slate-body);">
+        <li><strong>Media ID 7 (P1 Críticas):</strong> Destino <code>-1004383937012</code>. Severidades: <code>High</code> + <code>Disaster</code>.</li>
+        <li><strong>Media ID 8 (General):</strong> Destino <code>-1004396424523</code>. Severidades: <code>Warning</code> + <code>Average</code> + <code>High</code> + <code>Disaster</code>.</li>
+        <li><strong>Comportamiento resultante:</strong> Cuando ocurre un incidente P1 (High/Disaster), ambos Medias cumplen la condición y el mensaje se replica en los 2 grupos de forma instantánea. Cuando ocurre un incidente P2 (Average) o P3 (Warning), el Media 7 ignora el evento y Zabbix lo despacha <strong>únicamente al canal General</strong>, garantizando silencio absoluto en el grupo crítico.</li>
+      </ul>
+    </div>
+
+    <div class="subsection-title">Inventario Consolidado de Acciones Activas (Trigger Actions)</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 8%;">ID</th>
+          <th style="width: 32%;">Nombre de la Acción</th>
+          <th style="width: 25%;">Condiciones de Activación</th>
+          <th style="width: 15%;">Temporización</th>
+          <th style="width: 20%;">Destino / Operación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>8</strong></td>
+          <td><strong>TG-P1-Crítico</strong></td>
+          <td>Severidad >= High<br>Problem not suppressed</td>
+          <td><strong>Paso 1 (0 min)</strong><br>Inmediato</td>
+          <td>Despacho a ambos grupos (P1 y General)</td>
+        </tr>
+        <tr>
+          <td><strong>9</strong></td>
+          <td><strong>TG-P2-Redes</strong></td>
+          <td>Severidad = Average<br>team=redes / tier=core</td>
+          <td><strong>Paso 2 (10 min)</strong><br>Persistencia</td>
+          <td>Despacho exclusivo a General</td>
+        </tr>
+        <tr>
+          <td><strong>10</strong></td>
+          <td><strong>TG-P2-Plataforma</strong></td>
+          <td>Severidad = Average<br>team=plataforma / dba / ups</td>
+          <td><strong>Paso 2 (10 min)</strong><br>Persistencia</td>
+          <td>Despacho exclusivo a General</td>
+        </tr>
+        <tr>
+          <td><strong>11</strong></td>
+          <td><strong>TG-P3-Preventivo</strong></td>
+          <td>Severidad = Warning<br>scope=capacity / notice</td>
+          <td><strong>Paso 2 (30 min)</strong><br>Persistencia</td>
+          <td>Despacho exclusivo a General</td>
+        </tr>
+        <tr>
+          <td><strong>12</strong></td>
+          <td><strong>TG-P1-Recordatorios</strong></td>
+          <td>Severidad >= High (Unacknowledged)</td>
+          <td>Paso 2 (1h) y 7 (6h)</td>
+          <td>Recordatorios en P1 y General</td>
+        </tr>
+        <tr>
+          <td><strong>14</strong></td>
+          <td><strong>TG-P2-Plataforma-Recordatorios</strong></td>
+          <td>Severidad = Average (Unacknowledged)</td>
+          <td>Paso 2 (12h) y 3 (24h)</td>
+          <td>Recordatorios en General</td>
+        </tr>
+        <tr>
+          <td><strong>15</strong></td>
+          <td><strong>TG-P3-MemoryPages-10m-SSJ-HPV01</strong></td>
+          <td>Métrica de paginación HPV San Juan</td>
+          <td>Paso 2 (10 min)</td>
+          <td>Despacho exclusivo a General</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title" style="margin-top: 10px;">
+      <span>4. Mensajes de Normalización & Recuperación Automática</span>
+      <span class="tag">RECOVERY OPS</span>
+    </div>
+
+    <p style="margin: 4px 0 6px 0; font-size: 8.5pt;">
+      Cada una de las acciones cuenta con su correspondiente regla de recuperación automática (<code>Recovery Operation</code>). Cuando la telemetría del host regresa a umbrales seguros:
+    </p>
+
+    <pre>EVENTO RECUPERADO
+Host: SRO-SW-CORE01
+Recuperación: 2026.09.26 09:15:20
+Duración: 14m 32s
+Evento: 168851024
+Detalle y Reconocimiento:
+https://zabbix.mlccnet.local/tr_events.php?triggerid=37601&eventid=168851024</pre>
+
+    <div class="signatures">
+      <div class="sign-item">
+        <div class="sign-name">Matías Larenti</div>
+        <div class="sign-role">Líder de Infraestructura & Observabilidad<br>Milicic S.A.</div>
+      </div>
+      <div class="sign-item">
+        <div class="sign-name">Administración Zabbix</div>
+        <div class="sign-role">Equipo de Plataforma & SRE<br>Milicic S.A.</div>
+      </div>
+      <div class="sign-item">
+        <div class="sign-name">Operaciones de Red</div>
+        <div class="sign-role">NOC & Telecomunicaciones<br>Milicic S.A.</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

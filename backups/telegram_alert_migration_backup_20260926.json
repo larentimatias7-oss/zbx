@@ -1,0 +1,1775 @@
+﻿{
+    "actions":  [
+                    {
+                        "actionid":  "8",
+                        "name":  "TG-P1-Crítico",
+                        "eventsource":  "0",
+                        "status":  "0",
+                        "esc_period":  "30m",
+                        "pause_suppressed":  "1",
+                        "notify_if_canceled":  "0",
+                        "pause_symptoms":  "1",
+                        "filter":  {
+                                       "evaltype":  "0",
+                                       "formula":  "",
+                                       "eval_formula":  "A and B",
+                                       "conditions":  [
+                                                          {
+                                                              "conditiontype":  "4",
+                                                              "operator":  "5",
+                                                              "value":  "4",
+                                                              "value2":  "",
+                                                              "formulaid":  "A"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "16",
+                                                              "operator":  "11",
+                                                              "value":  "",
+                                                              "value2":  "",
+                                                              "formulaid":  "B"
+                                                          }
+                                                      ]
+                                   },
+                        "operations":  [
+                                           {
+                                               "operationid":  "13",
+                                               "actionid":  "8",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "1",
+                                               "esc_step_to":  "1",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P1 | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "INCIDENTE CRÍTICO\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "41",
+                                               "actionid":  "8",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "1",
+                                               "esc_step_to":  "1",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P1 | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "INCIDENTE CRÍTICO\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           }
+                                       ],
+                        "recovery_operations":  [
+                                                    {
+                                                        "operationid":  "60",
+                                                        "actionid":  "8",
+                                                        "operationtype":  "0",
+                                                        "evaltype":  "0",
+                                                        "opconditions":  [
+
+                                                                         ],
+                                                        "opmessage":  {
+                                                                          "default_msg":  "0",
+                                                                          "subject":  "RECUPERADO | {EVENT.NAME}",
+                                                                          "message":  "EVENTO RECUPERADO\nHost: {HOST.NAME}\nRecuperación: {EVENT.RECOVERY.DATE} {EVENT.RECOVERY.TIME}\nDuración: {EVENT.DURATION}\nEvento: {EVENT.ID}\nDetalle:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                          "mediatypeid":  "71"
+                                                                      },
+                                                        "opmessage_grp":  [
+
+                                                                          ],
+                                                        "opmessage_usr":  [
+                                                                              {
+                                                                                  "userid":  "1"
+                                                                              }
+                                                                          ]
+                                                    },
+                                                    {
+                                                        "operationid":  "61",
+                                                        "actionid":  "8",
+                                                        "operationtype":  "0",
+                                                        "evaltype":  "0",
+                                                        "opconditions":  [
+
+                                                                         ],
+                                                        "opmessage":  {
+                                                                          "default_msg":  "0",
+                                                                          "subject":  "RECUPERADO | {EVENT.NAME}",
+                                                                          "message":  "EVENTO RECUPERADO\nHost: {HOST.NAME}\nRecuperación: {EVENT.RECOVERY.DATE} {EVENT.RECOVERY.TIME}\nDuración: {EVENT.DURATION}\nEvento: {EVENT.ID}\nDetalle:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                          "mediatypeid":  "72"
+                                                                      },
+                                                        "opmessage_grp":  [
+
+                                                                          ],
+                                                        "opmessage_usr":  [
+                                                                              {
+                                                                                  "userid":  "4"
+                                                                              }
+                                                                          ]
+                                                    }
+                                                ],
+                        "update_operations":  [
+
+                                              ]
+                    },
+                    {
+                        "actionid":  "9",
+                        "name":  "TG-P2-Redes",
+                        "eventsource":  "0",
+                        "status":  "0",
+                        "esc_period":  "10m",
+                        "pause_suppressed":  "1",
+                        "notify_if_canceled":  "0",
+                        "pause_symptoms":  "1",
+                        "filter":  {
+                                       "evaltype":  "3",
+                                       "formula":  "(A or B or C or D or E or (F and G)) and H and I",
+                                       "eval_formula":  "(A or B or C or D or E or (F and G)) and H and I",
+                                       "conditions":  [
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "44",
+                                                              "value2":  "",
+                                                              "formulaid":  "A"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "42",
+                                                              "value2":  "",
+                                                              "formulaid":  "B"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "1",
+                                                              "operator":  "0",
+                                                              "value":  "10708",
+                                                              "value2":  "",
+                                                              "formulaid":  "C"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "1",
+                                                              "operator":  "0",
+                                                              "value":  "10722",
+                                                              "value2":  "",
+                                                              "formulaid":  "D"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "34",
+                                                              "value2":  "",
+                                                              "formulaid":  "E"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "redes",
+                                                              "value2":  "team",
+                                                              "formulaid":  "F"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "core",
+                                                              "value2":  "tier",
+                                                              "formulaid":  "G"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "4",
+                                                              "operator":  "0",
+                                                              "value":  "3",
+                                                              "value2":  "",
+                                                              "formulaid":  "H"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "16",
+                                                              "operator":  "11",
+                                                              "value":  "",
+                                                              "value2":  "",
+                                                              "formulaid":  "I"
+                                                          }
+                                                      ]
+                                   },
+                        "operations":  [
+                                           {
+                                               "operationid":  "15",
+                                               "actionid":  "9",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P2 REDES | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "EVENTO PERSISTENTE (10 min)\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "43",
+                                               "actionid":  "9",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P2 REDES | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "EVENTO PERSISTENTE (10 min)\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           }
+                                       ],
+                        "recovery_operations":  [
+                                                    {
+                                                        "operationid":  "56",
+                                                        "actionid":  "9",
+                                                        "operationtype":  "11",
+                                                        "evaltype":  "0",
+                                                        "opconditions":  [
+
+                                                                         ],
+                                                        "opmessage":  {
+                                                                          "default_msg":  "0",
+                                                                          "subject":  "RECUPERADO REDES | {EVENT.NAME}",
+                                                                          "message":  "EVENTO RECUPERADO\nHost: {HOST.NAME}\nRecuperación: {EVENT.RECOVERY.DATE} {EVENT.RECOVERY.TIME}\nDuración: {EVENT.DURATION}\nEvento: {EVENT.ID}\nDetalle:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                          "mediatypeid":  "0"
+                                                                      }
+                                                    }
+                                                ],
+                        "update_operations":  [
+
+                                              ]
+                    },
+                    {
+                        "actionid":  "10",
+                        "name":  "TG-P2-Plataforma",
+                        "eventsource":  "0",
+                        "status":  "0",
+                        "esc_period":  "10m",
+                        "pause_suppressed":  "1",
+                        "notify_if_canceled":  "0",
+                        "pause_symptoms":  "1",
+                        "filter":  {
+                                       "evaltype":  "3",
+                                       "formula":  "(A or B or C or D or E or F or ((G or H) and I) or J or K or L or (M and N) or ((O or P) and Q)) and R and S",
+                                       "eval_formula":  "(A or B or C or D or E or F or ((G or H) and I) or J or K or L or (M and N) or ((O or P) and Q)) and R and S",
+                                       "conditions":  [
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "29",
+                                                              "value2":  "",
+                                                              "formulaid":  "A"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "32",
+                                                              "value2":  "",
+                                                              "formulaid":  "B"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "33",
+                                                              "value2":  "",
+                                                              "formulaid":  "C"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "7",
+                                                              "value2":  "",
+                                                              "formulaid":  "D"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "25",
+                                                              "value2":  "",
+                                                              "formulaid":  "E"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "4",
+                                                              "value2":  "",
+                                                              "formulaid":  "F"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "27",
+                                                              "value2":  "",
+                                                              "formulaid":  "G"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "23",
+                                                              "value2":  "",
+                                                              "formulaid":  "H"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "capacity",
+                                                              "value2":  "scope",
+                                                              "formulaid":  "I"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "plataforma",
+                                                              "value2":  "team",
+                                                              "formulaid":  "J"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "dba",
+                                                              "value2":  "team",
+                                                              "formulaid":  "K"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "ups",
+                                                              "value2":  "component",
+                                                              "formulaid":  "L"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "1",
+                                                              "operator":  "0",
+                                                              "value":  "10784",
+                                                              "value2":  "",
+                                                              "formulaid":  "M"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "3",
+                                                              "operator":  "2",
+                                                              "value":  "MSSQL$",
+                                                              "value2":  "",
+                                                              "formulaid":  "N"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "1",
+                                                              "operator":  "0",
+                                                              "value":  "10703",
+                                                              "value2":  "",
+                                                              "formulaid":  "O"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "1",
+                                                              "operator":  "0",
+                                                              "value":  "10718",
+                                                              "value2":  "",
+                                                              "formulaid":  "P"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "3",
+                                                              "operator":  "2",
+                                                              "value":  "VeeamDataAnalyzerSvc",
+                                                              "value2":  "",
+                                                              "formulaid":  "Q"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "4",
+                                                              "operator":  "0",
+                                                              "value":  "3",
+                                                              "value2":  "",
+                                                              "formulaid":  "R"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "16",
+                                                              "operator":  "11",
+                                                              "value":  "",
+                                                              "value2":  "",
+                                                              "formulaid":  "S"
+                                                          }
+                                                      ]
+                                   },
+                        "operations":  [
+                                           {
+                                               "operationid":  "17",
+                                               "actionid":  "10",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P2 PLATAFORMA | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "EVENTO PERSISTENTE (10 min)\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "44",
+                                               "actionid":  "10",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P2 PLATAFORMA | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "EVENTO PERSISTENTE (10 min)\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           }
+                                       ],
+                        "recovery_operations":  [
+                                                    {
+                                                        "operationid":  "58",
+                                                        "actionid":  "10",
+                                                        "operationtype":  "11",
+                                                        "evaltype":  "0",
+                                                        "opconditions":  [
+
+                                                                         ],
+                                                        "opmessage":  {
+                                                                          "default_msg":  "0",
+                                                                          "subject":  "RECUPERADO PLATAFORMA | {EVENT.NAME}",
+                                                                          "message":  "EVENTO RECUPERADO\nHost: {HOST.NAME}\nRecuperación: {EVENT.RECOVERY.DATE} {EVENT.RECOVERY.TIME}\nDuración: {EVENT.DURATION}\nEvento: {EVENT.ID}\nDetalle:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                          "mediatypeid":  "0"
+                                                                      }
+                                                    }
+                                                ],
+                        "update_operations":  [
+
+                                              ]
+                    },
+                    {
+                        "actionid":  "15",
+                        "name":  "TG-P3-MemoryPages-10m-SSJ-HPV01",
+                        "eventsource":  "0",
+                        "status":  "0",
+                        "esc_period":  "10m",
+                        "pause_suppressed":  "1",
+                        "notify_if_canceled":  "0",
+                        "pause_symptoms":  "1",
+                        "filter":  {
+                                       "evaltype":  "0",
+                                       "formula":  "",
+                                       "eval_formula":  "A and B",
+                                       "conditions":  [
+                                                          {
+                                                              "conditiontype":  "2",
+                                                              "operator":  "0",
+                                                              "value":  "33984",
+                                                              "value2":  "",
+                                                              "formulaid":  "A"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "4",
+                                                              "operator":  "5",
+                                                              "value":  "2",
+                                                              "value2":  "",
+                                                              "formulaid":  "B"
+                                                          }
+                                                      ]
+                                   },
+                        "operations":  [
+                                           {
+                                               "operationid":  "70",
+                                               "actionid":  "15",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "13",
+                                                                        "operationid":  "70",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P3 TEMPRANO (10 min) | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "AVISO P3 TEMPRANO: Pages/sec sigue sobre el umbral durante 10 minutos.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDato: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nVerificar persistencia de paginación, memoria disponible y proceso asociado; actualizar/reconocer según el procedimiento del equipo.\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "71",
+                                               "actionid":  "15",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "14",
+                                                                        "operationid":  "71",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P3 TEMPRANO (10 min) | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "AVISO P3 TEMPRANO: Pages/sec sigue sobre el umbral durante 10 minutos.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDato: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nVerificar persistencia de paginación, memoria disponible y proceso asociado; actualizar/reconocer según el procedimiento del equipo.\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           }
+                                       ],
+                        "recovery_operations":  [
+                                                    {
+                                                        "operationid":  "72",
+                                                        "actionid":  "15",
+                                                        "operationtype":  "11",
+                                                        "evaltype":  "0",
+                                                        "opconditions":  [
+
+                                                                         ],
+                                                        "opmessage":  {
+                                                                          "default_msg":  "0",
+                                                                          "subject":  "RECUPERADO P3 | {EVENT.NAME}",
+                                                                          "message":  "EVENTO RECUPERADO\nHost: {HOST.NAME}\nRecuperación: {EVENT.RECOVERY.DATE} {EVENT.RECOVERY.TIME}\nDuración: {EVENT.DURATION}\nEvento: {EVENT.ID}\nDetalle:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                          "mediatypeid":  "0"
+                                                                      }
+                                                    }
+                                                ],
+                        "update_operations":  [
+
+                                              ]
+                    },
+                    {
+                        "actionid":  "11",
+                        "name":  "TG-P3-Preventivo",
+                        "eventsource":  "0",
+                        "status":  "0",
+                        "esc_period":  "30m",
+                        "pause_suppressed":  "1",
+                        "notify_if_canceled":  "0",
+                        "pause_symptoms":  "1",
+                        "filter":  {
+                                       "evaltype":  "3",
+                                       "formula":  "((A or B) and (C or D or E) or F or G or H or I or J or K or (L and M) or (N and O)) and P and Q",
+                                       "eval_formula":  "((A or B) and (C or D or E) or F or G or H or I or J or K or (L and M) or (N and O)) and P and Q",
+                                       "conditions":  [
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "capacity",
+                                                              "value2":  "scope",
+                                                              "formulaid":  "A"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "notice",
+                                                              "value2":  "scope",
+                                                              "formulaid":  "B"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "plataforma",
+                                                              "value2":  "team",
+                                                              "formulaid":  "C"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "redes",
+                                                              "value2":  "team",
+                                                              "formulaid":  "D"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "windows_fs_low",
+                                                              "value2":  "p3_route",
+                                                              "formulaid":  "E"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "2",
+                                                              "operator":  "0",
+                                                              "value":  "34396",
+                                                              "value2":  "",
+                                                              "formulaid":  "F"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "2",
+                                                              "operator":  "0",
+                                                              "value":  "34660",
+                                                              "value2":  "",
+                                                              "formulaid":  "G"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "2",
+                                                              "operator":  "0",
+                                                              "value":  "35051",
+                                                              "value2":  "",
+                                                              "formulaid":  "H"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "2",
+                                                              "operator":  "0",
+                                                              "value":  "32912",
+                                                              "value2":  "",
+                                                              "formulaid":  "I"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "2",
+                                                              "operator":  "0",
+                                                              "value":  "33005",
+                                                              "value2":  "",
+                                                              "formulaid":  "J"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "2",
+                                                              "operator":  "0",
+                                                              "value":  "33484",
+                                                              "value2":  "",
+                                                              "formulaid":  "K"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "3",
+                                                              "operator":  "2",
+                                                              "value":  "High packets loss",
+                                                              "value2":  "",
+                                                              "formulaid":  "L"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "44",
+                                                              "value2":  "",
+                                                              "formulaid":  "M"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "3",
+                                                              "operator":  "2",
+                                                              "value":  "High error rate",
+                                                              "value2":  "",
+                                                              "formulaid":  "N"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "34",
+                                                              "value2":  "",
+                                                              "formulaid":  "O"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "4",
+                                                              "operator":  "0",
+                                                              "value":  "2",
+                                                              "value2":  "",
+                                                              "formulaid":  "P"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "16",
+                                                              "operator":  "11",
+                                                              "value":  "",
+                                                              "value2":  "",
+                                                              "formulaid":  "Q"
+                                                          }
+                                                      ]
+                                   },
+                        "operations":  [
+                                           {
+                                               "operationid":  "34",
+                                               "actionid":  "11",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P3 PREVENTIVO | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "EVENTO PERSISTENTE (30 min)\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nAcción: revisar la causa y el impacto del síntoma indicado; aplicar el procedimiento operativo correspondiente y actualizar el evento.\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "45",
+                                               "actionid":  "11",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "P3 PREVENTIVO | {EVENT.SEVERITY} | {EVENT.NAME}",
+                                                                 "message":  "EVENTO PERSISTENTE (30 min)\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nAcción: revisar la causa y el impacto del síntoma indicado; aplicar el procedimiento operativo correspondiente y actualizar el evento.\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           }
+                                       ],
+                        "recovery_operations":  [
+                                                    {
+                                                        "operationid":  "57",
+                                                        "actionid":  "11",
+                                                        "operationtype":  "11",
+                                                        "evaltype":  "0",
+                                                        "opconditions":  [
+
+                                                                         ],
+                                                        "opmessage":  {
+                                                                          "default_msg":  "0",
+                                                                          "subject":  "RECUPERADO PREVENTIVO | {EVENT.NAME}",
+                                                                          "message":  "EVENTO RECUPERADO\nHost: {HOST.NAME}\nRecuperación: {EVENT.RECOVERY.DATE} {EVENT.RECOVERY.TIME}\nDuración: {EVENT.DURATION}\nEvento: {EVENT.ID}\nDetalle:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                          "mediatypeid":  "0"
+                                                                      }
+                                                    }
+                                                ],
+                        "update_operations":  [
+
+                                              ]
+                    },
+                    {
+                        "actionid":  "12",
+                        "name":  "TG-P1-Recordatorios sin reconocimiento",
+                        "eventsource":  "0",
+                        "status":  "0",
+                        "esc_period":  "1h",
+                        "pause_suppressed":  "1",
+                        "notify_if_canceled":  "0",
+                        "pause_symptoms":  "1",
+                        "filter":  {
+                                       "evaltype":  "0",
+                                       "formula":  "",
+                                       "eval_formula":  "A and B",
+                                       "conditions":  [
+                                                          {
+                                                              "conditiontype":  "4",
+                                                              "operator":  "5",
+                                                              "value":  "4",
+                                                              "value2":  "",
+                                                              "formulaid":  "A"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "16",
+                                                              "operator":  "11",
+                                                              "value":  "",
+                                                              "value2":  "",
+                                                              "formulaid":  "B"
+                                                          }
+                                                      ]
+                                   },
+                        "operations":  [
+                                           {
+                                               "operationid":  "46",
+                                               "actionid":  "12",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "1",
+                                                                        "operationid":  "46",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "RECORDATORIO P1 (1 h) | {EVENT.NAME}",
+                                                                 "message":  "RECORDATORIO P1: el evento sigue abierto y sin reconocer después de 1 h.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "47",
+                                               "actionid":  "12",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "2",
+                                                                        "operationid":  "47",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "RECORDATORIO P1 (1 h) | {EVENT.NAME}",
+                                                                 "message":  "RECORDATORIO P1: el evento sigue abierto y sin reconocer después de 1 h.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "48",
+                                               "actionid":  "12",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "7",
+                                               "esc_step_to":  "7",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "3",
+                                                                        "operationid":  "48",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "RECORDATORIO P1 (6 h) | {EVENT.NAME}",
+                                                                 "message":  "RECORDATORIO P1: el evento sigue abierto y sin reconocer después de 6 h.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "49",
+                                               "actionid":  "12",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "7",
+                                               "esc_step_to":  "7",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "4",
+                                                                        "operationid":  "49",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "RECORDATORIO P1 (6 h) | {EVENT.NAME}",
+                                                                 "message":  "RECORDATORIO P1: el evento sigue abierto y sin reconocer después de 6 h.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           }
+                                       ],
+                        "recovery_operations":  [
+
+                                                ],
+                        "update_operations":  [
+
+                                              ]
+                    },
+                    {
+                        "actionid":  "14",
+                        "name":  "TG-P2-Plataforma-Recordatorios sin reconocimiento",
+                        "eventsource":  "0",
+                        "status":  "0",
+                        "esc_period":  "12h",
+                        "pause_suppressed":  "1",
+                        "notify_if_canceled":  "0",
+                        "pause_symptoms":  "1",
+                        "filter":  {
+                                       "evaltype":  "3",
+                                       "formula":  "(A or B or C or D or E or F or ((G or H) and I) or J or K or L or (M and N) or ((O or P) and Q)) and R and S",
+                                       "eval_formula":  "(A or B or C or D or E or F or ((G or H) and I) or J or K or L or (M and N) or ((O or P) and Q)) and R and S",
+                                       "conditions":  [
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "29",
+                                                              "value2":  "",
+                                                              "formulaid":  "A"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "32",
+                                                              "value2":  "",
+                                                              "formulaid":  "B"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "33",
+                                                              "value2":  "",
+                                                              "formulaid":  "C"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "7",
+                                                              "value2":  "",
+                                                              "formulaid":  "D"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "25",
+                                                              "value2":  "",
+                                                              "formulaid":  "E"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "4",
+                                                              "value2":  "",
+                                                              "formulaid":  "F"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "27",
+                                                              "value2":  "",
+                                                              "formulaid":  "G"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "0",
+                                                              "operator":  "0",
+                                                              "value":  "23",
+                                                              "value2":  "",
+                                                              "formulaid":  "H"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "capacity",
+                                                              "value2":  "scope",
+                                                              "formulaid":  "I"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "plataforma",
+                                                              "value2":  "team",
+                                                              "formulaid":  "J"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "dba",
+                                                              "value2":  "team",
+                                                              "formulaid":  "K"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "26",
+                                                              "operator":  "0",
+                                                              "value":  "ups",
+                                                              "value2":  "component",
+                                                              "formulaid":  "L"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "1",
+                                                              "operator":  "0",
+                                                              "value":  "10784",
+                                                              "value2":  "",
+                                                              "formulaid":  "M"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "3",
+                                                              "operator":  "2",
+                                                              "value":  "MSSQL$",
+                                                              "value2":  "",
+                                                              "formulaid":  "N"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "1",
+                                                              "operator":  "0",
+                                                              "value":  "10703",
+                                                              "value2":  "",
+                                                              "formulaid":  "O"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "1",
+                                                              "operator":  "0",
+                                                              "value":  "10718",
+                                                              "value2":  "",
+                                                              "formulaid":  "P"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "3",
+                                                              "operator":  "2",
+                                                              "value":  "VeeamDataAnalyzerSvc",
+                                                              "value2":  "",
+                                                              "formulaid":  "Q"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "4",
+                                                              "operator":  "0",
+                                                              "value":  "3",
+                                                              "value2":  "",
+                                                              "formulaid":  "R"
+                                                          },
+                                                          {
+                                                              "conditiontype":  "16",
+                                                              "operator":  "11",
+                                                              "value":  "",
+                                                              "value2":  "",
+                                                              "formulaid":  "S"
+                                                          }
+                                                      ]
+                                   },
+                        "operations":  [
+                                           {
+                                               "operationid":  "66",
+                                               "actionid":  "14",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "9",
+                                                                        "operationid":  "66",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "RECORDATORIO P2 PLATAFORMA (12 h) | {EVENT.NAME}",
+                                                                 "message":  "RECORDATORIO P2 PLATAFORMA: el evento sigue abierto y sin reconocer después de 12 h.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "67",
+                                               "actionid":  "14",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "2",
+                                               "esc_step_to":  "2",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "10",
+                                                                        "operationid":  "67",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "RECORDATORIO P2 PLATAFORMA (12 h) | {EVENT.NAME}",
+                                                                 "message":  "RECORDATORIO P2 PLATAFORMA: el evento sigue abierto y sin reconocer después de 12 h.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "68",
+                                               "actionid":  "14",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "3",
+                                               "esc_step_to":  "3",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "11",
+                                                                        "operationid":  "68",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "RECORDATORIO P2 PLATAFORMA (24 h) | {EVENT.NAME}",
+                                                                 "message":  "RECORDATORIO P2 PLATAFORMA: el evento sigue abierto y sin reconocer después de 24 h.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "71"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "1"
+                                                                     }
+                                                                 ]
+                                           },
+                                           {
+                                               "operationid":  "69",
+                                               "actionid":  "14",
+                                               "operationtype":  "0",
+                                               "esc_period":  "0",
+                                               "esc_step_from":  "3",
+                                               "esc_step_to":  "3",
+                                               "evaltype":  "0",
+                                               "opconditions":  [
+                                                                    {
+                                                                        "opconditionid":  "12",
+                                                                        "operationid":  "69",
+                                                                        "conditiontype":  "14",
+                                                                        "operator":  "0",
+                                                                        "value":  "0"
+                                                                    }
+                                                                ],
+                                               "opmessage":  {
+                                                                 "default_msg":  "0",
+                                                                 "subject":  "RECORDATORIO P2 PLATAFORMA (24 h) | {EVENT.NAME}",
+                                                                 "message":  "RECORDATORIO P2 PLATAFORMA: el evento sigue abierto y sin reconocer después de 24 h.\nHost: {HOST.NAME}\nInicio: {EVENT.DATE} {EVENT.TIME}\nDuración: {EVENT.DURATION}\nDatos actuales: {EVENT.OPDATA}\nEvento: {EVENT.ID}\nDetalle y reconocimiento:\nhttps://zabbix.mlccnet.local/tr_events.php?triggerid={TRIGGER.ID}\u0026eventid={EVENT.ID}",
+                                                                 "mediatypeid":  "72"
+                                                             },
+                                               "opmessage_grp":  [
+
+                                                                 ],
+                                               "opmessage_usr":  [
+                                                                     {
+                                                                         "userid":  "4"
+                                                                     }
+                                                                 ]
+                                           }
+                                       ],
+                        "recovery_operations":  [
+
+                                                ],
+                        "update_operations":  [
+
+                                              ]
+                    }
+                ],
+    "timestamp":  "2026-09-26T09:14:41.5813212-03:00",
+    "users":  [
+                  {
+                      "userid":  "2",
+                      "username":  "guest",
+                      "name":  "",
+                      "surname":  "",
+                      "url":  "",
+                      "autologin":  "0",
+                      "autologout":  "15m",
+                      "lang":  "default",
+                      "refresh":  "30s",
+                      "theme":  "default",
+                      "attempt_failed":  "0",
+                      "attempt_ip":  "",
+                      "attempt_clock":  "0",
+                      "rows_per_page":  "50",
+                      "timezone":  "default",
+                      "roleid":  "4",
+                      "userdirectoryid":  "0",
+                      "ts_provisioned":  "0",
+                      "provisioned":  "0",
+                      "usrgrps":  [
+                                      {
+                                          "usrgrpid":  "8",
+                                          "name":  "Guests",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "9",
+                                          "name":  "Disabled",
+                                          "gui_access":  "0",
+                                          "users_status":  "1",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "13",
+                                          "name":  "Internal",
+                                          "gui_access":  "1",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      }
+                                  ],
+                      "medias":  [
+
+                                 ]
+                  },
+                  {
+                      "userid":  "3",
+                      "username":  "mdreyer.tecpoint",
+                      "name":  "Mauricio",
+                      "surname":  "Dreyer",
+                      "url":  "",
+                      "autologin":  "1",
+                      "autologout":  "0",
+                      "lang":  "default",
+                      "refresh":  "30s",
+                      "theme":  "default",
+                      "attempt_failed":  "0",
+                      "attempt_ip":  "172.19.0.2",
+                      "attempt_clock":  "1778158283",
+                      "rows_per_page":  "50",
+                      "timezone":  "default",
+                      "roleid":  "3",
+                      "userdirectoryid":  "0",
+                      "ts_provisioned":  "0",
+                      "provisioned":  "0",
+                      "usrgrps":  [
+                                      {
+                                          "usrgrpid":  "7",
+                                          "name":  "Zabbix administrators",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "14",
+                                          "name":  "Viewers",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      }
+                                  ],
+                      "medias":  [
+
+                                 ]
+                  },
+                  {
+                      "userid":  "1",
+                      "username":  "Admin",
+                      "name":  "Zabbix",
+                      "surname":  "Administrator",
+                      "url":  "",
+                      "autologin":  "1",
+                      "autologout":  "0",
+                      "lang":  "default",
+                      "refresh":  "30s",
+                      "theme":  "default",
+                      "attempt_failed":  "0",
+                      "attempt_ip":  "172.19.0.2",
+                      "attempt_clock":  "1767885124",
+                      "rows_per_page":  "50",
+                      "timezone":  "default",
+                      "roleid":  "3",
+                      "userdirectoryid":  "0",
+                      "ts_provisioned":  "0",
+                      "provisioned":  "0",
+                      "usrgrps":  [
+                                      {
+                                          "usrgrpid":  "7",
+                                          "name":  "Zabbix administrators",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "13",
+                                          "name":  "Internal",
+                                          "gui_access":  "1",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "15",
+                                          "name":  "Alertas-Guardia-P1",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "16",
+                                          "name":  "Alertas-NOC-Redes",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "17",
+                                          "name":  "Alertas-SRE-Plataforma",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      }
+                                  ],
+                      "medias":  [
+                                     {
+                                         "mediaid":  "2",
+                                         "mediatypeid":  "71",
+                                         "sendto":  "-1004383937012",
+                                         "active":  "0",
+                                         "severity":  "60",
+                                         "period":  "1-7,00:00-24:00",
+                                         "userdirectory_mediaid":  "0",
+                                         "provisioned":  "0"
+                                     },
+                                     {
+                                         "mediaid":  "1",
+                                         "mediatypeid":  "70",
+                                         "sendto":  "-1003912373499",
+                                         "active":  "0",
+                                         "severity":  "48",
+                                         "period":  "1-7,00:00-24:00",
+                                         "userdirectory_mediaid":  "0",
+                                         "provisioned":  "0"
+                                     }
+                                 ]
+                  },
+                  {
+                      "userid":  "6",
+                      "username":  "pmunoz.zabbix",
+                      "name":  "Pablo",
+                      "surname":  "Muñoz",
+                      "url":  "",
+                      "autologin":  "0",
+                      "autologout":  "15m",
+                      "lang":  "default",
+                      "refresh":  "30s",
+                      "theme":  "default",
+                      "attempt_failed":  "0",
+                      "attempt_ip":  "",
+                      "attempt_clock":  "0",
+                      "rows_per_page":  "50",
+                      "timezone":  "default",
+                      "roleid":  "5",
+                      "userdirectoryid":  "0",
+                      "ts_provisioned":  "0",
+                      "provisioned":  "0",
+                      "usrgrps":  [
+                                      {
+                                          "usrgrpid":  "14",
+                                          "name":  "Viewers",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      }
+                                  ],
+                      "medias":  [
+
+                                 ]
+                  },
+                  {
+                      "userid":  "5",
+                      "username":  "sarriola.zabbix",
+                      "name":  "Santiago",
+                      "surname":  "Arriola",
+                      "url":  "",
+                      "autologin":  "1",
+                      "autologout":  "0",
+                      "lang":  "es_ES",
+                      "refresh":  "30s",
+                      "theme":  "default",
+                      "attempt_failed":  "0",
+                      "attempt_ip":  "",
+                      "attempt_clock":  "0",
+                      "rows_per_page":  "50",
+                      "timezone":  "default",
+                      "roleid":  "5",
+                      "userdirectoryid":  "0",
+                      "ts_provisioned":  "0",
+                      "provisioned":  "0",
+                      "usrgrps":  [
+                                      {
+                                          "usrgrpid":  "14",
+                                          "name":  "Viewers",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      }
+                                  ],
+                      "medias":  [
+
+                                 ]
+                  },
+                  {
+                      "userid":  "7",
+                      "username":  "svc_zabbix_audit",
+                      "name":  "audit",
+                      "surname":  "zabbix",
+                      "url":  "",
+                      "autologin":  "0",
+                      "autologout":  "0",
+                      "lang":  "default",
+                      "refresh":  "30s",
+                      "theme":  "default",
+                      "attempt_failed":  "0",
+                      "attempt_ip":  "",
+                      "attempt_clock":  "0",
+                      "rows_per_page":  "50",
+                      "timezone":  "default",
+                      "roleid":  "3",
+                      "userdirectoryid":  "0",
+                      "ts_provisioned":  "0",
+                      "provisioned":  "0",
+                      "usrgrps":  [
+                                      {
+                                          "usrgrpid":  "7",
+                                          "name":  "Zabbix administrators",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "14",
+                                          "name":  "Viewers",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      }
+                                  ],
+                      "medias":  [
+                                     {
+                                         "mediaid":  "4",
+                                         "mediatypeid":  "71",
+                                         "sendto":  "-5468713329",
+                                         "active":  "0",
+                                         "severity":  "63",
+                                         "period":  "1-7,00:00-24:00",
+                                         "userdirectory_mediaid":  "0",
+                                         "provisioned":  "0"
+                                     }
+                                 ]
+                  },
+                  {
+                      "userid":  "8",
+                      "username":  "mlarenti.zabbix",
+                      "name":  "Matias",
+                      "surname":  "Larenti",
+                      "url":  "",
+                      "autologin":  "1",
+                      "autologout":  "0",
+                      "lang":  "default",
+                      "refresh":  "30s",
+                      "theme":  "default",
+                      "attempt_failed":  "0",
+                      "attempt_ip":  "",
+                      "attempt_clock":  "0",
+                      "rows_per_page":  "50",
+                      "timezone":  "default",
+                      "roleid":  "3",
+                      "userdirectoryid":  "0",
+                      "ts_provisioned":  "0",
+                      "provisioned":  "0",
+                      "usrgrps":  [
+                                      {
+                                          "usrgrpid":  "7",
+                                          "name":  "Zabbix administrators",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "13",
+                                          "name":  "Internal",
+                                          "gui_access":  "1",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "14",
+                                          "name":  "Viewers",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "15",
+                                          "name":  "Alertas-Guardia-P1",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      }
+                                  ],
+                      "medias":  [
+                                     {
+                                         "mediaid":  "3",
+                                         "mediatypeid":  "71",
+                                         "sendto":  "-5468713329",
+                                         "active":  "0",
+                                         "severity":  "56",
+                                         "period":  "1-7,00:00-24:00",
+                                         "userdirectory_mediaid":  "0",
+                                         "provisioned":  "0"
+                                     }
+                                 ]
+                  },
+                  {
+                      "userid":  "4",
+                      "username":  "fmartin.zabbix",
+                      "name":  "Federico",
+                      "surname":  "Martin",
+                      "url":  "",
+                      "autologin":  "1",
+                      "autologout":  "0",
+                      "lang":  "en_US",
+                      "refresh":  "30s",
+                      "theme":  "dark-theme",
+                      "attempt_failed":  "0",
+                      "attempt_ip":  "",
+                      "attempt_clock":  "0",
+                      "rows_per_page":  "50",
+                      "timezone":  "default",
+                      "roleid":  "2",
+                      "userdirectoryid":  "0",
+                      "ts_provisioned":  "0",
+                      "provisioned":  "0",
+                      "usrgrps":  [
+                                      {
+                                          "usrgrpid":  "7",
+                                          "name":  "Zabbix administrators",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "15",
+                                          "name":  "Alertas-Guardia-P1",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "16",
+                                          "name":  "Alertas-NOC-Redes",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      },
+                                      {
+                                          "usrgrpid":  "17",
+                                          "name":  "Alertas-SRE-Plataforma",
+                                          "gui_access":  "0",
+                                          "users_status":  "0",
+                                          "debug_mode":  "0",
+                                          "userdirectoryid":  "0",
+                                          "mfa_status":  "0",
+                                          "mfaid":  "0"
+                                      }
+                                  ],
+                      "medias":  [
+                                     {
+                                         "mediaid":  "6",
+                                         "mediatypeid":  "72",
+                                         "sendto":  "-1003912373499",
+                                         "active":  "0",
+                                         "severity":  "63",
+                                         "period":  "1-7,00:00-24:00",
+                                         "userdirectory_mediaid":  "0",
+                                         "provisioned":  "0"
+                                     }
+                                 ]
+                  }
+              ]
+}

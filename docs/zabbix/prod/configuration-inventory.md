@@ -178,11 +178,11 @@ Las 4 acciones principales de notificación operan con `status: 0` (Enabled) y c
 
 ## 4. Inventario de Medias de Notificación (Telegram)
 
-| Media Type | ID Zabbix | Bot de Telegram | Chat ID Destino | Nombre Canal / Grupo | Usuarios Asociados | Estado |
+| Media Type | ID Zabbix | Bot de Telegram | Chat ID Destino | Nombre Canal / Grupo | Usuarios / Medias Asociados | Estado |
 | :--- | :---: | :--- | :---: | :--- | :--- | :---: |
-| **`Telegram_Test`** | `71` | `@inframilicic_bot`<br>`8899338410:AAHP9R...` | `-1004383937012` | **Alertas Infra** | `Admin` (1), `mlarenti.zabbix` (8), `svc_zabbix_audit` (7) | Habilitado |
-| **`Telegram_Test_Milicic`** | `72` | `@Milicic_bot`<br>`8666455955:AAHYjk...` | `-1003912373499` | **Milicic - Monitoreo** | `fmartin.zabbix` (4) | Habilitado |
-| **`Telegram_1`** | `70` | `@Milicic_bot` | `-1003912373499` | Milicic - Monitoreo | `Admin` (1) | Deshabilitado (Legacy) |
+| **`Telegram_OFICIAL`** | `71` | `@inframilicic_bot`<br>`8899338410:AAHP9R...` | `-1004383937012`<br>`-1004396424523` | **Alertas P1 CRITICAS**<br>**Alertas General P1 P2 P3** | `Admin` (1): P1 (-1004383937012) + General (-1004396424523)<br>`mlarenti.zabbix` (8): General (-1004396424523) | **Habilitado** (`status: 0`) |
+| **`Telegram_Test_Milicic`** | `72` | `@Milicic_bot` | `-1003912373499` | Milicic - Monitoreo | Sin operaciones activas | Deshabilitado (`status: 1`) |
+| **`Telegram_1`** | `70` | `@Milicic_bot` | `-1003912373499` | Milicic - Monitoreo | Sin operaciones activas | Deshabilitado (Legacy) |
 
 ---
 

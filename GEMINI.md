@@ -44,18 +44,19 @@ Este archivo define las reglas y directivas fundamentales que **deben aplicarse 
 
 ## 3. Modelo de Notificaciones y Alertas (P1, P2, P3)
 
-Milicic opera con un modelo de escalamiento progresivo y supresión de flapping en dos canales de Telegram independientes:
+Milicic opera con un modelo unificado de notificaciones sobre dos grupos corporativos de Telegram gestionados por el bot oficial `@inframilicic_bot` (`Telegram_OFICIAL`, ID: 71):
 
-| Nivel | Severidad | Demora (Persistencia) | Destinatarios | Medios Zabbix | Canales Telegram |
+| Nivel | Severidad | Demora (Persistencia) | Destino en Telegram | Canal / Grupo | Finalidad Operativa |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **P1 - Crítico** | `Disaster`, `High` | **Inmediato (0 min)** | `Alertas-Guardia-P1` (15) | `Telegram_Test` (71) y `Telegram_Test_Milicic` (72) | Supergrupos `-100...` |
-| **P2 - Redes** | `Average` | **10 minutos** (Paso 2) | `Alertas-NOC-Redes` (16) | `Telegram_Test` y `Telegram_Test_Milicic` | Alertas Infra / Monitoreo |
-| **P2 - Plataforma** | `Average` | **10 minutos** (Paso 2) | `Alertas-SRE-Plataforma` (17) | `Telegram_Test` y `Telegram_Test_Milicic` | Alertas Infra / Monitoreo |
-| **P3 - Preventivo** | `Warning` | **30 minutos** (Paso 2) | Grupos 16 y 17 | `Telegram_Test` y `Telegram_Test_Milicic` | Alertas Infra / Monitoreo |
+| **P1 - Crítico** | `Disaster`, `High` | **Inmediato (0 min)** | `🚨 Alertas P1 CRITICAS` (`-1004383937012`)<br>y `📋 Alertas General P1 P2 P3` (`-1004396424523`) | `Telegram_OFICIAL` (71) | Caídas de Core, servidores críticos y storage. Sonido 24/7. |
+| **P2 - Redes** | `Average` | **10 minutos** (Paso 2) | `📋 Alertas General P1 P2 P3` (`-1004396424523`) | `Telegram_OFICIAL` (71) | Switches distribución, WAN, enlaces secundarios. |
+| **P2 - Plataforma** | `Average` | **10 minutos** (Paso 2) | `📋 Alertas General P1 P2 P3` (`-1004396424523`) | `Telegram_OFICIAL` (71) | Hipervisores, bases de datos, servicios de sistema. |
+| **P3 - Preventivo** | `Warning` | **30 minutos** (Paso 2) | `📋 Alertas General P1 P2 P3` (`-1004396424523`) | `Telegram_OFICIAL` (71) | Umbrales de capacidad (disco > 85%), interfaces de acceso. |
 
 > [!CAUTION]
 > - Los chat IDs de supergrupos/canales siempre comienzan con `-100`. Omitir este prefijo provoca el error fatal `Bad Request: chat not found`.
 > - Los eventos resueltos dentro de la ventana de retardo (10 min en P2, 30 min en P3) no generan ruido en los grupos de Telegram.
+> - Solo se encuentra activo el bot `@inframilicic_bot` asociado al Media Type `Telegram_OFICIAL` (ID: 71). El bot secundario (`@Milicic_bot`) y su media `Telegram_Test_Milicic` (72) están deshabilitados.
 
 ---
 
