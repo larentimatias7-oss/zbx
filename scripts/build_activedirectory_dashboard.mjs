@@ -16,7 +16,7 @@ const dashboard = {
   tags: ["milicic", "ad", "activedirectory", "cyber-soc", "seguridad", "identidades", "windows", "domain-controllers"],
   timezone: "browser",
   schemaVersion: 40,
-  time: { from: "now-3h", to: "now" },
+  time: { from: "now-7d", to: "now" },
   refresh: "1m",
   templating: {
     list: [
@@ -31,22 +31,6 @@ const dashboard = {
           { text: "SRO-DCO01 (Rosario - FSMO)", value: "SRO-DCO01", selected: false },
           { text: "SRO-DCO02 (Rosario - Sec)", value: "SRO-DCO02", selected: false },
           { text: "SSJ-DCO01 (San Juan)", value: "SSJ-DCO01", selected: false }
-        ],
-        includeAll: false,
-        hide: 0
-      },
-      {
-        name: "forensic_window",
-        label: "⏳ Ventana Forense",
-        type: "custom",
-        query: "Últimas 24h : 24h, Últimos 7 Días : 7d, Últimos 15 Días : 15d, Últimos 30 Días : 30d, Últimos 60 Días : 60d",
-        current: { text: "Últimos 7 Días", value: "7d" },
-        options: [
-          { text: "Últimas 24h", value: "24h", selected: false },
-          { text: "Últimos 7 Días", value: "7d", selected: true },
-          { text: "Últimos 15 Días", value: "15d", selected: false },
-          { text: "Últimos 30 Días", value: "30d", selected: false },
-          { text: "Últimos 60 Días", value: "60d", selected: false }
         ],
         includeAll: false,
         hide: 0
@@ -80,6 +64,26 @@ const dashboard = {
       type: "stat",
       gridPos: { x: 0, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        {
+          id: "merge",
+          options: {}
+        },
+        {
+          id: "reduce",
+          options: {
+            reducers: ["count"]
+          }
+        },
+        {
+          id: "filterFieldsByName",
+          options: {
+            include: {
+              names: ["Count"]
+            }
+          }
+        }
+      ],
       fieldConfig: {
         defaults: {
           noValue: "0",
@@ -95,10 +99,12 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["count"], values: false },
+        reduceOptions: { calcs: ["sum"], fields: "", values: false },
+        orientation: "auto",
         colorMode: "value",
         graphMode: "none",
-        textMode: "value"
+        textMode: "value",
+        justifyMode: "center"
       },
       targets: [
         {
@@ -107,8 +113,17 @@ const dashboard = {
           queryType: "2",
           group: { filter: "AD" },
           host: { filter: "/${dc:raw}/" },
-          item: { filter: "Eventlog by Zabbix agent: User locked" },
-          resultFormat: "table"
+          item: { filter: "/.*User locked.*/" },
+          resultFormat: "time_series",
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
         }
       ]
     },
@@ -118,6 +133,26 @@ const dashboard = {
       type: "stat",
       gridPos: { x: 4, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        {
+          id: "merge",
+          options: {}
+        },
+        {
+          id: "reduce",
+          options: {
+            reducers: ["count"]
+          }
+        },
+        {
+          id: "filterFieldsByName",
+          options: {
+            include: {
+              names: ["Count"]
+            }
+          }
+        }
+      ],
       fieldConfig: {
         defaults: {
           noValue: "0",
@@ -134,10 +169,12 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["count"], values: false },
+        reduceOptions: { calcs: ["sum"], fields: "", values: false },
+        orientation: "auto",
         colorMode: "value",
         graphMode: "none",
-        textMode: "value"
+        textMode: "value",
+        justifyMode: "center"
       },
       targets: [
         {
@@ -146,8 +183,17 @@ const dashboard = {
           queryType: "2",
           group: { filter: "AD" },
           host: { filter: "/${dc:raw}/" },
-          item: { filter: "Eventlog: Fallo de Preautenticación Kerberos (4771)" },
-          resultFormat: "table"
+          item: { filter: "/.*4771.*/" },
+          resultFormat: "time_series",
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
         }
       ]
     },
@@ -157,6 +203,26 @@ const dashboard = {
       type: "stat",
       gridPos: { x: 8, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        {
+          id: "merge",
+          options: {}
+        },
+        {
+          id: "reduce",
+          options: {
+            reducers: ["count"]
+          }
+        },
+        {
+          id: "filterFieldsByName",
+          options: {
+            include: {
+              names: ["Count"]
+            }
+          }
+        }
+      ],
       fieldConfig: {
         defaults: {
           noValue: "0",
@@ -173,10 +239,12 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["count"], values: false },
+        reduceOptions: { calcs: ["sum"], fields: "", values: false },
+        orientation: "auto",
         colorMode: "value",
         graphMode: "none",
-        textMode: "value"
+        textMode: "value",
+        justifyMode: "center"
       },
       targets: [
         {
@@ -185,8 +253,17 @@ const dashboard = {
           queryType: "2",
           group: { filter: "AD" },
           host: { filter: "/${dc:raw}/" },
-          item: { filter: "Eventlog by Zabbix agent: Failed Login" },
-          resultFormat: "table"
+          item: { filter: "/.*Failed Login.*/" },
+          resultFormat: "time_series",
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
         }
       ]
     },
@@ -196,6 +273,26 @@ const dashboard = {
       type: "stat",
       gridPos: { x: 12, y: 1, w: 4, h: 4 },
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
+      transformations: [
+        {
+          id: "merge",
+          options: {}
+        },
+        {
+          id: "reduce",
+          options: {
+            reducers: ["count"]
+          }
+        },
+        {
+          id: "filterFieldsByName",
+          options: {
+            include: {
+              names: ["Count"]
+            }
+          }
+        }
+      ],
       fieldConfig: {
         defaults: {
           noValue: "0",
@@ -211,10 +308,12 @@ const dashboard = {
         }
       },
       options: {
-        reduceOptions: { calcs: ["count"], values: false },
+        reduceOptions: { calcs: ["sum"], fields: "", values: false },
+        orientation: "auto",
         colorMode: "value",
         graphMode: "none",
-        textMode: "value"
+        textMode: "value",
+        justifyMode: "center"
       },
       targets: [
         {
@@ -223,8 +322,17 @@ const dashboard = {
           queryType: "2",
           group: { filter: "AD" },
           host: { filter: "/${dc:raw}/" },
-          item: { filter: "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)" },
-          resultFormat: "table"
+          item: { filter: "/.*(4728|4732|4756).*/" },
+          resultFormat: "time_series",
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
         }
       ]
     },
@@ -233,6 +341,7 @@ const dashboard = {
       title: "Tiempo de Actividad (Uptime Controladores)",
       type: "stat",
       gridPos: { x: 16, y: 1, w: 4, h: 4 },
+      timeFrom: "24h",
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       fieldConfig: {
         defaults: {
@@ -900,7 +1009,6 @@ const dashboard = {
       title: "🔒 Historial de Bloqueos de Cuenta (Event ID 4740)",
       type: "table",
       gridPos: { x: 0, y: 46, w: 24, h: 9 },
-      timeFrom: "${forensic_window}",
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       transformations: [
         { id: "merge", options: {} },
@@ -994,7 +1102,15 @@ const dashboard = {
           item: { filter: "Eventlog by Zabbix agent: User locked" },
           functions: [],
           resultFormat: "table",
-          options: { showDisabledItems: false }
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
         },
         {
           refId: "DCO02_4740",
@@ -1006,7 +1122,35 @@ const dashboard = {
           item: { filter: "Eventlog by Zabbix agent: User locked" },
           functions: [],
           resultFormat: "table",
-          options: { showDisabledItems: false }
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
+        },
+        {
+          refId: "SSJ_4740",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SSJ-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User locked" },
+          functions: [],
+          resultFormat: "table",
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
         }
       ]
     },
@@ -1015,7 +1159,6 @@ const dashboard = {
       title: "👥 Modificación de Grupos Privilegiados (Event IDs 4728 · 4732 · 4756)",
       type: "table",
       gridPos: { x: 0, y: 55, w: 24, h: 9 },
-      timeFrom: "${forensic_window}",
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       transformations: [
         { id: "merge", options: {} },
@@ -1109,7 +1252,15 @@ const dashboard = {
           item: { filter: "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)" },
           functions: [],
           resultFormat: "table",
-          options: { showDisabledItems: false }
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
         },
         {
           refId: "DCO02_GRP",
@@ -1121,7 +1272,35 @@ const dashboard = {
           item: { filter: "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)" },
           functions: [],
           resultFormat: "table",
-          options: { showDisabledItems: false }
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
+        },
+        {
+          refId: "SSJ_GRP",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SSJ-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)" },
+          functions: [],
+          resultFormat: "table",
+          options: {
+            disableDataAlignment: false,
+            showDisabledItems: false,
+            skipEmptyValues: false,
+            useZabbixValueMapping: false
+          },
+          table: {
+            skipEmptyValues: false
+          }
         }
       ]
     },
@@ -1130,7 +1309,6 @@ const dashboard = {
       title: "👤 Ciclo de Vida de Cuentas — Creación · Habilitación · Deshabilitación (4720 · 4722 · 4725)",
       type: "table",
       gridPos: { x: 0, y: 64, w: 24, h: 8 },
-      timeFrom: "${forensic_window}",
       datasource: { type: DATASOURCE_TYPE, uid: DATASOURCE_UID },
       transformations: [
         { id: "merge", options: {} },
@@ -1224,7 +1402,8 @@ const dashboard = {
           item: { filter: "Eventlog by Zabbix agent: User Created" },
           functions: [],
           resultFormat: "table",
-          options: { showDisabledItems: false }
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
         },
         {
           refId: "DCO01_4722",
@@ -1236,7 +1415,8 @@ const dashboard = {
           item: { filter: "Eventlog by Zabbix agent: User enabled" },
           functions: [],
           resultFormat: "table",
-          options: { showDisabledItems: false }
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
         },
         {
           refId: "DCO01_4725",
@@ -1248,7 +1428,86 @@ const dashboard = {
           item: { filter: "Eventlog by Zabbix agent: User disabled" },
           functions: [],
           resultFormat: "table",
-          options: { showDisabledItems: false }
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
+        },
+        {
+          refId: "DCO02_4720",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO02" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User Created" },
+          functions: [],
+          resultFormat: "table",
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
+        },
+        {
+          refId: "DCO02_4722",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO02" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User enabled" },
+          functions: [],
+          resultFormat: "table",
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
+        },
+        {
+          refId: "DCO02_4725",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SRO-DCO02" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User disabled" },
+          functions: [],
+          resultFormat: "table",
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
+        },
+        {
+          refId: "SSJ_4720",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SSJ-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User Created" },
+          functions: [],
+          resultFormat: "table",
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
+        },
+        {
+          refId: "SSJ_4722",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SSJ-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User enabled" },
+          functions: [],
+          resultFormat: "table",
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
+        },
+        {
+          refId: "SSJ_4725",
+          schema: 12,
+          queryType: "2",
+          group: { filter: "AD" },
+          host: { filter: "SSJ-DCO01" },
+          application: { filter: "" },
+          item: { filter: "Eventlog by Zabbix agent: User disabled" },
+          functions: [],
+          resultFormat: "table",
+          options: { disableDataAlignment: false, showDisabledItems: false, skipEmptyValues: false, useZabbixValueMapping: false },
+          table: { skipEmptyValues: false }
         }
       ]
     }

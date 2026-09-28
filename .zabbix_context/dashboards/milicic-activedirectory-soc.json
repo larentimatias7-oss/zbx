@@ -14,7 +14,7 @@
   "timezone": "browser",
   "schemaVersion": 40,
   "time": {
-    "from": "now-3h",
+    "from": "now-7d",
     "to": "now"
   },
   "refresh": "1m",
@@ -48,45 +48,6 @@
           {
             "text": "SSJ-DCO01 (San Juan)",
             "value": "SSJ-DCO01",
-            "selected": false
-          }
-        ],
-        "includeAll": false,
-        "hide": 0
-      },
-      {
-        "name": "forensic_window",
-        "label": "⏳ Ventana Forense",
-        "type": "custom",
-        "query": "Últimas 24h : 24h, Últimos 7 Días : 7d, Últimos 15 Días : 15d, Últimos 30 Días : 30d, Últimos 60 Días : 60d",
-        "current": {
-          "text": "Últimos 7 Días",
-          "value": "7d"
-        },
-        "options": [
-          {
-            "text": "Últimas 24h",
-            "value": "24h",
-            "selected": false
-          },
-          {
-            "text": "Últimos 7 Días",
-            "value": "7d",
-            "selected": true
-          },
-          {
-            "text": "Últimos 15 Días",
-            "value": "15d",
-            "selected": false
-          },
-          {
-            "text": "Últimos 30 Días",
-            "value": "30d",
-            "selected": false
-          },
-          {
-            "text": "Últimos 60 Días",
-            "value": "60d",
             "selected": false
           }
         ],
@@ -141,6 +102,30 @@
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "count"
+            ]
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Count"
+              ]
+            }
+          }
+        }
+      ],
       "fieldConfig": {
         "defaults": {
           "noValue": "0",
@@ -166,13 +151,16 @@
       "options": {
         "reduceOptions": {
           "calcs": [
-            "count"
+            "sum"
           ],
+          "fields": "",
           "values": false
         },
+        "orientation": "auto",
         "colorMode": "value",
         "graphMode": "none",
-        "textMode": "value"
+        "textMode": "value",
+        "justifyMode": "center"
       },
       "targets": [
         {
@@ -186,9 +174,18 @@
             "filter": "/${dc:raw}/"
           },
           "item": {
-            "filter": "Eventlog by Zabbix agent: User locked"
+            "filter": "/.*User locked.*/"
           },
-          "resultFormat": "table"
+          "resultFormat": "time_series",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
         }
       ]
     },
@@ -206,6 +203,30 @@
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "count"
+            ]
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Count"
+              ]
+            }
+          }
+        }
+      ],
       "fieldConfig": {
         "defaults": {
           "noValue": "0",
@@ -235,13 +256,16 @@
       "options": {
         "reduceOptions": {
           "calcs": [
-            "count"
+            "sum"
           ],
+          "fields": "",
           "values": false
         },
+        "orientation": "auto",
         "colorMode": "value",
         "graphMode": "none",
-        "textMode": "value"
+        "textMode": "value",
+        "justifyMode": "center"
       },
       "targets": [
         {
@@ -255,9 +279,18 @@
             "filter": "/${dc:raw}/"
           },
           "item": {
-            "filter": "Eventlog: Fallo de Preautenticación Kerberos (4771)"
+            "filter": "/.*4771.*/"
           },
-          "resultFormat": "table"
+          "resultFormat": "time_series",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
         }
       ]
     },
@@ -275,6 +308,30 @@
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "count"
+            ]
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Count"
+              ]
+            }
+          }
+        }
+      ],
       "fieldConfig": {
         "defaults": {
           "noValue": "0",
@@ -304,13 +361,16 @@
       "options": {
         "reduceOptions": {
           "calcs": [
-            "count"
+            "sum"
           ],
+          "fields": "",
           "values": false
         },
+        "orientation": "auto",
         "colorMode": "value",
         "graphMode": "none",
-        "textMode": "value"
+        "textMode": "value",
+        "justifyMode": "center"
       },
       "targets": [
         {
@@ -324,9 +384,18 @@
             "filter": "/${dc:raw}/"
           },
           "item": {
-            "filter": "Eventlog by Zabbix agent: Failed Login"
+            "filter": "/.*Failed Login.*/"
           },
-          "resultFormat": "table"
+          "resultFormat": "time_series",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
         }
       ]
     },
@@ -344,6 +413,30 @@
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "count"
+            ]
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Count"
+              ]
+            }
+          }
+        }
+      ],
       "fieldConfig": {
         "defaults": {
           "noValue": "0",
@@ -369,13 +462,16 @@
       "options": {
         "reduceOptions": {
           "calcs": [
-            "count"
+            "sum"
           ],
+          "fields": "",
           "values": false
         },
+        "orientation": "auto",
         "colorMode": "value",
         "graphMode": "none",
-        "textMode": "value"
+        "textMode": "value",
+        "justifyMode": "center"
       },
       "targets": [
         {
@@ -389,9 +485,18 @@
             "filter": "/${dc:raw}/"
           },
           "item": {
-            "filter": "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)"
+            "filter": "/.*(4728|4732|4756).*/"
           },
-          "resultFormat": "table"
+          "resultFormat": "time_series",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
         }
       ]
     },
@@ -405,6 +510,7 @@
         "w": 4,
         "h": 4
       },
+      "timeFrom": "24h",
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
@@ -1531,7 +1637,6 @@
         "w": 24,
         "h": 9
       },
-      "timeFrom": "${forensic_window}",
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
@@ -1670,7 +1775,13 @@
           "functions": [],
           "resultFormat": "table",
           "options": {
-            "showDisabledItems": false
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
           }
         },
         {
@@ -1692,7 +1803,41 @@
           "functions": [],
           "resultFormat": "table",
           "options": {
-            "showDisabledItems": false
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "refId": "SSJ_4740",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "application": {
+            "filter": ""
+          },
+          "item": {
+            "filter": "Eventlog by Zabbix agent: User locked"
+          },
+          "functions": [],
+          "resultFormat": "table",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
           }
         }
       ]
@@ -1707,7 +1852,6 @@
         "w": 24,
         "h": 9
       },
-      "timeFrom": "${forensic_window}",
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
@@ -1846,7 +1990,13 @@
           "functions": [],
           "resultFormat": "table",
           "options": {
-            "showDisabledItems": false
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
           }
         },
         {
@@ -1868,7 +2018,41 @@
           "functions": [],
           "resultFormat": "table",
           "options": {
-            "showDisabledItems": false
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "refId": "SSJ_GRP",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "application": {
+            "filter": ""
+          },
+          "item": {
+            "filter": "Eventlog: Modificación de Grupos Privilegiados (4728, 4732, 4756)"
+          },
+          "functions": [],
+          "resultFormat": "table",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
           }
         }
       ]
@@ -1883,7 +2067,6 @@
         "w": 24,
         "h": 8
       },
-      "timeFrom": "${forensic_window}",
       "datasource": {
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
@@ -2022,7 +2205,13 @@
           "functions": [],
           "resultFormat": "table",
           "options": {
-            "showDisabledItems": false
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
           }
         },
         {
@@ -2044,7 +2233,13 @@
           "functions": [],
           "resultFormat": "table",
           "options": {
-            "showDisabledItems": false
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
           }
         },
         {
@@ -2066,7 +2261,181 @@
           "functions": [],
           "resultFormat": "table",
           "options": {
-            "showDisabledItems": false
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "refId": "DCO02_4720",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO02"
+          },
+          "application": {
+            "filter": ""
+          },
+          "item": {
+            "filter": "Eventlog by Zabbix agent: User Created"
+          },
+          "functions": [],
+          "resultFormat": "table",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "refId": "DCO02_4722",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO02"
+          },
+          "application": {
+            "filter": ""
+          },
+          "item": {
+            "filter": "Eventlog by Zabbix agent: User enabled"
+          },
+          "functions": [],
+          "resultFormat": "table",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "refId": "DCO02_4725",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO02"
+          },
+          "application": {
+            "filter": ""
+          },
+          "item": {
+            "filter": "Eventlog by Zabbix agent: User disabled"
+          },
+          "functions": [],
+          "resultFormat": "table",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "refId": "SSJ_4720",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "application": {
+            "filter": ""
+          },
+          "item": {
+            "filter": "Eventlog by Zabbix agent: User Created"
+          },
+          "functions": [],
+          "resultFormat": "table",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "refId": "SSJ_4722",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "application": {
+            "filter": ""
+          },
+          "item": {
+            "filter": "Eventlog by Zabbix agent: User enabled"
+          },
+          "functions": [],
+          "resultFormat": "table",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "refId": "SSJ_4725",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "application": {
+            "filter": ""
+          },
+          "item": {
+            "filter": "Eventlog by Zabbix agent: User disabled"
+          },
+          "functions": [],
+          "resultFormat": "table",
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
           }
         }
       ]

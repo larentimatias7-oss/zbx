@@ -40,7 +40,7 @@ Red: `zabbix_network-zabbix` (Docker network — gestionada por Portainer)
 ## Variables de Entorno del Contenedor (zabbix-server)
 
 ```
-ZBX_MAXHOUSEKEEPERDELETE=2000        → pendiente cambio a 5000 via Portainer
+ZBX_MAXHOUSEKEEPERDELETE=5000        → Aplicado y verificado (28/09/2026)
 ZBX_STARTPOLLERS=8
 ZBX_VALUECACHESIZE=256M
 ZBX_HOUSEKEEPINGFREQUENCY=1
@@ -203,14 +203,15 @@ SELECT remove_retention_policy('trends_uint',  if_not_exists => true);
 
 ---
 
-## Pendientes
+## Estado de Tareas Post-Migración
 
-- [ ] Cambiar `ZBX_MAXHOUSEKEEPERDELETE` de 2000 a 5000 vía Portainer UI (stack `zabbix`)
-      - Acceso: tunnel SSH `ssh -L 9443:127.0.0.1:9443 root@172.30.20.61` → `https://127.0.0.1:9443`
-- [ ] Verificar caída de utilización del housekeeper en los próximos ciclos (~1-2h post-cambio)
-      - Ítem: `zabbix[process,housekeeper,avg,busy]` en Host `Zabbix server`
-- [ ] Evaluar retención de Events: Internal/Service/Discovery está en 1d (puede ser muy corto)
-- [ ] Crear docker-compose.yml en Portainer para trazabilidad del stack
+- [x] Cambiar `ZBX_MAXHOUSEKEEPERDELETE` de 2000 a 5000 vía Portainer (Contenedor `zabbix-server`)
+      - Aplicado y verificado en `/etc/zabbix/zabbix_server.conf` (28/09/2026).
+- [x] Verificar caída de utilización del housekeeper en Zabbix Server
+      - Ítem: `zabbix[process,housekeeper,avg,busy]` confirmado en **0.00%** de utilización.
+- [x] Respaldo y trazabilidad del stack `docker-compose.yml` en Portainer
+      - Especificación consolidada y documentada.
+- [ ] Evaluar retención de Events: Internal/Service/Discovery en Zabbix UI (actualmente en 1d; evaluando ampliar a 7d).
 
 ---
 
