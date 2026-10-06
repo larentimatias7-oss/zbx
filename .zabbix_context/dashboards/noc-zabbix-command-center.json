@@ -9,7 +9,7 @@
     "milicic",
     "command-center",
     "masterpiece",
-    "v11"
+    "v12"
   ],
   "timezone": "browser",
   "schemaVersion": 40,
@@ -157,7 +157,7 @@
     {
       "id": 1,
       "title": "",
-      "type": "text",
+      "type": "marcusolsson-dynamictext-panel",
       "gridPos": {
         "x": 0,
         "y": 0,
@@ -165,8 +165,8 @@
         "h": 3
       },
       "options": {
-        "mode": "html",
-        "content": "\n<div style=\"background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); border-left: 6px solid #EA580C; padding: 10px 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; height: 100%; box-sizing: border-box;\">\n  <div>\n    <div style=\"display: flex; align-items: center; gap: 8px;\">\n      <span style=\"background: #EA580C; color: white; padding: 2px 7px; border-radius: 4px; font-weight: 800; font-size: 11px; letter-spacing: 0.5px;\">MILICIC S.A.</span>\n      <h2 style=\"margin: 0; color: #FFFFFF; font-size: 18px; font-weight: 700;\">NOC COMMAND CENTER &bull; Zabbix 7.0 LTS</h2>\n    </div>\n    <p style=\"margin: 3px 0 0 0; color: #94A3B8; font-size: 11px;\">Monitoreo Global de Disponibilidad &bull; Matriz de Salud de Infraestructura &bull; Telemetr&iacute;a Cr&iacute;tica en Vivo</p>\n  </div>\n  <div style=\"display: flex; gap: 14px; font-size: 11px; color: #E2E8F0; align-items: center;\">\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #73BF69; border-radius: 2px; margin-right: 4px;\"></b>ONLINE (UP)</span>\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #E02F44; border-radius: 2px; margin-right: 4px;\"></b>CA&Iacute;DO (DOWN)</span>\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #6B7280; border-radius: 2px; margin-right: 4px;\"></b>SIN DATOS</span>\n  </div>\n</div>"
+        "content": "\n<style>\n\n  footer,\n  .footer,\n  [aria-label=\"Grafana footer\"],\n  [aria-label*=\"footer\"],\n  div[class*=\"footer\"],\n  div[data-testid*=\"footer\"],\n  .css-1q6p3o2-footer {\n    display: none !important;\n    visibility: hidden !important;\n    height: 0 !important;\n    min-height: 0 !important;\n    max-height: 0 !important;\n    padding: 0 !important;\n    margin: 0 !important;\n    opacity: 0 !important;\n    pointer-events: none !important;\n    position: absolute !important;\n    bottom: -9999px !important;\n    z-index: -9999 !important;\n  }\n  .react-grid-layout {\n    margin-bottom: 32px !important;\n  }\n\n</style>\n<div style=\"background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); border-left: 6px solid #EA580C; padding: 10px 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; height: 100%; box-sizing: border-box;\">\n  <div>\n    <div style=\"display: flex; align-items: center; gap: 8px;\">\n      <span style=\"background: #EA580C; color: white; padding: 2px 7px; border-radius: 4px; font-weight: 800; font-size: 11px; letter-spacing: 0.5px;\">MILICIC S.A.</span>\n      <h2 style=\"margin: 0; color: #FFFFFF; font-size: 18px; font-weight: 700;\">NOC COMMAND CENTER &bull; Zabbix 7.0 LTS</h2>\n    </div>\n    <p style=\"margin: 3px 0 0 0; color: #94A3B8; font-size: 11px;\">Monitoreo Global de Disponibilidad &bull; Matriz de Salud de Infraestructura &bull; Telemetr&iacute;a Cr&iacute;tica en Vivo</p>\n  </div>\n  <div style=\"display: flex; gap: 14px; font-size: 11px; color: #E2E8F0; align-items: center;\">\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #73BF69; border-radius: 2px; margin-right: 4px;\"></b>ONLINE (UP)</span>\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #E02F44; border-radius: 2px; margin-right: 4px;\"></b>CA&Iacute;DO (DOWN)</span>\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #6B7280; border-radius: 2px; margin-right: 4px;\"></b>SIN DATOS</span>\n  </div>\n</div>",
+        "styles": "\n  footer,\n  .footer,\n  [aria-label=\"Grafana footer\"],\n  [aria-label*=\"footer\"],\n  div[class*=\"footer\"],\n  div[data-testid*=\"footer\"],\n  .css-1q6p3o2-footer {\n    display: none !important;\n    visibility: hidden !important;\n    height: 0 !important;\n    min-height: 0 !important;\n    max-height: 0 !important;\n    padding: 0 !important;\n    margin: 0 !important;\n    opacity: 0 !important;\n    pointer-events: none !important;\n    position: absolute !important;\n    bottom: -9999px !important;\n    z-index: -9999 !important;\n  }\n  .react-grid-layout {\n    margin-bottom: 32px !important;\n  }\n"
       }
     },
     {
