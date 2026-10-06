@@ -1462,8 +1462,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "max": 100,
           "min": 0,
+          "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1482,7 +1482,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1493,15 +1494,8 @@
       "id": 13,
       "options": {
         "displayMode": "gradient",
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -1509,7 +1503,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showUnfilled": true,
         "sizing": "auto",
@@ -1518,16 +1512,9 @@
       "pluginVersion": "13.2.3",
       "targets": [
         {
-          "application": {
-            "filter": ""
-          },
-          "countTriggersBy": "",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
-          "evaltype": "0",
-          "functions": [],
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
           "group": {
             "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/"
           },
@@ -1537,11 +1524,32 @@
           "item": {
             "filter": "/^CPU utilization$/"
           },
-          "itemTag": {
-            "filter": ""
-          },
-          "macro": {
-            "filter": ""
+          "functions": [
+            {
+              "def": {
+                "name": "top",
+                "category": "Filter",
+                "params": [
+                  {
+                    "name": "number",
+                    "type": "int"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                5,
+                "avg"
+              ]
+            }
+          ],
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
           "options": {
             "count": false,
@@ -1551,23 +1559,30 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
-          "proxy": {
-            "filter": ""
-          },
-          "queryType": "0",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "schema": 13,
           "table": {
             "skipEmptyValues": false
+          },
+          "application": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "textFilter": "",
+          "macro": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
           "trigger": {
             "filter": ""
-          }
+          },
+          "evaltype": "0",
+          "textFilter": "",
+          "countTriggersBy": ""
         }
       ],
       "title": "Top 5 Servidores (Consumo CPU %)",
@@ -1577,45 +1592,6 @@
           "options": {
             "regex": "(.*):.*",
             "renamePattern": "$1"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": [
-              "lastNotNull"
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Field": "Name",
-              "Last *NotNull": "Value"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Value"
-              }
-            ]
-          }
-        },
-        {
-          "id": "limit",
-          "options": {
-            "limitField": 5
           }
         }
       ],
@@ -1632,8 +1608,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "max": 100,
           "min": 0,
+          "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1652,7 +1628,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1663,15 +1640,8 @@
       "id": 18,
       "options": {
         "displayMode": "gradient",
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -1679,7 +1649,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showUnfilled": true,
         "sizing": "auto",
@@ -1688,16 +1658,9 @@
       "pluginVersion": "13.2.3",
       "targets": [
         {
-          "application": {
-            "filter": ""
-          },
-          "countTriggersBy": "",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
-          "evaltype": "0",
-          "functions": [],
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
           "group": {
             "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/"
           },
@@ -1707,11 +1670,32 @@
           "item": {
             "filter": "Memory utilization"
           },
-          "itemTag": {
-            "filter": ""
-          },
-          "macro": {
-            "filter": ""
+          "functions": [
+            {
+              "def": {
+                "name": "top",
+                "category": "Filter",
+                "params": [
+                  {
+                    "name": "number",
+                    "type": "int"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                5,
+                "last"
+              ]
+            }
+          ],
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
           "options": {
             "count": false,
@@ -1721,23 +1705,30 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
-          "proxy": {
-            "filter": ""
-          },
-          "queryType": "0",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "schema": 13,
           "table": {
             "skipEmptyValues": false
+          },
+          "application": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "textFilter": "",
+          "macro": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
           "trigger": {
             "filter": ""
-          }
+          },
+          "evaltype": "0",
+          "textFilter": "",
+          "countTriggersBy": ""
         }
       ],
       "title": "Top 5 Servidores (Consumo RAM %)",
@@ -1747,45 +1738,6 @@
           "options": {
             "regex": "(.*):.*",
             "renamePattern": "$1"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": [
-              "lastNotNull"
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Field": "Name",
-              "Last *NotNull": "Value"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Value"
-              }
-            ]
-          }
-        },
-        {
-          "id": "limit",
-          "options": {
-            "limitField": 5
           }
         }
       ],
@@ -1802,8 +1754,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "max": 100,
           "min": 0,
+          "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1822,7 +1774,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1833,15 +1786,8 @@
       "id": 19,
       "options": {
         "displayMode": "gradient",
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -1849,7 +1795,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showUnfilled": true,
         "sizing": "auto",
@@ -1858,30 +1804,44 @@
       "pluginVersion": "13.2.3",
       "targets": [
         {
-          "application": {
-            "filter": ""
-          },
-          "countTriggersBy": "",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
-          "evaltype": "0",
-          "functions": [],
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
           "group": {
-            "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/"
+            "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
           },
           "host": {
             "filter": "/${sede:raw}/"
           },
           "item": {
-            "filter": "/FS \\[.*]: Space: Used, in %/"
+            "filter": "/FS \\[.*(:\\)|\\/$)\\].*Space: Used, in %/"
           },
-          "itemTag": {
-            "filter": ""
-          },
-          "macro": {
-            "filter": ""
+          "functions": [
+            {
+              "def": {
+                "name": "top",
+                "category": "Filter",
+                "params": [
+                  {
+                    "name": "number",
+                    "type": "int"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                5,
+                "last"
+              ]
+            }
+          ],
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
           "options": {
             "count": false,
@@ -1891,23 +1851,30 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
-          "proxy": {
-            "filter": ""
-          },
-          "queryType": "0",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "schema": 13,
           "table": {
             "skipEmptyValues": false
+          },
+          "application": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "textFilter": "",
+          "macro": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
           "trigger": {
             "filter": ""
-          }
+          },
+          "evaltype": "0",
+          "textFilter": "",
+          "countTriggersBy": ""
         }
       ],
       "title": "Top 5 Servidores (Uso de Disco %)",
@@ -1917,45 +1884,6 @@
           "options": {
             "regex": "^(.*?):\\s*FS\\s*\\[(.*?)\\]:.*",
             "renamePattern": "$1 [$2]"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": [
-              "lastNotNull"
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Field": "Name",
-              "Last *NotNull": "Value"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Value"
-              }
-            ]
-          }
-        },
-        {
-          "id": "limit",
-          "options": {
-            "limitField": 5
           }
         }
       ],
@@ -1972,8 +1900,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "max": 100,
           "min": 0,
+          "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1992,7 +1920,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -2003,15 +1932,8 @@
       "id": 14,
       "options": {
         "displayMode": "gradient",
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -2019,7 +1941,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showUnfilled": true,
         "sizing": "auto",
@@ -2028,10 +1950,9 @@
       "pluginVersion": "13.2.3",
       "targets": [
         {
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
           "group": {
             "filter": "UPS"
           },
@@ -2041,10 +1962,65 @@
           "item": {
             "filter": "/^(UPS Load \\(%\\)|Output Load Estimated)$/"
           },
-          "queryType": "0",
-          "refId": "A",
+          "functions": [
+            {
+              "def": {
+                "name": "top",
+                "category": "Filter",
+                "params": [
+                  {
+                    "name": "number",
+                    "type": "int"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                5,
+                "last"
+              ]
+            }
+          ],
           "resultFormat": "time_series",
-          "schema": 12
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "table": {
+            "skipEmptyValues": false
+          },
+          "application": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "tags": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "trigger": {
+            "filter": ""
+          },
+          "evaltype": "0",
+          "textFilter": "",
+          "countTriggersBy": ""
         }
       ],
       "title": "Top 5 Datacenters (Carga Eléctrica UPS %)",
@@ -2054,45 +2030,6 @@
           "options": {
             "regex": "(.*):.*",
             "renamePattern": "$1"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": [
-              "lastNotNull"
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Field": "Name",
-              "Last *NotNull": "Value"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Value"
-              }
-            ]
-          }
-        },
-        {
-          "id": "limit",
-          "options": {
-            "limitField": 5
           }
         }
       ],
@@ -2245,8 +2182,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 1,
           "min": 0,
+          "decimals": 1,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2294,16 +2231,9 @@
       },
       "targets": [
         {
-          "application": {
-            "filter": ""
-          },
-          "countTriggersBy": "",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
-          "evaltype": "0",
-          "functions": [],
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
           "group": {
             "filter": "/(FortiGate|ANTENAS P2P)/"
           },
@@ -2313,11 +2243,32 @@
           "item": {
             "filter": "ICMP response time"
           },
-          "itemTag": {
-            "filter": ""
-          },
-          "macro": {
-            "filter": ""
+          "functions": [
+            {
+              "def": {
+                "name": "top",
+                "category": "Filter",
+                "params": [
+                  {
+                    "name": "number",
+                    "type": "int"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                5,
+                "last"
+              ]
+            }
+          ],
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
           "options": {
             "count": false,
@@ -2327,23 +2278,30 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
-          "proxy": {
-            "filter": ""
-          },
-          "queryType": "0",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "schema": 13,
           "table": {
             "skipEmptyValues": false
+          },
+          "application": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "textFilter": "",
+          "macro": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
           "trigger": {
             "filter": ""
-          }
+          },
+          "evaltype": "0",
+          "textFilter": "",
+          "countTriggersBy": ""
         }
       ],
       "title": "Top 5 Sedes WAN (Mayor Latencia Ping ms)",
@@ -2353,45 +2311,6 @@
           "options": {
             "regex": "^(?:FTG_|)(.*?)(?:_SNMP|):.*",
             "renamePattern": "$1"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": [
-              "lastNotNull"
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Field": "Name",
-              "Last *NotNull": "Value"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Value"
-              }
-            ]
-          }
-        },
-        {
-          "id": "limit",
-          "options": {
-            "limitField": 5
           }
         }
       ],
@@ -2456,16 +2375,9 @@
       },
       "targets": [
         {
-          "application": {
-            "filter": ""
-          },
-          "countTriggersBy": "",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
-          "evaltype": "0",
-          "functions": [],
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
           "group": {
             "filter": "FortiGate"
           },
@@ -2475,11 +2387,32 @@
           "item": {
             "filter": "/Interface (port14|port15|wan|internet|claro|tasa|rosario|telecom).*: Bits received/"
           },
-          "itemTag": {
-            "filter": ""
-          },
-          "macro": {
-            "filter": ""
+          "functions": [
+            {
+              "def": {
+                "name": "top",
+                "category": "Filter",
+                "params": [
+                  {
+                    "name": "number",
+                    "type": "int"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                5,
+                "last"
+              ]
+            }
+          ],
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
           "options": {
             "count": false,
@@ -2489,23 +2422,30 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
-          "proxy": {
-            "filter": ""
-          },
-          "queryType": "0",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "schema": 13,
           "table": {
             "skipEmptyValues": false
+          },
+          "application": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "textFilter": "",
+          "macro": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
           "trigger": {
             "filter": ""
-          }
+          },
+          "evaltype": "0",
+          "textFilter": "",
+          "countTriggersBy": ""
         }
       ],
       "title": "Top 5 Enlaces WAN / Internet (Ancho de Banda)",
@@ -2515,45 +2455,6 @@
           "options": {
             "regex": "^(?:FTG_)?(.*?)(?:_SNMP)?: Interface (.*?):.*",
             "renamePattern": "$1 ($2)"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": [
-              "lastNotNull"
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Field": "Name",
-              "Last *NotNull": "Value"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Value"
-              }
-            ]
-          }
-        },
-        {
-          "id": "limit",
-          "options": {
-            "limitField": 5
           }
         }
       ],
@@ -2570,8 +2471,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "max": 100,
           "min": 0,
+          "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2619,16 +2520,9 @@
       },
       "targets": [
         {
-          "application": {
-            "filter": ""
-          },
-          "countTriggersBy": "",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
-          "evaltype": "0",
-          "functions": [],
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
           "group": {
             "filter": "/(FortiGate|ANTENAS P2P)/"
           },
@@ -2638,11 +2532,32 @@
           "item": {
             "filter": "ICMP loss"
           },
-          "itemTag": {
-            "filter": ""
-          },
-          "macro": {
-            "filter": ""
+          "functions": [
+            {
+              "def": {
+                "name": "top",
+                "category": "Filter",
+                "params": [
+                  {
+                    "name": "number",
+                    "type": "int"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                5,
+                "last"
+              ]
+            }
+          ],
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
           "options": {
             "count": false,
@@ -2652,23 +2567,30 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
-          "proxy": {
-            "filter": ""
-          },
-          "queryType": "0",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "schema": 13,
           "table": {
             "skipEmptyValues": false
+          },
+          "application": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "textFilter": "",
+          "macro": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
           "trigger": {
             "filter": ""
-          }
+          },
+          "evaltype": "0",
+          "textFilter": "",
+          "countTriggersBy": ""
         }
       ],
       "title": "Top Sedes WAN (Pérdida de Paquetes ICMP %)",
@@ -2678,45 +2600,6 @@
           "options": {
             "regex": "^(?:FTG_|)(.*?)(?:_SNMP|):.*",
             "renamePattern": "$1"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": [
-              "lastNotNull"
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Field": "Name",
-              "Last *NotNull": "Value"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Value"
-              }
-            ]
-          }
-        },
-        {
-          "id": "limit",
-          "options": {
-            "limitField": 5
           }
         }
       ],
@@ -2781,16 +2664,9 @@
       },
       "targets": [
         {
-          "application": {
-            "filter": ""
-          },
-          "countTriggersBy": "",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
-          "evaltype": "0",
-          "functions": [],
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
           "group": {
             "filter": "/(Storage_Server|Storage)/"
           },
@@ -2800,11 +2676,32 @@
           "item": {
             "filter": "/Disk group .*: IOPS, total rate/"
           },
-          "itemTag": {
-            "filter": ""
-          },
-          "macro": {
-            "filter": ""
+          "functions": [
+            {
+              "def": {
+                "name": "top",
+                "category": "Filter",
+                "params": [
+                  {
+                    "name": "number",
+                    "type": "int"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                5,
+                "last"
+              ]
+            }
+          ],
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
           "options": {
             "count": false,
@@ -2814,23 +2711,30 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
-          "proxy": {
-            "filter": ""
-          },
-          "queryType": "0",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "schema": 13,
           "table": {
             "skipEmptyValues": false
+          },
+          "application": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "textFilter": "",
+          "macro": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
           "trigger": {
             "filter": ""
-          }
+          },
+          "evaltype": "0",
+          "textFilter": "",
+          "countTriggersBy": ""
         }
       ],
       "title": "Top 5 Storage SAN HPE MSA (Carga IOPS)",
@@ -2840,45 +2744,6 @@
           "options": {
             "regex": "^(.*?): Disk group \\[(.*?)\\].*",
             "renamePattern": "$1 [$2]"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "seriesToRows",
-            "reducers": [
-              "lastNotNull"
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Field": "Name",
-              "Last *NotNull": "Value"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "desc": true,
-                "field": "Value"
-              }
-            ]
-          }
-        },
-        {
-          "id": "limit",
-          "options": {
-            "limitField": 5
           }
         }
       ],
