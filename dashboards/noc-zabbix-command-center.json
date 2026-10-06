@@ -105,7 +105,9 @@
         }
       ],
       "title": "",
-      "type": "marcusolsson-dynamictext-panel"
+      "type": "marcusolsson-dynamictext-panel",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -179,7 +181,9 @@
         }
       ],
       "title": "Último dato recibido",
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -299,7 +303,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -404,7 +410,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -516,7 +524,9 @@
           }
         }
       ],
-      "type": "gauge"
+      "type": "gauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -808,7 +818,9 @@
         }
       ],
       "title": "Zabbix Server",
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -931,7 +943,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -1080,7 +1094,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -1202,7 +1218,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -1449,7 +1467,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -1595,7 +1615,9 @@
           }
         }
       ],
-      "type": "bargauge"
+      "type": "bargauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -1741,7 +1763,9 @@
           }
         }
       ],
-      "type": "bargauge"
+      "type": "bargauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -1887,7 +1911,9 @@
           }
         }
       ],
-      "type": "bargauge"
+      "type": "bargauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -2033,7 +2059,9 @@
           }
         }
       ],
-      "type": "bargauge"
+      "type": "bargauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "datasource": {
@@ -2314,7 +2342,9 @@
           }
         }
       ],
-      "type": "bargauge"
+      "type": "bargauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "_customTag": "wan-bandwidth",
@@ -2458,7 +2488,9 @@
           }
         }
       ],
-      "type": "bargauge"
+      "type": "bargauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "_customTag": "wan-loss",
@@ -2603,7 +2635,9 @@
           }
         }
       ],
-      "type": "bargauge"
+      "type": "bargauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "_customTag": "storage-iops",
@@ -2747,7 +2781,9 @@
           }
         }
       ],
-      "type": "bargauge"
+      "type": "bargauge",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "_customTag": "vpn-users",
@@ -2835,7 +2871,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "_customTag": "wan-trend-timeseries",
@@ -3002,7 +3040,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "_customTag": "isp-traffic-panel",
@@ -3245,7 +3285,9 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "stat",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "_customTag": "wan-matrix-table",
@@ -3274,13 +3316,13 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "type": "regex",
                     "options": {
                       "pattern": "^FTG_(.*)_SNMP$",
                       "result": {
                         "text": "$1"
                       }
-                    }
+                    },
+                    "type": "regex"
                   }
                 ]
               }
@@ -3296,7 +3338,6 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "type": "value",
                     "options": {
                       "0": {
                         "color": "#E02F44",
@@ -3308,7 +3349,8 @@
                         "index": 0,
                         "text": "ONLINE"
                       }
-                    }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -3469,9 +3511,10 @@
       "id": 25,
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
           "group": {
             "filter": "FortiGate"
           },
@@ -3481,19 +3524,19 @@
           "item": {
             "filter": "ICMP ping"
           },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "A",
           "resultFormat": "time_series",
+          "schema": 13
+        },
+        {
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
             "uid": "efz4nzx8r30g0c"
           },
-          "options": {
-            "showDisabledItems": false
-          }
-        },
-        {
-          "refId": "B",
-          "schema": 13,
-          "queryType": "0",
           "group": {
             "filter": "FortiGate"
           },
@@ -3503,19 +3546,19 @@
           "item": {
             "filter": "ICMP response time"
           },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "B",
           "resultFormat": "time_series",
+          "schema": 13
+        },
+        {
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
             "uid": "efz4nzx8r30g0c"
           },
-          "options": {
-            "showDisabledItems": false
-          }
-        },
-        {
-          "refId": "C",
-          "schema": 13,
-          "queryType": "0",
           "group": {
             "filter": "FortiGate"
           },
@@ -3525,19 +3568,19 @@
           "item": {
             "filter": "ICMP loss"
           },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "C",
           "resultFormat": "time_series",
+          "schema": 13
+        },
+        {
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
             "uid": "efz4nzx8r30g0c"
           },
-          "options": {
-            "showDisabledItems": false
-          }
-        },
-        {
-          "refId": "D",
-          "schema": 13,
-          "queryType": "0",
           "group": {
             "filter": "FortiGate"
           },
@@ -3547,14 +3590,13 @@
           "item": {
             "filter": "/IPv4 Active sessions/"
           },
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
           "options": {
             "showDisabledItems": false
-          }
+          },
+          "queryType": "0",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "schema": 13
         }
       ],
       "title": "Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia, Pérdida y Sesiones)",
@@ -3582,18 +3624,18 @@
           "options": {
             "excludeByName": {},
             "indexByName": {
-              "host\\item": 0,
+              "ICMP loss": 3,
               "ICMP ping": 1,
               "ICMP response time": 2,
-              "ICMP loss": 3,
-              "IPv4 Active sessions": 4
+              "IPv4 Active sessions": 4,
+              "host\\item": 0
             },
             "renameByName": {
-              "host\\item": "Sede / Obra",
+              "ICMP loss": "Pérdida %",
               "ICMP ping": "Disponibilidad",
               "ICMP response time": "Latencia",
-              "ICMP loss": "Pérdida %",
-              "IPv4 Active sessions": "Sesiones Activas"
+              "IPv4 Active sessions": "Sesiones Activas",
+              "host\\item": "Sede / Obra"
             }
           }
         },
@@ -3610,7 +3652,9 @@
           }
         }
       ],
-      "type": "table"
+      "type": "table",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     },
     {
       "_customTag": "server-matrix-table",
@@ -3639,7 +3683,6 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "type": "value",
                     "options": {
                       "0": {
                         "color": "#E02F44",
@@ -3651,7 +3694,8 @@
                         "index": 0,
                         "text": "OK"
                       }
-                    }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -3828,9 +3872,10 @@
       "id": 26,
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
           "group": {
             "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
           },
@@ -3840,19 +3885,19 @@
           "item": {
             "filter": "ICMP ping"
           },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "A",
           "resultFormat": "time_series",
+          "schema": 13
+        },
+        {
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
             "uid": "efz4nzx8r30g0c"
           },
-          "options": {
-            "showDisabledItems": false
-          }
-        },
-        {
-          "refId": "B",
-          "schema": 13,
-          "queryType": "0",
           "group": {
             "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
           },
@@ -3862,19 +3907,19 @@
           "item": {
             "filter": "/^CPU utilization$/"
           },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "B",
           "resultFormat": "time_series",
+          "schema": 13
+        },
+        {
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
             "uid": "efz4nzx8r30g0c"
           },
-          "options": {
-            "showDisabledItems": false
-          }
-        },
-        {
-          "refId": "C",
-          "schema": 13,
-          "queryType": "0",
           "group": {
             "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
           },
@@ -3884,19 +3929,19 @@
           "item": {
             "filter": "Memory utilization"
           },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "C",
           "resultFormat": "time_series",
+          "schema": 13
+        },
+        {
           "datasource": {
             "type": "alexanderzobnin-zabbix-datasource",
             "uid": "efz4nzx8r30g0c"
           },
-          "options": {
-            "showDisabledItems": false
-          }
-        },
-        {
-          "refId": "D",
-          "schema": 13,
-          "queryType": "0",
           "group": {
             "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
           },
@@ -3906,14 +3951,13 @@
           "item": {
             "filter": "FS [(C:)]: Space: Used, in %"
           },
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
           "options": {
             "showDisabledItems": false
-          }
+          },
+          "queryType": "0",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "schema": 13
         }
       ],
       "title": "Matriz de Servidores & Roles Críticos (Salud, CPU, RAM y Disco C:)",
@@ -3941,18 +3985,18 @@
           "options": {
             "excludeByName": {},
             "indexByName": {
-              "host\\item": 0,
-              "ICMP ping": 1,
               "CPU utilization": 2,
+              "FS [(C:)]: Space: Used, in %": 4,
+              "ICMP ping": 1,
               "Memory utilization": 3,
-              "FS [(C:)]: Space: Used, in %": 4
+              "host\\item": 0
             },
             "renameByName": {
-              "host\\item": "Servidor",
-              "ICMP ping": "Estado",
               "CPU utilization": "CPU %",
+              "FS [(C:)]: Space: Used, in %": "Disco C: %",
+              "ICMP ping": "Estado",
               "Memory utilization": "RAM %",
-              "FS [(C:)]: Space: Used, in %": "Disco C: %"
+              "host\\item": "Servidor"
             }
           }
         },
@@ -3969,7 +4013,9 @@
           }
         }
       ],
-      "type": "table"
+      "type": "table",
+      "timeFrom": "15m",
+      "hideTimeOverride": true
     }
   ],
   "preload": false,
@@ -4114,7 +4160,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -4129,5 +4175,5 @@
   "timezone": "browser",
   "title": "NOC - Zabbix Command Center",
   "uid": "noc-zabbix-command-center",
-  "version": 24
+  "version": 25
 }
