@@ -1,0 +1,1722 @@
+{
+  "id": null,
+  "uid": "noc-zabbix-command-center",
+  "title": "NOC - Zabbix Command Center",
+  "description": "Centro de Comando NOC Milicic S.A. · Monitoreo de Disponibilidad Global, Matriz de Salud de Infraestructura y Telemetría Crítica en Tiempo Real.",
+  "tags": [
+    "noc",
+    "zabbix",
+    "milicic",
+    "command-center",
+    "masterpiece",
+    "v11"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 40,
+  "editable": true,
+  "refresh": "30s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m"
+    ]
+  },
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "milicic"
+      ],
+      "targetBlank": false,
+      "title": "Vistas Especializadas",
+      "type": "dashboards"
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "alexanderzobnin-zabbix-datasource",
+        "current": {
+          "text": "alexanderzobnin-zabbix-datasource",
+          "value": "efz4nzx8r30g0c"
+        },
+        "hide": 2
+      },
+      {
+        "name": "sede",
+        "label": "Sede / Ubicación",
+        "type": "custom",
+        "hide": 0,
+        "includeAll": false,
+        "options": [
+          {
+            "selected": true,
+            "text": "Todas las Sedes",
+            "value": ".*"
+          },
+          {
+            "selected": false,
+            "text": "Rosario (SRO)",
+            "value": ".*(SRO|border1|milicic).*"
+          },
+          {
+            "selected": false,
+            "text": "San Juan (SSJ)",
+            "value": ".*(SSJ|SJ|san_juan).*"
+          },
+          {
+            "selected": false,
+            "text": "Sitios Remotos / Obradores",
+            "value": ".*(ar-|rio_tinto|sierra_grande|posco|santa_fe|san_luis|acueducto|las_flores|lima).*"
+          }
+        ],
+        "query": "Todas las Sedes : .*, Rosario (SRO) : .*(SRO|border1|milicic).*, San Juan (SSJ) : .*(SSJ|SJ|san_juan).*, Sitios Remotos / Obradores : .*(ar-|rio_tinto|sierra_grande|posco|santa_fe|san_luis|acueducto|las_flores|lima).*",
+        "current": {
+          "text": "Todas las Sedes",
+          "value": ".*"
+        }
+      },
+      {
+        "name": "min_severity",
+        "label": "Severidad Mínima",
+        "type": "custom",
+        "hide": 0,
+        "includeAll": false,
+        "options": [
+          {
+            "selected": true,
+            "text": "Todas (Warning +)",
+            "value": "2"
+          },
+          {
+            "selected": false,
+            "text": "Alertas Relevantes (Average +)",
+            "value": "3"
+          },
+          {
+            "selected": false,
+            "text": "Solo Críticas (P1 Disaster/High)",
+            "value": "4"
+          },
+          {
+            "selected": false,
+            "text": "Solo Desastres (P1 Disaster)",
+            "value": "5"
+          }
+        ],
+        "query": "Todas (Warning +) : 2, Alertas Relevantes (Average +) : 3, Solo Críticas (P1 Disaster/High) : 4, Solo Desastres (P1 Disaster) : 5",
+        "current": {
+          "text": "Todas (Warning +)",
+          "value": "2"
+        }
+      },
+      {
+        "name": "ack_status",
+        "label": "Estado de Alertas",
+        "type": "custom",
+        "hide": 0,
+        "includeAll": false,
+        "options": [
+          {
+            "selected": true,
+            "text": "Todos los Estados",
+            "value": "2"
+          },
+          {
+            "selected": false,
+            "text": "Solo No Reconocidas (Pendientes)",
+            "value": "0"
+          },
+          {
+            "selected": false,
+            "text": "Solo Reconocidas (En Gestión)",
+            "value": "1"
+          }
+        ],
+        "query": "Todos los Estados : 2, Solo No Reconocidas (Pendientes) : 0, Solo Reconocidas (En Gestión) : 1",
+        "current": {
+          "text": "Todos los Estados",
+          "value": "2"
+        }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 3
+      },
+      "options": {
+        "mode": "html",
+        "content": "\n<div style=\"background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); border-left: 6px solid #EA580C; padding: 10px 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; height: 100%; box-sizing: border-box;\">\n  <div>\n    <div style=\"display: flex; align-items: center; gap: 8px;\">\n      <span style=\"background: #EA580C; color: white; padding: 2px 7px; border-radius: 4px; font-weight: 800; font-size: 11px; letter-spacing: 0.5px;\">MILICIC S.A.</span>\n      <h2 style=\"margin: 0; color: #FFFFFF; font-size: 18px; font-weight: 700;\">NOC COMMAND CENTER &bull; Zabbix 7.0 LTS</h2>\n    </div>\n    <p style=\"margin: 3px 0 0 0; color: #94A3B8; font-size: 11px;\">Monitoreo Global de Disponibilidad &bull; Matriz de Salud de Infraestructura &bull; Telemetr&iacute;a Cr&iacute;tica en Vivo</p>\n  </div>\n  <div style=\"display: flex; gap: 14px; font-size: 11px; color: #E2E8F0; align-items: center;\">\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #73BF69; border-radius: 2px; margin-right: 4px;\"></b>ONLINE (UP)</span>\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #E02F44; border-radius: 2px; margin-right: 4px;\"></b>CA&Iacute;DO (DOWN)</span>\n    <span><b style=\"display: inline-block; width: 10px; height: 10px; background: #6B7280; border-radius: 2px; margin-right: 4px;\"></b>SIN DATOS</span>\n  </div>\n</div>"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Zabbix Server",
+      "description": "Estado del agente en el host Zabbix server (1 = responde).",
+      "type": "stat",
+      "gridPos": {
+        "x": 16,
+        "y": 0,
+        "w": 4,
+        "h": 3
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E02F44",
+                "value": null
+              },
+              {
+                "color": "#73BF69",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "color": "#E02F44",
+                  "index": 0,
+                  "text": "CAÍDO"
+                },
+                "1": {
+                  "color": "#73BF69",
+                  "index": 1,
+                  "text": "ONLINE"
+                }
+              }
+            },
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "#6B7280",
+                  "index": 2,
+                  "text": "SIN DATOS"
+                }
+              }
+            }
+          ],
+          "noValue": "SIN DATOS"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value_and_name",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "Zabbix servers"
+          },
+          "host": {
+            "filter": "Zabbix server"
+          },
+          "item": {
+            "filter": "Zabbix agent ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Último dato recibido",
+      "description": "Antigüedad de la última muestra del agente Zabbix. Si crece, la recolección se frenó.",
+      "type": "stat",
+      "gridPos": {
+        "x": 20,
+        "y": 0,
+        "w": 4,
+        "h": 3
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#38BDF8"
+          },
+          "unit": "dateTimeFromNow",
+          "noValue": "sin datos",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#38BDF8",
+                "value": null
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Time$/",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "Zabbix servers"
+          },
+          "host": {
+            "filter": "Zabbix server"
+          },
+          "item": {
+            "filter": "Zabbix agent ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Nodos Monitoreados",
+      "description": "Cantidad total de hosts distintos activos con ICMP ping o agent ping.",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 5,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#38BDF8"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#38BDF8",
+                "value": null
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "/^Field$/",
+          "values": false
+        },
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/(ICMP ping|agent.ping)/"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "mode": "seriesToRows",
+            "reducers": [
+              "lastNotNull"
+            ],
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Field": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Salud Global (Disponibilidad)",
+      "description": "Porcentaje global de disponibilidad en vivo de toda la infraestructura.",
+      "type": "gauge",
+      "gridPos": {
+        "x": 5,
+        "y": 3,
+        "w": 5,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 1,
+          "unit": "percentunit",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E02F44",
+                "value": null
+              },
+              {
+                "color": "#F2CC0C",
+                "value": 0.85
+              },
+              {
+                "color": "#FADE2A",
+                "value": 0.92
+              },
+              {
+                "color": "#73BF69",
+                "value": 0.96
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "values": false
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/(ICMP ping|agent.ping)/"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "mode": "seriesToRows",
+            "reducers": [
+              "lastNotNull"
+            ],
+            "includeTimeField": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Incidentes Críticos (Disaster/High)",
+      "description": "Problemas activos en Zabbix con severidad High o Disaster.",
+      "type": "stat",
+      "gridPos": {
+        "x": 10,
+        "y": 3,
+        "w": 7,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "0",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#E02F44",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "5",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "showProblems": "problems",
+          "options": {
+            "minSeverity": 4,
+            "severities": [
+              4,
+              5
+            ],
+            "acknowledged": 2,
+            "hostsInMaintenance": false,
+            "sortProblems": "priority",
+            "limit": 1000
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "index",
+            "alias": "n",
+            "replaceFields": true
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Alertas Preventivas (Warning/Average)",
+      "description": "Problemas activos en Zabbix con severidad Warning o Average.",
+      "type": "stat",
+      "gridPos": {
+        "x": 17,
+        "y": 3,
+        "w": 7,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "0",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FADE2A",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "5",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "showProblems": "problems",
+          "options": {
+            "minSeverity": 2,
+            "severities": [
+              2,
+              3
+            ],
+            "acknowledged": 2,
+            "hostsInMaintenance": false,
+            "sortProblems": "priority",
+            "limit": 1000
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "index",
+            "alias": "n",
+            "replaceFields": true
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Perímetro SD-WAN (FortiGates)",
+      "description": "Un cuadrado por FortiGate (ICMP ping). Verde = UP, Rojo = DOWN, Gris = Sin Datos.",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 7,
+        "w": 5,
+        "h": 9
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E02F44",
+                "value": null
+              },
+              {
+                "color": "#73BF69",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "color": "#E02F44",
+                  "index": 0,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "color": "#73BF69",
+                  "index": 1,
+                  "text": "UP"
+                }
+              }
+            },
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "#6B7280",
+                  "index": 2,
+                  "text": "SIN DATOS"
+                }
+              }
+            }
+          ],
+          "noValue": "SIN DATOS"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "name",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "text": {
+          "titleSize": 12
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "FTG_(.*)",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*)_SNMP",
+            "renamePattern": "$1"
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Infra. Core & Servidores (Cómputo & Storage)",
+      "description": "Servidores físicos y virtuales, Hipervisores, Controladores de Dominio, Storage y Backup (26 hosts únicos).",
+      "type": "stat",
+      "gridPos": {
+        "x": 5,
+        "y": 7,
+        "w": 9,
+        "h": 9
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E02F44",
+                "value": null
+              },
+              {
+                "color": "#73BF69",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "color": "#E02F44",
+                  "index": 0,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "color": "#73BF69",
+                  "index": 1,
+                  "text": "UP"
+                }
+              }
+            },
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "#6B7280",
+                  "index": 2,
+                  "text": "SIN DATOS"
+                }
+              }
+            }
+          ],
+          "noValue": "SIN DATOS"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "name",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "text": {
+          "titleSize": 12
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|AD|Datacenter|Applications)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        },
+        {
+          "refId": "B",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Zabbix servers|Backup_Server|Applications)/"
+          },
+          "host": {
+            "filter": "/(Zabbix server|SSJ-BKP01|SSJ-SVC01|JumpServer)/"
+          },
+          "item": {
+            "filter": "Zabbix agent ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "SRO-(.*)",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "SSJ-(.*)",
+            "renamePattern": "SJ-$1"
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Redes (Switches) y APs (Aruba)",
+      "description": "Switches de distribución/acceso y Access Points Aruba.",
+      "type": "stat",
+      "gridPos": {
+        "x": 14,
+        "y": 7,
+        "w": 6,
+        "h": 9
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E02F44",
+                "value": null
+              },
+              {
+                "color": "#73BF69",
+                "value": 1
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "color": "#E02F44",
+                  "index": 0,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "color": "#73BF69",
+                  "index": 1,
+                  "text": "UP"
+                }
+              }
+            },
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "#6B7280",
+                  "index": 2,
+                  "text": "SIN DATOS"
+                }
+              }
+            }
+          ],
+          "noValue": "SIN DATOS"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "name",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "text": {
+          "titleSize": 12
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(switch|ARUBA APs|ANTENAS P2P)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "SRO-(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Facilities & Energía (UPS)",
+      "description": "Estado de operación y conectividad de UPS en Datacenters.",
+      "type": "stat",
+      "gridPos": {
+        "x": 20,
+        "y": 7,
+        "w": 4,
+        "h": 9
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E02F44",
+                "value": null
+              },
+              {
+                "color": "#73BF69",
+                "value": 180
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "range",
+              "options": {
+                "from": 180,
+                "to": 260,
+                "result": {
+                  "color": "#73BF69",
+                  "index": 0,
+                  "text": "ONLINE"
+                }
+              }
+            },
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "#6B7280",
+                  "index": 1,
+                  "text": "SIN DATOS"
+                }
+              }
+            }
+          ],
+          "noValue": "SIN DATOS"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "name",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "text": {
+          "titleSize": 14
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "UPS"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/(Ups Input Voltage|Input Voltage|Input phase 1 voltage)/"
+          },
+          "resultFormat": "time_series"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "UPS (.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Top 5 Servidores (Consumo CPU %)",
+      "description": "Servidores de cómputo con mayor utilización de CPU en tiempo real (excluye switches/firewalls).",
+      "type": "bargauge",
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 6,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 100,
+          "unit": "percent",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FADE2A",
+                "value": 75
+              },
+              {
+                "color": "#E02F44",
+                "value": 90
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/^CPU utilization$/"
+          },
+          "resultFormat": "time_series"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "mode": "seriesToRows",
+            "reducers": [
+              "lastNotNull"
+            ],
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Field": "Name",
+              "Last *NotNull": "Value"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Top 5 Datacenters (Carga Eléctrica UPS %)",
+      "description": "Porcentaje de carga eléctrica en las UPS monitoreadas (telemetría directa).",
+      "type": "bargauge",
+      "gridPos": {
+        "x": 6,
+        "y": 16,
+        "w": 6,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 100,
+          "unit": "percent",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FADE2A",
+                "value": 70
+              },
+              {
+                "color": "#E02F44",
+                "value": 85
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": true
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "UPS"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/^(UPS Load \\(%\\)|Output Load Estimated)$/"
+          },
+          "resultFormat": "time_series"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "mode": "seriesToRows",
+            "reducers": [
+              "lastNotNull"
+            ],
+            "includeTimeField": false
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Field": "Name",
+              "Last *NotNull": "Value"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Tensión de entrada UPS (V)",
+      "description": "Tensión de red eléctrica en cada UPS (Umbrales calibrados para red 220V).",
+      "type": "stat",
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 4,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "volt",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#E02F44",
+                "value": null
+              },
+              {
+                "color": "#FADE2A",
+                "value": 190
+              },
+              {
+                "color": "#73BF69",
+                "value": 205
+              },
+              {
+                "color": "#FADE2A",
+                "value": 245
+              },
+              {
+                "color": "#E02F44",
+                "value": 255
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "#6B7280",
+                  "index": 2,
+                  "text": "SIN DATOS"
+                }
+              }
+            }
+          ],
+          "noValue": "SIN DATOS"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value_and_name",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "text": {
+          "titleSize": 12
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "UPS"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/(Ups Input Voltage|Input Voltage|Input phase 1 voltage)/"
+          },
+          "resultFormat": "time_series"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "UPS (.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Tráfico de Sesiones Activas (FortiGates SD-WAN)",
+      "description": "Sesiones IPv4 concurrentes cursadas por los firewalls de borde.",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 16,
+        "y": 16,
+        "w": 8,
+        "h": 7
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "never"
+          },
+          "unit": "short"
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull"
+          ],
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/IPv4 Active sessions/"
+          },
+          "resultFormat": "time_series"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "FTG_(.*)_SNMP:.*",
+            "renamePattern": "$1"
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Feed de Incidentes Activos en Tiempo Real (Alertas Zabbix)",
+      "description": "Panel nativo Zabbix Problems (alexanderzobnin-zabbix-triggers-panel). Problemas abiertos ordenados por prioridad y filtrables por sede y severidad.",
+      "type": "alexanderzobnin-zabbix-triggers-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 23,
+        "w": 24,
+        "h": 10
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "5",
+          "showProblems": "problems",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "application": {
+            "filter": ""
+          },
+          "trigger": {
+            "filter": ""
+          },
+          "tags": {
+            "filter": ""
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "options": {
+            "minSeverity": "${min_severity}",
+            "severities": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "acknowledged": "${ack_status}",
+            "hostsInMaintenance": false,
+            "sortProblems": "priority",
+            "limit": 200,
+            "useTimeRange": false,
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "options": {
+        "schemaVersion": 8,
+        "layout": "table",
+        "hostField": true,
+        "hostTechNameField": false,
+        "hostIpField": false,
+        "hostProxy": false,
+        "hostGroups": false,
+        "showTags": false,
+        "statusField": false,
+        "statusIcon": false,
+        "severityField": true,
+        "ackField": true,
+        "ageField": true,
+        "opdataField": false,
+        "descriptionField": true,
+        "descriptionAtNewLine": false,
+        "showDatasourceName": false,
+        "sortProblems": "priority",
+        "limit": null,
+        "fontSize": "110%",
+        "pageSize": 10,
+        "showSearchFilter": true,
+        "problemTimeline": true,
+        "highlightBackground": false,
+        "highlightNewEvents": true,
+        "highlightNewerThan": "1h",
+        "customLastChangeFormat": false,
+        "lastChangeFormat": "",
+        "resizedColumns": [],
+        "markAckEvents": true,
+        "okEventColor": "#73BF69",
+        "ackEventColor": "#38BDF8",
+        "triggerSeverity": [
+          {
+            "priority": 0,
+            "severity": "Not classified",
+            "color": "#6B7280",
+            "show": true
+          },
+          {
+            "priority": 1,
+            "severity": "Information",
+            "color": "#5794F2",
+            "show": true
+          },
+          {
+            "priority": 2,
+            "severity": "Warning",
+            "color": "#FADE2A",
+            "show": true
+          },
+          {
+            "priority": 3,
+            "severity": "Average",
+            "color": "#F2CC0C",
+            "show": true
+          },
+          {
+            "priority": 4,
+            "severity": "High",
+            "color": "#FA6400",
+            "show": true
+          },
+          {
+            "priority": 5,
+            "severity": "Disaster",
+            "color": "#E02F44",
+            "show": true
+          }
+        ]
+      }
+    }
+  ]
+}

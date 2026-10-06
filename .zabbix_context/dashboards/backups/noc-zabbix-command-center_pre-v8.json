@@ -1,0 +1,1308 @@
+﻿{
+    "meta":  {
+                 "type":  "db",
+                 "canSave":  true,
+                 "canEdit":  true,
+                 "canAdmin":  true,
+                 "canStar":  true,
+                 "canDelete":  true,
+                 "slug":  "noc-zabbix-command-center",
+                 "url":  "/d/noc-zabbix-command-center/noc-zabbix-command-center",
+                 "expires":  "0001-01-01T00:00:00Z",
+                 "created":  "2026-10-06T13:02:54Z",
+                 "updated":  "2026-10-06T14:07:33Z",
+                 "updatedBy":  "Ant-Local",
+                 "createdBy":  "Ant-Local",
+                 "version":  8,
+                 "hasAcl":  false,
+                 "isFolder":  false,
+                 "apiVersion":  "v0alpha1",
+                 "folderId":  4274084752015360,
+                 "folderUid":  "milicic-noc",
+                 "folderTitle":  "NOC",
+                 "folderUrl":  "/dashboards/f/milicic-noc/noc",
+                 "provisioned":  false,
+                 "provisionedExternalId":  "",
+                 "annotationsPermissions":  {
+                                                "dashboard":  {
+                                                                  "canAdd":  true,
+                                                                  "canEdit":  true,
+                                                                  "canDelete":  true
+                                                              }
+                                            }
+             },
+    "dashboard":  {
+                      "id":  4275537930592256,
+                      "panels":  [
+                                     {
+                                         "gridPos":  {
+                                                         "h":  3,
+                                                         "w":  20,
+                                                         "x":  0,
+                                                         "y":  0
+                                                     },
+                                         "id":  1,
+                                         "options":  {
+                                                         "content":  "\n\u003cdiv style=\"background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); border-left: 6px solid #EA580C; padding: 10px 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;\"\u003e\n  \u003cdiv\u003e\n    \u003cdiv style=\"display: flex; align-items: center; gap: 8px;\"\u003e\n      \u003cspan style=\"background: #EA580C; color: white; padding: 2px 7px; border-radius: 4px; font-weight: 800; font-size: 11px; letter-spacing: 0.5px;\"\u003eMILICIC S.A.\u003c/span\u003e\n      \u003ch2 style=\"margin: 0; color: #FFFFFF; font-size: 17px; font-weight: 700;\"\u003eNOC COMMAND CENTER \u0026bull; Observabilidad Core\u003c/h2\u003e\n    \u003c/div\u003e\n    \u003cp style=\"margin: 3px 0 0 0; color: #94A3B8; font-size: 11px;\"\u003eMonitoreo Global de Disponibilidad \u0026bull; Matriz Predictiva de Salud \u0026bull; TelemetrÃ­a CrÃ­tica en Vivo\u003c/p\u003e\n  \u003c/div\u003e\n\u003c/div\u003e",
+                                                         "mode":  "html"
+                                                     },
+                                         "title":  "",
+                                         "type":  "text"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#FFC859",
+                                                                                                                   "value":  60
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  120
+                                                                                                               }
+                                                                                                           ]
+                                                                                             },
+                                                                              "unit":  "s"
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  3,
+                                                         "w":  4,
+                                                         "x":  20,
+                                                         "y":  0
+                                                     },
+                                         "id":  2,
+                                         "options":  {
+                                                         "colorMode":  "background",
+                                                         "graphMode":  "none",
+                                                         "justifyMode":  "center",
+                                                         "orientation":  "auto",
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "textMode":  "value_and_name"
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "Zabbix servers"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "Zabbix server"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "Zabbix agent ping"
+                                                                      },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "Heartbeat Zabbix",
+                                         "type":  "stat"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "fixedColor":  "#38BDF8",
+                                                                                            "mode":  "fixed"
+                                                                                        }
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  4,
+                                                         "w":  5,
+                                                         "x":  0,
+                                                         "y":  3
+                                                     },
+                                         "id":  3,
+                                         "options":  {
+                                                         "colorMode":  "background",
+                                                         "graphMode":  "none",
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "textMode":  "value"
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "/.*/"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "/(ICMP ping|agent.ping)/"
+                                                                      },
+                                                             "options":  {
+                                                                             "showDisabledItems":  false
+                                                                         },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "Nodos Monitoreados",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "calculateField",
+                                                                     "options":  {
+                                                                                     "mode":  "reduceRow",
+                                                                                     "reduce":  {
+                                                                                                    "reducer":  "count"
+                                                                                                },
+                                                                                     "replaceFields":  true
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "stat"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "max":  1,
+                                                                              "min":  0,
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#FFA059",
+                                                                                                                   "value":  0.85
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#FFC859",
+                                                                                                                   "value":  0.92
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  0.96
+                                                                                                               }
+                                                                                                           ]
+                                                                                             },
+                                                                              "unit":  "percentunit"
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  4,
+                                                         "w":  5,
+                                                         "x":  5,
+                                                         "y":  3
+                                                     },
+                                         "id":  7,
+                                         "options":  {
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "showThresholdLabels":  false,
+                                                         "showThresholdMarkers":  true
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "/.*/"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "/(ICMP ping|agent.ping)/"
+                                                                      },
+                                                             "options":  {
+                                                                             "showDisabledItems":  false
+                                                                         },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "Salud Global (Disponibilidad)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "calculateField",
+                                                                     "options":  {
+                                                                                     "mode":  "reduceRow",
+                                                                                     "reduce":  {
+                                                                                                    "reducer":  "mean"
+                                                                                                },
+                                                                                     "replaceFields":  true
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "gauge"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "noValue":  "0",
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  1
+                                                                                                               }
+                                                                                                           ]
+                                                                                             }
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  4,
+                                                         "w":  7,
+                                                         "x":  10,
+                                                         "y":  3
+                                                     },
+                                         "id":  4,
+                                         "options":  {
+                                                         "colorMode":  "background",
+                                                         "graphMode":  "none",
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "textMode":  "value"
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "/.*/"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "options":  {
+                                                                             "acknowledged":  2,
+                                                                             "minSeverity":  4
+                                                                         },
+                                                             "queryType":  "4",
+                                                             "refId":  "A",
+                                                             "schema":  12,
+                                                             "showProblems":  "problems"
+                                                         }
+                                                     ],
+                                         "title":  "Incidentes CrÃ­ticos (Disaster/High)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "calculateField",
+                                                                     "options":  {
+                                                                                     "mode":  "reduceRow",
+                                                                                     "reduce":  {
+                                                                                                    "reducer":  "count"
+                                                                                                },
+                                                                                     "replaceFields":  true
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "stat"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "noValue":  "0",
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#FFC859",
+                                                                                                                   "value":  1
+                                                                                                               }
+                                                                                                           ]
+                                                                                             }
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  4,
+                                                         "w":  7,
+                                                         "x":  17,
+                                                         "y":  3
+                                                     },
+                                         "id":  5,
+                                         "options":  {
+                                                         "colorMode":  "background",
+                                                         "graphMode":  "none",
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "textMode":  "value"
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "/.*/"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "options":  {
+                                                                             "acknowledged":  2,
+                                                                             "minSeverity":  2
+                                                                         },
+                                                             "queryType":  "4",
+                                                             "refId":  "A",
+                                                             "schema":  12,
+                                                             "showProblems":  "problems"
+                                                         }
+                                                     ],
+                                         "title":  "Alertas Preventivas (Warning/Average)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "filterByValue",
+                                                                     "options":  {
+                                                                                     "filters":  [
+                                                                                                     {
+                                                                                                         "config":  {
+                                                                                                                        "id":  "less",
+                                                                                                                        "options":  {
+                                                                                                                                        "value":  4
+                                                                                                                                    }
+                                                                                                                    },
+                                                                                                         "fieldName":  "Severity"
+                                                                                                     }
+                                                                                                 ],
+                                                                                     "match":  "all",
+                                                                                     "type":  "include"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "calculateField",
+                                                                     "options":  {
+                                                                                     "mode":  "reduceRow",
+                                                                                     "reduce":  {
+                                                                                                    "reducer":  "count"
+                                                                                                },
+                                                                                     "replaceFields":  true
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "stat"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "mappings":  [
+                                                                                               {
+                                                                                                   "options":  {
+                                                                                                                   "0":  {
+                                                                                                                             "text":  "DOWN"
+                                                                                                                         },
+                                                                                                                   "1":  {
+                                                                                                                             "text":  "UP"
+                                                                                                                         }
+                                                                                                               },
+                                                                                                   "type":  "value"
+                                                                                               }
+                                                                                           ],
+                                                                              "noValue":  "?",
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  1
+                                                                                                               }
+                                                                                                           ]
+                                                                                             }
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  8,
+                                                         "w":  6,
+                                                         "x":  0,
+                                                         "y":  7
+                                                     },
+                                         "id":  8,
+                                         "options":  {
+                                                         "colorMode":  "background",
+                                                         "graphMode":  "none",
+                                                         "justifyMode":  "center",
+                                                         "orientation":  "auto",
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "last"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "text":  {
+                                                                      "titleSize":  12
+                                                                  },
+                                                         "textMode":  "name"
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "FortiGate"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "ICMP ping"
+                                                                      },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "PerÃ­metro SD-WAN (FortiGates)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "(.*):.*",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "FTG_(.*)",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "(.*)_SNMP",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "stat"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "mappings":  [
+                                                                                               {
+                                                                                                   "options":  {
+                                                                                                                   "0":  {
+                                                                                                                             "text":  "DOWN"
+                                                                                                                         },
+                                                                                                                   "1":  {
+                                                                                                                             "text":  "UP"
+                                                                                                                         }
+                                                                                                               },
+                                                                                                   "type":  "value"
+                                                                                               }
+                                                                                           ],
+                                                                              "noValue":  "?",
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  1
+                                                                                                               }
+                                                                                                           ]
+                                                                                             }
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  8,
+                                                         "w":  6,
+                                                         "x":  6,
+                                                         "y":  7
+                                                     },
+                                         "id":  9,
+                                         "options":  {
+                                                         "colorMode":  "background",
+                                                         "graphMode":  "none",
+                                                         "justifyMode":  "center",
+                                                         "orientation":  "auto",
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "last"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "text":  {
+                                                                      "titleSize":  12
+                                                                  },
+                                                         "textMode":  "name"
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "/(Zabbix servers|Datacenter|AD|Backup|Servers)/"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "/(agent.ping|ICMP ping)/"
+                                                                      },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "Infra. Core \u0026 Servidores",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "(.*):.*",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "SRO-(.*)",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "SSJ-(.*)",
+                                                                                     "renamePattern":  "SJ-$1"
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "stat"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "mappings":  [
+                                                                                               {
+                                                                                                   "options":  {
+                                                                                                                   "0":  {
+                                                                                                                             "text":  "DOWN"
+                                                                                                                         },
+                                                                                                                   "1":  {
+                                                                                                                             "text":  "UP"
+                                                                                                                         }
+                                                                                                               },
+                                                                                                   "type":  "value"
+                                                                                               }
+                                                                                           ],
+                                                                              "noValue":  "?",
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  1
+                                                                                                               }
+                                                                                                           ]
+                                                                                             }
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  8,
+                                                         "w":  8,
+                                                         "x":  12,
+                                                         "y":  7
+                                                     },
+                                         "id":  10,
+                                         "options":  {
+                                                         "colorMode":  "background",
+                                                         "graphMode":  "none",
+                                                         "justifyMode":  "center",
+                                                         "orientation":  "auto",
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "last"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "text":  {
+                                                                      "titleSize":  12
+                                                                  },
+                                                         "textMode":  "name"
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "/(ARUBA APs|switch)/"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "ICMP ping"
+                                                                      },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "Redes (Switches) y APs (Aruba)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "(.*):.*",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "AP (.*)",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "SW (.*)",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "stat"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "mappings":  [
+                                                                                               {
+                                                                                                   "options":  {
+                                                                                                                   "0":  {
+                                                                                                                             "text":  "DOWN"
+                                                                                                                         },
+                                                                                                                   "1":  {
+                                                                                                                             "text":  "UP"
+                                                                                                                         }
+                                                                                                               },
+                                                                                                   "type":  "value"
+                                                                                               }
+                                                                                           ],
+                                                                              "noValue":  "?",
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  1
+                                                                                                               }
+                                                                                                           ]
+                                                                                             }
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  8,
+                                                         "w":  4,
+                                                         "x":  20,
+                                                         "y":  7
+                                                     },
+                                         "id":  11,
+                                         "options":  {
+                                                         "colorMode":  "background",
+                                                         "graphMode":  "none",
+                                                         "justifyMode":  "center",
+                                                         "orientation":  "auto",
+                                                         "reduceOptions":  {
+                                                                               "calcs":  [
+                                                                                             "last"
+                                                                                         ],
+                                                                               "values":  false
+                                                                           },
+                                                         "text":  {
+                                                                      "titleSize":  12
+                                                                  },
+                                                         "textMode":  "name"
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "UPS"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "/(sysUpTime|Ups Input Voltage)/"
+                                                                      },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "Facilities \u0026 EnergÃ­a (UPS)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "(.*):.*",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "UPS (.*)",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "stat"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "max":  100,
+                                                                              "min":  0,
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#FFC859",
+                                                                                                                   "value":  75
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  90
+                                                                                                               }
+                                                                                                           ]
+                                                                                             },
+                                                                              "unit":  "percent"
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  7,
+                                                         "w":  8,
+                                                         "x":  0,
+                                                         "y":  15
+                                                     },
+                                         "id":  13,
+                                         "options":  {
+                                                         "displayMode":  "gradient",
+                                                         "orientation":  "horizontal",
+                                                         "showUnfilled":  true
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "/(Zabbix servers|Servers|Datacenter|FortiGate)/"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "/(CPU utilization|CPU usage)/"
+                                                                      },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "Top 5 Servidores (Consumo CPU %)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "(.*):.*",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "reduce",
+                                                                     "options":  {
+                                                                                     "mode":  "seriesToRows",
+                                                                                     "reducers":  [
+                                                                                                      "lastNotNull"
+                                                                                                  ]
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "organize",
+                                                                     "options":  {
+                                                                                     "excludeByName":  {
+
+                                                                                                       },
+                                                                                     "indexByName":  {
+
+                                                                                                     },
+                                                                                     "renameByName":  {
+                                                                                                          "Field":  "Name",
+                                                                                                          "Last *NotNull":  "Value"
+                                                                                                      }
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "sortBy",
+                                                                     "options":  {
+                                                                                     "fields":  {
+
+                                                                                                },
+                                                                                     "sort":  [
+                                                                                                  {
+                                                                                                      "desc":  true,
+                                                                                                      "field":  "Value"
+                                                                                                  }
+                                                                                              ]
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "limit",
+                                                                     "options":  {
+                                                                                     "limitField":  5
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "bargauge"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "thresholds"
+                                                                                        },
+                                                                              "max":  100,
+                                                                              "min":  0,
+                                                                              "thresholds":  {
+                                                                                                 "mode":  "absolute",
+                                                                                                 "steps":  [
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  null
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#73BF69",
+                                                                                                                   "value":  0
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#FFC859",
+                                                                                                                   "value":  70
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "color":  "#E45959",
+                                                                                                                   "value":  85
+                                                                                                               }
+                                                                                                           ]
+                                                                                             },
+                                                                              "unit":  "percent"
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  7,
+                                                         "w":  8,
+                                                         "x":  8,
+                                                         "y":  15
+                                                     },
+                                         "id":  14,
+                                         "options":  {
+                                                         "displayMode":  "gradient",
+                                                         "orientation":  "horizontal",
+                                                         "showUnfilled":  true
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "UPS"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "/UPS Load/"
+                                                                      },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "Top 5 Datacenters (Carga ElÃ©ctrica UPS %)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "(.*):.*",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "reduce",
+                                                                     "options":  {
+                                                                                     "mode":  "seriesToRows",
+                                                                                     "reducers":  [
+                                                                                                      "lastNotNull"
+                                                                                                  ]
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "organize",
+                                                                     "options":  {
+                                                                                     "excludeByName":  {
+
+                                                                                                       },
+                                                                                     "indexByName":  {
+
+                                                                                                     },
+                                                                                     "renameByName":  {
+                                                                                                          "Field":  "Name",
+                                                                                                          "Last *NotNull":  "Value"
+                                                                                                      }
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "sortBy",
+                                                                     "options":  {
+                                                                                     "fields":  {
+
+                                                                                                },
+                                                                                     "sort":  [
+                                                                                                  {
+                                                                                                      "desc":  true,
+                                                                                                      "field":  "Value"
+                                                                                                  }
+                                                                                              ]
+                                                                                 }
+                                                                 },
+                                                                 {
+                                                                     "id":  "limit",
+                                                                     "options":  {
+                                                                                     "limitField":  5
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "bargauge"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "color":  {
+                                                                                            "mode":  "palette-classic"
+                                                                                        },
+                                                                              "custom":  {
+                                                                                             "drawStyle":  "line",
+                                                                                             "fillOpacity":  10,
+                                                                                             "lineWidth":  2
+                                                                                         },
+                                                                              "unit":  "short"
+                                                                          }
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  7,
+                                                         "w":  8,
+                                                         "x":  16,
+                                                         "y":  15
+                                                     },
+                                         "id":  15,
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "calcs":  [
+                                                                                      "lastNotNull"
+                                                                                  ],
+                                                                        "displayMode":  "list",
+                                                                        "placement":  "bottom"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "mode":  "multi"
+                                                                     }
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "FortiGate"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "item":  {
+                                                                          "filter":  "/IPv4 Active sessions/"
+                                                                      },
+                                                             "queryType":  "0",
+                                                             "refId":  "A",
+                                                             "resultFormat":  "time_series",
+                                                             "schema":  12
+                                                         }
+                                                     ],
+                                         "title":  "TrÃ¡fico de Sesiones Activas (FortiGates SD-WAN)",
+                                         "transformations":  [
+                                                                 {
+                                                                     "id":  "renameByRegex",
+                                                                     "options":  {
+                                                                                     "regex":  "FTG_(.*)_SNMP:.*",
+                                                                                     "renamePattern":  "$1"
+                                                                                 }
+                                                                 }
+                                                             ],
+                                         "type":  "timeseries"
+                                     },
+                                     {
+                                         "datasource":  {
+                                                            "uid":  "efz4nzx8r30g0c"
+                                                        },
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "align":  "auto",
+                                                                                             "cellOptions":  {
+                                                                                                                 "type":  "auto"
+                                                                                                             }
+                                                                                         }
+                                                                          },
+                                                             "overrides":  [
+                                                                               {
+                                                                                   "matcher":  {
+                                                                                                   "id":  "byName",
+                                                                                                   "options":  "Severity"
+                                                                                               },
+                                                                                   "properties":  [
+                                                                                                      {
+                                                                                                          "id":  "custom.cellOptions",
+                                                                                                          "value":  {
+                                                                                                                        "mode":  "gradient",
+                                                                                                                        "type":  "color-background"
+                                                                                                                    }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "id":  "custom.width",
+                                                                                                          "value":  120
+                                                                                                      }
+                                                                                                  ]
+                                                                               },
+                                                                               {
+                                                                                   "matcher":  {
+                                                                                                   "id":  "byName",
+                                                                                                   "options":  "Time"
+                                                                                               },
+                                                                                   "properties":  [
+                                                                                                      {
+                                                                                                          "id":  "custom.width",
+                                                                                                          "value":  150
+                                                                                                      }
+                                                                                                  ]
+                                                                               }
+                                                                           ]
+                                                         },
+                                         "gridPos":  {
+                                                         "h":  8,
+                                                         "w":  24,
+                                                         "x":  0,
+                                                         "y":  22
+                                                     },
+                                         "id":  12,
+                                         "options":  {
+                                                         "showHeader":  true,
+                                                         "sortBy":  [
+                                                                        {
+                                                                            "desc":  true,
+                                                                            "displayName":  "Severity"
+                                                                        }
+                                                                    ]
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "group":  {
+                                                                           "filter":  "/.*/"
+                                                                       },
+                                                             "host":  {
+                                                                          "filter":  "/.*/"
+                                                                      },
+                                                             "options":  {
+                                                                             "acknowledged":  2,
+                                                                             "hostsInMaintenance":  false,
+                                                                             "minSeverity":  2
+                                                                         },
+                                                             "queryType":  "4",
+                                                             "refId":  "A",
+                                                             "schema":  12,
+                                                             "showProblems":  "problems"
+                                                         }
+                                                     ],
+                                         "title":  "Feed de Incidentes Activos en Tiempo Real (Alertas Zabbix)",
+                                         "type":  "table"
+                                     }
+                                 ],
+                      "refresh":  "30s",
+                      "schemaVersion":  40,
+                      "tags":  [
+                                   "noc",
+                                   "zabbix",
+                                   "milicic",
+                                   "command-center",
+                                   "v7",
+                                   "expert"
+                               ],
+                      "templating":  {
+                                         "list":  [
+                                                      {
+                                                          "current":  {
+                                                                          "text":  "alexanderzobnin-zabbix-datasource",
+                                                                          "value":  "efz4nzx8r30g0c"
+                                                                      },
+                                                          "hide":  2,
+                                                          "name":  "datasource",
+                                                          "query":  "alexanderzobnin-zabbix-datasource",
+                                                          "type":  "datasource"
+                                                      }
+                                                  ]
+                                     },
+                      "time":  {
+                                   "from":  "now-15m",
+                                   "to":  "now"
+                               },
+                      "timezone":  "browser",
+                      "title":  "NOC - Zabbix Command Center",
+                      "uid":  "noc-zabbix-command-center",
+                      "version":  8
+                  }
+}
