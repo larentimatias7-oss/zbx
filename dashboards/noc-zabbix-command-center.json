@@ -61,7 +61,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 16,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -1462,8 +1462,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "min": 0,
           "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1512,23 +1512,20 @@
       "pluginVersion": "13.2.3",
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
-          "group": {
-            "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/"
+          "application": {
+            "filter": ""
           },
-          "host": {
-            "filter": "/${sede:raw}/"
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
-          "item": {
-            "filter": "/^CPU utilization$/"
-          },
+          "evaltype": "0",
           "functions": [
             {
               "def": {
-                "name": "top",
                 "category": "Filter",
+                "name": "top",
                 "params": [
                   {
                     "name": "number",
@@ -1546,10 +1543,20 @@
               ]
             }
           ],
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/^CPU utilization$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
           },
           "options": {
             "count": false,
@@ -1559,30 +1566,23 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 13,
           "table": {
             "skipEmptyValues": false
-          },
-          "application": {
-            "filter": ""
-          },
-          "itemTag": {
-            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "macro": {
-            "filter": ""
-          },
-          "proxy": {
-            "filter": ""
-          },
+          "textFilter": "",
           "trigger": {
             "filter": ""
-          },
-          "evaltype": "0",
-          "textFilter": "",
-          "countTriggersBy": ""
+          }
         }
       ],
       "title": "Top 5 Servidores (Consumo CPU %)",
@@ -1608,8 +1608,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "min": 0,
           "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1658,23 +1658,20 @@
       "pluginVersion": "13.2.3",
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
-          "group": {
-            "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/"
+          "application": {
+            "filter": ""
           },
-          "host": {
-            "filter": "/${sede:raw}/"
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
-          "item": {
-            "filter": "Memory utilization"
-          },
+          "evaltype": "0",
           "functions": [
             {
               "def": {
-                "name": "top",
                 "category": "Filter",
+                "name": "top",
                 "params": [
                   {
                     "name": "number",
@@ -1692,10 +1689,20 @@
               ]
             }
           ],
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "Memory utilization"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
           },
           "options": {
             "count": false,
@@ -1705,30 +1712,23 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 13,
           "table": {
             "skipEmptyValues": false
-          },
-          "application": {
-            "filter": ""
-          },
-          "itemTag": {
-            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "macro": {
-            "filter": ""
-          },
-          "proxy": {
-            "filter": ""
-          },
+          "textFilter": "",
           "trigger": {
             "filter": ""
-          },
-          "evaltype": "0",
-          "textFilter": "",
-          "countTriggersBy": ""
+          }
         }
       ],
       "title": "Top 5 Servidores (Consumo RAM %)",
@@ -1754,8 +1754,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "min": 0,
           "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1804,23 +1804,20 @@
       "pluginVersion": "13.2.3",
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
-          "group": {
-            "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
+          "application": {
+            "filter": ""
           },
-          "host": {
-            "filter": "/${sede:raw}/"
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
-          "item": {
-            "filter": "/FS \\[.*(:\\)|\\/$)\\].*Space: Used, in %/"
-          },
+          "evaltype": "0",
           "functions": [
             {
               "def": {
-                "name": "top",
                 "category": "Filter",
+                "name": "top",
                 "params": [
                   {
                     "name": "number",
@@ -1838,10 +1835,20 @@
               ]
             }
           ],
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/FS \\[.*(:\\)|\\/$)\\].*Space: Used, in %/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
           },
           "options": {
             "count": false,
@@ -1851,30 +1858,23 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 13,
           "table": {
             "skipEmptyValues": false
-          },
-          "application": {
-            "filter": ""
-          },
-          "itemTag": {
-            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "macro": {
-            "filter": ""
-          },
-          "proxy": {
-            "filter": ""
-          },
+          "textFilter": "",
           "trigger": {
             "filter": ""
-          },
-          "evaltype": "0",
-          "textFilter": "",
-          "countTriggersBy": ""
+          }
         }
       ],
       "title": "Top 5 Servidores (Uso de Disco %)",
@@ -1900,8 +1900,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "min": 0,
           "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1950,23 +1950,20 @@
       "pluginVersion": "13.2.3",
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
-          "group": {
-            "filter": "UPS"
+          "application": {
+            "filter": ""
           },
-          "host": {
-            "filter": "/.*/"
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
-          "item": {
-            "filter": "/^(UPS Load \\(%\\)|Output Load Estimated)$/"
-          },
+          "evaltype": "0",
           "functions": [
             {
               "def": {
-                "name": "top",
                 "category": "Filter",
+                "name": "top",
                 "params": [
                   {
                     "name": "number",
@@ -1984,10 +1981,20 @@
               ]
             }
           ],
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
+          "group": {
+            "filter": "UPS"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/^(UPS Load \\(%\\)|Output Load Estimated)$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
           },
           "options": {
             "count": false,
@@ -1997,30 +2004,23 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 13,
           "table": {
             "skipEmptyValues": false
-          },
-          "application": {
-            "filter": ""
-          },
-          "itemTag": {
-            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "macro": {
-            "filter": ""
-          },
-          "proxy": {
-            "filter": ""
-          },
+          "textFilter": "",
           "trigger": {
             "filter": ""
-          },
-          "evaltype": "0",
-          "textFilter": "",
-          "countTriggersBy": ""
+          }
         }
       ],
       "title": "Top 5 Datacenters (Carga Eléctrica UPS %)",
@@ -2045,7 +2045,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 52
       },
       "id": 12,
       "options": {
@@ -2182,8 +2182,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "min": 0,
           "decimals": 1,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2231,23 +2231,20 @@
       },
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
-          "group": {
-            "filter": "/(FortiGate|ANTENAS P2P)/"
+          "application": {
+            "filter": ""
           },
-          "host": {
-            "filter": "/${sede:raw}/"
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
-          "item": {
-            "filter": "ICMP response time"
-          },
+          "evaltype": "0",
           "functions": [
             {
               "def": {
-                "name": "top",
                 "category": "Filter",
+                "name": "top",
                 "params": [
                   {
                     "name": "number",
@@ -2265,10 +2262,20 @@
               ]
             }
           ],
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
+          "group": {
+            "filter": "/(FortiGate|ANTENAS P2P)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP response time"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
           },
           "options": {
             "count": false,
@@ -2278,30 +2285,23 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 13,
           "table": {
             "skipEmptyValues": false
-          },
-          "application": {
-            "filter": ""
-          },
-          "itemTag": {
-            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "macro": {
-            "filter": ""
-          },
-          "proxy": {
-            "filter": ""
-          },
+          "textFilter": "",
           "trigger": {
             "filter": ""
-          },
-          "evaltype": "0",
-          "textFilter": "",
-          "countTriggersBy": ""
+          }
         }
       ],
       "title": "Top 5 Sedes WAN (Mayor Latencia Ping ms)",
@@ -2375,23 +2375,20 @@
       },
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
-          "group": {
-            "filter": "FortiGate"
+          "application": {
+            "filter": ""
           },
-          "host": {
-            "filter": "/${sede:raw}/"
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
-          "item": {
-            "filter": "/Interface (port14|port15|wan|internet|claro|tasa|rosario|telecom).*: Bits received/"
-          },
+          "evaltype": "0",
           "functions": [
             {
               "def": {
-                "name": "top",
                 "category": "Filter",
+                "name": "top",
                 "params": [
                   {
                     "name": "number",
@@ -2409,10 +2406,20 @@
               ]
             }
           ],
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/Interface (port14|port15|wan|internet|claro|tasa|rosario|telecom).*: Bits received/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
           },
           "options": {
             "count": false,
@@ -2422,30 +2429,23 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 13,
           "table": {
             "skipEmptyValues": false
-          },
-          "application": {
-            "filter": ""
-          },
-          "itemTag": {
-            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "macro": {
-            "filter": ""
-          },
-          "proxy": {
-            "filter": ""
-          },
+          "textFilter": "",
           "trigger": {
             "filter": ""
-          },
-          "evaltype": "0",
-          "textFilter": "",
-          "countTriggersBy": ""
+          }
         }
       ],
       "title": "Top 5 Enlaces WAN / Internet (Ancho de Banda)",
@@ -2471,8 +2471,8 @@
           "color": {
             "mode": "thresholds"
           },
-          "min": 0,
           "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2520,23 +2520,20 @@
       },
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
-          "group": {
-            "filter": "/(FortiGate|ANTENAS P2P)/"
+          "application": {
+            "filter": ""
           },
-          "host": {
-            "filter": "/${sede:raw}/"
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
-          "item": {
-            "filter": "ICMP loss"
-          },
+          "evaltype": "0",
           "functions": [
             {
               "def": {
-                "name": "top",
                 "category": "Filter",
+                "name": "top",
                 "params": [
                   {
                     "name": "number",
@@ -2554,10 +2551,20 @@
               ]
             }
           ],
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
+          "group": {
+            "filter": "/(FortiGate|ANTENAS P2P)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP loss"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
           },
           "options": {
             "count": false,
@@ -2567,30 +2574,23 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 13,
           "table": {
             "skipEmptyValues": false
-          },
-          "application": {
-            "filter": ""
-          },
-          "itemTag": {
-            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "macro": {
-            "filter": ""
-          },
-          "proxy": {
-            "filter": ""
-          },
+          "textFilter": "",
           "trigger": {
             "filter": ""
-          },
-          "evaltype": "0",
-          "textFilter": "",
-          "countTriggersBy": ""
+          }
         }
       ],
       "title": "Top Sedes WAN (Pérdida de Paquetes ICMP %)",
@@ -2664,23 +2664,20 @@
       },
       "targets": [
         {
-          "refId": "A",
-          "schema": 13,
-          "queryType": "0",
-          "group": {
-            "filter": "/(Storage_Server|Storage)/"
+          "application": {
+            "filter": ""
           },
-          "host": {
-            "filter": "/${sede:raw}/"
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
           },
-          "item": {
-            "filter": "/Disk group .*: IOPS, total rate/"
-          },
+          "evaltype": "0",
           "functions": [
             {
               "def": {
-                "name": "top",
                 "category": "Filter",
+                "name": "top",
                 "params": [
                   {
                     "name": "number",
@@ -2698,10 +2695,20 @@
               ]
             }
           ],
-          "resultFormat": "time_series",
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
+          "group": {
+            "filter": "/(Storage_Server|Storage)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/Disk group .*: IOPS, total rate/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
           },
           "options": {
             "count": false,
@@ -2711,30 +2718,23 @@
             "useTrends": "default",
             "useZabbixValueMapping": false
           },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 13,
           "table": {
             "skipEmptyValues": false
-          },
-          "application": {
-            "filter": ""
-          },
-          "itemTag": {
-            "filter": ""
           },
           "tags": {
             "filter": ""
           },
-          "macro": {
-            "filter": ""
-          },
-          "proxy": {
-            "filter": ""
-          },
+          "textFilter": "",
           "trigger": {
             "filter": ""
-          },
-          "evaltype": "0",
-          "textFilter": "",
-          "countTriggersBy": ""
+          }
         }
       ],
       "title": "Top 5 Storage SAN HPE MSA (Carga IOPS)",
@@ -2748,6 +2748,880 @@
         }
       ],
       "type": "bargauge"
+    },
+    {
+      "id": 24,
+      "_customTag": "vpn-users",
+      "title": "Teletrabajo (VPN SSL Activas)",
+      "type": "stat",
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/milicic_border1/"
+          },
+          "item": {
+            "filter": "Active SSL VPN users"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".*",
+            "renamePattern": "Usuarios Conectados"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#5794F2",
+                "value": 0
+              },
+              {
+                "color": "#73BF69",
+                "value": 10
+              },
+              {
+                "color": "#FADE2A",
+                "value": 60
+              }
+            ]
+          },
+          "unit": "none"
+        }
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 25,
+      "_customTag": "wan-matrix-table",
+      "title": "Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia y Pérdida)",
+      "type": "table",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 35
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP response time"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP loss"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "D",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/IPv4 Active sessions/"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "^(?:FTG_|)(.*?)(?:_SNMP|):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "seriesToRows",
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Field",
+            "mode": "outerTabular"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Field": "Sede / Obra",
+              "Last * (not null)": "Estado",
+              "Last * (not null) 1": "Latencia",
+              "Last * (not null) 2": "Pérdida %",
+              "Last * (not null) 3": "Sesiones"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "Estado"
+              }
+            ]
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "1": {
+                        "text": "ONLINE",
+                        "color": "#73BF69",
+                        "index": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "OFFLINE",
+                        "color": "#E02F44",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Latencia"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 0.05
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 0.1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Pérdida %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 1
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 5
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sesiones"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "mode": "gradient"
+                }
+              },
+              {
+                "id": "max",
+                "value": 15000
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 8000
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 12000
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "_customTag": "server-matrix-table",
+      "title": "Matriz de Servidores & Roles Críticos (Salud, CPU, RAM y Disco C:)",
+      "type": "table",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 35
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "ICMP ping"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/^CPU utilization$/"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "Memory utilization"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "D",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/FS \\[.*(\\(C:\\)|\\/$)\\].*Space: Used, in %/"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "^(.*?):.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "seriesToRows",
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Field",
+            "mode": "outerTabular"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Field": "Servidor",
+              "Last * (not null)": "Estado",
+              "Last * (not null) 1": "CPU %",
+              "Last * (not null) 2": "RAM %",
+              "Last * (not null) 3": "Disco C: %"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "Estado"
+              }
+            ]
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "1": {
+                        "text": "OK",
+                        "color": "#73BF69",
+                        "index": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "DOWN",
+                        "color": "#E02F44",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "mode": "gradient"
+                }
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 75
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "RAM %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "mode": "gradient"
+                }
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 75
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disco C: %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "mode": "gradient"
+                }
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 80
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "_customTag": "wan-trend-timeseries",
+      "title": "Tendencia Comparativa de Tráfico WAN por Sede / Proyecto (Mbps)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "schema": 13,
+          "queryType": "0",
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/${sede:raw}/"
+          },
+          "item": {
+            "filter": "/Interface (port14|port15|wan1|wan).*: Bits received/"
+          },
+          "resultFormat": "time_series",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "^(?:FTG_)?(.*?)(?:_SNMP)?: Interface (.*?):.*",
+            "renamePattern": "$1 - $2"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "showPoints": "never",
+            "spanNulls": true
+          },
+          "unit": "bps"
+        }
+      },
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
     }
   ],
   "preload": false,
@@ -2907,5 +3781,5 @@
   "timezone": "browser",
   "title": "NOC - Zabbix Command Center",
   "uid": "noc-zabbix-command-center",
-  "version": 18
+  "version": 19
 }
