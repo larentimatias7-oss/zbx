@@ -131,15 +131,14 @@ async function run() {
   }
 
   // 2. Fila 5 (y: 35, h: 9): MATRICES CRUZADAS DE CONECTIVIDAD Y SERVIDORES
+  dash.panels = dash.panels.filter(p => p._customTag !== 'wan-matrix-table' && p._customTag !== 'server-matrix-table');
   // Panel 25: Matriz de Telecomunicaciones & Sedes WAN (w: 12, x: 0, y: 35, h: 9)
-  let pWanTable = dash.panels.find(p => p._customTag === 'wan-matrix-table');
-  if (!pWanTable) {
-    pWanTable = {
-      id: ++maxId,
-      _customTag: 'wan-matrix-table',
-      title: 'Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia y Pérdida)',
-      type: 'table',
-      gridPos: { h: 9, w: 12, x: 0, y: 35 },
+  let pWanTable = {
+    id: 25,
+    _customTag: 'wan-matrix-table',
+    title: 'Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia, Pérdida y Sesiones)',
+    type: 'table',
+    gridPos: { h: 9, w: 12, x: 0, y: 35 },
       datasource: { type: 'alexanderzobnin-zabbix-datasource', uid: 'efz4nzx8r30g0c' },
       targets: [
         {
@@ -189,38 +188,38 @@ async function run() {
       ],
       transformations: [
         {
-          id: 'renameByRegex',
-          options: {
-            regex: '^(?:FTG_|)(.*?)(?:_SNMP|):.*',
-            renamePattern: '$1'
-          }
-        },
-        {
           id: 'reduce',
           options: {
-            includeTimeField: false,
+            labelsToFields: true,
             mode: 'seriesToRows',
             reducers: ['lastNotNull']
           }
         },
         {
-          id: 'joinByField',
+          id: 'groupingToMatrix',
           options: {
-            byField: 'Field',
-            mode: 'outerTabular'
+            columnField: 'item',
+            rowField: 'host',
+            valueField: 'Last * (not null)'
           }
         },
         {
           id: 'organize',
           options: {
             excludeByName: {},
-            indexByName: {},
+            indexByName: {
+              'host\\item': 0,
+              'ICMP ping': 1,
+              'ICMP response time': 2,
+              'ICMP loss': 3,
+              'IPv4 Active sessions': 4
+            },
             renameByName: {
-              Field: 'Sede / Obra',
-              'Last * (not null)': 'Estado',
-              'Last * (not null) 1': 'Latencia',
-              'Last * (not null) 2': 'Pérdida %',
-              'Last * (not null) 3': 'Sesiones'
+              'host\\item': 'Sede / Obra',
+              'ICMP ping': 'Disponibilidad',
+              'ICMP response time': 'Latencia',
+              'ICMP loss': 'Pérdida %',
+              'IPv4 Active sessions': 'Sesiones Activas'
             }
           }
         },
@@ -228,7 +227,7 @@ async function run() {
           id: 'sortBy',
           options: {
             fields: {},
-            sort: [{ desc: false, field: 'Estado' }]
+            sort: [{ desc: false, field: 'Disponibilidad' }]
           }
         }
       ],
@@ -316,15 +315,10 @@ async function run() {
       }
     };
     dash.panels.push(pWanTable);
-  } else {
-    pWanTable.gridPos = { h: 9, w: 12, x: 0, y: 35 };
-  }
 
-  // Panel 26: Matriz de Servidores & Roles Críticos (w: 12, x: 12, y: 35, h: 9)
-  let pSrvTable = dash.panels.find(p => p._customTag === 'server-matrix-table');
-  if (!pSrvTable) {
-    pSrvTable = {
-      id: ++maxId,
+    // Panel 26: Matriz de Servidores & Roles Críticos (w: 12, x: 12, y: 35, h: 9)
+    let pSrvTable = {
+      id: 26,
       _customTag: 'server-matrix-table',
       title: 'Matriz de Servidores & Roles Críticos (Salud, CPU, RAM y Disco C:)',
       type: 'table',
@@ -378,38 +372,38 @@ async function run() {
       ],
       transformations: [
         {
-          id: 'renameByRegex',
-          options: {
-            regex: '^(.*?):.*',
-            renamePattern: '$1'
-          }
-        },
-        {
           id: 'reduce',
           options: {
-            includeTimeField: false,
+            labelsToFields: true,
             mode: 'seriesToRows',
             reducers: ['lastNotNull']
           }
         },
         {
-          id: 'joinByField',
+          id: 'groupingToMatrix',
           options: {
-            byField: 'Field',
-            mode: 'outerTabular'
+            columnField: 'item',
+            rowField: 'host',
+            valueField: 'Last * (not null)'
           }
         },
         {
           id: 'organize',
           options: {
             excludeByName: {},
-            indexByName: {},
+            indexByName: {
+              'host\\item': 0,
+              'ICMP ping': 1,
+              'CPU utilization': 2,
+              'Memory utilization': 3,
+              'FS [(C:)]: Space: Used, in %': 4
+            },
             renameByName: {
-              Field: 'Servidor',
-              'Last * (not null)': 'Estado',
-              'Last * (not null) 1': 'CPU %',
-              'Last * (not null) 2': 'RAM %',
-              'Last * (not null) 3': 'Disco C: %'
+              'host\\item': 'Servidor',
+              'ICMP ping': 'Estado',
+              'CPU utilization': 'CPU %',
+              'Memory utilization': 'RAM %',
+              'FS [(C:)]: Space: Used, in %': 'Disco C: %'
             }
           }
         },
@@ -510,9 +504,6 @@ async function run() {
       }
     };
     dash.panels.push(pSrvTable);
-  } else {
-    pSrvTable.gridPos = { h: 9, w: 12, x: 12, y: 35 };
-  }
 
   // 3. Fila 6 (y: 44, h: 8): TENDENCIA COMPARATIVA DE TRÁFICO WAN POR SEDES / PROYECTOS
   let pWanTrend = dash.panels.find(p => p._customTag === 'wan-trend-timeseries');
