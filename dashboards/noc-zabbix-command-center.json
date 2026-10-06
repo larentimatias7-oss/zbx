@@ -3248,20 +3248,225 @@
       "type": "stat"
     },
     {
-      "id": 25,
       "_customTag": "wan-matrix-table",
-      "title": "Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia, Pérdida y Sesiones)",
-      "type": "table",
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sede / Obra"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "regex",
+                    "options": {
+                      "pattern": "^FTG_(.*)_SNMP$",
+                      "result": {
+                        "text": "$1"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disponibilidad"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "color": "#E02F44",
+                        "index": 1,
+                        "text": "OFFLINE"
+                      },
+                      "1": {
+                        "color": "#73BF69",
+                        "index": 0,
+                        "text": "ONLINE"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Latencia"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 0.08
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 0.15
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Pérdida %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 2
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 10
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sesiones Activas"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "locale"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 8000
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 20000
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 25000
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
         "y": 35
       },
-      "datasource": {
-        "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "efz4nzx8r30g0c"
-      },
+      "id": 25,
       "targets": [
         {
           "refId": "A",
@@ -3352,6 +3557,7 @@
           }
         }
       ],
+      "title": "Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia, Pérdida y Sesiones)",
       "transformations": [
         {
           "id": "reduce",
@@ -3368,7 +3574,7 @@
           "options": {
             "columnField": "item",
             "rowField": "host",
-            "valueField": "Last * (not null)"
+            "valueField": "Last *"
           }
         },
         {
@@ -3404,6 +3610,14 @@
           }
         }
       ],
+      "type": "table"
+    },
+    {
+      "_customTag": "server-matrix-table",
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -3427,20 +3641,15 @@
                   {
                     "type": "value",
                     "options": {
-                      "1": {
-                        "text": "ONLINE",
-                        "color": "#73BF69",
-                        "index": 0
-                      }
-                    }
-                  },
-                  {
-                    "type": "value",
-                    "options": {
                       "0": {
-                        "text": "OFFLINE",
                         "color": "#E02F44",
-                        "index": 1
+                        "index": 1,
+                        "text": "DOWN"
+                      },
+                      "1": {
+                        "color": "#73BF69",
+                        "index": 0,
+                        "text": "OK"
                       }
                     }
                   }
@@ -3449,8 +3658,8 @@
               {
                 "id": "custom.cellOptions",
                 "value": {
-                  "type": "color-background",
-                  "mode": "basic"
+                  "mode": "basic",
+                  "type": "color-background"
                 }
               }
             ]
@@ -3458,49 +3667,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Latencia"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "s"
-              },
-              {
-                "id": "decimals",
-                "value": 1
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "#73BF69",
-                      "value": 0
-                    },
-                    {
-                      "color": "#FADE2A",
-                      "value": 0.05
-                    },
-                    {
-                      "color": "#E02F44",
-                      "value": 0.1
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-text"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Pérdida %"
+              "options": "CPU %"
             },
             "properties": [
               {
@@ -3509,7 +3676,22 @@
               },
               {
                 "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "min",
                 "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
               },
               {
                 "id": "thresholds",
@@ -3522,20 +3704,13 @@
                     },
                     {
                       "color": "#FADE2A",
-                      "value": 1
+                      "value": 75
                     },
                     {
                       "color": "#E02F44",
-                      "value": 5
+                      "value": 90
                     }
                   ]
-                }
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background",
-                  "mode": "basic"
                 }
               }
             ]
@@ -3543,27 +3718,31 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Sesiones"
+              "options": "RAM %"
             },
             "properties": [
               {
                 "id": "unit",
-                "value": "none"
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
               },
               {
                 "id": "custom.cellOptions",
                 "value": {
-                  "type": "gauge",
-                  "mode": "gradient"
+                  "mode": "gradient",
+                  "type": "gauge"
                 }
-              },
-              {
-                "id": "max",
-                "value": 15000
               },
               {
                 "id": "min",
                 "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
               },
               {
                 "id": "thresholds",
@@ -3576,11 +3755,62 @@
                     },
                     {
                       "color": "#FADE2A",
-                      "value": 8000
+                      "value": 75
                     },
                     {
                       "color": "#E02F44",
-                      "value": 12000
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disco C: %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#73BF69",
+                      "value": 0
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 80
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 90
                     }
                   ]
                 }
@@ -3588,23 +3818,14 @@
             ]
           }
         ]
-      }
-    },
-    {
-      "id": 26,
-      "_customTag": "server-matrix-table",
-      "title": "Matriz de Servidores & Roles Críticos (Salud, CPU, RAM y Disco C:)",
-      "type": "table",
+      },
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 35
       },
-      "datasource": {
-        "type": "alexanderzobnin-zabbix-datasource",
-        "uid": "efz4nzx8r30g0c"
-      },
+      "id": 26,
       "targets": [
         {
           "refId": "A",
@@ -3683,7 +3904,7 @@
             "filter": "/${sede:raw}/"
           },
           "item": {
-            "filter": "/FS \\[.*(\\(C:\\)|\\/$)\\].*Space: Used, in %/"
+            "filter": "FS [(C:)]: Space: Used, in %"
           },
           "resultFormat": "time_series",
           "datasource": {
@@ -3695,6 +3916,7 @@
           }
         }
       ],
+      "title": "Matriz de Servidores & Roles Críticos (Salud, CPU, RAM y Disco C:)",
       "transformations": [
         {
           "id": "reduce",
@@ -3711,7 +3933,7 @@
           "options": {
             "columnField": "item",
             "rowField": "host",
-            "valueField": "Last * (not null)"
+            "valueField": "Last *"
           }
         },
         {
@@ -3747,212 +3969,7 @@
           }
         }
       ],
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Estado"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "type": "value",
-                    "options": {
-                      "1": {
-                        "text": "OK",
-                        "color": "#73BF69",
-                        "index": 0
-                      }
-                    }
-                  },
-                  {
-                    "type": "value",
-                    "options": {
-                      "0": {
-                        "text": "DOWN",
-                        "color": "#E02F44",
-                        "index": 1
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background",
-                  "mode": "basic"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CPU %"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              },
-              {
-                "id": "decimals",
-                "value": 1
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "gauge",
-                  "mode": "gradient"
-                }
-              },
-              {
-                "id": "max",
-                "value": 100
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "#73BF69",
-                      "value": 0
-                    },
-                    {
-                      "color": "#FADE2A",
-                      "value": 75
-                    },
-                    {
-                      "color": "#E02F44",
-                      "value": 90
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "RAM %"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              },
-              {
-                "id": "decimals",
-                "value": 1
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "gauge",
-                  "mode": "gradient"
-                }
-              },
-              {
-                "id": "max",
-                "value": 100
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "#73BF69",
-                      "value": 0
-                    },
-                    {
-                      "color": "#FADE2A",
-                      "value": 75
-                    },
-                    {
-                      "color": "#E02F44",
-                      "value": 90
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Disco C: %"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              },
-              {
-                "id": "decimals",
-                "value": 1
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "gauge",
-                  "mode": "gradient"
-                }
-              },
-              {
-                "id": "max",
-                "value": 100
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "#73BF69",
-                      "value": 0
-                    },
-                    {
-                      "color": "#FADE2A",
-                      "value": 80
-                    },
-                    {
-                      "color": "#E02F44",
-                      "value": 90
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+      "type": "table"
     }
   ],
   "preload": false,
@@ -4112,5 +4129,5 @@
   "timezone": "browser",
   "title": "NOC - Zabbix Command Center",
   "uid": "noc-zabbix-command-center",
-  "version": 23
+  "version": 24
 }

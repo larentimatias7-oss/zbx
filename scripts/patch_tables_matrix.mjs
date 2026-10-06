@@ -123,7 +123,7 @@ async function main() {
       options: {
         columnField: 'item',
         rowField: 'host',
-        valueField: 'Last * (not null)'
+        valueField: 'Last *'
       }
     },
     {
@@ -352,7 +352,7 @@ async function main() {
       options: {
         columnField: 'item',
         rowField: 'host',
-        valueField: 'Last * (not null)'
+        valueField: 'Last *'
       }
     },
     {

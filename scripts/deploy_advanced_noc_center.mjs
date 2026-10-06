@@ -200,7 +200,7 @@ async function run() {
           options: {
             columnField: 'item',
             rowField: 'host',
-            valueField: 'Last * (not null)'
+            valueField: 'Last *'
           }
         },
         {
@@ -384,7 +384,7 @@ async function run() {
           options: {
             columnField: 'item',
             rowField: 'host',
-            valueField: 'Last * (not null)'
+            valueField: 'Last *'
           }
         },
         {
