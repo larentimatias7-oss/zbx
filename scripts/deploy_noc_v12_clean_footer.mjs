@@ -174,11 +174,38 @@ const dashboard = {
       title: '',
       type: 'marcusolsson-dynamictext-panel',
       gridPos: { x: 0, y: 0, w: 16, h: 3 },
+      datasource: DS,
+      targets: [
+        {
+          refId: 'A',
+          schema: 12,
+          queryType: '0',
+          group: { filter: 'Zabbix servers' },
+          host: { filter: 'Zabbix server' },
+          item: { filter: 'Zabbix agent ping' },
+          resultFormat: 'time_series'
+        }
+      ],
       options: {
         content: `
 <style>
 ${cssHideFooter}
 </style>
+<div style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); border-left: 6px solid #EA580C; padding: 10px 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; height: 100%; box-sizing: border-box;">
+  <div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="background: #EA580C; color: white; padding: 2px 7px; border-radius: 4px; font-weight: 800; font-size: 11px; letter-spacing: 0.5px;">MILICIC S.A.</span>
+      <h2 style="margin: 0; color: #FFFFFF; font-size: 18px; font-weight: 700;">NOC COMMAND CENTER &bull; Zabbix 7.0 LTS</h2>
+    </div>
+    <p style="margin: 3px 0 0 0; color: #94A3B8; font-size: 11px;">Monitoreo Global de Disponibilidad &bull; Matriz de Salud de Infraestructura &bull; Telemetr&iacute;a Cr&iacute;tica en Vivo</p>
+  </div>
+  <div style="display: flex; gap: 14px; font-size: 11px; color: #E2E8F0; align-items: center;">
+    <span><b style="display: inline-block; width: 10px; height: 10px; background: #73BF69; border-radius: 2px; margin-right: 4px;"></b>ONLINE (UP)</span>
+    <span><b style="display: inline-block; width: 10px; height: 10px; background: #E02F44; border-radius: 2px; margin-right: 4px;"></b>CA&Iacute;DO (DOWN)</span>
+    <span><b style="display: inline-block; width: 10px; height: 10px; background: #6B7280; border-radius: 2px; margin-right: 4px;"></b>SIN DATOS</span>
+  </div>
+</div>`,
+        defaultContent: `
 <div style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); border-left: 6px solid #EA580C; padding: 10px 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; height: 100%; box-sizing: border-box;">
   <div>
     <div style="display: flex; align-items: center; gap: 8px;">
