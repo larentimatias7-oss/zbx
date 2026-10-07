@@ -1,0 +1,11 @@
+﻿{
+    "created_at_utc":  "2026-10-07T19:12:21.2035561Z",
+    "description":  "Rollback manifest for Switch Link Flapping trigger",
+    "created_triggers":  [
+                             {
+                                 "host":  "SRO-G01-P100-ACC01",
+                                 "description":  "TP-LINK: Interface gigabitEthernet 1/0/4(): Link Flapping recurrente (\u003e6 cambios/hora)",
+                                 "triggerid":  "39513"
+                             }
+                         ]
+}

@@ -1,0 +1,24 @@
+﻿{
+    "created_at_utc":  "2026-10-07T19:08:30.4172530Z",
+    "description":  "Rollback manifest for AD Failed Logon 4625 Burst Triggers",
+    "created_triggers":  [
+                             {
+                                 "host":  "SRO-DCO01",
+                                 "description":  "Active Directory: RÃ¡faga de fallos de inicio de sesiÃ³n / Fuerza bruta (Event 4625)",
+                                 "hostid":  "10699",
+                                 "triggerid":  "39510"
+                             },
+                             {
+                                 "host":  "SRO-DCO02",
+                                 "description":  "Active Directory: RÃ¡faga de fallos de inicio de sesiÃ³n / Fuerza bruta (Event 4625)",
+                                 "hostid":  "10701",
+                                 "triggerid":  "39511"
+                             },
+                             {
+                                 "host":  "SSJ-DCO01",
+                                 "description":  "Active Directory: RÃ¡faga de fallos de inicio de sesiÃ³n / Fuerza bruta (Event 4625)",
+                                 "hostid":  "10715",
+                                 "triggerid":  "39512"
+                             }
+                         ]
+}
