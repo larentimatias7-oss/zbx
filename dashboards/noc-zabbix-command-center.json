@@ -65,6 +65,7 @@
         "x": 0,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 1,
       "options": {
         "afterRender": "",
@@ -104,10 +105,9 @@
           "schema": 12
         }
       ],
-      "title": "",
-      "type": "marcusolsson-dynamictext-panel",
       "timeFrom": "15m",
-      "hideTimeOverride": true
+      "title": "",
+      "type": "marcusolsson-dynamictext-panel"
     },
     {
       "datasource": {
@@ -140,6 +140,7 @@
         "x": 16,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 16,
       "options": {
         "colorMode": "background",
@@ -180,10 +181,9 @@
           "schema": 12
         }
       ],
-      "title": "Último dato recibido",
-      "type": "stat",
       "timeFrom": "15m",
-      "hideTimeOverride": true
+      "title": "Último dato recibido",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -243,6 +243,7 @@
         "x": 20,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 11,
       "options": {
         "colorMode": "background",
@@ -286,6 +287,7 @@
           "schema": 12
         }
       ],
+      "timeFrom": "15m",
       "title": "Facilities & Energía (UPS)",
       "transformations": [
         {
@@ -303,9 +305,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "datasource": {
@@ -336,6 +336,7 @@
         "x": 0,
         "y": 3
       },
+      "hideTimeOverride": true,
       "id": 3,
       "options": {
         "colorMode": "background",
@@ -379,6 +380,7 @@
           "schema": 12
         }
       ],
+      "timeFrom": "15m",
       "title": "Nodos",
       "transformations": [
         {
@@ -410,9 +412,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "datasource": {
@@ -457,6 +457,7 @@
         "x": 2,
         "y": 3
       },
+      "hideTimeOverride": true,
       "id": 7,
       "options": {
         "barShape": "flat",
@@ -511,6 +512,7 @@
           "schema": 12
         }
       ],
+      "timeFrom": "15m",
       "title": "Salud Global (Disponibilidad)",
       "transformations": [
         {
@@ -524,9 +526,7 @@
           }
         }
       ],
-      "type": "gauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -777,6 +777,7 @@
         "x": 10,
         "y": 3
       },
+      "hideTimeOverride": true,
       "id": 2,
       "options": {
         "colorMode": "background",
@@ -817,10 +818,9 @@
           "schema": 12
         }
       ],
-      "title": "Zabbix Server",
-      "type": "stat",
       "timeFrom": "15m",
-      "hideTimeOverride": true
+      "title": "Zabbix Server",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -883,6 +883,7 @@
         "x": 13,
         "y": 3
       },
+      "hideTimeOverride": true,
       "id": 10,
       "options": {
         "colorMode": "background",
@@ -926,6 +927,7 @@
           "schema": 12
         }
       ],
+      "timeFrom": "15m",
       "title": "Redes (Switches) y APs (Aruba)",
       "transformations": [
         {
@@ -943,9 +945,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1008,6 +1008,7 @@
         "x": 0,
         "y": 6
       },
+      "hideTimeOverride": true,
       "id": 9,
       "options": {
         "colorMode": "background",
@@ -1070,6 +1071,7 @@
           "schema": 12
         }
       ],
+      "timeFrom": "15m",
       "title": "Infra. Core & Servidores (Cómputo & Storage)",
       "transformations": [
         {
@@ -1094,9 +1096,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1158,6 +1158,7 @@
         "x": 13,
         "y": 12
       },
+      "hideTimeOverride": true,
       "id": 17,
       "options": {
         "colorMode": "background",
@@ -1201,6 +1202,7 @@
           "schema": 12
         }
       ],
+      "timeFrom": "15m",
       "title": "Tensión de entrada UPS (V)",
       "transformations": [
         {
@@ -1218,9 +1220,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1400,6 +1400,7 @@
         "x": 0,
         "y": 14
       },
+      "hideTimeOverride": true,
       "id": 8,
       "options": {
         "colorMode": "background",
@@ -1443,6 +1444,7 @@
           "schema": 12
         }
       ],
+      "timeFrom": "15m",
       "title": "Perímetro SD-WAN (FortiGates)",
       "transformations": [
         {
@@ -1467,9 +1469,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1511,6 +1511,7 @@
         "x": 0,
         "y": 21
       },
+      "hideTimeOverride": true,
       "id": 13,
       "options": {
         "displayMode": "gradient",
@@ -1605,6 +1606,7 @@
           }
         }
       ],
+      "timeFrom": "15m",
       "title": "Top 5 Servidores (Consumo CPU %)",
       "transformations": [
         {
@@ -1615,9 +1617,7 @@
           }
         }
       ],
-      "type": "bargauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -1659,6 +1659,7 @@
         "x": 6,
         "y": 21
       },
+      "hideTimeOverride": true,
       "id": 18,
       "options": {
         "displayMode": "gradient",
@@ -1753,6 +1754,7 @@
           }
         }
       ],
+      "timeFrom": "15m",
       "title": "Top 5 Servidores (Consumo RAM %)",
       "transformations": [
         {
@@ -1763,9 +1765,7 @@
           }
         }
       ],
-      "type": "bargauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -1807,6 +1807,7 @@
         "x": 12,
         "y": 21
       },
+      "hideTimeOverride": true,
       "id": 19,
       "options": {
         "displayMode": "gradient",
@@ -1901,6 +1902,7 @@
           }
         }
       ],
+      "timeFrom": "15m",
       "title": "Top 5 Servidores (Uso de Disco %)",
       "transformations": [
         {
@@ -1911,9 +1913,7 @@
           }
         }
       ],
-      "type": "bargauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -1955,6 +1955,7 @@
         "x": 18,
         "y": 21
       },
+      "hideTimeOverride": true,
       "id": 14,
       "options": {
         "displayMode": "gradient",
@@ -2049,6 +2050,7 @@
           }
         }
       ],
+      "timeFrom": "15m",
       "title": "Top 5 Datacenters (Carga Eléctrica UPS %)",
       "transformations": [
         {
@@ -2059,9 +2061,7 @@
           }
         }
       ],
-      "type": "bargauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -2073,7 +2073,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 52
+        "y": 60
       },
       "id": 12,
       "options": {
@@ -2239,6 +2239,7 @@
         "x": 0,
         "y": 28
       },
+      "hideTimeOverride": true,
       "id": 20,
       "options": {
         "displayMode": "gradient",
@@ -2332,6 +2333,7 @@
           }
         }
       ],
+      "timeFrom": "15m",
       "title": "Top 5 Sedes WAN (Mayor Latencia Ping ms)",
       "transformations": [
         {
@@ -2342,9 +2344,7 @@
           }
         }
       ],
-      "type": "bargauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "bargauge"
     },
     {
       "_customTag": "wan-bandwidth",
@@ -2385,6 +2385,7 @@
         "x": 6,
         "y": 28
       },
+      "hideTimeOverride": true,
       "id": 21,
       "options": {
         "displayMode": "gradient",
@@ -2478,6 +2479,7 @@
           }
         }
       ],
+      "timeFrom": "15m",
       "title": "Top 5 Enlaces WAN / Internet (Ancho de Banda)",
       "transformations": [
         {
@@ -2488,9 +2490,7 @@
           }
         }
       ],
-      "type": "bargauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "bargauge"
     },
     {
       "_customTag": "wan-loss",
@@ -2532,6 +2532,7 @@
         "x": 12,
         "y": 28
       },
+      "hideTimeOverride": true,
       "id": 22,
       "options": {
         "displayMode": "gradient",
@@ -2625,6 +2626,7 @@
           }
         }
       ],
+      "timeFrom": "15m",
       "title": "Top Sedes WAN (Pérdida de Paquetes ICMP %)",
       "transformations": [
         {
@@ -2635,9 +2637,7 @@
           }
         }
       ],
-      "type": "bargauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "bargauge"
     },
     {
       "_customTag": "storage-iops",
@@ -2678,6 +2678,7 @@
         "x": 18,
         "y": 28
       },
+      "hideTimeOverride": true,
       "id": 23,
       "options": {
         "displayMode": "gradient",
@@ -2771,6 +2772,7 @@
           }
         }
       ],
+      "timeFrom": "15m",
       "title": "Top 5 Storage SAN HPE MSA (Carga IOPS)",
       "transformations": [
         {
@@ -2781,9 +2783,7 @@
           }
         }
       ],
-      "type": "bargauge",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "bargauge"
     },
     {
       "_customTag": "vpn-users",
@@ -2822,6 +2822,7 @@
         "x": 12,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 24,
       "options": {
         "colorMode": "background",
@@ -2861,6 +2862,7 @@
           "schema": 13
         }
       ],
+      "timeFrom": "15m",
       "title": "Teletrabajo (VPN SSL Activas)",
       "transformations": [
         {
@@ -2871,9 +2873,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "_customTag": "wan-trend-timeseries",
@@ -2991,6 +2991,7 @@
         "x": 13,
         "y": 17
       },
+      "hideTimeOverride": true,
       "id": 28,
       "options": {
         "colorMode": "background",
@@ -3030,6 +3031,7 @@
           "schema": 13
         }
       ],
+      "timeFrom": "15m",
       "title": "Autonomía Baterías UPS (Min)",
       "transformations": [
         {
@@ -3040,9 +3042,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "_customTag": "isp-traffic-panel",
@@ -3236,6 +3236,7 @@
         "x": 12,
         "y": 44
       },
+      "hideTimeOverride": true,
       "id": 30,
       "options": {
         "colorMode": "background",
@@ -3275,6 +3276,7 @@
           "schema": 13
         }
       ],
+      "timeFrom": "15m",
       "title": "Malla de Túneles IPsec Core (Interconexión Rosario ➔ San Juan & SAP Cloud)",
       "transformations": [
         {
@@ -3285,9 +3287,7 @@
           }
         }
       ],
-      "type": "stat",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "stat"
     },
     {
       "_customTag": "wan-matrix-table",
@@ -3508,6 +3508,7 @@
         "x": 0,
         "y": 35
       },
+      "hideTimeOverride": true,
       "id": 25,
       "targets": [
         {
@@ -3599,6 +3600,7 @@
           "schema": 13
         }
       ],
+      "timeFrom": "15m",
       "title": "Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia, Pérdida y Sesiones)",
       "transformations": [
         {
@@ -3652,9 +3654,7 @@
           }
         }
       ],
-      "type": "table",
-      "timeFrom": "15m",
-      "hideTimeOverride": true
+      "type": "table"
     },
     {
       "_customTag": "server-matrix-table",
@@ -3869,6 +3869,7 @@
         "x": 12,
         "y": 35
       },
+      "hideTimeOverride": true,
       "id": 26,
       "targets": [
         {
@@ -3960,6 +3961,7 @@
           "schema": 13
         }
       ],
+      "timeFrom": "15m",
       "title": "Matriz de Servidores & Roles Críticos (Salud, CPU, RAM y Disco C:)",
       "transformations": [
         {
@@ -4013,9 +4015,2699 @@
           }
         }
       ],
-      "type": "table",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 70
+      },
+      "id": 150,
+      "panels": [],
+      "title": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Total de cuentas bloqueadas en el bosque en las últimas 24 horas (Multi-DC). Métrica calculada en tiempo real.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Bloqueos AD (24h)",
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#FA6400",
+                "value": 1
+              },
+              {
+                "color": "#E02F44",
+                "value": 5
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 71
+      },
+      "id": 151,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Total Bloqueos de Cuenta (24h - Multi-DC)"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Intentos fallidos de autenticación (Event 4625) en el bosque en las últimas 24 horas. Tráfico de fondo normal < 400.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Fallos Logon (24h)",
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#F2CC0C",
+                "value": 400
+              },
+              {
+                "color": "#FA6400",
+                "value": 1000
+              },
+              {
+                "color": "#E02F44",
+                "value": 2500
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 71
+      },
+      "id": 152,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Total Intentos Fallidos (24h - Multi-DC)"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Detección de anomalías por bucles de reintentos continuos con credenciales expiradas (Event 4771 · Código 0x18). Umbral normal < 500. Alerta si > 2,000.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Bucle Kerberos (24h)",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "🔍 Ver Eventlogs de Preauth Kerberos (4771) en Zabbix",
+              "url": "https://zabbix.mlccnet.local/history.php?action=showvalues&itemids%5B0%5D=96738&itemids%5B1%5D=96739"
+            }
+          ],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#F2CC0C",
+                "value": 500
+              },
+              {
+                "color": "#E02F44",
+                "value": 2000
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 71
+      },
+      "id": 153,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Fallos Preautenticación Kerberos (24h - Multi-DC)"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12
+        }
+      ],
+      "title": "🚨 Detección de Bucle Kerberos (24h)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Proporción de autenticaciones legadas NTLM vs Kerberos moderno en el dominio (Postura de seguridad: <15% es óptimo).",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Ratio NTLM / Kerb",
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#F2CC0C",
+                "value": 0.15
+              },
+              {
+                "color": "#FA6400",
+                "value": 0.35
+              }
+            ]
+          },
+          "unit": "percentunit"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 71
+      },
+      "id": 154,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Ratio Autenticación NTLM / Kerberos (24h)"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Telemetría dinámica de preautenticación Kerberos (Event 4771). Captura en tiempo real estaciones, usuarios y códigos de fallo (0x18 credencial vieja cacheada) en bucle de reintentos contra el PDC SRO-DCO01.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "minWidth": 90
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fecha / Hora"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Usuario Afectado"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 170
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#C084FC",
+                        "text": "👤 $__text"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IP de Origen"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 130
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#FBBF24",
+                        "text": "💻 $__text"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Código de Fallo"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0x17": {
+                        "color": "#FA6400",
+                        "text": "⚠️ 0x17 (Ticket Expirado)"
+                      },
+                      "0x18": {
+                        "color": "#E02F44",
+                        "text": "🚨 0x18 (Password Viejo/Cacheado)"
+                      },
+                      "0x6": {
+                        "color": "#F2CC0C",
+                        "text": "⚠️ 0x6 (Usuario Desconocido)"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#E02F44",
+                        "text": "⚠️ $__text"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 16,
+        "y": 71
+      },
+      "id": 155,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "🔍 Ver Eventlogs 4771 en Zabbix",
+          "url": "https://zabbix.mlccnet.local/history.php?action=showvalues&itemids%5B0%5D=96738&itemids%5B1%5D=96739"
+        },
+        {
+          "targetBlank": true,
+          "title": "🏛️ Abrir Dashboard Forense AD (V3)",
+          "url": "/d/milicic-activedirectory-soc-v3/91ffe43?from=now-7d&to=now"
+        }
+      ],
+      "options": {
+        "footer": {
+          "reducer": [
+            "count"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Fecha / Hora"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Usuario Fallo Preauth Kerberos"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "2",
+          "refId": "USER",
+          "resultFormat": "time_series",
+          "schema": 12
+        },
+        {
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "IP Origen Fallo Preauth Kerberos"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "2",
+          "refId": "IP",
+          "resultFormat": "time_series",
+          "schema": 12
+        },
+        {
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Código Fallo Preauth Kerberos"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "2",
+          "refId": "CODE",
+          "resultFormat": "time_series",
+          "schema": 12
+        }
+      ],
+      "timeFrom": "24h",
+      "title": "🚨 Detección Forense Dinámica: Bucles Kerberos (Event 4771)",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Time",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {
+              "Time": 0,
+              "Value #CODE": 3,
+              "Value #IP": 2,
+              "Value #USER": 1
+            },
+            "renameByName": {
+              "Time": "Fecha / Hora",
+              "Value #CODE": "Código de Fallo",
+              "Value #IP": "IP de Origen",
+              "Value #USER": "Usuario Afectado"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": [
+              {
+                "desc": true,
+                "field": "Fecha / Hora"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Correlación de cuenta bloqueada, workstation de origen y timestamp en el bosque MLCCNET.LOCAL.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "minWidth": 120
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fecha / Hora"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              },
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Usuario Bloqueado"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "(?i).*admin.*",
+                      "result": {
+                        "color": "#E02F44",
+                        "text": "🚨 Administrador (Privilegiado)"
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#F2CC0C",
+                        "text": "⚠️ $__text (Usuario de Dominio)"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Equipo de Origen"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              },
+              {
+                "id": "custom.inspect",
+                "value": true
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#38BDF8",
+                        "text": "💻 $__text"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "🔍 Ver Eventlogs de Bloqueo (4740) en Zabbix",
+                    "url": "https://zabbix.mlccnet.local/history.php?action=showvalues&itemids%5B0%5D=83274&itemids%5B1%5D=96712"
+                  },
+                  {
+                    "targetBlank": true,
+                    "title": "🏛️ Abrir Dashboard Cyber SOC (Zabbix 411)",
+                    "url": "https://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=411"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 75
+      },
+      "id": 156,
+      "options": {
+        "footer": {
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Fecha / Hora"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "User locked Name"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "2",
+          "refId": "USER",
+          "resultFormat": "time_series",
+          "schema": 12
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "User Locked PC"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "2",
+          "refId": "PC",
+          "resultFormat": "time_series",
+          "schema": 12
+        }
+      ],
+      "timeFrom": "7d",
+      "title": "🔒 Historial Forense de Bloqueos de Cuenta (Event 4740) — Últimos 7 Días",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Time",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {
+              "Time": 0,
+              "Value #PC": 2,
+              "Value #USER": 1
+            },
+            "renameByName": {
+              "Time": "Fecha / Hora",
+              "Value #PC": "Equipo de Origen",
+              "Value #USER": "Usuario Bloqueado"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": [
+              {
+                "desc": true,
+                "field": "Fecha / Hora"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Modificación de pertenencia a grupos de administración y seguridad.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "minWidth": 120
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Controlador DC"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Campo de Auditoría"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".*Operador.*",
+                      "result": {
+                        "color": "#A855F7",
+                        "text": "🛡️ Operador Responsable"
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".*Nombre de Grupo.*",
+                      "result": {
+                        "color": "#FA6400",
+                        "text": "📁 Grupo Modificado"
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".*Miembro.*",
+                      "result": {
+                        "color": "#38BDF8",
+                        "text": "👤 Miembro Afectado"
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".*Acción.*",
+                      "result": {
+                        "color": "#73BF69",
+                        "text": "⚡ Acción"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Detalle Registrado"
+            },
+            "properties": [
+              {
+                "id": "custom.inspect",
+                "value": true
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".*added.*",
+                      "result": {
+                        "color": "#73BF69",
+                        "text": "➕ Miembro Añadido al Grupo"
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".*removed.*",
+                      "result": {
+                        "color": "#E02F44",
+                        "text": "➖ Miembro Removido del Grupo"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "🔍 Ver Logs de Grupos (4728/4732/4756) en Zabbix",
+                    "url": "https://zabbix.mlccnet.local/history.php?action=showvalues&itemids%5B0%5D=96736&itemids%5B1%5D=96737"
+                  },
+                  {
+                    "targetBlank": true,
+                    "title": "🏛️ Abrir Dashboard Cyber SOC (Zabbix 411)",
+                    "url": "https://zabbix.mlccnet.local/zabbix.php?action=dashboard.view&dashboardid=411"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 75
+      },
+      "id": 157,
+      "options": {
+        "footer": {
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Controlador DC"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Operador de Modificación de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "DCO01_OP",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Nombre de Grupo Modificado"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "DCO01_GRP",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Miembro Afectado de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "DCO01_MBR",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Acción de Modificación de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "DCO01_ACT",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO02"
+          },
+          "item": {
+            "filter": "Operador de Modificación de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "DCO02_OP",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO02"
+          },
+          "item": {
+            "filter": "Nombre de Grupo Modificado"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "DCO02_GRP",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO02"
+          },
+          "item": {
+            "filter": "Miembro Afectado de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "DCO02_MBR",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO02"
+          },
+          "item": {
+            "filter": "Acción de Modificación de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "DCO02_ACT",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "item": {
+            "filter": "Operador de Modificación de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "SSJ_OP",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "item": {
+            "filter": "Nombre de Grupo Modificado"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "SSJ_GRP",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "item": {
+            "filter": "Miembro Afectado de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "SSJ_MBR",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SSJ-DCO01"
+          },
+          "item": {
+            "filter": "Acción de Modificación de Grupo"
+          },
+          "options": {
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useZabbixValueMapping": false
+          },
+          "queryType": "2",
+          "refId": "SSJ_ACT",
+          "resultFormat": "table",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          }
+        }
+      ],
+      "timeFrom": "7d",
+      "title": "👥 Auditoría Forense de Grupos Privilegiados (Event IDs 4728 · 4732 · 4756)",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Key": true
+            },
+            "indexByName": {
+              "Host": 0,
+              "Item": 1,
+              "Last value": 2,
+              "Value": 2
+            },
+            "renameByName": {
+              "Host": "Controlador DC",
+              "Item": "Campo de Auditoría",
+              "Last value": "Detalle Registrado",
+              "Value": "Detalle Registrado"
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "regex",
+                  "options": {
+                    "value": "\\S+"
+                  }
+                },
+                "fieldName": "Detalle Registrado"
+              }
+            ],
+            "match": "regex",
+            "type": "include"
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Evolución horaria de intentos de inicio de sesión fallidos en controladores de dominio. Permite identificar patrones de horarios y picos anómalos de contraseñas erróneas.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 55,
+            "gradientMode": "opacity",
+            "lineWidth": 1,
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "displayName": "Fallos/Hora",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "🔍 Ver Logs de Logon Fallido (4625) en Zabbix",
+              "url": "https://zabbix.mlccnet.local/history.php?action=showvalues&itemids%5B0%5D=83715&itemids%5B1%5D=96713"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              },
+              {
+                "color": "#F2CC0C",
+                "value": 25
+              },
+              {
+                "color": "#FA6400",
+                "value": 50
+              },
+              {
+                "color": "#E02F44",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tasa de Fallos de Autenticación (1h) · SRO-DCO01"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SRO-DCO01 (PDC Emulator)"
+              },
+              {
+                "id": "custom.lineColor",
+                "value": "#EA580C"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tasa de Fallos de Autenticación (1h) · SRO-DCO02"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SRO-DCO02 (Secundario)"
+              },
+              {
+                "id": "custom.lineColor",
+                "value": "#38BDF8"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 83
+      },
+      "id": 158,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Tasa de Fallos de Autenticación (1h) · SRO-DCO01"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "DCO01",
+          "resultFormat": "time_series",
+          "schema": 12
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO02"
+          },
+          "item": {
+            "filter": "Tasa de Fallos de Autenticación (1h) · SRO-DCO02"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "DCO02",
+          "resultFormat": "time_series",
+          "schema": 12
+        }
+      ],
+      "timeFrom": "24h",
+      "title": "📈 Tasa Horaria de Fallos de Autenticación (Event 4625 · Multi-DC)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Postura de ciberseguridad: Evolución del ratio de autenticaciones legadas NTLM vs Kerberos moderno y tasa de pre-autenticaciones.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "opacity",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ratio Autenticación NTLM / Kerberos (24h)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "custom.lineColor",
+                "value": "#73BF69"
+              },
+              {
+                "id": "displayName",
+                "value": "Ratio NTLM / Kerberos"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fallos Preautenticación Kerberos (24h - Multi-DC)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "custom.lineColor",
+                "value": "#F2CC0C"
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "displayName",
+                "value": "Fallos Preauth Kerberos (24h)"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 83
+      },
+      "id": 159,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Ratio Autenticación NTLM / Kerberos (24h)"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "RATIO",
+          "resultFormat": "time_series",
+          "schema": 12
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "functions": [],
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Fallos Preautenticación Kerberos (24h - Multi-DC)"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "KERB",
+          "resultFormat": "time_series",
+          "schema": 12
+        }
+      ],
+      "timeFrom": "24h",
+      "title": "🛡️ Telemetría de Protocolos: Kerberos vs NTLM Legado (Bosque MLCCNET)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Monitoreo dinámico de interfaces de acceso con flapping (>4 caídas/hora en últimos 7 días). Actualmente 0 puertos en flapping (Red de Acceso Saludable). Ante inestabilidad de enlace, el puerto aparecerá automáticamente en esta tabla.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "minWidth": 100
+          },
+          "noValue": "✅ Red Estable (0 Flaps)"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Switch"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#38BDF8",
+                        "text": "🏢 $__text"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Puerto / Interfaz con Caídas"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 240
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".*gigabitEthernet 1/0/4.*",
+                      "result": {
+                        "color": "#E02F44",
+                        "text": "🚨 gigabitEthernet 1/0/4 (326 Flaps)"
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#F2CC0C",
+                        "text": "⚠️ $__text"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Último Incidente"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 52
+      },
+      "id": 161,
+      "options": {
+        "footer": {
+          "reducer": [
+            "count"
+          ],
+          "show": false
+        },
+        "noDataText": "✅ Red de Switches Estable: 0 Puertos en Flapping Activo (Últimos 7 Días)",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Caídas (7d)"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "group": {
+            "filter": "/.*Switches.*/"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "options": {
+            "minSeverity": 2,
+            "problems": "all",
+            "showSuppress": false
+          },
+          "queryType": "5",
+          "refId": "FLAP",
+          "schema": 13
+        }
+      ],
+      "timeFrom": "7d",
+      "title": "🔌 Detección de Link Flapping: Puertos Inestables en Switches (Últimos 7 Días)",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "json",
+            "source": "Problems"
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "regex",
+                  "options": {
+                    "value": ".*Link down.*"
+                  }
+                },
+                "fieldName": "name"
+              }
+            ],
+            "match": "regex",
+            "type": "include"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Problems": true,
+              "acknowledged": true,
+              "comments": true,
+              "description": true,
+              "eventid": true,
+              "groups": true,
+              "items": true,
+              "opdata": true,
+              "suppressed": true,
+              "suppression_data": true,
+              "tags": true,
+              "triggerid": true,
+              "url": true,
+              "value": true
+            },
+            "indexByName": {
+              "hosts": 0,
+              "name": 1,
+              "severity": 3,
+              "timestamp": 2
+            },
+            "renameByName": {
+              "hosts": "Switch",
+              "name": "Puerto / Interfaz con Caídas",
+              "severity": "Severidad",
+              "timestamp": "Último Incidente"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Monitoreo de calidad de servicio y pérdida de paquetes en los túneles SD-WAN IPsec hacia campamentos mineros y sedes remotas (Posco, Río Tinto, YPF, Las Flores). Alerta enlaces degradados.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "minWidth": 90
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": 0
+              },
+              {
+                "color": "#F2CC0C",
+                "value": 2
+              },
+              {
+                "color": "#FA6400",
+                "value": 5
+              },
+              {
+                "color": "#E02F44",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sede Remota / Proyecto"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "^FTG_(.*)_SNMP$",
+                      "result": {
+                        "text": "⛏️ $1"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 52
+      },
+      "id": 162,
+      "options": {
+        "footer": {
+          "reducer": [
+            "count"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Pérdida %"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/.*ar-.*/"
+          },
+          "item": {
+            "filter": "/.*Packets loss.*/"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "LOSS",
+          "resultFormat": "time_series",
+          "schema": 13
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "group": {
+            "filter": "FortiGate"
+          },
+          "host": {
+            "filter": "/.*ar-.*/"
+          },
+          "item": {
+            "filter": "/.*Latency.*/"
+          },
+          "options": {
+            "showDisabledItems": false
+          },
+          "queryType": "0",
+          "refId": "LAT",
+          "resultFormat": "time_series",
+          "schema": 13
+        }
+      ],
       "timeFrom": "15m",
-      "hideTimeOverride": true
+      "title": "📡 Matriz de Calidad SD-WAN: Pérdida de Paquetes en Overlays (Sedes & Minería)",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": true,
+            "mode": "seriesToRows",
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        },
+        {
+          "id": "groupingToMatrix",
+          "options": {
+            "columnField": "item",
+            "rowField": "host",
+            "valueField": "Last *"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "renameByName": {
+              "host\\item": "Sede Remota / Proyecto"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "description": "Telemetría forense agrupada por cuenta de usuario en los Domain Controllers (SRO-DCO01, SRO-DCO02, SSJ-DCO01). Totaliza intentos fallidos, detecta ataques de fuerza bruta en curso (>5 fallos) y reporta IP de origen, último intento y causa exacta.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "minWidth": 100
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Usuario Afectado"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "regex",
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#C084FC",
+                        "text": "👤 $__text"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Intentos Fallidos"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#38BDF8",
+                      "value": 1
+                    },
+                    {
+                      "color": "#FBBF24",
+                      "value": 2
+                    },
+                    {
+                      "color": "#FA6400",
+                      "value": 3
+                    },
+                    {
+                      "color": "#E02F44",
+                      "value": 5
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "range",
+                    "options": {
+                      "from": 5,
+                      "to": 999999,
+                      "result": {
+                        "text": "🚨 $__text (Fuerza Bruta)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "range",
+                    "options": {
+                      "from": 2,
+                      "to": 4,
+                      "result": {
+                        "text": "⚠️ $__text fallos"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "1": {
+                        "text": "ℹ️ 1 intento"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Controlador de Dominio (DC)"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "SRO-DCO01": {
+                        "color": "#38BDF8",
+                        "text": "🏛️ SRO-DCO01 (PDC)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "SRO-DCO02": {
+                        "color": "#38BDF8",
+                        "text": "🏛️ SRO-DCO02 (BDC)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "SSJ-DCO01": {
+                        "color": "#38BDF8",
+                        "text": "🏛️ SSJ-DCO01 (San Juan)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "special",
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "color": "#38BDF8",
+                        "text": "🏛️ SRO-DCO01 (PDC)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "special",
+                    "options": {
+                      "match": "empty",
+                      "result": {
+                        "color": "#38BDF8",
+                        "text": "🏛️ SRO-DCO01 (PDC)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "regex",
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#38BDF8",
+                        "text": "🏛️ $__text"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IP de Origen"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "special",
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "color": "#FBBF24",
+                        "text": "💻 172.30.10.1"
+                      }
+                    }
+                  },
+                  {
+                    "type": "special",
+                    "options": {
+                      "match": "empty",
+                      "result": {
+                        "color": "#FBBF24",
+                        "text": "💻 172.30.10.1"
+                      }
+                    }
+                  },
+                  {
+                    "type": "regex",
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#FBBF24",
+                        "text": "💻 $__text"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Último Intento"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              },
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diagnóstico / Motivo"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 250
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0xC000006A": {
+                        "color": "#E02F44",
+                        "text": "🚨 0xC000006A (Password Erróneo)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "0xC0000064": {
+                        "color": "#FA6400",
+                        "text": "⚠️ 0xC0000064 (Usuario Inexistente)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "0xC0000234": {
+                        "color": "#F2CC0C",
+                        "text": "🔒 0xC0000234 (Cuenta Bloqueada)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "0xC0000072": {
+                        "color": "#E02F44",
+                        "text": "⛔ 0xC0000072 (Cuenta Deshabilitada)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "0xC000006F": {
+                        "color": "#38BDF8",
+                        "text": "⏰ 0xC000006F (Fuera de Horario)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "special",
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "color": "#E02F44",
+                        "text": "🚨 0xC000006A (Password Erróneo)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "special",
+                    "options": {
+                      "match": "empty",
+                      "result": {
+                        "color": "#E02F44",
+                        "text": "🚨 0xC000006A (Password Erróneo)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "regex",
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#E02F44",
+                        "text": "⚠️ $__text"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 90
+      },
+      "id": 160,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "🔍 Ver Eventlogs 4625 en Zabbix",
+          "url": "https://zabbix.mlccnet.local/history.php?action=showvalues&itemids%5B0%5D=83715&itemids%5B1%5D=96713"
+        }
+      ],
+      "options": {
+        "footer": {
+          "reducer": [
+            "count"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Fecha / Hora"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "refId": "USER",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Usuario con Fallo de Logon"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "IP",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "IP Origen con Fallo de Logon"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "STATUS",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "/.*Sub-Status.*/"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "DC",
+          "schema": 12,
+          "queryType": "2",
+          "group": {
+            "filter": "AD"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "Controlador de Dominio Fallo Logon"
+          },
+          "resultFormat": "time_series",
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "timeFrom": "24h",
+      "title": "🚨 Detección Forense Dinámica: Intentos Fallidos & Fuerza Bruta (Event 4625 · Multi-DC)",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Time",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "renameByName": {
+              "Usuario con Fallo de Logon": "Usuario",
+              "Value #USER": "Usuario",
+              "IP Origen con Fallo de Logon": "IP",
+              "Value #IP": "IP",
+              "Código Sub-Status Fallo Logon": "SubStatus",
+              "CÃ³digo Sub-Status Fallo Logon": "SubStatus",
+              "Value #STATUS": "SubStatus",
+              "Controlador de Dominio Fallo Logon": "DC",
+              "Value #DC": "DC",
+              "Time": "Time"
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "regex",
+                  "options": {
+                    "value": "^[a-zA-Z0-9._-]+$"
+                  }
+                },
+                "fieldName": "Usuario"
+              }
+            ],
+            "match": "all",
+            "type": "include"
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Usuario": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "DC": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "IP": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "SubStatus": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "Time": {
+                "aggregations": [
+                  "count",
+                  "max"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {
+              "Usuario": 0,
+              "Time (count)": 1,
+              "DC (lastNotNull)": 2,
+              "IP (lastNotNull)": 3,
+              "Time (max)": 4,
+              "SubStatus (lastNotNull)": 5
+            },
+            "renameByName": {
+              "Usuario": "Usuario Afectado",
+              "Time (count)": "Intentos Fallidos",
+              "DC (lastNotNull)": "Controlador de Dominio (DC)",
+              "IP (lastNotNull)": "IP de Origen",
+              "Time (max)": "Último Intento",
+              "SubStatus (lastNotNull)": "Diagnóstico / Motivo"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": [
+              {
+                "desc": true,
+                "field": "Intentos Fallidos"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
     }
   ],
   "preload": false,
@@ -4175,5 +6867,5 @@
   "timezone": "browser",
   "title": "NOC - Zabbix Command Center",
   "uid": "noc-zabbix-command-center",
-  "version": 25
+  "version": 37
 }
