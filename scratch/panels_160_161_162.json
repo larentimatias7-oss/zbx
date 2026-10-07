@@ -1,0 +1,967 @@
+{
+  "p155": {
+    "datasource": {
+      "type": "alexanderzobnin-zabbix-datasource",
+      "uid": "efz4nzx8r30g0c"
+    },
+    "description": "Telemetría dinámica de preautenticación Kerberos (Event 4771). Captura en tiempo real estaciones, usuarios y códigos de fallo (0x18 credencial vieja cacheada) en bucle de reintentos contra el PDC SRO-DCO01.",
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "align": "left",
+          "cellOptions": {
+            "type": "auto"
+          },
+          "filterable": true,
+          "minWidth": 90
+        }
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Fecha / Hora"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 140
+            },
+            {
+              "id": "unit",
+              "value": "dateTimeAsIso"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Usuario Afectado"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 170
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-background"
+              }
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "pattern": ".+",
+                    "result": {
+                      "color": "#C084FC",
+                      "text": "👤 $__text"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "IP de Origen"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 130
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-background"
+              }
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "pattern": ".+",
+                    "result": {
+                      "color": "#FBBF24",
+                      "text": "💻 $__text"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Código de Fallo"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 180
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-background"
+              }
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "0x17": {
+                      "color": "#FA6400",
+                      "text": "⚠️ 0x17 (Ticket Expirado)"
+                    },
+                    "0x18": {
+                      "color": "#E02F44",
+                      "text": "🚨 0x18 (Password Viejo/Cacheado)"
+                    },
+                    "0x6": {
+                      "color": "#F2CC0C",
+                      "text": "⚠️ 0x6 (Usuario Desconocido)"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": ".+",
+                    "result": {
+                      "color": "#E02F44",
+                      "text": "⚠️ $__text"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 8,
+      "x": 16,
+      "y": 71
+    },
+    "id": 155,
+    "links": [
+      {
+        "targetBlank": true,
+        "title": "🔍 Ver Eventlogs 4771 en Zabbix",
+        "url": "https://zabbix.mlccnet.local/history.php?action=showvalues&itemids%5B0%5D=96738&itemids%5B1%5D=96739"
+      },
+      {
+        "targetBlank": true,
+        "title": "🏛️ Abrir Dashboard Forense AD (V3)",
+        "url": "/d/milicic-activedirectory-soc-v3/91ffe43?from=now-7d&to=now"
+      }
+    ],
+    "options": {
+      "footer": {
+        "reducer": [
+          "count"
+        ],
+        "show": false
+      },
+      "showHeader": true,
+      "sortBy": [
+        {
+          "desc": true,
+          "displayName": "Fecha / Hora"
+        }
+      ]
+    },
+    "targets": [
+      {
+        "group": {
+          "filter": "AD"
+        },
+        "host": {
+          "filter": "SRO-DCO01"
+        },
+        "item": {
+          "filter": "Usuario Fallo Preauth Kerberos"
+        },
+        "options": {
+          "showDisabledItems": false
+        },
+        "queryType": "2",
+        "refId": "USER",
+        "resultFormat": "time_series",
+        "schema": 12
+      },
+      {
+        "group": {
+          "filter": "AD"
+        },
+        "host": {
+          "filter": "SRO-DCO01"
+        },
+        "item": {
+          "filter": "IP Origen Fallo Preauth Kerberos"
+        },
+        "options": {
+          "showDisabledItems": false
+        },
+        "queryType": "2",
+        "refId": "IP",
+        "resultFormat": "time_series",
+        "schema": 12
+      },
+      {
+        "group": {
+          "filter": "AD"
+        },
+        "host": {
+          "filter": "SRO-DCO01"
+        },
+        "item": {
+          "filter": "Código Fallo Preauth Kerberos"
+        },
+        "options": {
+          "showDisabledItems": false
+        },
+        "queryType": "2",
+        "refId": "CODE",
+        "resultFormat": "time_series",
+        "schema": 12
+      }
+    ],
+    "timeFrom": "24h",
+    "title": "🚨 Detección Forense Dinámica: Bucles Kerberos (Event 4771)",
+    "transformations": [
+      {
+        "id": "joinByField",
+        "options": {
+          "byField": "Time",
+          "mode": "outer"
+        }
+      },
+      {
+        "id": "organize",
+        "options": {
+          "indexByName": {
+            "Time": 0,
+            "Value #CODE": 3,
+            "Value #IP": 2,
+            "Value #USER": 1
+          },
+          "renameByName": {
+            "Time": "Fecha / Hora",
+            "Value #CODE": "Código de Fallo",
+            "Value #IP": "IP de Origen",
+            "Value #USER": "Usuario Afectado"
+          }
+        }
+      },
+      {
+        "id": "sortBy",
+        "options": {
+          "fields": [
+            {
+              "desc": true,
+              "field": "Fecha / Hora"
+            }
+          ]
+        }
+      }
+    ],
+    "type": "table"
+  },
+  "p160": {
+    "datasource": {
+      "type": "alexanderzobnin-zabbix-datasource",
+      "uid": "efz4nzx8r30g0c"
+    },
+    "description": "Telemetría forense en tiempo real de inicios de sesión rechazados. Identifica usuario destino, IP origen y motivo exacto (0xC000006A clave errónea, 0xC0000064 usuario inexistente, 0xC0000234 cuenta bloqueada).",
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "align": "left",
+          "cellOptions": {
+            "type": "auto"
+          },
+          "filterable": true,
+          "minWidth": 100
+        }
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Fecha / Hora"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 160
+            },
+            {
+              "id": "unit",
+              "value": "dateTimeAsIso"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Usuario Destino"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 220
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-background"
+              }
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "pattern": ".+",
+                    "result": {
+                      "color": "#C084FC",
+                      "text": "👤 $__text"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "IP de Origen"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 160
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-background"
+              }
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "pattern": ".+",
+                    "result": {
+                      "color": "#FBBF24",
+                      "text": "💻 $__text"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Sub-Status / Diagnóstico"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 260
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-background"
+              }
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "0xC000006A": {
+                      "color": "#E02F44",
+                      "text": "🚨 0xC000006A (Password Erróneo)"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "0xC0000064": {
+                      "color": "#FA6400",
+                      "text": "⚠️ 0xC0000064 (Usuario Inexistente)"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "0xC0000234": {
+                      "color": "#F2CC0C",
+                      "text": "🔒 0xC0000234 (Cuenta Bloqueada)"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "0xC0000072": {
+                      "color": "#E02F44",
+                      "text": "⛔ 0xC0000072 (Cuenta Deshabilitada)"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "0xC000006F": {
+                      "color": "#38BDF8",
+                      "text": "⏰ 0xC000006F (Fuera de Horario)"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": ".+",
+                    "result": {
+                      "color": "#E02F44",
+                      "text": "⚠️ $__text"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 24,
+      "x": 0,
+      "y": 90
+    },
+    "id": 160,
+    "links": [
+      {
+        "targetBlank": true,
+        "title": "🔍 Ver Eventlogs 4625 en Zabbix",
+        "url": "https://zabbix.mlccnet.local/history.php?action=showvalues&itemids%5B0%5D=83715&itemids%5B1%5D=96713"
+      }
+    ],
+    "options": {
+      "footer": {
+        "reducer": [
+          "count"
+        ],
+        "show": false
+      },
+      "showHeader": true,
+      "sortBy": [
+        {
+          "desc": true,
+          "displayName": "Fecha / Hora"
+        }
+      ]
+    },
+    "targets": [
+      {
+        "group": {
+          "filter": "AD"
+        },
+        "host": {
+          "filter": "SRO-DCO01"
+        },
+        "item": {
+          "filter": "Usuario con Fallo de Logon"
+        },
+        "options": {
+          "showDisabledItems": false
+        },
+        "queryType": "2",
+        "refId": "USER",
+        "resultFormat": "time_series",
+        "schema": 12
+      },
+      {
+        "group": {
+          "filter": "AD"
+        },
+        "host": {
+          "filter": "SRO-DCO01"
+        },
+        "item": {
+          "filter": "IP Origen con Fallo de Logon"
+        },
+        "options": {
+          "showDisabledItems": false
+        },
+        "queryType": "2",
+        "refId": "IP",
+        "resultFormat": "time_series",
+        "schema": 12
+      },
+      {
+        "group": {
+          "filter": "AD"
+        },
+        "host": {
+          "filter": "SRO-DCO01"
+        },
+        "item": {
+          "filter": "Código Sub-Status Fallo Logon"
+        },
+        "options": {
+          "showDisabledItems": false
+        },
+        "queryType": "2",
+        "refId": "STATUS",
+        "resultFormat": "time_series",
+        "schema": 12
+      }
+    ],
+    "timeFrom": "24h",
+    "title": "🚨 Detección Forense Dinámica: Fallos de Logon & Fuerza Bruta (Event 4625 · Multi-DC)",
+    "transformations": [
+      {
+        "id": "joinByField",
+        "options": {
+          "byField": "Time",
+          "mode": "outer"
+        }
+      },
+      {
+        "id": "organize",
+        "options": {
+          "indexByName": {
+            "Time": 0,
+            "Value #IP": 2,
+            "Value #STATUS": 3,
+            "Value #USER": 1
+          },
+          "renameByName": {
+            "Time": "Fecha / Hora",
+            "Value #IP": "IP de Origen",
+            "Value #STATUS": "Sub-Status / Diagnóstico",
+            "Value #USER": "Usuario Destino"
+          }
+        }
+      },
+      {
+        "id": "sortBy",
+        "options": {
+          "fields": [
+            {
+              "desc": true,
+              "field": "Fecha / Hora"
+            }
+          ]
+        }
+      }
+    ],
+    "type": "table"
+  },
+  "p161": {
+    "datasource": {
+      "type": "alexanderzobnin-zabbix-datasource",
+      "uid": "efz4nzx8r30g0c"
+    },
+    "description": "Identifica puertos de acceso y distribución con caídas recurrentes (>5 flaps). Un puerto intermitente genera tormentas de STP (TCN) y microcortes generalizados en la VLAN.",
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "align": "left",
+          "cellOptions": {
+            "type": "auto"
+          },
+          "filterable": true,
+          "minWidth": 100
+        }
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Switch"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 180
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-background"
+              }
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "pattern": ".+",
+                    "result": {
+                      "color": "#38BDF8",
+                      "text": "🏢 $__text"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Puerto / Interfaz con Caídas"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 240
+            },
+            {
+              "id": "custom.cellOptions",
+              "value": {
+                "type": "color-background"
+              }
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "pattern": ".*gigabitEthernet 1/0/4.*",
+                    "result": {
+                      "color": "#E02F44",
+                      "text": "🚨 gigabitEthernet 1/0/4 (326 Flaps)"
+                    }
+                  },
+                  "type": "regex"
+                },
+                {
+                  "options": {
+                    "pattern": ".+",
+                    "result": {
+                      "color": "#F2CC0C",
+                      "text": "⚠️ $__text"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Último Incidente"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 140
+            },
+            {
+              "id": "unit",
+              "value": "dateTimeAsIso"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 52
+    },
+    "id": 161,
+    "options": {
+      "footer": {
+        "reducer": [
+          "count"
+        ],
+        "show": false
+      },
+      "showHeader": true,
+      "sortBy": [
+        {
+          "desc": true,
+          "displayName": "Caídas (7d)"
+        }
+      ]
+    },
+    "targets": [
+      {
+        "group": {
+          "filter": "/.*Switches.*/"
+        },
+        "host": {
+          "filter": "/.*/"
+        },
+        "options": {
+          "minSeverity": 2,
+          "problems": "all",
+          "showSuppress": false
+        },
+        "queryType": "5",
+        "refId": "FLAP",
+        "schema": 13
+      }
+    ],
+    "timeFrom": "7d",
+    "title": "🔌 Detección de Link Flapping: Puertos Inestables en Switches (Últimos 7 Días)",
+    "transformations": [
+      {
+        "id": "extractFields",
+        "options": {
+          "format": "json",
+          "source": "Problems"
+        }
+      },
+      {
+        "id": "filterByValue",
+        "options": {
+          "filters": [
+            {
+              "config": {
+                "id": "regex",
+                "options": {
+                  "value": ".*Link down.*"
+                }
+              },
+              "fieldName": "name"
+            }
+          ],
+          "match": "regex",
+          "type": "include"
+        }
+      },
+      {
+        "id": "organize",
+        "options": {
+          "excludeByName": {
+            "Problems": true,
+            "acknowledged": true,
+            "comments": true,
+            "description": true,
+            "eventid": true,
+            "groups": true,
+            "items": true,
+            "opdata": true,
+            "suppressed": true,
+            "suppression_data": true,
+            "tags": true,
+            "triggerid": true,
+            "url": true,
+            "value": true
+          },
+          "indexByName": {
+            "hosts": 0,
+            "name": 1,
+            "severity": 3,
+            "timestamp": 2
+          },
+          "renameByName": {
+            "hosts": "Switch",
+            "name": "Puerto / Interfaz con Caídas",
+            "severity": "Severidad",
+            "timestamp": "Último Incidente"
+          }
+        }
+      }
+    ],
+    "type": "table"
+  },
+  "p162": {
+    "datasource": {
+      "type": "alexanderzobnin-zabbix-datasource",
+      "uid": "efz4nzx8r30g0c"
+    },
+    "description": "Monitoreo de calidad de servicio y pérdida de paquetes en los túneles SD-WAN IPsec hacia campamentos mineros y sedes remotas (Posco, Río Tinto, YPF, Las Flores). Alerta enlaces degradados.",
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "align": "auto",
+          "cellOptions": {
+            "type": "auto"
+          },
+          "filterable": true,
+          "minWidth": 90
+        },
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#73BF69",
+              "value": 0
+            },
+            {
+              "color": "#F2CC0C",
+              "value": 2
+            },
+            {
+              "color": "#FA6400",
+              "value": 5
+            },
+            {
+              "color": "#E02F44",
+              "value": 10
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Sede Remota / Proyecto"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 180
+            },
+            {
+              "id": "mappings",
+              "value": [
+                {
+                  "options": {
+                    "pattern": "^FTG_(.*)_SNMP$",
+                    "result": {
+                      "text": "⛏️ $1"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 12,
+      "y": 52
+    },
+    "id": 162,
+    "options": {
+      "footer": {
+        "reducer": [
+          "count"
+        ],
+        "show": false
+      },
+      "showHeader": true,
+      "sortBy": [
+        {
+          "desc": true,
+          "displayName": "Pérdida %"
+        }
+      ]
+    },
+    "targets": [
+      {
+        "group": {
+          "filter": "FortiGate"
+        },
+        "host": {
+          "filter": "/.*ar-.*/"
+        },
+        "item": {
+          "filter": "/.*HealthCheckLinkPacketLoss.*/"
+        },
+        "options": {
+          "showDisabledItems": false
+        },
+        "queryType": "0",
+        "refId": "LOSS",
+        "resultFormat": "time_series",
+        "schema": 13
+      },
+      {
+        "group": {
+          "filter": "FortiGate"
+        },
+        "host": {
+          "filter": "/.*ar-.*/"
+        },
+        "item": {
+          "filter": "/.*HealthCheckLinkLatency.*/"
+        },
+        "options": {
+          "showDisabledItems": false
+        },
+        "queryType": "0",
+        "refId": "LAT",
+        "resultFormat": "time_series",
+        "schema": 13
+      }
+    ],
+    "timeFrom": "15m",
+    "title": "📡 Matriz de Calidad SD-WAN: Pérdida de Paquetes en Overlays (Sedes & Minería)",
+    "transformations": [
+      {
+        "id": "reduce",
+        "options": {
+          "labelsToFields": true,
+          "mode": "seriesToRows",
+          "reducers": [
+            "lastNotNull"
+          ]
+        }
+      },
+      {
+        "id": "groupingToMatrix",
+        "options": {
+          "columnField": "item",
+          "rowField": "host",
+          "valueField": "Last *"
+        }
+      },
+      {
+        "id": "organize",
+        "options": {
+          "renameByName": {
+            "host\\item": "Sede Remota / Proyecto"
+          }
+        }
+      }
+    ],
+    "type": "table"
+  }
+}
