@@ -4413,19 +4413,11 @@
                 }
               },
               {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "pattern": ".+",
-                      "result": {
-                        "color": "#C084FC",
-                        "text": "👤 $__text"
-                      }
-                    },
-                    "type": "regex"
-                  }
-                ]
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-purple",
+                  "mode": "fixed"
+                }
               }
             ]
           },
@@ -4446,19 +4438,11 @@
                 }
               },
               {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "pattern": ".+",
-                      "result": {
-                        "color": "#FBBF24",
-                        "text": "💻 $__text"
-                      }
-                    },
-                    "type": "regex"
-                  }
-                ]
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-yellow",
+                  "mode": "fixed"
+                }
               }
             ]
           },
@@ -4482,31 +4466,40 @@
                 "id": "mappings",
                 "value": [
                   {
+                    "type": "value",
                     "options": {
                       "0x17": {
                         "color": "#FA6400",
                         "text": "⚠️ 0x17 (Ticket Expirado)"
-                      },
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
                       "0x18": {
                         "color": "#E02F44",
                         "text": "🚨 0x18 (Password Viejo/Cacheado)"
-                      },
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
                       "0x6": {
                         "color": "#F2CC0C",
                         "text": "⚠️ 0x6 (Usuario Desconocido)"
                       }
-                    },
-                    "type": "value"
+                    }
                   },
                   {
+                    "type": "regex",
                     "options": {
                       "pattern": ".+",
                       "result": {
-                        "color": "#E02F44",
-                        "text": "⚠️ $__text"
+                        "color": "#E02F44"
                       }
-                    },
-                    "type": "regex"
+                    }
                   }
                 ]
               }
@@ -6146,19 +6139,11 @@
                 }
               },
               {
-                "id": "mappings",
-                "value": [
-                  {
-                    "type": "regex",
-                    "options": {
-                      "pattern": ".+",
-                      "result": {
-                        "color": "#C084FC",
-                        "text": "👤 $__text"
-                      }
-                    }
-                  }
-                ]
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-purple",
+                  "mode": "fixed"
+                }
               }
             ]
           },
@@ -6210,30 +6195,34 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "type": "range",
+                    "type": "value",
                     "options": {
-                      "from": 5,
-                      "to": 999999,
-                      "result": {
-                        "text": "🚨 $__text (Fuerza Bruta)"
-                      }
-                    }
-                  },
-                  {
-                    "type": "range",
-                    "options": {
-                      "from": 2,
-                      "to": 4,
-                      "result": {
-                        "text": "⚠️ $__text fallos"
+                      "1": {
+                        "text": "1 intento"
                       }
                     }
                   },
                   {
                     "type": "value",
                     "options": {
-                      "1": {
-                        "text": "ℹ️ 1 intento"
+                      "2": {
+                        "text": "2 fallos"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "3": {
+                        "text": "3 fallos"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "4": {
+                        "text": "4 fallos"
                       }
                     }
                   }
@@ -6306,16 +6295,6 @@
                         "text": "🏛️ SRO-DCO01 (PDC)"
                       }
                     }
-                  },
-                  {
-                    "type": "regex",
-                    "options": {
-                      "pattern": ".+",
-                      "result": {
-                        "color": "#38BDF8",
-                        "text": "🏛️ $__text"
-                      }
-                    }
                   }
                 ]
               }
@@ -6338,6 +6317,13 @@
                 }
               },
               {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-yellow",
+                  "mode": "fixed"
+                }
+              },
+              {
                 "id": "mappings",
                 "value": [
                   {
@@ -6346,7 +6332,7 @@
                       "match": "null+nan",
                       "result": {
                         "color": "#FBBF24",
-                        "text": "💻 172.30.10.1"
+                        "text": "172.30.10.1"
                       }
                     }
                   },
@@ -6356,17 +6342,7 @@
                       "match": "empty",
                       "result": {
                         "color": "#FBBF24",
-                        "text": "💻 172.30.10.1"
-                      }
-                    }
-                  },
-                  {
-                    "type": "regex",
-                    "options": {
-                      "pattern": ".+",
-                      "result": {
-                        "color": "#FBBF24",
-                        "text": "💻 $__text"
+                        "text": "172.30.10.1"
                       }
                     }
                   }
@@ -6479,8 +6455,7 @@
                     "options": {
                       "pattern": ".+",
                       "result": {
-                        "color": "#E02F44",
-                        "text": "⚠️ $__text"
+                        "color": "#E02F44"
                       }
                     }
                   }
@@ -6521,9 +6496,6 @@
       },
       "targets": [
         {
-          "refId": "USER",
-          "schema": 12,
-          "queryType": "2",
           "group": {
             "filter": "AD"
           },
@@ -6533,15 +6505,15 @@
           "item": {
             "filter": "Usuario con Fallo de Logon"
           },
-          "resultFormat": "time_series",
           "options": {
             "showDisabledItems": false
-          }
+          },
+          "queryType": "2",
+          "refId": "USER",
+          "resultFormat": "time_series",
+          "schema": 12
         },
         {
-          "refId": "IP",
-          "schema": 12,
-          "queryType": "2",
           "group": {
             "filter": "AD"
           },
@@ -6551,15 +6523,15 @@
           "item": {
             "filter": "IP Origen con Fallo de Logon"
           },
-          "resultFormat": "time_series",
           "options": {
             "showDisabledItems": false
-          }
+          },
+          "queryType": "2",
+          "refId": "IP",
+          "resultFormat": "time_series",
+          "schema": 12
         },
         {
-          "refId": "STATUS",
-          "schema": 12,
-          "queryType": "2",
           "group": {
             "filter": "AD"
           },
@@ -6569,15 +6541,15 @@
           "item": {
             "filter": "/.*Sub-Status.*/"
           },
-          "resultFormat": "time_series",
           "options": {
             "showDisabledItems": false
-          }
+          },
+          "queryType": "2",
+          "refId": "STATUS",
+          "resultFormat": "time_series",
+          "schema": 12
         },
         {
-          "refId": "DC",
-          "schema": 12,
-          "queryType": "2",
           "group": {
             "filter": "AD"
           },
@@ -6587,10 +6559,13 @@
           "item": {
             "filter": "Controlador de Dominio Fallo Logon"
           },
-          "resultFormat": "time_series",
           "options": {
             "showDisabledItems": false
-          }
+          },
+          "queryType": "2",
+          "refId": "DC",
+          "resultFormat": "time_series",
+          "schema": 12
         }
       ],
       "timeFrom": "24h",
@@ -6607,16 +6582,16 @@
           "id": "organize",
           "options": {
             "renameByName": {
-              "Usuario con Fallo de Logon": "Usuario",
-              "Value #USER": "Usuario",
-              "IP Origen con Fallo de Logon": "IP",
-              "Value #IP": "IP",
-              "Código Sub-Status Fallo Logon": "SubStatus",
-              "CÃ³digo Sub-Status Fallo Logon": "SubStatus",
-              "Value #STATUS": "SubStatus",
               "Controlador de Dominio Fallo Logon": "DC",
+              "CÃ³digo Sub-Status Fallo Logon": "SubStatus",
+              "Código Sub-Status Fallo Logon": "SubStatus",
+              "IP Origen con Fallo de Logon": "IP",
+              "Time": "Time",
+              "Usuario con Fallo de Logon": "Usuario",
               "Value #DC": "DC",
-              "Time": "Time"
+              "Value #IP": "IP",
+              "Value #STATUS": "SubStatus",
+              "Value #USER": "Usuario"
             }
           }
         },
@@ -6642,10 +6617,6 @@
           "id": "groupBy",
           "options": {
             "fields": {
-              "Usuario": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
               "DC": {
                 "aggregations": [
                   "lastNotNull"
@@ -6670,6 +6641,10 @@
                   "max"
                 ],
                 "operation": "aggregate"
+              },
+              "Usuario": {
+                "aggregations": [],
+                "operation": "groupby"
               }
             }
           }
@@ -6678,20 +6653,20 @@
           "id": "organize",
           "options": {
             "indexByName": {
-              "Usuario": 0,
-              "Time (count)": 1,
               "DC (lastNotNull)": 2,
               "IP (lastNotNull)": 3,
+              "SubStatus (lastNotNull)": 5,
+              "Time (count)": 1,
               "Time (max)": 4,
-              "SubStatus (lastNotNull)": 5
+              "Usuario": 0
             },
             "renameByName": {
-              "Usuario": "Usuario Afectado",
-              "Time (count)": "Intentos Fallidos",
               "DC (lastNotNull)": "Controlador de Dominio (DC)",
               "IP (lastNotNull)": "IP de Origen",
+              "SubStatus (lastNotNull)": "Diagnóstico / Motivo",
+              "Time (count)": "Intentos Fallidos",
               "Time (max)": "Último Intento",
-              "SubStatus (lastNotNull)": "Diagnóstico / Motivo"
+              "Usuario": "Usuario Afectado"
             }
           }
         },
@@ -6867,5 +6842,5 @@
   "timezone": "browser",
   "title": "NOC - Zabbix Command Center",
   "uid": "noc-zabbix-command-center",
-  "version": 37
+  "version": 38
 }
