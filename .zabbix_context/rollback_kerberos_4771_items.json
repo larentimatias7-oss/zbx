@@ -1,0 +1,80 @@
+﻿{
+    "created_at_utc":  "2026-10-07T18:24:53.1521307Z",
+    "description":  "Rollback manifest for AD Kerberos Pre-Auth (Event 4771) dependent items",
+    "details":  [
+                    {
+                        "itemid":  "104495",
+                        "hostid":  "10699",
+                        "name":  "Usuario Fallo Preauth Kerberos",
+                        "key_":  "kerberos.user",
+                        "master_itemid":  "96738"
+                    },
+                    {
+                        "itemid":  "104496",
+                        "hostid":  "10699",
+                        "name":  "IP Origen Fallo Preauth Kerberos",
+                        "key_":  "kerberos.ip",
+                        "master_itemid":  "96738"
+                    },
+                    {
+                        "itemid":  "104497",
+                        "hostid":  "10699",
+                        "name":  "CÃ³digo Fallo Preauth Kerberos",
+                        "key_":  "kerberos.code",
+                        "master_itemid":  "96738"
+                    },
+                    {
+                        "itemid":  "104498",
+                        "hostid":  "10701",
+                        "name":  "Usuario Fallo Preauth Kerberos",
+                        "key_":  "kerberos.user",
+                        "master_itemid":  "96739"
+                    },
+                    {
+                        "itemid":  "104499",
+                        "hostid":  "10701",
+                        "name":  "IP Origen Fallo Preauth Kerberos",
+                        "key_":  "kerberos.ip",
+                        "master_itemid":  "96739"
+                    },
+                    {
+                        "itemid":  "104500",
+                        "hostid":  "10701",
+                        "name":  "CÃ³digo Fallo Preauth Kerberos",
+                        "key_":  "kerberos.code",
+                        "master_itemid":  "96739"
+                    },
+                    {
+                        "itemid":  "104501",
+                        "hostid":  "10715",
+                        "name":  "Usuario Fallo Preauth Kerberos",
+                        "key_":  "kerberos.user",
+                        "master_itemid":  "101381"
+                    },
+                    {
+                        "itemid":  "104502",
+                        "hostid":  "10715",
+                        "name":  "IP Origen Fallo Preauth Kerberos",
+                        "key_":  "kerberos.ip",
+                        "master_itemid":  "101381"
+                    },
+                    {
+                        "itemid":  "104503",
+                        "hostid":  "10715",
+                        "name":  "CÃ³digo Fallo Preauth Kerberos",
+                        "key_":  "kerberos.code",
+                        "master_itemid":  "101381"
+                    }
+                ],
+    "itemids":  [
+                    "104495",
+                    "104496",
+                    "104497",
+                    "104498",
+                    "104499",
+                    "104500",
+                    "104501",
+                    "104502",
+                    "104503"
+                ]
+}
