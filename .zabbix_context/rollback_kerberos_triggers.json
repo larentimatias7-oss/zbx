@@ -1,0 +1,31 @@
+﻿{
+    "created_at_utc":  "2026-10-07T18:54:03.9923453Z",
+    "description":  "Rollback manifest for AD Kerberos Pre-Auth Loop Triggers and Items",
+    "created_triggers":  [
+                             {
+                                 "host":  "SRO-DCO01",
+                                 "description":  "Active Directory: DetecciÃ³n de bucle de autenticaciÃ³n Kerberos (Event 4771)",
+                                 "hostid":  "10699",
+                                 "triggerid":  "39507"
+                             },
+                             {
+                                 "host":  "SRO-DCO02",
+                                 "description":  "Active Directory: DetecciÃ³n de bucle de autenticaciÃ³n Kerberos (Event 4771)",
+                                 "hostid":  "10701",
+                                 "triggerid":  "39508"
+                             },
+                             {
+                                 "host":  "SSJ-DCO01",
+                                 "description":  "Active Directory: DetecciÃ³n de bucle de autenticaciÃ³n Kerberos (Event 4771)",
+                                 "hostid":  "10715",
+                                 "triggerid":  "39509"
+                             }
+                         ],
+    "created_items":  [
+                          {
+                              "hostid":  "10715",
+                              "key_":  "sec.kerberos_preauth.rate_1h",
+                              "itemid":  "104505"
+                          }
+                      ]
+}
