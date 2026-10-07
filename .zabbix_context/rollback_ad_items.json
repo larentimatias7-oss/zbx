@@ -1,0 +1,120 @@
+﻿{
+    "created_at_utc":  "2026-10-07T12:33:44.8442813Z",
+    "description":  "Rollback manifest for AD Cyber SOC dependent items",
+    "details":  [
+                    {
+                        "itemid":  "104282",
+                        "hostid":  "10715",
+                        "name":  "User locked Name",
+                        "key_":  "locked.user",
+                        "master_itemid":  "101379"
+                    },
+                    {
+                        "itemid":  "104283",
+                        "hostid":  "10715",
+                        "name":  "User Locked PC",
+                        "key_":  "locked.pc",
+                        "master_itemid":  "101379"
+                    },
+                    {
+                        "itemid":  "104284",
+                        "hostid":  "10699",
+                        "name":  "Operador de ModificaciÃ³n de Grupo",
+                        "key_":  "group.operator",
+                        "master_itemid":  "96736"
+                    },
+                    {
+                        "itemid":  "104285",
+                        "hostid":  "10699",
+                        "name":  "Nombre de Grupo Modificado",
+                        "key_":  "group.name",
+                        "master_itemid":  "96736"
+                    },
+                    {
+                        "itemid":  "104286",
+                        "hostid":  "10699",
+                        "name":  "Miembro Afectado de Grupo",
+                        "key_":  "group.member",
+                        "master_itemid":  "96736"
+                    },
+                    {
+                        "itemid":  "104287",
+                        "hostid":  "10699",
+                        "name":  "AcciÃ³n de ModificaciÃ³n de Grupo",
+                        "key_":  "group.action",
+                        "master_itemid":  "96736"
+                    },
+                    {
+                        "itemid":  "104288",
+                        "hostid":  "10701",
+                        "name":  "Operador de ModificaciÃ³n de Grupo",
+                        "key_":  "group.operator",
+                        "master_itemid":  "96737"
+                    },
+                    {
+                        "itemid":  "104289",
+                        "hostid":  "10701",
+                        "name":  "Nombre de Grupo Modificado",
+                        "key_":  "group.name",
+                        "master_itemid":  "96737"
+                    },
+                    {
+                        "itemid":  "104290",
+                        "hostid":  "10701",
+                        "name":  "Miembro Afectado de Grupo",
+                        "key_":  "group.member",
+                        "master_itemid":  "96737"
+                    },
+                    {
+                        "itemid":  "104291",
+                        "hostid":  "10701",
+                        "name":  "AcciÃ³n de ModificaciÃ³n de Grupo",
+                        "key_":  "group.action",
+                        "master_itemid":  "96737"
+                    },
+                    {
+                        "itemid":  "104292",
+                        "hostid":  "10715",
+                        "name":  "Operador de ModificaciÃ³n de Grupo",
+                        "key_":  "group.operator",
+                        "master_itemid":  "101382"
+                    },
+                    {
+                        "itemid":  "104293",
+                        "hostid":  "10715",
+                        "name":  "Nombre de Grupo Modificado",
+                        "key_":  "group.name",
+                        "master_itemid":  "101382"
+                    },
+                    {
+                        "itemid":  "104294",
+                        "hostid":  "10715",
+                        "name":  "Miembro Afectado de Grupo",
+                        "key_":  "group.member",
+                        "master_itemid":  "101382"
+                    },
+                    {
+                        "itemid":  "104295",
+                        "hostid":  "10715",
+                        "name":  "AcciÃ³n de ModificaciÃ³n de Grupo",
+                        "key_":  "group.action",
+                        "master_itemid":  "101382"
+                    }
+                ],
+    "itemids":  [
+                    "104282",
+                    "104283",
+                    "104284",
+                    "104285",
+                    "104286",
+                    "104287",
+                    "104288",
+                    "104289",
+                    "104290",
+                    "104291",
+                    "104292",
+                    "104293",
+                    "104294",
+                    "104295"
+                ]
+}

@@ -1,0 +1,80 @@
+﻿{
+    "created_at_utc":  "2026-10-07T14:05:53.8450917Z",
+    "description":  "Rollback manifest for AD Logon Failure (Event 4625) dependent items",
+    "details":  [
+                    {
+                        "itemid":  "104331",
+                        "hostid":  "10699",
+                        "name":  "Usuario con Fallo de Logon",
+                        "key_":  "logon.user",
+                        "master_itemid":  "83715"
+                    },
+                    {
+                        "itemid":  "104332",
+                        "hostid":  "10699",
+                        "name":  "IP Origen con Fallo de Logon",
+                        "key_":  "logon.ip",
+                        "master_itemid":  "83715"
+                    },
+                    {
+                        "itemid":  "104333",
+                        "hostid":  "10699",
+                        "name":  "CÃ³digo Sub-Status Fallo Logon",
+                        "key_":  "logon.status",
+                        "master_itemid":  "83715"
+                    },
+                    {
+                        "itemid":  "104334",
+                        "hostid":  "10701",
+                        "name":  "Usuario con Fallo de Logon",
+                        "key_":  "logon.user",
+                        "master_itemid":  "96713"
+                    },
+                    {
+                        "itemid":  "104335",
+                        "hostid":  "10701",
+                        "name":  "IP Origen con Fallo de Logon",
+                        "key_":  "logon.ip",
+                        "master_itemid":  "96713"
+                    },
+                    {
+                        "itemid":  "104336",
+                        "hostid":  "10701",
+                        "name":  "CÃ³digo Sub-Status Fallo Logon",
+                        "key_":  "logon.status",
+                        "master_itemid":  "96713"
+                    },
+                    {
+                        "itemid":  "104337",
+                        "hostid":  "10715",
+                        "name":  "Usuario con Fallo de Logon",
+                        "key_":  "logon.user",
+                        "master_itemid":  "101380"
+                    },
+                    {
+                        "itemid":  "104338",
+                        "hostid":  "10715",
+                        "name":  "IP Origen con Fallo de Logon",
+                        "key_":  "logon.ip",
+                        "master_itemid":  "101380"
+                    },
+                    {
+                        "itemid":  "104339",
+                        "hostid":  "10715",
+                        "name":  "CÃ³digo Sub-Status Fallo Logon",
+                        "key_":  "logon.status",
+                        "master_itemid":  "101380"
+                    }
+                ],
+    "itemids":  [
+                    "104331",
+                    "104332",
+                    "104333",
+                    "104334",
+                    "104335",
+                    "104336",
+                    "104337",
+                    "104338",
+                    "104339"
+                ]
+}
