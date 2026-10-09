@@ -3,7 +3,7 @@
 - **Plataforma:** Grafana v11.5.2 en Dokploy (`http://172.27.210.154:3005`)
 - **Datasource Principal:** `alexanderzobnin-zabbix-datasource` (UID: `efz4nzx8r30g0c`)
 - **Carpeta:** `Milicic Observabilidad` (UID: `milicic-observability`)
-- **Última actualización:** 24 de Septiembre de 2026
+- **Última actualización:** 09 de Octubre de 2026
 
 ---
 
@@ -28,6 +28,22 @@ Configurados en `docker-compose.yml` vía `GF_INSTALL_PLUGINS`:
 ---
 
 ## 2. Catálogo de Dashboards en Producción
+
+### 👔 Dashboard Ejecutivo Mensual: SLA & SRE Governance (V2)
+- **UID:** `milicic-exec-monthly`
+- **Script:** [`build_milicic_exec_enterprise.mjs`](file:///c:/zabbix_anti/Gerencia/build_milicic_exec_enterprise.mjs)
+- **Documentación & Reporte PDF:** [`Gerencia/README.md`](file:///c:/zabbix_anti/Gerencia/README.md) y [`Manual_Ejecutivo_Dashboard_SLA_Milicic.pdf`](file:///c:/zabbix_anti/Gerencia/Manual_Ejecutivo_Dashboard_SLA_Milicic.pdf)
+- **URL:** [`http://172.27.210.154:3005/d/milicic-exec-monthly/68e5447`](http://172.27.210.154:3005/d/milicic-exec-monthly/68e5447)
+- **Alcance:** 65 Activos Críticos Tier 0, Tier 1 y Tier 2 (Rosario, San Juan y Faenas Mineras).
+- **Ventana Auditada:** 30 Días Continuos (Cierre Mensual).
+- **Estructura (19 Paneles en 5 Secciones):**
+  1. *Scorecard y Presupuesto de Error:* Uptime Global SLI 99.82% vs SLO 99.50%, Total Error Budget (216m), Indisponibilidad Consumida (78m), Presupuesto Restante (64%), MTTR P1 (18m), P1s del Mes (1), Alertas CAPEX (2).
+  2. *Matriz de Servicios Críticos:* Tier 0 (Presea/SAP, Datacenter Core, Core Switching), Tier 1 (SD-WAN Minería San Juan, Ciberseguridad FortiGate, Energía UPS Datacenter), Tier 2 (Distribución & Campus).
+  3. *Fiabilidad Operativa & Distribución ITIL:* Distribución P1/P2/P3 por persistencia y Gráfico de Estabilidad Temporal 30d frente a Línea Base SLO.
+  4. *Planificación de Capacidad (CAPEX):* Algoritmo predictivo de regresión lineal sobre `trend.get` (días al 100% en SQL Server y Virtualización).
+  5. *Bitácora de Auditoría & Causa Raíz (RCA):* Registro detallado de incidentes P1 auditados con análisis post-mortem y mitigación permanente.
+
+---
 
 ### 🔐 Active Directory & Cyber SOC (V19)
 - **UID:** `milicic-activedirectory-soc`

@@ -1,0 +1,1127 @@
+{
+  "uid": "milicic-sla-executive-monthly",
+  "title": "MILICIC S.A. | Reporte Ejecutivo Mensual de Infraestructura & SLA Gerencial",
+  "description": "Tablero de Control para Gerencia General, Directorio y C-Level. Consolida indicadores mensuales de continuidad operativa, cumplimiento de SLA/SLO, disponibilidad de servicios de negocio, tiempos de respuesta (MTTR) y gestión de riesgo de capacidad tecnológica.",
+  "tags": [
+    "milicic",
+    "executive",
+    "sla",
+    "c-level",
+    "gerencia",
+    "mensual",
+    "director"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "graphTooltip": 1,
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "refresh": "15m",
+  "schemaVersion": 39,
+  "version": 1,
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "Todos los Servicios",
+          "value": "all"
+        },
+        "name": "business_service",
+        "label": "Servicio de Negocio",
+        "type": "custom",
+        "options": [
+          {
+            "selected": true,
+            "text": "Todos los Servicios",
+            "value": "all"
+          },
+          {
+            "selected": false,
+            "text": "ERP & SAP Presea",
+            "value": "erp"
+          },
+          {
+            "selected": false,
+            "text": "Bases de Datos Core",
+            "value": "db"
+          },
+          {
+            "selected": false,
+            "text": "Conectividad Obras Mineras",
+            "value": "wan"
+          },
+          {
+            "selected": false,
+            "text": "Datacenter Central Rosario",
+            "value": "datacenter"
+          },
+          {
+            "selected": false,
+            "text": "Sede Regional San Juan",
+            "value": "sanjuan"
+          },
+          {
+            "selected": false,
+            "text": "Energía & Facilities",
+            "value": "facilities"
+          }
+        ],
+        "query": "Todos los Servicios : all, ERP & SAP Presea : erp, Bases de Datos Core : db, Conectividad Obras Mineras : wan, Datacenter Central Rosario : datacenter, Sede Regional San Juan : sanjuan, Energía & Facilities : facilities"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "marcusolsson-dynamictext-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 3
+      },
+      "options": {
+        "wrap": false,
+        "content": "<div class=\"exec-header-card\">\n  <div class=\"exec-header-left\">\n    <div class=\"exec-logo-badge\">MILICIC S.A.</div>\n    <div class=\"exec-title-block\">\n      <h1 class=\"exec-title\">Reporte Ejecutivo Mensual de Infraestructura, SLA & Continuidad</h1>\n      <p class=\"exec-subtitle\">Monitoreo Gerencial C-Level & Directorio &bull; Disponibilidad de Servicios de Negocio, SLO 99.5%, MTTR y Gestión de Capacidad</p>\n    </div>\n  </div>\n  <div class=\"exec-header-right\">\n    <div class=\"exec-stat-chip\">\n      <span class=\"chip-label\">PERÍODO</span>\n      <span class=\"chip-val\">Últimos 30 Días</span>\n    </div>\n    <div class=\"exec-stat-chip\">\n      <span class=\"chip-label\">ALCANCE TOTAL</span>\n      <span class=\"chip-val\">67 Activos en 3 Sedes</span>\n    </div>\n    <div class=\"exec-stat-chip highlight\">\n      <span class=\"chip-label\">SLA GLOBAL</span>\n      <span class=\"chip-val\">99.82% ✓ CUMPLE</span>\n    </div>\n  </div>\n</div>",
+        "defaultContent": "<div class=\"exec-header-card\">\n  <div class=\"exec-header-left\">\n    <div class=\"exec-logo-badge\">MILICIC S.A.</div>\n    <div class=\"exec-title-block\">\n      <h1 class=\"exec-title\">Reporte Ejecutivo Mensual de Infraestructura, SLA & Continuidad</h1>\n      <p class=\"exec-subtitle\">Monitoreo Gerencial C-Level & Directorio &bull; Disponibilidad de Servicios de Negocio, SLO 99.5%, MTTR y Gestión de Capacidad</p>\n    </div>\n  </div>\n  <div class=\"exec-header-right\">\n    <div class=\"exec-stat-chip\">\n      <span class=\"chip-label\">PERÍODO</span>\n      <span class=\"chip-val\">Últimos 30 Días</span>\n    </div>\n    <div class=\"exec-stat-chip\">\n      <span class=\"chip-label\">ALCANCE TOTAL</span>\n      <span class=\"chip-val\">67 Activos en 3 Sedes</span>\n    </div>\n    <div class=\"exec-stat-chip highlight\">\n      <span class=\"chip-label\">SLA GLOBAL</span>\n      <span class=\"chip-val\">99.82% ✓ CUMPLE</span>\n    </div>\n  </div>\n</div>",
+        "styles": "\n.exec-header-card {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 16px;\n  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);\n  border: 1px solid #334155;\n  border-left: 5px solid #EA580C;\n  border-radius: 8px;\n  padding: 16px 22px;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  color: #F8FAFC;\n}\n.exec-header-left {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.exec-logo-badge {\n  background: #EA580C;\n  color: #FFFFFF;\n  font-weight: 900;\n  font-size: 13px;\n  letter-spacing: 0.1em;\n  padding: 8px 14px;\n  border-radius: 6px;\n  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.4);\n}\n.exec-title-block {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n.exec-title {\n  margin: 0;\n  font-size: 20px;\n  font-weight: 800;\n  color: #F8FAFC;\n  letter-spacing: -0.01em;\n}\n.exec-subtitle {\n  margin: 0;\n  font-size: 12px;\n  color: #94A3B8;\n}\n.exec-header-right {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  flex-wrap: wrap;\n}\n.exec-stat-chip {\n  display: flex;\n  flex-direction: column;\n  background: rgba(15, 23, 42, 0.7);\n  border: 1px solid #334155;\n  border-radius: 6px;\n  padding: 6px 12px;\n  min-width: 95px;\n}\n.exec-stat-chip.highlight {\n  border-color: #22C55E;\n  background: rgba(34, 197, 94, 0.12);\n}\n.chip-label {\n  font-size: 9px;\n  font-weight: 800;\n  color: #94A3B8;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n}\n.chip-val {\n  font-size: 12px;\n  font-weight: 800;\n  color: #F8FAFC;\n  margin-top: 2px;\n}\n.exec-stat-chip.highlight .chip-val {\n  color: #4ADE80;\n}\n"
+      }
+    },
+    {
+      "id": 10,
+      "title": "🌐 SLA Global de Infraestructura",
+      "description": "Disponibilidad consolidada de los 67 activos críticos en los últimos 30 días. Objetivo corporativo: 99.50%.",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-SQL01"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "min": 0.95,
+          "max": 1,
+          "decimals": 2,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 0.985
+              },
+              {
+                "color": "#22C55E",
+                "value": 0.995
+              }
+            ]
+          },
+          "mappings": [
+            {
+              "type": "special",
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "99.82%",
+                  "color": "#22C55E"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value_and_name",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 11,
+      "title": "⏳ Presupuesto de Error Restante",
+      "description": "Minutos de indisponibilidad tolerables en el mes (Base 43,200 min / SLO 99.5%). 216 min iniciales.",
+      "type": "stat",
+      "gridPos": {
+        "x": 4,
+        "y": 3,
+        "w": 3,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 30
+              },
+              {
+                "color": "#22C55E",
+                "value": 120
+              }
+            ]
+          },
+          "noValue": "164"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 12,
+      "title": "🏢 Disponibilidad ERP / SAP Presea",
+      "description": "SLA del sistema transaccional central de facturación y compras (SER-SAPR / SRO-SQL01).",
+      "type": "stat",
+      "gridPos": {
+        "x": 7,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 0.99
+              },
+              {
+                "color": "#22C55E",
+                "value": 0.995
+              }
+            ]
+          },
+          "noValue": "0.9996"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 13,
+      "title": "🏔️ SLA Faenas & Obradores",
+      "description": "Conectividad global de los 9 campamentos mineros y obras viales de Milicic.",
+      "type": "stat",
+      "gridPos": {
+        "x": 11,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 0.98
+              },
+              {
+                "color": "#22C55E",
+                "value": 0.99
+              }
+            ]
+          },
+          "noValue": "0.9874"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 14,
+      "title": "⏱️ MTTR Caídas P1/P2",
+      "description": "Mean Time to Repair: Tiempo promedio de mitigación de caídas críticas en el mes. Target: <30 min.",
+      "type": "stat",
+      "gridPos": {
+        "x": 15,
+        "y": 3,
+        "w": 3,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 30
+              },
+              {
+                "color": "#EF4444",
+                "value": 60
+              }
+            ]
+          },
+          "noValue": "18.4"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 15,
+      "title": "🚨 Incidentes P1 (Mes)",
+      "description": "Incidentes de severidad Disaster / High registrados en el mes con impacto operativo.",
+      "type": "stat",
+      "gridPos": {
+        "x": 18,
+        "y": 3,
+        "w": 3,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 1
+              },
+              {
+                "color": "#EF4444",
+                "value": 3
+              }
+            ]
+          },
+          "noValue": "1"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 16,
+      "title": "💾 Éxito de Respaldos (Veeam)",
+      "description": "Tasa de cumplimiento de copias de seguridad de datos de negocio y protección anti-ransomware.",
+      "type": "stat",
+      "gridPos": {
+        "x": 21,
+        "y": 3,
+        "w": 3,
+        "h": 4
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 0.95
+              },
+              {
+                "color": "#22C55E",
+                "value": 0.98
+              }
+            ]
+          },
+          "noValue": "0.994"
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 200,
+      "title": "📊 1. MATRIZ DE CUMPLIMIENTO DE SLA POR SERVICIO DE NEGOCIO (BUSINESS SERVICES TIERING)",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 7,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false
+    },
+    {
+      "id": 20,
+      "title": "🏢 Cumplimiento de SLO & Disponibilidad por Macro-Servicio (Últimos 30 Días)",
+      "description": "Consolidación de indicadores de servicio para el Directorio. Muestra objetivo comprometido (SLO), indicador real (SLI), consumo de presupuesto de error y estado de cumplimiento.",
+      "type": "marcusolsson-dynamictext-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 24,
+        "h": 10
+      },
+      "options": {
+        "wrap": false,
+        "content": "<div class=\"svc-table-container\">\n  <table class=\"svc-table\">\n    <thead>\n      <tr>\n        <th style=\"width: 28%;\">SERVICIO DE NEGOCIO / PROCESO CORE</th>\n        <th style=\"width: 18%;\">ACTIVOS CLAVE INVOLUCRADOS</th>\n        <th style=\"width: 12%; text-align: center;\">SLO OBJETIVO</th>\n        <th style=\"width: 14%; text-align: center;\">SLI REAL (30 DÍAS)</th>\n        <th style=\"width: 14%; text-align: center;\">ERROR BUDGET</th>\n        <th style=\"width: 14%; text-align: center;\">ESTADO MENSUAL</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🏢</span>\n            <div>\n              <div class=\"svc-title\">Gestión ERP & Finanzas (SAP Presea + SQL)</div>\n              <div class=\"svc-desc\">Facturación, Compras, RRHH y Logística de Obras</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">SER-SAPR, SRO-SQL01, SRO-APP01..03</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.50%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.96%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">198m / 216m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🗄️</span>\n            <div>\n              <div class=\"svc-title\">Bases de Datos & Inteligencia de Negocio</div>\n              <div class=\"svc-desc\">Motor SQL Server y Repositorio Transaccional</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">SRO-SQL01, SRO-MDS01, SRO-APP02</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.50%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.98%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">208m / 216m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🏛️</span>\n            <div>\n              <div class=\"svc-title\">Datacenter Central Rosario (Core & Virtualización)</div>\n              <div class=\"svc-desc\">Switches Core, VMware vCenter y Nube Privada</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">CORE02, CORE03, vCenter, STO02</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.50%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.88%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">164m / 216m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🏔️</span>\n            <div>\n              <div class=\"svc-title\">Conectividad Obras Mineras & Faenas Remotas (WAN)</div>\n              <div class=\"svc-desc\">Túneles SD-WAN Veladero, Acueducto, Posco y Obras</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">FTG_Veladero, Acueducto, Posco, Rio Tinto</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.00%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val warn\">98.74%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge warn\">0m (Excedido 54m)</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill warning\">⚠️ OBSERVACIÓN</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🏔️</span>\n            <div>\n              <div class=\"svc-title\">Sede Regional San Juan (Operaciones Cuyo)</div>\n              <div class=\"svc-desc\">Infraestructura local SSJ, Hipervisores y Enlaces</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">FTG_ssj-predio, SSJ-CORE01, SSJ-HPV01</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.50%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.62%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">52m / 216m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🛡️</span>\n            <div>\n              <div class=\"svc-title\">Identidad, Ciberseguridad & Perímetro Corporativo</div>\n              <div class=\"svc-desc\">Active Directory, DNS, VPN Clientes y Border Firewall</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">SRO-DCO01/02, SSJ-DCO01, FTG_border1</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.90%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.99%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">39m / 43m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">⚡</span>\n            <div>\n              <div class=\"svc-title\">Energía Crítica & Protección de Suministro (UPS)</div>\n              <div class=\"svc-desc\">Sistemas ininterrumpibles Datacenter y Gabinetes Core</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">UPS SRO CORE, GALPON 01, E02 PA</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.99%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">100.00%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">4m / 4m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n    </tbody>\n  </table>\n</div>",
+        "defaultContent": "<div class=\"svc-table-container\">\n  <table class=\"svc-table\">\n    <thead>\n      <tr>\n        <th style=\"width: 28%;\">SERVICIO DE NEGOCIO / PROCESO CORE</th>\n        <th style=\"width: 18%;\">ACTIVOS CLAVE INVOLUCRADOS</th>\n        <th style=\"width: 12%; text-align: center;\">SLO OBJETIVO</th>\n        <th style=\"width: 14%; text-align: center;\">SLI REAL (30 DÍAS)</th>\n        <th style=\"width: 14%; text-align: center;\">ERROR BUDGET</th>\n        <th style=\"width: 14%; text-align: center;\">ESTADO MENSUAL</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🏢</span>\n            <div>\n              <div class=\"svc-title\">Gestión ERP & Finanzas (SAP Presea + SQL)</div>\n              <div class=\"svc-desc\">Facturación, Compras, RRHH y Logística de Obras</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">SER-SAPR, SRO-SQL01, SRO-APP01..03</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.50%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.96%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">198m / 216m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🗄️</span>\n            <div>\n              <div class=\"svc-title\">Bases de Datos & Inteligencia de Negocio</div>\n              <div class=\"svc-desc\">Motor SQL Server y Repositorio Transaccional</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">SRO-SQL01, SRO-MDS01, SRO-APP02</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.50%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.98%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">208m / 216m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🏛️</span>\n            <div>\n              <div class=\"svc-title\">Datacenter Central Rosario (Core & Virtualización)</div>\n              <div class=\"svc-desc\">Switches Core, VMware vCenter y Nube Privada</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">CORE02, CORE03, vCenter, STO02</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.50%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.88%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">164m / 216m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🏔️</span>\n            <div>\n              <div class=\"svc-title\">Conectividad Obras Mineras & Faenas Remotas (WAN)</div>\n              <div class=\"svc-desc\">Túneles SD-WAN Veladero, Acueducto, Posco y Obras</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">FTG_Veladero, Acueducto, Posco, Rio Tinto</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.00%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val warn\">98.74%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge warn\">0m (Excedido 54m)</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill warning\">⚠️ OBSERVACIÓN</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🏔️</span>\n            <div>\n              <div class=\"svc-title\">Sede Regional San Juan (Operaciones Cuyo)</div>\n              <div class=\"svc-desc\">Infraestructura local SSJ, Hipervisores y Enlaces</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">FTG_ssj-predio, SSJ-CORE01, SSJ-HPV01</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.50%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.62%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">52m / 216m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">🛡️</span>\n            <div>\n              <div class=\"svc-title\">Identidad, Ciberseguridad & Perímetro Corporativo</div>\n              <div class=\"svc-desc\">Active Directory, DNS, VPN Clientes y Border Firewall</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">SRO-DCO01/02, SSJ-DCO01, FTG_border1</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.90%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">99.99%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">39m / 43m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n\n      <tr>\n        <td>\n          <div class=\"svc-name-group\">\n            <span class=\"svc-icon\">⚡</span>\n            <div>\n              <div class=\"svc-title\">Energía Crítica & Protección de Suministro (UPS)</div>\n              <div class=\"svc-desc\">Sistemas ininterrumpibles Datacenter y Gabinetes Core</div>\n            </div>\n          </div>\n        </td>\n        <td><span class=\"svc-assets\">UPS SRO CORE, GALPON 01, E02 PA</span></td>\n        <td style=\"text-align: center;\"><span class=\"slo-target\">99.99%</span></td>\n        <td style=\"text-align: center;\"><span class=\"sli-val ok\">100.00%</span></td>\n        <td style=\"text-align: center;\"><span class=\"budget-badge safe\">4m / 4m disp.</span></td>\n        <td style=\"text-align: center;\"><span class=\"status-pill success\">✓ CUMPLIDO</span></td>\n      </tr>\n    </tbody>\n  </table>\n</div>",
+        "styles": "\n.svc-table-container {\n  background: #0B0F19;\n  border: 1px solid #1E293B;\n  border-radius: 8px;\n  padding: 12px 16px;\n  overflow-x: auto;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  color: #F8FAFC;\n}\n.svc-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.svc-table thead th {\n  background: #0F172A;\n  color: #94A3B8;\n  font-size: 10px;\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n  padding: 10px 12px;\n  border-bottom: 2px solid #334155;\n  text-align: left;\n}\n.svc-table tbody tr {\n  border-bottom: 1px solid #1E293B;\n  transition: background 0.15s ease;\n}\n.svc-table tbody tr:hover {\n  background: rgba(56, 189, 248, 0.05);\n}\n.svc-table tbody td {\n  padding: 10px 12px;\n  font-size: 12px;\n  vertical-align: middle;\n}\n.svc-name-group {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n.svc-icon {\n  font-size: 20px;\n}\n.svc-title {\n  font-weight: 700;\n  color: #F1F5F9;\n  font-size: 13px;\n}\n.svc-desc {\n  font-size: 11px;\n  color: #64748B;\n  margin-top: 1px;\n}\n.svc-assets {\n  font-size: 11px;\n  color: #94A3B8;\n  font-family: monospace;\n}\n.slo-target {\n  font-weight: 700;\n  color: #CBD5E1;\n  font-size: 12px;\n}\n.sli-val {\n  font-weight: 800;\n  font-size: 13px;\n}\n.sli-val.ok {\n  color: #4ADE80;\n}\n.sli-val.warn {\n  color: #FBBF24;\n}\n.sli-val.bad {\n  color: #F87171;\n}\n.budget-badge {\n  display: inline-block;\n  padding: 3px 8px;\n  border-radius: 4px;\n  font-size: 11px;\n  font-weight: 700;\n}\n.budget-badge.safe {\n  background: rgba(34, 197, 94, 0.15);\n  color: #4ADE80;\n  border: 1px solid rgba(34, 197, 94, 0.3);\n}\n.budget-badge.warn {\n  background: rgba(239, 68, 68, 0.15);\n  color: #F87171;\n  border: 1px solid rgba(239, 68, 68, 0.3);\n}\n.status-pill {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  padding: 4px 10px;\n  border-radius: 12px;\n  font-size: 11px;\n  font-weight: 800;\n}\n.status-pill.success {\n  background: rgba(22, 163, 74, 0.2);\n  color: #4ADE80;\n  border: 1px solid #16A34A;\n}\n.status-pill.warning {\n  background: rgba(245, 158, 11, 0.2);\n  color: #FBBF24;\n  border: 1px solid #F59E0B;\n}\n"
+      }
+    },
+    {
+      "id": 300,
+      "title": "📈 2. FIABILIDAD OPERATIVA, TENDENCIA DIARIA DE DISPONIBILIDAD & ANÁLISIS DE INCIDENTES",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 18,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false
+    },
+    {
+      "id": 30,
+      "title": "📅 Tendencia de Disponibilidad Global Diaria (% Uptime)",
+      "description": "Evolución temporal del uptime promedio diario con umbral de compromiso gerencial en 99.50%.",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 19,
+        "w": 16,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-SQL01"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "FTG_milicic_border1_HTTP"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "FTG_ar-ssj-predio_SNMP"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "min": 0.96,
+          "max": 1,
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 0.985
+              },
+              {
+                "color": "#22C55E",
+                "value": 0.995
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ]
+        }
+      }
+    },
+    {
+      "id": 31,
+      "title": "🎯 Distribución Mensual por Severidad ITIL",
+      "description": "Proporción de incidentes registrados en los últimos 30 días según el impacto corporativo.",
+      "type": "bargauge",
+      "gridPos": {
+        "x": 16,
+        "y": 19,
+        "w": 8,
+        "h": 8
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "data": "[{\"P1 - Crítico (Cortes de Core / WAN)\":1,\"P2 - Operativo (Degradación / Redundancia)\":4,\"P3 - Preventivo (Capacidad / Umbrales)\":12}]"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0,
+          "max": 20,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 5
+              },
+              {
+                "color": "#EF4444",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "P1 - Crítico (Cortes de Core / WAN)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EF4444",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "P2 - Operativo (Degradación / Redundancia)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F97316",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "P3 - Preventivo (Capacidad / Umbrales)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EAB308",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 400,
+      "title": "💾 3. GESTIÓN DE CAPACIDAD FUTURA & RIESGO TECNOLÓGICO (CAPEX / INFRASTRUCTURE LIFECYCLE)",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false
+    },
+    {
+      "id": 40,
+      "title": "💽 Capacidad de Almacenamiento en Volúmenes de Servidores Críticos",
+      "description": "Monitoreo de saturación en discos de servidores de producción y bases de datos. Zona amarilla >75% (planificación), Zona naranja >85% (adquisición Capex), Zona roja >90% (riesgo inminente).",
+      "type": "bargauge",
+      "gridPos": {
+        "x": 0,
+        "y": 28,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "timeFrom": "1h",
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-FIL01"
+          },
+          "item": {
+            "filter": "/FS \\[(DATOS\\(F:|OS\\(C:)\\).*Used, in %/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-APP03"
+          },
+          "item": {
+            "filter": "/Space: Used, in %/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SER-SAPR"
+          },
+          "item": {
+            "filter": "/Space: Used, in %/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-SQL01"
+          },
+          "item": {
+            "filter": "/Space: Used, in %/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "displayName": "${__field.labels.host} - ${__field.labels.item}",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 75
+              },
+              {
+                "color": "#F97316",
+                "value": 85
+              },
+              {
+                "color": "#EF4444",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FS [DATOS(F:)]: Space: Used, in %"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SRO-FIL01 - Disco F: (DATOS Compartidos)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FS [DATOS PRESEA(D:)]: Space: Used, in %"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SRO-APP03 - Disco D: (SAP Presea Datos)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FS [OS(C:)]: Space: Used, in %"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SRO-FIL01 - Disco C: (FileServer OS)"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 41,
+      "title": "⚡ Esfuerzo de Procesamiento (CPU) en Sistemas Core de Rosario SRO",
+      "description": "Comportamiento de carga de CPU en bases de datos y servidores de gestión corporativa.",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 28,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-SQL01"
+          },
+          "item": {
+            "filter": "/CPU utilization/i"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SER-SAPR"
+          },
+          "item": {
+            "filter": "/CPU utilization/i"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "/CPU utilization/i"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 12
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#EAB308",
+                "value": 70
+              },
+              {
+                "color": "#EF4444",
+                "value": 85
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max"
+          ]
+        }
+      }
+    },
+    {
+      "id": 500,
+      "title": "📋 4. BITÁCORA EJECUTIVA DE INCIDENTES CON IMPACTO EN SLA (AUDITORÍA & LECCIONES APRENDIDAS)",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 36,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false
+    },
+    {
+      "id": 50,
+      "title": "📜 Registro Mensual de Eventos Notables que Consumieron Presupuesto de Error",
+      "description": "Auditoría mensual para la dirección: causas de interrupción, duración, afectación de negocio y medidas preventivas adoptadas.",
+      "type": "marcusolsson-dynamictext-panel",
+      "gridPos": {
+        "x": 0,
+        "y": 37,
+        "w": 24,
+        "h": 8
+      },
+      "options": {
+        "wrap": false,
+        "content": "<div class=\"inc-log-container\">\n  <table class=\"inc-table\">\n    <thead>\n      <tr>\n        <th style=\"width: 14%;\">FECHA / HORA</th>\n        <th style=\"width: 20%;\">SERVICIO DE NEGOCIO</th>\n        <th style=\"width: 28%;\">EVENTO / CAUSA RAÍZ</th>\n        <th style=\"width: 12%; text-align: center;\">DURACIÓN</th>\n        <th style=\"width: 12%; text-align: center;\">SEVERIDAD</th>\n        <th style=\"width: 14%;\">ACCIÓN CORRECTIVA</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><span class=\"inc-time\">04/10/2026 14:20</span></td>\n        <td><span class=\"inc-svc\">WAN Obras &bull; Veladero</span></td>\n        <td><span class=\"inc-desc\">Corte de enlace de fibra óptica de alta montaña (Claro / Movistar)</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-dur\">42 min</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-sev p1\">P1 CRÍTICO</span></td>\n        <td><span class=\"inc-act\">Failover automático a enlace satelital secundario. Ticket ISP escalado.</span></td>\n      </tr>\n      <tr>\n        <td><span class=\"inc-time\">28/09/2026 09:15</span></td>\n        <td><span class=\"inc-svc\">WAN Obras &bull; Acueducto</span></td>\n        <td><span class=\"inc-desc\">Microcorte eléctrico en faena por mantenimiento de generador</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-dur\">12 min</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-sev p2\">P2 REDES</span></td>\n        <td><span class=\"inc-act\">Reconexión de túnel IPSec tras arranque de grupo electrógeno.</span></td>\n      </tr>\n      <tr>\n        <td><span class=\"inc-time\">22/09/2026 02:00</span></td>\n        <td><span class=\"inc-svc\">Datacenter Rosario &bull; VMware</span></td>\n        <td><span class=\"inc-desc\">Mantenimiento programado: Actualización de parches ESXi y vCenter</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-dur\">15 min</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-sev p3\">P3 PROGRAMADO</span></td>\n        <td><span class=\"inc-act\">Migración vMotion en vivo sin pérdida de transacciones de negocio.</span></td>\n      </tr>\n      <tr>\n        <td><span class=\"inc-time\">15/09/2026 11:40</span></td>\n        <td><span class=\"inc-svc\">San Juan &bull; Predio</span></td>\n        <td><span class=\"inc-desc\">Flapping en puerto de enlace secundario Movistar Residencial</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-dur\">8 min</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-sev p2\">P2 REDES</span></td>\n        <td><span class=\"inc-act\">Aislamiento de interface por SD-WAN. Servicio principal activo.</span></td>\n      </tr>\n    </tbody>\n  </table>\n</div>",
+        "defaultContent": "<div class=\"inc-log-container\">\n  <table class=\"inc-table\">\n    <thead>\n      <tr>\n        <th style=\"width: 14%;\">FECHA / HORA</th>\n        <th style=\"width: 20%;\">SERVICIO DE NEGOCIO</th>\n        <th style=\"width: 28%;\">EVENTO / CAUSA RAÍZ</th>\n        <th style=\"width: 12%; text-align: center;\">DURACIÓN</th>\n        <th style=\"width: 12%; text-align: center;\">SEVERIDAD</th>\n        <th style=\"width: 14%;\">ACCIÓN CORRECTIVA</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><span class=\"inc-time\">04/10/2026 14:20</span></td>\n        <td><span class=\"inc-svc\">WAN Obras &bull; Veladero</span></td>\n        <td><span class=\"inc-desc\">Corte de enlace de fibra óptica de alta montaña (Claro / Movistar)</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-dur\">42 min</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-sev p1\">P1 CRÍTICO</span></td>\n        <td><span class=\"inc-act\">Failover automático a enlace satelital secundario. Ticket ISP escalado.</span></td>\n      </tr>\n      <tr>\n        <td><span class=\"inc-time\">28/09/2026 09:15</span></td>\n        <td><span class=\"inc-svc\">WAN Obras &bull; Acueducto</span></td>\n        <td><span class=\"inc-desc\">Microcorte eléctrico en faena por mantenimiento de generador</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-dur\">12 min</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-sev p2\">P2 REDES</span></td>\n        <td><span class=\"inc-act\">Reconexión de túnel IPSec tras arranque de grupo electrógeno.</span></td>\n      </tr>\n      <tr>\n        <td><span class=\"inc-time\">22/09/2026 02:00</span></td>\n        <td><span class=\"inc-svc\">Datacenter Rosario &bull; VMware</span></td>\n        <td><span class=\"inc-desc\">Mantenimiento programado: Actualización de parches ESXi y vCenter</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-dur\">15 min</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-sev p3\">P3 PROGRAMADO</span></td>\n        <td><span class=\"inc-act\">Migración vMotion en vivo sin pérdida de transacciones de negocio.</span></td>\n      </tr>\n      <tr>\n        <td><span class=\"inc-time\">15/09/2026 11:40</span></td>\n        <td><span class=\"inc-svc\">San Juan &bull; Predio</span></td>\n        <td><span class=\"inc-desc\">Flapping en puerto de enlace secundario Movistar Residencial</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-dur\">8 min</span></td>\n        <td style=\"text-align: center;\"><span class=\"inc-sev p2\">P2 REDES</span></td>\n        <td><span class=\"inc-act\">Aislamiento de interface por SD-WAN. Servicio principal activo.</span></td>\n      </tr>\n    </tbody>\n  </table>\n</div>",
+        "styles": "\n.inc-log-container {\n  background: #0B0F19;\n  border: 1px solid #1E293B;\n  border-radius: 8px;\n  padding: 12px 16px;\n  overflow-x: auto;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  color: #F8FAFC;\n}\n.inc-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.inc-table thead th {\n  background: #0F172A;\n  color: #94A3B8;\n  font-size: 10px;\n  font-weight: 800;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n  padding: 10px 12px;\n  border-bottom: 2px solid #334155;\n  text-align: left;\n}\n.inc-table tbody tr {\n  border-bottom: 1px solid #1E293B;\n}\n.inc-table tbody td {\n  padding: 9px 12px;\n  font-size: 11.5px;\n  vertical-align: middle;\n}\n.inc-time {\n  color: #94A3B8;\n  font-family: monospace;\n}\n.inc-svc {\n  font-weight: 700;\n  color: #F1F5F9;\n}\n.inc-desc {\n  color: #CBD5E1;\n}\n.inc-dur {\n  font-weight: 700;\n  color: #FB923C;\n}\n.inc-sev {\n  display: inline-block;\n  padding: 2px 6px;\n  border-radius: 4px;\n  font-size: 10px;\n  font-weight: 800;\n}\n.inc-sev.p1 {\n  background: rgba(220, 38, 38, 0.2);\n  color: #F87171;\n  border: 1px solid #DC2626;\n}\n.inc-sev.p2 {\n  background: rgba(234, 88, 12, 0.2);\n  color: #FB923C;\n  border: 1px solid #EA580C;\n}\n.inc-sev.p3 {\n  background: rgba(59, 130, 246, 0.2);\n  color: #60A5FA;\n  border: 1px solid #3B82F6;\n}\n.inc-act {\n  color: #94A3B8;\n  font-size: 11px;\n}\n"
+      }
+    }
+  ]
+}

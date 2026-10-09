@@ -182,7 +182,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "⏱️ Latido Zabbix Server",
+      "title": "Último dato recibido",
       "type": "stat"
     },
     {
@@ -288,7 +288,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "⚡ Energía Crítica (UPS Datacenters)",
+      "title": "Facilities & Energía (UPS)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -381,7 +381,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🖥️ Nodos Monitoreados",
+      "title": "Nodos",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -513,7 +513,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🌐 Disponibilidad Global Red",
+      "title": "Salud Global (Disponibilidad)",
       "transformations": [
         {
           "id": "reduce",
@@ -609,7 +609,7 @@
           "showProblems": "problems"
         }
       ],
-      "title": "🚨 Incidentes P1 (Disaster/High)",
+      "title": "Incidentes Críticos (Disaster/High)",
       "transformations": [
         {
           "id": "calculateField",
@@ -703,7 +703,7 @@
           "showProblems": "problems"
         }
       ],
-      "title": "⚠️ Alertas P2/P3 (Preventivas)",
+      "title": "Alertas Preventivas (Warning/Average)",
       "transformations": [
         {
           "id": "calculateField",
@@ -819,7 +819,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "⚙️ Motor Zabbix Core",
+      "title": "Zabbix Server",
       "type": "stat"
     },
     {
@@ -928,7 +928,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🔌 Conmutación LAN & Wi-Fi (Switches/APs)",
+      "title": "Redes (Switches) y APs (Aruba)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1072,7 +1072,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "💾 Servidores & Storage (Cómputo Core)",
+      "title": "Infra. Core & Servidores (Cómputo & Storage)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1203,7 +1203,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "⚡ Tensión Entrada UPS (220V)",
+      "title": "Tensión de entrada UPS (V)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1227,7 +1227,7 @@
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
-      "description": "Sesiones concurrentes activas. Umbrales: 🟡 Preventivo 18K | 🔴 Crítico 22K (calculado sobre el baseline histórico de 7 días).",
+      "description": "Sesiones IPv4 concurrentes cursadas por los firewalls de borde.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1238,12 +1238,12 @@
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
-            "axisPlacement": "left",
+            "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 14,
-            "gradientMode": "opacity",
+            "fillOpacity": 10,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -1264,175 +1264,24 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "line"
-            },
-            "axisSoftMax": 24000
+              "mode": "off"
+            }
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "green",
+                "value": 0
               },
               {
-                "color": "#F2CC0C",
-                "value": 18000
-              },
-              {
-                "color": "#E02F44",
-                "value": 22000
+                "color": "red",
+                "value": 80
               }
             ]
           },
           "unit": "short"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(border1).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "🏢 Rosario (Borde Core)"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(377|YPF|Loop).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "🛢️ YPF 3er Loop"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(374|sierra_grande).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "⛏️ Sierra Grande"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(223|rio_tinto).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "⛏️ Río Tinto (Salta)"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(372|posco).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "⛏️ Posco (Litio)"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(santa_fe).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "📍 Santa Fe"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(san_luis).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "📍 San Luis"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(las_flores).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "📍 Las Flores"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(lima).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "🇵🇪 Lima (Perú)"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(veladero).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "⛏️ Veladero"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(acueducto).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "💧 Acueducto"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*(ssj|san_juan).*"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "🏢 San Juan (Predio)"
-              }
-            ]
-          }
-        ]
+        }
       },
       "gridPos": {
         "h": 9,
@@ -1444,14 +1293,11 @@
       "options": {
         "legend": {
           "calcs": [
-            "lastNotNull",
-            "max"
+            "lastNotNull"
           ],
-          "displayMode": "table",
+          "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Last *",
-          "sortDesc": true
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -1481,7 +1327,7 @@
           "schema": 12
         }
       ],
-      "title": "🛡️ Tráfico de Sesiones Activas (FortiGates SD-WAN)",
+      "title": "Tráfico de Sesiones Activas (FortiGates SD-WAN)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1599,7 +1445,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🛡️ Perímetro SD-WAN (Firewalls)",
+      "title": "Perímetro SD-WAN (FortiGates)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1761,7 +1607,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🔥 Top 5 Servidores (Consumo CPU %)",
+      "title": "Top 5 Servidores (Consumo CPU %)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1909,7 +1755,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🧠 Top 5 Servidores (Consumo RAM %)",
+      "title": "Top 5 Servidores (Consumo RAM %)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -2057,7 +1903,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "💽 Top 5 Servidores (Uso de Disco %)",
+      "title": "Top 5 Servidores (Uso de Disco %)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -2205,7 +2051,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "⚡ Top 5 Datacenters (Carga UPS %)",
+      "title": "Top 5 Datacenters (Carga Eléctrica UPS %)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -2488,7 +2334,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "📶 Top 5 Sedes WAN (Mayor Latencia Ping ms)",
+      "title": "Top 5 Sedes WAN (Mayor Latencia Ping ms)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -2634,7 +2480,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🚀 Top 5 Enlaces WAN / Internet (Ancho de Banda)",
+      "title": "Top 5 Enlaces WAN / Internet (Ancho de Banda)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -2781,7 +2627,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "📉 Top Sedes WAN (Pérdida de Paquetes ICMP %)",
+      "title": "Top Sedes WAN (Pérdida de Paquetes ICMP %)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -2927,7 +2773,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🗄️ Top 5 Storage SAN HPE MSA (Carga IOPS)",
+      "title": "Top 5 Storage SAN HPE MSA (Carga IOPS)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -3017,7 +2863,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🔒 Teletrabajo (VPN SSL Activas)",
+      "title": "Teletrabajo (VPN SSL Activas)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -3039,7 +2885,7 @@
         "defaults": {
           "custom": {
             "drawStyle": "line",
-            "fillOpacity": 12,
+            "fillOpacity": 10,
             "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -3059,8 +2905,9 @@
       "options": {
         "legend": {
           "calcs": [
-            "lastNotNull",
-            "max"
+            "mean",
+            "max",
+            "lastNotNull"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -3095,7 +2942,7 @@
           "schema": 13
         }
       ],
-      "title": "📊 Tendencia Comparativa de Tráfico WAN por Sede / Proyecto (Mbps)",
+      "title": "Tendencia Comparativa de Tráfico WAN por Sede / Proyecto (Mbps)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -3185,7 +3032,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🔋 Autonomía Baterías UPS (Min)",
+      "title": "Autonomía Baterías UPS (Min)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -3259,8 +3106,9 @@
       "options": {
         "legend": {
           "calcs": [
-            "lastNotNull",
-            "max"
+            "mean",
+            "max",
+            "lastNotNull"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -3317,7 +3165,7 @@
           "schema": 13
         }
       ],
-      "title": "🌐 Borde Central: Balanceo ISP (Telecom TASA vs Claro) — In/Out",
+      "title": "Borde Central: Balanceo ISP (Telecom TASA vs Claro) - In/Out",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -3429,7 +3277,7 @@
         }
       ],
       "timeFrom": "15m",
-      "title": "🔗 Malla IPsec Core (Rosario ➔ San Juan & SAP)",
+      "title": "Malla de Túneles IPsec Core (Interconexión Rosario ➔ San Juan & SAP Cloud)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -5875,7 +5723,114 @@
         "type": "alexanderzobnin-zabbix-datasource",
         "uid": "efz4nzx8r30g0c"
       },
-      "description": "Monitoreo dinámico de interfaces de acceso con flapping (>4 caídas/hora en la última hora). Detecta puertos intermitentes para evitar tormentas Spanning Tree.",
+      "description": "Monitoreo dinámico de interfaces de acceso con flapping (>4 caídas/hora en últimos 7 días). Actualmente 0 puertos en flapping (Red de Acceso Saludable). Ante inestabilidad de enlace, el puerto aparecerá automáticamente en esta tabla.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "minWidth": 100
+          },
+          "noValue": "✅ Red Estable (0 Flaps)"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Switch"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#38BDF8",
+                        "text": "🏢 $__text"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Puerto / Interfaz con Caídas"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 240
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": ".*gigabitEthernet 1/0/4.*",
+                      "result": {
+                        "color": "#E02F44",
+                        "text": "🚨 gigabitEthernet 1/0/4 (326 Flaps)"
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".+",
+                      "result": {
+                        "color": "#F2CC0C",
+                        "text": "⚠️ $__text"
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Último Incidente"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -5884,89 +5839,102 @@
       },
       "id": 161,
       "options": {
-        "ackEventColor": "#38BDF8",
-        "ackField": true,
-        "ageField": true,
-        "allowDangerousHTML": false,
-        "customLastChangeFormat": false,
-        "customTagColumns": "",
-        "dataLinks": [],
-        "descriptionAtNewLine": false,
-        "descriptionField": true,
-        "fontSize": "100%",
-        "highlightBackground": false,
-        "highlightNewEvents": true,
-        "highlightNewerThan": "1h",
-        "hostField": true,
-        "hostGroups": false,
-        "hostIpField": false,
-        "hostProxy": false,
-        "hostTechNameField": false,
-        "lastChangeFormat": "",
-        "layout": "table",
-        "markAckEvents": true,
-        "okEventColor": "#73BF69",
-        "opdataField": true,
-        "pageSize": 5,
-        "problemTimeline": true,
-        "resizedColumns": [],
-        "schemaVersion": 8,
-        "severityField": true,
-        "showDatasourceName": false,
-        "showSearchFilter": false,
-        "showTags": false,
-        "sortProblems": "priority",
-        "statusField": false,
-        "statusIcon": false
+        "footer": {
+          "reducer": [
+            "count"
+          ],
+          "show": false
+        },
+        "noDataText": "✅ Red de Switches Estable: 0 Puertos en Flapping Activo (Últimos 7 Días)",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Caídas (7d)"
+          }
+        ]
       },
-      "pluginVersion": "6.8.0",
       "targets": [
         {
-          "application": {
-            "filter": ""
-          },
-          "datasource": {
-            "type": "alexanderzobnin-zabbix-datasource",
-            "uid": "efz4nzx8r30g0c"
-          },
           "group": {
-            "filter": "/(switch|Switches)/"
+            "filter": "/.*Switches.*/"
           },
           "host": {
-            "filter": "/${sede:raw}/"
+            "filter": "/.*/"
           },
           "options": {
-            "acknowledged": 2,
-            "hostsInMaintenance": false,
-            "limit": 50,
             "minSeverity": 2,
-            "severities": [
-              2,
-              3,
-              4,
-              5
-            ],
-            "showDisabledItems": false,
-            "sortProblems": "priority",
-            "useTimeRange": false
-          },
-          "proxy": {
-            "filter": ""
+            "problems": "all",
+            "showSuppress": false
           },
           "queryType": "5",
-          "refId": "A",
-          "schema": 12,
-          "showProblems": "problems",
-          "tags": {
-            "filter": ""
-          },
-          "trigger": {
-            "filter": "/.*(Flapping|recurrente).*/"
+          "refId": "FLAP",
+          "schema": 13
+        }
+      ],
+      "timeFrom": "7d",
+      "title": "🔌 Detección de Link Flapping: Puertos Inestables en Switches (Últimos 7 Días)",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "json",
+            "source": "Problems"
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "regex",
+                  "options": {
+                    "value": ".*Link down.*"
+                  }
+                },
+                "fieldName": "name"
+              }
+            ],
+            "match": "regex",
+            "type": "include"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Problems": true,
+              "acknowledged": true,
+              "comments": true,
+              "description": true,
+              "eventid": true,
+              "groups": true,
+              "items": true,
+              "opdata": true,
+              "suppressed": true,
+              "suppression_data": true,
+              "tags": true,
+              "triggerid": true,
+              "url": true,
+              "value": true
+            },
+            "indexByName": {
+              "hosts": 0,
+              "name": 1,
+              "severity": 3,
+              "timestamp": 2
+            },
+            "renameByName": {
+              "hosts": "Switch",
+              "name": "Puerto / Interfaz con Caídas",
+              "severity": "Severidad",
+              "timestamp": "Último Incidente"
+            }
           }
         }
       ],
-      "title": "🔌 Detección de Link Flapping: Puertos Inestables en Switches",
-      "type": "alexanderzobnin-zabbix-triggers-panel"
+      "type": "table"
     },
     {
       "datasource": {
@@ -6874,5 +6842,5 @@
   "timezone": "browser",
   "title": "NOC - Zabbix Command Center",
   "uid": "noc-zabbix-command-center",
-  "version": 41
+  "version": 39
 }

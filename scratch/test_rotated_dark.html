@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Test Rotated Dark MatrixMAX</title>
+<style>
+  body {
+    background: #0B0F19;
+    color: #F8FAFC;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding: 40px;
+  }
+
+  /* MatrixMAX Container - Harmonious Dark Theme */
+  .matrixmax-outer-container {
+    background: #0F172A; /* Slate 900 - matches Grafana panels */
+    border: 1px solid #1E293B;
+    border-radius: 8px;
+    padding: 16px 20px 20px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Toolbar */
+  .matrixmax-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1E293B;
+  }
+
+  .matrixmax-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .matrixmax-title-logo {
+    font-size: 18px;
+    font-weight: 800;
+    color: #38BDF8; /* Sky blue */
+    letter-spacing: -0.3px;
+  }
+
+  .matrixmax-subtitle {
+    font-size: 11px;
+    color: #94A3B8;
+    font-weight: 500;
+  }
+
+  .matrixmax-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .matrixmax-search {
+    background: #1E293B;
+    border: 1px solid #334155;
+    color: #F8FAFC;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    outline: none;
+    width: 180px;
+    transition: all 0.15s ease;
+  }
+  .matrixmax-search:focus {
+    border-color: #38BDF8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+  }
+
+  .matrixmax-btn {
+    background: #1E293B;
+    border: 1px solid #334155;
+    color: #CBD5E1;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .matrixmax-btn:hover {
+    background: #334155;
+    color: #FFFFFF;
+    border-color: #38BDF8;
+  }
+
+  /* Scroll pane */
+  .matrixmax-scroll-pane {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 520px;
+    padding: 0 0 8px 0;
+  }
+
+  /* Table styling */
+  table.matrix-table {
+    border-collapse: separate !important;
+    border-spacing: 6px 4px !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  /* Reset all table default styles from Grafana */
+  table.matrix-table th,
+  table.matrix-table td {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .th-host-corner {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+    vertical-align: bottom;
+    padding-bottom: 8px !important;
+  }
+
+  .th-corner-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    padding-left: 4px;
+  }
+
+  /* ROTATED COLUMN HEADERS */
+  .th-col-rotated {
+    height: 90px;
+    width: 32px;
+    min-width: 32px;
+    max-width: 32px;
+    vertical-align: bottom;
+    position: relative;
+    padding: 0 !important;
+  }
+
+  .th-rot-wrapper {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+    white-space: nowrap;
+    pointer-events: none;
+    width: 100px;
+  }
+
+  .th-rot-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94A3B8;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  .matrix-row:hover .td-host {
+    color: #38BDF8;
+  }
+
+  /* Host Row Label */
+  .td-host {
+    font-size: 12px;
+    font-weight: 600;
+    color: #E2E8F0;
+    padding: 4px 8px !important;
+    white-space: nowrap;
+    text-align: left;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s ease;
+    border-radius: 4px;
+  }
+
+  .maint-wrench {
+    color: #F97316;
+    margin-left: 5px;
+    font-size: 13px;
+    display: inline-block;
+  }
+
+  /* Status Tile (26px x 26px) */
+  .cell-tile {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    min-height: 26px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+    margin: 0 auto;
+  }
+
+  .cell-tile:hover {
+    transform: scale(1.25);
+    filter: brightness(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    position: relative;
+  }
+
+  /* Status Tile States */
+  .cell-tile.ok {
+    background: #16A34A; /* Emerald green */
+    color: #FFFFFF;
+    box-shadow: 0 0 6px rgba(22, 163, 74, 0.3);
+  }
+  .cell-tile.empty {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1.5px solid #334155;
+    color: transparent;
+  }
+  .cell-tile.info {
+    background: #2563EB; /* Blue */
+    color: #FFFFFF;
+    font-family: serif;
+    font-style: italic;
+  }
+  .cell-tile.warning {
+    background: #D97706; /* Amber */
+    color: #FFFFFF;
+  }
+  .cell-tile.average {
+    background: #EA580C; /* Orange */
+    color: #FFFFFF;
+  }
+  .cell-tile.high {
+    background: #DC2626; /* Red */
+    color: #FFFFFF;
+  }
+  .cell-tile.disaster {
+    background: #991B1B; /* Dark red disaster */
+    color: #FFFFFF;
+    animation: pulseTile 2s infinite;
+  }
+
+  @keyframes pulseTile {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+    70% { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+  }
+
+  /* Footer Legend */
+  .matrixmax-footer-legend {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    color: #94A3B8;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #1E293B;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cell-tile-mini {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .cell-tile-mini.ok { background: #16A34A; color: #FFFFFF; }
+  .cell-tile-mini.empty { background: rgba(30, 41, 59, 0.4); border: 1.5px solid #334155; }
+  .cell-tile-mini.info { background: #2563EB; color: #FFFFFF; font-family: serif; font-style: italic; }
+  .cell-tile-mini.warning { background: #D97706; color: #FFFFFF; }
+  .cell-tile-mini.average { background: #EA580C; color: #FFFFFF; }
+  .cell-tile-mini.high { background: #DC2626; color: #FFFFFF; }
+  .cell-tile-mini.disaster { background: #991B1B; color: #FFFFFF; }
+</style>
+</head>
+<body>
+
+<div class="matrixmax-outer-container">
+  <div class="matrixmax-toolbar">
+    <div class="matrixmax-brand">
+      <span class="matrixmax-title-logo">matrixMAX</span>
+      <span class="matrixmax-subtitle">Matriz de Salud de Infraestructura · Milicic S.A.</span>
+    </div>
+    <div class="matrixmax-actions">
+      <input type="text" id="matrix-search-box" class="matrixmax-search" placeholder="🔍 Filtrar host..." />
+      <button type="button" id="matrix-btn-sort-sev" class="matrixmax-btn">Severidad ↓</button>
+      <button type="button" id="matrix-btn-sort-name" class="matrixmax-btn">A-Z</button>
+    </div>
+  </div>
+
+  <div id="matrix-table-mount" class="matrixmax-scroll-pane">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th class="th-host-corner"><span class="th-corner-text">HOST / DISPOSITIVO</span></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">web</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">api</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">cpu</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">memory</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">disk</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">network</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">dns</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">cert</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">vpn</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">mail</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">backup</span></div></th>
+          <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">replication</span></div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="matrix-row">
+          <td class="td-host">AP PAÑOL</td>
+          <td><div class="cell-tile disaster">✕</div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile high">!</div></td>
+          <td><div class="cell-tile ok">✓</div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+        </tr>
+        <tr class="matrix-row">
+          <td class="td-host">FTG_ar-368-acueducto</td>
+          <td><div class="cell-tile disaster">✕</div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile ok">✓</div></td>
+          <td><div class="cell-tile ok">✓</div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile high">!</div></td>
+          <td><div class="cell-tile ok">✓</div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile high">!</div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+        </tr>
+        <tr class="matrix-row">
+          <td class="td-host">UPS E02 PA <span class="maint-wrench">🔧</span></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile ok">✓</div></td>
+          <td><div class="cell-tile ok">✓</div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile warning">▲</div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+          <td><div class="cell-tile empty"></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="matrixmax-footer-legend">
+    <span class="legend-item"><span class="cell-tile-mini ok">✓</span> OK</span>
+    <span class="legend-item"><span class="cell-tile-mini info">i</span> Information</span>
+    <span class="legend-item"><span class="cell-tile-mini warning">▲</span> Warning</span>
+    <span class="legend-item"><span class="cell-tile-mini average">↑</span> Average</span>
+    <span class="legend-item"><span class="cell-tile-mini high">!</span> High</span>
+    <span class="legend-item"><span class="cell-tile-mini disaster">✕</span> Disaster</span>
+    <span class="legend-item"><span class="cell-tile-mini empty"></span> Sin Control</span>
+    <span class="legend-item"><span style="font-size: 13px;">🔧</span> Mantenimiento</span>
+  </div>
+</div>
+
+</body>
+</html>

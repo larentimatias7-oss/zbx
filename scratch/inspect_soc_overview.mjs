@@ -11,7 +11,7 @@ if (!token) {
 const req = http.request({
   hostname: '172.27.210.154',
   port: 3005,
-  path: '/api/search?type=dash-db',
+  path: '/api/dashboards/uid/milicic-soc-overview',
   method: 'GET',
   headers: {
     'Authorization': 'Bearer ' + token,
@@ -22,13 +22,13 @@ const req = http.request({
   res.on('data', c => b += c);
   res.on('end', () => {
     try {
-      const list = JSON.parse(b);
-      console.log('Total dashboards in Grafana:', list.length);
-      list.forEach(d => console.log('  -', d.title, '| UID:', d.uid, '| URL:', d.url));
+      const data = JSON.parse(b);
+      console.log('Title:', data.dashboard?.title);
+      console.log('Panels count:', data.dashboard?.panels?.length);
+      data.dashboard?.panels?.forEach(p => console.log('  -', p.id, p.type, p.title));
     } catch (e) {
-      console.error('Error parsing JSON:', b);
+      console.error(e);
     }
   });
 });
-req.on('error', console.error);
 req.end();

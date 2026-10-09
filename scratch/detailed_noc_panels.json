@@ -1,0 +1,2012 @@
+[
+  {
+    "id": 1,
+    "row": "Cabecera & KPIs Principales",
+    "title": "(Banner / Cabecera)",
+    "displayName": "",
+    "type": "marcusolsson-dynamictext-panel",
+    "description": "",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "green",
+          "value": 0
+        },
+        {
+          "color": "red",
+          "value": 80
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "Zabbix servers",
+        "host": "Zabbix server",
+        "item": "Zabbix agent ping",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 12,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "id": 16,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Último dato recibido",
+    "displayName": "",
+    "type": "stat",
+    "description": "Antigüedad de la última muestra del agente Zabbix. Si crece, la recolección se frenó.",
+    "unit": "dateTimeFromNow",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#38BDF8",
+          "value": 0
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "Zabbix servers",
+        "host": "Zabbix server",
+        "item": "Zabbix agent ping",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 4,
+      "x": 16,
+      "y": 0
+    }
+  },
+  {
+    "id": 11,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Facilities & Energía (UPS)",
+    "displayName": "",
+    "type": "stat",
+    "description": "Estado de operación y conectividad de UPS en Datacenters.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#73BF69",
+          "value": 180
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "options": {
+          "from": 180,
+          "result": {
+            "color": "#73BF69",
+            "index": 0,
+            "text": "ONLINE"
+          },
+          "to": 260
+        },
+        "type": "range"
+      },
+      {
+        "options": {
+          "match": "null+nan",
+          "result": {
+            "color": "#6B7280",
+            "index": 1,
+            "text": "SIN DATOS"
+          }
+        },
+        "type": "special"
+      }
+    ],
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "UPS",
+        "host": "/.*/",
+        "item": "/(Ups Input Voltage|Input Voltage|Input phase 1 voltage)/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 4,
+      "x": 20,
+      "y": 0
+    }
+  },
+  {
+    "id": 3,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Nodos",
+    "displayName": "",
+    "type": "stat",
+    "description": "Cantidad total de hosts distintos activos con ICMP ping o agent ping.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#38BDF8",
+          "value": 0
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/.*/",
+        "host": "/${sede:raw}/",
+        "item": "/(ICMP ping|agent.ping)/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 2,
+      "x": 0,
+      "y": 3
+    }
+  },
+  {
+    "id": 7,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Salud Global (Disponibilidad)",
+    "displayName": "",
+    "type": "gauge",
+    "description": "Porcentaje global de disponibilidad en vivo de toda la infraestructura.",
+    "unit": "percentunit",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#F2CC0C",
+          "value": 0.85
+        },
+        {
+          "color": "#FADE2A",
+          "value": 0.92
+        },
+        {
+          "color": "#73BF69",
+          "value": 0.96
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/.*/",
+        "host": "/${sede:raw}/",
+        "item": "/(ICMP ping|agent.ping)/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 3,
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "id": 4,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Incidentes Críticos (Disaster/High)",
+    "displayName": "",
+    "type": "stat",
+    "description": "Problemas activos en Zabbix con severidad High o Disaster.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#E02F44",
+          "value": 1
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "5",
+        "group": "/.*/",
+        "host": "/${sede:raw}/",
+        "item": "",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 2,
+      "x": 5,
+      "y": 3
+    }
+  },
+  {
+    "id": 5,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Alertas Preventivas (Warning/Average)",
+    "displayName": "",
+    "type": "stat",
+    "description": "Problemas activos en Zabbix con severidad Warning o Average.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 1
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "5",
+        "group": "/.*/",
+        "host": "/${sede:raw}/",
+        "item": "",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 3,
+      "x": 7,
+      "y": 3
+    }
+  },
+  {
+    "id": 2,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Zabbix Server",
+    "displayName": "",
+    "type": "stat",
+    "description": "Estado del agente en el host Zabbix server (1 = responde).",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#73BF69",
+          "value": 1
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "options": {
+          "0": {
+            "color": "#E02F44",
+            "index": 0,
+            "text": "CAÍDO"
+          },
+          "1": {
+            "color": "#73BF69",
+            "index": 1,
+            "text": "ONLINE"
+          }
+        },
+        "type": "value"
+      },
+      {
+        "options": {
+          "match": "null+nan",
+          "result": {
+            "color": "#6B7280",
+            "index": 2,
+            "text": "SIN DATOS"
+          }
+        },
+        "type": "special"
+      }
+    ],
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "Zabbix servers",
+        "host": "Zabbix server",
+        "item": "Zabbix agent ping",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 3,
+      "x": 10,
+      "y": 3
+    }
+  },
+  {
+    "id": 10,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Redes (Switches) y APs (Aruba)",
+    "displayName": "",
+    "type": "stat",
+    "description": "Switches de distribución/acceso y Access Points Aruba.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#73BF69",
+          "value": 1
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "options": {
+          "0": {
+            "color": "#E02F44",
+            "index": 0,
+            "text": "DOWN"
+          },
+          "1": {
+            "color": "#73BF69",
+            "index": 1,
+            "text": "UP"
+          }
+        },
+        "type": "value"
+      },
+      {
+        "options": {
+          "match": "null+nan",
+          "result": {
+            "color": "#6B7280",
+            "index": 2,
+            "text": "SIN DATOS"
+          }
+        },
+        "type": "special"
+      }
+    ],
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(switch|ARUBA APs|ANTENAS P2P)/",
+        "host": "/${sede:raw}/",
+        "item": "ICMP ping",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 9,
+      "w": 11,
+      "x": 13,
+      "y": 3
+    }
+  },
+  {
+    "id": 9,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Infra. Core & Servidores (Cómputo & Storage)",
+    "displayName": "",
+    "type": "stat",
+    "description": "Servidores físicos y virtuales, Hipervisores, Controladores de Dominio, Storage y Backup (26 hosts únicos).",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#73BF69",
+          "value": 1
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "options": {
+          "0": {
+            "color": "#E02F44",
+            "index": 0,
+            "text": "DOWN"
+          },
+          "1": {
+            "color": "#73BF69",
+            "index": 1,
+            "text": "UP"
+          }
+        },
+        "type": "value"
+      },
+      {
+        "options": {
+          "match": "null+nan",
+          "result": {
+            "color": "#6B7280",
+            "index": 2,
+            "text": "SIN DATOS"
+          }
+        },
+        "type": "special"
+      }
+    ],
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|AD|Datacenter|Applications)/",
+        "host": "/${sede:raw}/",
+        "item": "ICMP ping",
+        "application": ""
+      },
+      {
+        "refId": "B",
+        "queryType": "0",
+        "group": "/(Zabbix servers|Backup_Server|Applications)/",
+        "host": "/(Zabbix server|SSJ-BKP01|SSJ-SVC01|JumpServer)/",
+        "item": "Zabbix agent ping",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 13,
+      "x": 0,
+      "y": 6
+    }
+  },
+  {
+    "id": 17,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Tensión de entrada UPS (V)",
+    "displayName": "",
+    "type": "stat",
+    "description": "Tensión de red eléctrica en cada UPS (Umbrales calibrados para red 220V).",
+    "unit": "volt",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 190
+        },
+        {
+          "color": "#73BF69",
+          "value": 205
+        },
+        {
+          "color": "#FADE2A",
+          "value": 245
+        },
+        {
+          "color": "#E02F44",
+          "value": 255
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "options": {
+          "match": "null+nan",
+          "result": {
+            "color": "#6B7280",
+            "index": 2,
+            "text": "SIN DATOS"
+          }
+        },
+        "type": "special"
+      }
+    ],
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "UPS",
+        "host": "/.*/",
+        "item": "/(Ups Input Voltage|Input Voltage|Input phase 1 voltage)/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 5,
+      "w": 3,
+      "x": 13,
+      "y": 12
+    }
+  },
+  {
+    "id": 15,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Tráfico de Sesiones Activas (FortiGates SD-WAN)",
+    "displayName": "",
+    "type": "timeseries",
+    "description": "Sesiones IPv4 concurrentes cursadas por los firewalls de borde.",
+    "unit": "short",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "green",
+          "value": 0
+        },
+        {
+          "color": "red",
+          "value": 80
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/${sede:raw}/",
+        "item": "/IPv4 Active sessions/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 9,
+      "w": 8,
+      "x": 16,
+      "y": 12
+    }
+  },
+  {
+    "id": 8,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Perímetro SD-WAN (FortiGates)",
+    "displayName": "",
+    "type": "stat",
+    "description": "Un cuadrado por FortiGate (ICMP ping). Verde = UP, Rojo = DOWN, Gris = Sin Datos.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#73BF69",
+          "value": 1
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "options": {
+          "0": {
+            "color": "#E02F44",
+            "index": 0,
+            "text": "DOWN"
+          },
+          "1": {
+            "color": "#73BF69",
+            "index": 1,
+            "text": "UP"
+          }
+        },
+        "type": "value"
+      },
+      {
+        "options": {
+          "match": "null+nan",
+          "result": {
+            "color": "#6B7280",
+            "index": 2,
+            "text": "SIN DATOS"
+          }
+        },
+        "type": "special"
+      }
+    ],
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/${sede:raw}/",
+        "item": "ICMP ping",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 13,
+      "x": 0,
+      "y": 14
+    }
+  },
+  {
+    "id": 13,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Top 5 Servidores (Consumo CPU %)",
+    "displayName": "",
+    "type": "bargauge",
+    "description": "Servidores de cómputo con mayor utilización de CPU en tiempo real (excluye switches/firewalls).",
+    "unit": "percent",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 75
+        },
+        {
+          "color": "#E02F44",
+          "value": 90
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/",
+        "host": "/${sede:raw}/",
+        "item": "/^CPU utilization$/",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 6,
+      "x": 0,
+      "y": 21
+    }
+  },
+  {
+    "id": 18,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Top 5 Servidores (Consumo RAM %)",
+    "displayName": "",
+    "type": "bargauge",
+    "description": "Servidores de cómputo con mayor utilización de RAM en tiempo real (excluye switches/firewalls).",
+    "unit": "percent",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 75
+        },
+        {
+          "color": "#E02F44",
+          "value": 90
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/",
+        "host": "/${sede:raw}/",
+        "item": "Memory utilization",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 6,
+      "x": 6,
+      "y": 21
+    }
+  },
+  {
+    "id": 19,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Top 5 Servidores (Uso de Disco %)",
+    "displayName": "",
+    "type": "bargauge",
+    "description": "Servidores de cómputo con mayor utilización de RAM en tiempo real (excluye switches/firewalls).",
+    "unit": "percent",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 80
+        },
+        {
+          "color": "#E02F44",
+          "value": 90
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/",
+        "host": "/${sede:raw}/",
+        "item": "/FS \\[.*(:\\)|\\/$)\\].*Space: Used, in %/",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 6,
+      "x": 12,
+      "y": 21
+    }
+  },
+  {
+    "id": 14,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Top 5 Datacenters (Carga Eléctrica UPS %)",
+    "displayName": "",
+    "type": "bargauge",
+    "description": "Porcentaje de carga eléctrica en las UPS monitoreadas (telemetría directa).",
+    "unit": "percent",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 60
+        },
+        {
+          "color": "#E02F44",
+          "value": 80
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "UPS",
+        "host": "/.*/",
+        "item": "/^(UPS Load \\(%\\)|Output Load Estimated)$/",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 6,
+      "x": 18,
+      "y": 21
+    }
+  },
+  {
+    "id": 12,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Feed de Incidentes Activos en Tiempo Real (Alertas Zabbix)",
+    "displayName": "",
+    "type": "alexanderzobnin-zabbix-triggers-panel",
+    "description": "Panel nativo Zabbix Problems (alexanderzobnin-zabbix-triggers-panel). Problemas abiertos ordenados por prioridad y filtrables por sede y severidad.",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "5",
+        "group": "/.*/",
+        "host": "/${sede:raw}/",
+        "item": "",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 10,
+      "w": 24,
+      "x": 0,
+      "y": 60
+    }
+  },
+  {
+    "id": 20,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Top 5 Sedes WAN (Mayor Latencia Ping ms)",
+    "displayName": "",
+    "type": "bargauge",
+    "description": "",
+    "unit": "s",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 0.05
+        },
+        {
+          "color": "#E02F44",
+          "value": 0.1
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(FortiGate|ANTENAS P2P)/",
+        "host": "/${sede:raw}/",
+        "item": "ICMP response time",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 6,
+      "x": 0,
+      "y": 28
+    }
+  },
+  {
+    "id": 21,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Top 5 Enlaces WAN / Internet (Ancho de Banda)",
+    "displayName": "",
+    "type": "bargauge",
+    "description": "",
+    "unit": "bps",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 50000000
+        },
+        {
+          "color": "#E02F44",
+          "value": 100000000
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/${sede:raw}/",
+        "item": "/Interface (port14|port15|wan|internet|claro|tasa|rosario|telecom).*: Bits received/",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 6,
+      "x": 6,
+      "y": 28
+    }
+  },
+  {
+    "id": 22,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Top Sedes WAN (Pérdida de Paquetes ICMP %)",
+    "displayName": "",
+    "type": "bargauge",
+    "description": "",
+    "unit": "percent",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 1
+        },
+        {
+          "color": "#E02F44",
+          "value": 5
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(FortiGate|ANTENAS P2P)/",
+        "host": "/${sede:raw}/",
+        "item": "ICMP loss",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 6,
+      "x": 12,
+      "y": 28
+    }
+  },
+  {
+    "id": 23,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Top 5 Storage SAN HPE MSA (Carga IOPS)",
+    "displayName": "",
+    "type": "bargauge",
+    "description": "",
+    "unit": "iops",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 100
+        },
+        {
+          "color": "#E02F44",
+          "value": 300
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(Storage_Server|Storage)/",
+        "host": "/${sede:raw}/",
+        "item": "/Disk group .*: IOPS, total rate/",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 6,
+      "x": 18,
+      "y": 28
+    }
+  },
+  {
+    "id": 24,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Teletrabajo (VPN SSL Activas)",
+    "displayName": "",
+    "type": "stat",
+    "description": "",
+    "unit": "none",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#5794F2",
+          "value": 0
+        },
+        {
+          "color": "#73BF69",
+          "value": 10
+        },
+        {
+          "color": "#FADE2A",
+          "value": 60
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/milicic_border1/",
+        "item": "Active SSL VPN users",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 3,
+      "w": 4,
+      "x": 12,
+      "y": 0
+    }
+  },
+  {
+    "id": 27,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Tendencia Comparativa de Tráfico WAN por Sede / Proyecto (Mbps)",
+    "displayName": "",
+    "type": "timeseries",
+    "description": "",
+    "unit": "bps",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/${sede:raw}/",
+        "item": "/Interface (port14|port15|wan1|wan).*: Bits received/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 24,
+      "x": 0,
+      "y": 44
+    }
+  },
+  {
+    "id": 28,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Autonomía Baterías UPS (Min)",
+    "displayName": "",
+    "type": "stat",
+    "description": "",
+    "unit": "m",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#FADE2A",
+          "value": 30
+        },
+        {
+          "color": "#73BF69",
+          "value": 60
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "UPS",
+        "host": "/.*/",
+        "item": "Battery Time Remaining",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 4,
+      "w": 3,
+      "x": 13,
+      "y": 17
+    }
+  },
+  {
+    "id": 29,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Borde Central: Balanceo ISP (Telecom TASA vs Claro) - In/Out",
+    "displayName": "",
+    "type": "timeseries",
+    "description": "",
+    "unit": "bps",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/milicic_border1/",
+        "item": "/Interface port1[45].*: Bits received/",
+        "application": ""
+      },
+      {
+        "refId": "B",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/milicic_border1/",
+        "item": "/Interface port1[45].*: Bits sent/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 44
+    }
+  },
+  {
+    "id": 30,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Malla de Túneles IPsec Core (Interconexión Rosario ➔ San Juan & SAP Cloud)",
+    "displayName": "",
+    "type": "stat",
+    "description": "",
+    "unit": "none",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#E02F44",
+          "value": 0
+        },
+        {
+          "color": "#5794F2",
+          "value": 1
+        },
+        {
+          "color": "#73BF69",
+          "value": 2
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "options": {
+          "0": {
+            "color": "#E02F44",
+            "index": 2,
+            "text": "DOWN"
+          },
+          "1": {
+            "color": "#5794F2",
+            "index": 1,
+            "text": "STANDBY"
+          },
+          "2": {
+            "color": "#73BF69",
+            "index": 0,
+            "text": "UP (Activo)"
+          }
+        },
+        "type": "value"
+      }
+    ],
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/milicic_border1/",
+        "item": "/VPN (sap-pri|ros1sj1|ros1sj2|ros2sj1|ros2sj2|sap-bkp).*: Tunnel Status/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 12,
+      "y": 44
+    }
+  },
+  {
+    "id": 25,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia, Pérdida y Sesiones)",
+    "displayName": "",
+    "type": "table",
+    "description": "",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/${sede:raw}/",
+        "item": "ICMP ping",
+        "application": ""
+      },
+      {
+        "refId": "B",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/${sede:raw}/",
+        "item": "ICMP response time",
+        "application": ""
+      },
+      {
+        "refId": "C",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/${sede:raw}/",
+        "item": "ICMP loss",
+        "application": ""
+      },
+      {
+        "refId": "D",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/${sede:raw}/",
+        "item": "/IPv4 Active sessions/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 9,
+      "w": 12,
+      "x": 0,
+      "y": 35
+    }
+  },
+  {
+    "id": 26,
+    "row": "Cabecera & KPIs Principales",
+    "title": "Matriz de Servidores & Roles Críticos (Salud, CPU, RAM y Disco C:)",
+    "displayName": "",
+    "type": "table",
+    "description": "",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/",
+        "host": "/${sede:raw}/",
+        "item": "ICMP ping",
+        "application": ""
+      },
+      {
+        "refId": "B",
+        "queryType": "0",
+        "group": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/",
+        "host": "/${sede:raw}/",
+        "item": "/^CPU utilization$/",
+        "application": ""
+      },
+      {
+        "refId": "C",
+        "queryType": "0",
+        "group": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/",
+        "host": "/${sede:raw}/",
+        "item": "Memory utilization",
+        "application": ""
+      },
+      {
+        "refId": "D",
+        "queryType": "0",
+        "group": "/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/",
+        "host": "/${sede:raw}/",
+        "item": "FS [(C:)]: Space: Used, in %",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 9,
+      "w": 12,
+      "x": 12,
+      "y": 35
+    }
+  },
+  {
+    "id": 151,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "Bloqueos AD (24h)",
+    "displayName": "Bloqueos AD (24h)",
+    "type": "stat",
+    "description": "Total de cuentas bloqueadas en el bosque en las últimas 24 horas (Multi-DC). Métrica calculada en tiempo real.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": null
+        },
+        {
+          "color": "#FA6400",
+          "value": 1
+        },
+        {
+          "color": "#E02F44",
+          "value": 5
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Total Bloqueos de Cuenta (24h - Multi-DC)",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 4,
+      "w": 4,
+      "x": 0,
+      "y": 71
+    }
+  },
+  {
+    "id": 152,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "Fallos Logon (24h)",
+    "displayName": "Fallos Logon (24h)",
+    "type": "stat",
+    "description": "Intentos fallidos de autenticación (Event 4625) en el bosque en las últimas 24 horas. Tráfico de fondo normal < 400.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": null
+        },
+        {
+          "color": "#F2CC0C",
+          "value": 400
+        },
+        {
+          "color": "#FA6400",
+          "value": 1000
+        },
+        {
+          "color": "#E02F44",
+          "value": 2500
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Total Intentos Fallidos (24h - Multi-DC)",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 4,
+      "w": 4,
+      "x": 4,
+      "y": 71
+    }
+  },
+  {
+    "id": 153,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "🚨 Detección de Bucle Kerberos (24h)",
+    "displayName": "Bucle Kerberos (24h)",
+    "type": "stat",
+    "description": "Detección de anomalías por bucles de reintentos continuos con credenciales expiradas (Event 4771 · Código 0x18). Umbral normal < 500. Alerta si > 2,000.",
+    "unit": "",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": null
+        },
+        {
+          "color": "#F2CC0C",
+          "value": 500
+        },
+        {
+          "color": "#E02F44",
+          "value": 2000
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Fallos Preautenticación Kerberos (24h - Multi-DC)",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 4,
+      "w": 4,
+      "x": 8,
+      "y": 71
+    }
+  },
+  {
+    "id": 154,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "Ratio NTLM / Kerb",
+    "displayName": "Ratio NTLM / Kerb",
+    "type": "stat",
+    "description": "Proporción de autenticaciones legadas NTLM vs Kerberos moderno en el dominio (Postura de seguridad: <15% es óptimo).",
+    "unit": "percentunit",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": null
+        },
+        {
+          "color": "#F2CC0C",
+          "value": 0.15
+        },
+        {
+          "color": "#FA6400",
+          "value": 0.35
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "A",
+        "queryType": "0",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Ratio Autenticación NTLM / Kerberos (24h)",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 4,
+      "w": 4,
+      "x": 12,
+      "y": 71
+    }
+  },
+  {
+    "id": 155,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "🚨 Detección Forense Dinámica: Bucles Kerberos (Event 4771)",
+    "displayName": "",
+    "type": "table",
+    "description": "Telemetría dinámica de preautenticación Kerberos (Event 4771). Captura en tiempo real estaciones, usuarios y códigos de fallo (0x18 credencial vieja cacheada) en bucle de reintentos contra el PDC SRO-DCO01.",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "USER",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Usuario Fallo Preauth Kerberos",
+        "application": ""
+      },
+      {
+        "refId": "IP",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "IP Origen Fallo Preauth Kerberos",
+        "application": ""
+      },
+      {
+        "refId": "CODE",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Código Fallo Preauth Kerberos",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 4,
+      "w": 8,
+      "x": 16,
+      "y": 71
+    }
+  },
+  {
+    "id": 156,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "🔒 Historial Forense de Bloqueos de Cuenta (Event 4740) — Últimos 7 Días",
+    "displayName": "",
+    "type": "table",
+    "description": "Correlación de cuenta bloqueada, workstation de origen y timestamp en el bosque MLCCNET.LOCAL.",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "USER",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "User locked Name",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "PC",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "User Locked PC",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 75
+    }
+  },
+  {
+    "id": 157,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "👥 Auditoría Forense de Grupos Privilegiados (Event IDs 4728 · 4732 · 4756)",
+    "displayName": "",
+    "type": "table",
+    "description": "Modificación de pertenencia a grupos de administración y seguridad.",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "DCO01_OP",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Operador de Modificación de Grupo",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "DCO01_GRP",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Nombre de Grupo Modificado",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "DCO01_MBR",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Miembro Afectado de Grupo",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "DCO01_ACT",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Acción de Modificación de Grupo",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "DCO02_OP",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO02",
+        "item": "Operador de Modificación de Grupo",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "DCO02_GRP",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO02",
+        "item": "Nombre de Grupo Modificado",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "DCO02_MBR",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO02",
+        "item": "Miembro Afectado de Grupo",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "DCO02_ACT",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO02",
+        "item": "Acción de Modificación de Grupo",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "SSJ_OP",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SSJ-DCO01",
+        "item": "Operador de Modificación de Grupo",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "SSJ_GRP",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SSJ-DCO01",
+        "item": "Nombre de Grupo Modificado",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "SSJ_MBR",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SSJ-DCO01",
+        "item": "Miembro Afectado de Grupo",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "SSJ_ACT",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SSJ-DCO01",
+        "item": "Acción de Modificación de Grupo",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 12,
+      "y": 75
+    }
+  },
+  {
+    "id": 158,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "📈 Tasa Horaria de Fallos de Autenticación (Event 4625 · Multi-DC)",
+    "displayName": "Fallos/Hora",
+    "type": "timeseries",
+    "description": "Evolución horaria de intentos de inicio de sesión fallidos en controladores de dominio. Permite identificar patrones de horarios y picos anómalos de contraseñas erróneas.",
+    "unit": "short",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": null
+        },
+        {
+          "color": "#F2CC0C",
+          "value": 25
+        },
+        {
+          "color": "#FA6400",
+          "value": 50
+        },
+        {
+          "color": "#E02F44",
+          "value": 100
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "DCO01",
+        "queryType": "0",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Tasa de Fallos de Autenticación (1h) · SRO-DCO01",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "DCO02",
+        "queryType": "0",
+        "group": "AD",
+        "host": "SRO-DCO02",
+        "item": "Tasa de Fallos de Autenticación (1h) · SRO-DCO02",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 12,
+      "x": 0,
+      "y": 83
+    }
+  },
+  {
+    "id": 159,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "🛡️ Telemetría de Protocolos: Kerberos vs NTLM Legado (Bosque MLCCNET)",
+    "displayName": "",
+    "type": "timeseries",
+    "description": "Postura de ciberseguridad: Evolución del ratio de autenticaciones legadas NTLM vs Kerberos moderno y tasa de pre-autenticaciones.",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "RATIO",
+        "queryType": "0",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Ratio Autenticación NTLM / Kerberos (24h)",
+        "application": {
+          "filter": ""
+        }
+      },
+      {
+        "refId": "KERB",
+        "queryType": "0",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Fallos Preautenticación Kerberos (24h - Multi-DC)",
+        "application": {
+          "filter": ""
+        }
+      }
+    ],
+    "gridPos": {
+      "h": 7,
+      "w": 12,
+      "x": 12,
+      "y": 83
+    }
+  },
+  {
+    "id": 161,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "🔌 Detección de Link Flapping: Puertos Inestables en Switches (Últimos 7 Días)",
+    "displayName": "",
+    "type": "table",
+    "description": "Monitoreo dinámico de interfaces de acceso con flapping (>4 caídas/hora en últimos 7 días). Actualmente 0 puertos en flapping (Red de Acceso Saludable). Ante inestabilidad de enlace, el puerto aparecerá automáticamente en esta tabla.",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "FLAP",
+        "queryType": "5",
+        "group": "/.*Switches.*/",
+        "host": "/.*/",
+        "item": "",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 52
+    }
+  },
+  {
+    "id": 162,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "📡 Matriz de Calidad SD-WAN: Pérdida de Paquetes en Overlays (Sedes & Minería)",
+    "displayName": "",
+    "type": "table",
+    "description": "Monitoreo de calidad de servicio y pérdida de paquetes en los túneles SD-WAN IPsec hacia campamentos mineros y sedes remotas (Posco, Río Tinto, YPF, Las Flores). Alerta enlaces degradados.",
+    "unit": "percent",
+    "thresholds": {
+      "mode": "absolute",
+      "steps": [
+        {
+          "color": "#73BF69",
+          "value": 0
+        },
+        {
+          "color": "#F2CC0C",
+          "value": 2
+        },
+        {
+          "color": "#FA6400",
+          "value": 5
+        },
+        {
+          "color": "#E02F44",
+          "value": 10
+        }
+      ]
+    },
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "LOSS",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/.*ar-.*/",
+        "item": "/.*Packets loss.*/",
+        "application": ""
+      },
+      {
+        "refId": "LAT",
+        "queryType": "0",
+        "group": "FortiGate",
+        "host": "/.*ar-.*/",
+        "item": "/.*Latency.*/",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 12,
+      "y": 52
+    }
+  },
+  {
+    "id": 160,
+    "row": "🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)",
+    "title": "🚨 Detección Forense Dinámica: Intentos Fallidos & Fuerza Bruta (Event 4625 · Multi-DC)",
+    "displayName": "",
+    "type": "table",
+    "description": "Telemetría forense agrupada por cuenta de usuario en los Domain Controllers (SRO-DCO01, SRO-DCO02, SSJ-DCO01). Totaliza intentos fallidos, detecta ataques de fuerza bruta en curso (>5 fallos) y reporta IP de origen, último intento y causa exacta.",
+    "unit": "",
+    "thresholds": null,
+    "mappings": null,
+    "targets": [
+      {
+        "refId": "USER",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Usuario con Fallo de Logon",
+        "application": ""
+      },
+      {
+        "refId": "IP",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "IP Origen con Fallo de Logon",
+        "application": ""
+      },
+      {
+        "refId": "STATUS",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "/.*Sub-Status.*/",
+        "application": ""
+      },
+      {
+        "refId": "DC",
+        "queryType": "2",
+        "group": "AD",
+        "host": "SRO-DCO01",
+        "item": "Controlador de Dominio Fallo Logon",
+        "application": ""
+      }
+    ],
+    "gridPos": {
+      "h": 8,
+      "w": 24,
+      "x": 0,
+      "y": 90
+    }
+  }
+]

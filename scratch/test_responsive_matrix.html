@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Dark MatrixMAX Test</title>
+<style>
+  body {
+    background: #0B0F19;
+    color: #F8FAFC;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding: 24px;
+    margin: 0;
+  }
+
+  .matrixmax-outer-container {
+    background: #0F172A;
+    border: 1px solid #1E293B;
+    border-radius: 8px;
+    padding: 16px 20px 18px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .matrixmax-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1E293B;
+  }
+
+  .matrixmax-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .matrixmax-title-logo {
+    font-size: 18px;
+    font-weight: 800;
+    color: #38BDF8;
+    letter-spacing: -0.3px;
+  }
+  .matrixmax-subtitle {
+    font-size: 11px;
+    color: #94A3B8;
+    font-weight: 500;
+  }
+
+  .matrixmax-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .matrixmax-search {
+    background: #1E293B;
+    border: 1px solid #334155;
+    color: #F8FAFC;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    outline: none;
+    width: 180px;
+  }
+  .matrixmax-search:focus {
+    border-color: #38BDF8;
+  }
+
+  .matrixmax-btn {
+    background: #1E293B;
+    border: 1px solid #334155;
+    color: #CBD5E1;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .matrixmax-btn:hover {
+    background: #334155;
+    color: #FFFFFF;
+    border-color: #38BDF8;
+  }
+
+  .matrixmax-scroll-pane {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 520px;
+    width: 100%;
+    padding-bottom: 8px;
+  }
+
+  /* RESPONSIVE TABLE (100% WIDTH) */
+  table.matrix-table {
+    width: 100% !important;
+    min-width: 760px;
+    table-layout: fixed !important;
+    border-collapse: separate !important;
+    border-spacing: 0px 4px !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  table.matrix-table thead,
+  table.matrix-table tbody,
+  table.matrix-table tr,
+  table.matrix-table th,
+  table.matrix-table td {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  table.matrix-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #0F172A !important;
+  }
+
+  /* Host Column: 28% */
+  .th-host-corner {
+    width: 28%;
+    min-width: 170px;
+    vertical-align: bottom;
+    padding: 0 8px 10px 4px !important;
+    text-align: left;
+  }
+  .th-corner-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Check Columns: 6% each */
+  .th-col-rotated {
+    width: 6%;
+    min-width: 40px;
+    height: 85px;
+    vertical-align: bottom;
+    position: relative;
+    padding: 0 !important;
+    text-align: center;
+  }
+
+  .th-rot-wrapper {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+    white-space: nowrap;
+    width: 85px;
+    text-align: left;
+    pointer-events: none;
+  }
+  .th-rot-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94A3B8;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .td-host {
+    width: 28%;
+    min-width: 170px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #E2E8F0;
+    padding: 6px 10px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+    border-radius: 4px;
+    text-decoration: none;
+    display: block;
+    box-sizing: border-box;
+  }
+  .matrix-row:hover .td-host {
+    color: #38BDF8;
+    background: rgba(30, 41, 59, 0.6);
+  }
+
+  .td-cell-container {
+    width: 6%;
+    min-width: 40px;
+    text-align: center !important;
+    vertical-align: middle !important;
+    padding: 2px !important;
+  }
+
+  .cell-tile {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    margin: 0 auto;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+  }
+  .cell-tile:hover {
+    transform: scale(1.22);
+    filter: brightness(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    position: relative;
+  }
+
+  .cell-tile.ok { background: #16A34A; color: #FFFFFF; }
+  .cell-tile.empty { background: rgba(30, 41, 59, 0.4); border: 1.5px solid #334155; color: transparent; }
+  .cell-tile.info { background: #2563EB; color: #FFFFFF; font-family: serif; font-style: italic; }
+  .cell-tile.warning { background: #D97706; color: #FFFFFF; }
+  .cell-tile.average { background: #EA580C; color: #FFFFFF; }
+  .cell-tile.high { background: #DC2626; color: #FFFFFF; }
+  .cell-tile.disaster { background: #991B1B; color: #FFFFFF; }
+
+  .matrixmax-footer-legend {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    color: #94A3B8;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #1E293B;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+  <div class="matrixmax-outer-container">
+    <div class="matrixmax-toolbar">
+      <div class="matrixmax-brand">
+        <span class="matrixmax-title-logo">matrixMAX</span>
+        <span class="matrixmax-subtitle">Matriz de Salud de Infraestructura · Milicic S.A.</span>
+      </div>
+      <div class="matrixmax-actions">
+        <input type="text" class="matrixmax-search" placeholder="🔍 Filtrar host..." />
+        <button type="button" class="matrixmax-btn">Severidad ↓</button>
+        <button type="button" class="matrixmax-btn">A-Z</button>
+      </div>
+    </div>
+    <div class="matrixmax-scroll-pane">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th class="th-host-corner"><span class="th-corner-text">HOST / DISPOSITIVO</span></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">web</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">api</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">cpu</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">memory</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">disk</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">network</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">dns</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">cert</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">vpn</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">mail</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">backup</span></div></th>
+            <th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">replication</span></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="matrix-row">
+            <td><a class="td-host" href="https://zabbix.mlccnet.local/zabbix.php?action=problem.view&hostids[]=10701" target="_blank">SRO-DCO02</a></td>
+            <td class="td-cell-container"><a class="cell-tile ok" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: web | Estado: OK">✓</a></td>
+            <td class="td-cell-container"><a class="cell-tile empty" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: api | Sin Control"></a></td>
+            <td class="td-cell-container"><a class="cell-tile ok" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: cpu | Estado: OK">✓</a></td>
+            <td class="td-cell-container"><a class="cell-tile ok" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: memory | Estado: OK">✓</a></td>
+            <td class="td-cell-container"><a class="cell-tile ok" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: disk | Estado: OK">✓</a></td>
+            <td class="td-cell-container"><a class="cell-tile ok" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: network | Estado: OK">✓</a></td>
+            <td class="td-cell-container"><a class="cell-tile ok" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: dns | Estado: OK">✓</a></td>
+            <td class="td-cell-container"><a class="cell-tile warning" href="https://zabbix.mlccnet.local/zabbix.php?action=problem.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: cert | Warning: System time sync drift > 60s">▲</a></td>
+            <td class="td-cell-container"><a class="cell-tile empty" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: vpn | Sin Control"></a></td>
+            <td class="td-cell-container"><a class="cell-tile empty" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: mail | Sin Control"></a></td>
+            <td class="td-cell-container"><a class="cell-tile ok" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: backup | Estado: OK">✓</a></td>
+            <td class="td-cell-container"><a class="cell-tile ok" href="https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=10701" target="_blank" title="Host: SRO-DCO02 | Check: replication | Estado: OK">✓</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{
+  "FTG_ar-368-acueducto": {
+    "hostid": "10774",
+    "host": "FTG_ar-368-acueducto_SNMP"
+  },
+  "vCenter": {
+    "hostid": "10680",
+    "host": "vCenter"
+  },
+  "SRO-MDS01": {
+    "hostid": "10782",
+    "host": "SRO-MDS01"
+  },
+  "FTG_ar-ssj-predio": {
+    "hostid": "10780",
+    "host": "FTG_ar-ssj-predio_SNMP"
+  },
+  "FTG_milicic_border1": {
+    "hostid": "10725",
+    "host": "FTG_milicic_border1_HTTP"
+  },
+  "FTG_ar-377-YPF": {
+    "hostid": "10779",
+    "host": "FTG_ar-377-YPF_3er-Loop_SNMP"
+  },
+  "SRO-E02-PB00-ACC01": {
+    "hostid": "10796",
+    "host": "SRO-E02-PB00-ACC01"
+  },
+  "SW Ed Gris PB": {
+    "hostid": "10797",
+    "host": "SRO-E02-PB00-ACC02"
+  },
+  "SRO-G01-P100-DIS01": {
+    "hostid": "10799",
+    "host": "SRO-G01-P100-DIS01"
+  },
+  "SRO-SIP01": {
+    "hostid": "10790",
+    "host": "SRO-SIP01"
+  },
+  "SRO-FIL01": {
+    "hostid": "10698",
+    "host": "SRO-FIL01"
+  },
+  "SRO-APP02": {
+    "hostid": "10789",
+    "host": "SRO-APP02"
+  },
+  "SRO-APP03": {
+    "hostid": "10785",
+    "host": "SRO-APP03"
+  },
+  "SRO-DCO02": {
+    "hostid": "10701",
+    "host": "SRO-DCO02"
+  },
+  "SRO-SVC01": {
+    "hostid": "10702",
+    "host": "SRO-SVC01"
+  },
+  "UPS E02 PA": {
+    "hostid": "10802",
+    "host": "UPS E02 PA"
+  },
+  "SRO-E02-PB00-CORE01": {
+    "hostid": "10708",
+    "host": "SRO-E02-PB00-CORE01"
+  },
+  "SRO-E02-PB00-CORE02": {
+    "hostid": "10722",
+    "host": "SRO-E02-PB00-CORE02"
+  }
+}

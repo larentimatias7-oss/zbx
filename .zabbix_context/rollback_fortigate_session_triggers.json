@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-10-08T13:23:24.145Z",
+  "host": "FTG_milicic_border1_SNMP",
+  "hostid": "10697",
+  "itemid": "51366",
+  "created_triggers": [
+    {
+      "triggerid": "39514",
+      "description": "FTG_milicic_border1_SNMP: Sesiones concurrentes elevadas (>18.000 sesiones)",
+      "priority": 2
+    },
+    {
+      "triggerid": "39515",
+      "description": "FTG_milicic_border1_SNMP: Saturación crítica de sesiones concurrentes (>22.000 sesiones)",
+      "priority": 4
+    }
+  ]
+}

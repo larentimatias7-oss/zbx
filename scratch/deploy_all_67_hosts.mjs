@@ -1,0 +1,953 @@
+import http from 'http';
+import fs from 'fs';
+import { execSync } from 'child_process';
+
+let token = process.env.GRAFANA_SERVICE_ACCOUNT_TOKEN || '';
+if (!token) {
+  try {
+    token = execSync('powershell.exe -NoProfile -Command "[System.Environment]::GetEnvironmentVariable(\'GRAFANA_SERVICE_ACCOUNT_TOKEN\', \'User\')"', { encoding: 'utf8' }).trim();
+  } catch (e) {
+    console.warn('Could not read user env var:', e.message);
+  }
+}
+
+const grafanaHost = '172.27.210.154';
+const grafanaPort = 3005;
+
+function grafanaRequest(method, path, data = null) {
+  return new Promise((resolve, reject) => {
+    const payload = data ? JSON.stringify(data) : null;
+    const req = http.request({
+      hostname: grafanaHost,
+      port: grafanaPort,
+      path: path,
+      method: method,
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        ...(payload ? { 'Content-Length': Buffer.byteLength(payload) } : {})
+      }
+    }, res => {
+      let b = '';
+      res.on('data', c => b += c);
+      res.on('end', () => {
+        try {
+          resolve({ status: res.statusCode, data: JSON.parse(b) });
+        } catch (e) {
+          resolve({ status: res.statusCode, raw: b });
+        }
+      });
+    });
+    req.on('error', reject);
+    if (payload) req.write(payload);
+    req.end();
+  });
+}
+
+function parseToolOutput(path) {
+  const content = fs.readFileSync(path, 'utf8');
+  const lines = content.split('\n');
+  const startIdx = lines.findIndex(l => l.trim() === '[');
+  return JSON.parse(lines.slice(startIdx).join('\n'));
+}
+
+const rawHosts = parseToolOutput('C:/Users/matias.larenti/.gemini/antigravity-ide/brain/cc9dd136-6a4b-4468-890d-48b93061f177/.system_generated/steps/984/output.txt');
+const rawTriggers = parseToolOutput('C:/Users/matias.larenti/.gemini/antigravity-ide/brain/cc9dd136-6a4b-4468-890d-48b93061f177/.system_generated/steps/998/output.txt');
+
+const enabledHosts = rawHosts.filter(h => h.status === '0');
+
+// Group triggers by hostid
+const hostTriggers = {};
+rawTriggers.forEach(t => {
+  const h = t.hosts?.[0];
+  if (!h) return;
+  if (!hostTriggers[h.hostid]) hostTriggers[h.hostid] = [];
+  hostTriggers[h.hostid].push(t);
+});
+
+function detectSede(h) {
+  const name = (h.name || h.host || '').toUpperCase();
+  const ip = h.interfaces?.[0]?.ip || '';
+  if (name.includes('SSJ') || name.includes('SAN JUAN') || ip.startsWith('172.29.')) return 'SSJ';
+  if (name.startsWith('FTG_AR-') || name.includes('OBRADOR') || name.includes('MINERA') || name.includes('CAMPAMENTO') || name.includes('VELADERO') || name.includes('JOSEMARIA') || name.includes('GUACOLDA') || name.includes('ACUEDUCTO') || name.includes('SAL DE VIDA') || name.includes('ALUMBRERA')) return 'OBRADOR';
+  return 'SRO';
+}
+
+function detectTier(h) {
+  const name = (h.name || h.host || '').toUpperCase();
+  if (name.includes('CORE') || name.includes('BORDER')) return 'Core';
+  if (name.startsWith('FTG_')) return 'Perimeter';
+  if (name.includes('DIS')) return 'Distribution';
+  if (name.includes('ACC') || name.includes('SW') || name.startsWith('AP ') || name.includes('P2P')) return 'Access';
+  if (name.includes('STO') || name.includes('NAS')) return 'Storage';
+  if (name.includes('SQL') || name.includes('SAPR')) return 'Database';
+  if (name.includes('VCENTER') || name.includes('HPV')) return 'Virtualization';
+  if (name.includes('UPS')) return 'Facilities';
+  return 'Service';
+}
+
+const categories = ['web', 'api', 'cpu', 'memory', 'disk', 'network', 'dns', 'cert', 'vpn', 'mail', 'backup', 'replication'];
+
+const statusMap = {
+  ok: { cls: 'ok', icon: '✓', name: 'OK', sev: 0 },
+  empty: { cls: 'empty', icon: '', name: 'Sin Control', sev: -1 },
+  info: { cls: 'info', icon: 'i', name: 'Information', sev: 1 },
+  warning: { cls: 'warning', icon: '▲', name: 'Warning', sev: 2 },
+  average: { cls: 'average', icon: '↑', name: 'Average', sev: 3 },
+  high: { cls: 'high', icon: '!', name: 'High', sev: 4 },
+  disaster: { cls: 'disaster', icon: '✕', name: 'Disaster', sev: 5 }
+};
+
+function categorizeTrigger(desc) {
+  const d = desc.toLowerCase();
+  if (d.includes('unavailable by icmp') || d.includes('ping') || d.includes('host is unavailable') || d.includes('http service')) return 'web';
+  if (d.includes('zabbix agent') || d.includes('service') || d.includes('process')) return 'api';
+  if (d.includes('cpu') || d.includes('processor')) return 'cpu';
+  if (d.includes('memory') || d.includes('swap') || d.includes('ram')) return 'memory';
+  if (d.includes('disk') || d.includes('space') || d.includes('datastore') || d.includes('fs [') || d.includes('filesystem')) return 'disk';
+  if (d.includes('vpn') || d.includes('tunnel') || d.includes('sd-wan') || d.includes('packet') || d.includes('packets loss')) return 'vpn';
+  if (d.includes('interface') || d.includes('link') || d.includes('ethernet') || d.includes('flapping') || d.includes('speed') || d.includes('duplex') || d.includes('bandwidth')) return 'network';
+  if (d.includes('time') || d.includes('ntp') || d.includes('dns') || d.includes('sync')) return 'dns';
+  if (d.includes('temperature') || d.includes('tpm') || d.includes('snmp data collection') || d.includes('sin monitoreo snmp') || d.includes('certificate') || d.includes('cert')) return 'cert';
+  if (d.includes('mail') || d.includes('smtp') || d.includes('exchange')) return 'mail';
+  if (d.includes('backup')) return 'backup';
+  if (d.includes('ha') || d.includes('replication') || d.includes('cluster')) return 'replication';
+  return 'network';
+}
+
+function priorityToSevName(pri) {
+  if (pri >= 5) return 'disaster';
+  if (pri === 4) return 'high';
+  if (pri === 3) return 'average';
+  if (pri === 2) return 'warning';
+  if (pri === 1) return 'info';
+  return 'ok';
+}
+
+function determinePLevel(pri) {
+  if (pri >= 4) return '🚨 P1 Crítico (0m Inmediato)';
+  if (pri === 3) return '⚠️ P2 Redes/Plataforma (10m delay)';
+  if (pri === 2) return '📋 P3 Preventivo (30m delay)';
+  return 'ℹ️ P3 Informativo';
+}
+
+function determineTg(pri) {
+  if (pri >= 4) return '🚨 Alertas P1 CRITICAS (-1004383937012)';
+  return '📋 Alertas General (-1004396424523)';
+}
+
+const allHostsList = enabledHosts.map(h => {
+  const hostid = h.hostid;
+  const name = h.name || h.host;
+  const sede = detectSede(h);
+  const tier = detectTier(h);
+  const trs = hostTriggers[hostid] || [];
+
+  const isNet = tier === 'Access' || tier === 'Core' || tier === 'Distribution' || tier === 'Perimeter' || tier === 'Facilities';
+  const isStorage = tier === 'Storage';
+  const isSrv = !isNet && !isStorage;
+
+  const cells = {
+    web: 'ok',
+    api: isSrv ? 'ok' : 'empty',
+    cpu: isNet && tier === 'Access' ? 'empty' : 'ok',
+    memory: isNet && tier === 'Access' ? 'empty' : 'ok',
+    disk: isNet ? 'empty' : 'ok',
+    network: 'ok',
+    dns: isSrv || tier === 'Core' || tier === 'Perimeter' ? 'ok' : 'empty',
+    cert: isSrv || tier === 'Perimeter' || tier === 'Facilities' ? 'ok' : 'empty',
+    vpn: tier === 'Perimeter' || tier === 'Core' ? 'ok' : 'empty',
+    mail: isSrv ? 'empty' : 'empty',
+    backup: isSrv || isStorage ? 'ok' : 'empty',
+    replication: isStorage || tier === 'Virtualization' || tier === 'Database' ? 'ok' : 'empty'
+  };
+
+  const details = {};
+
+  trs.forEach(t => {
+    const pri = parseInt(t.priority);
+    const cat = categorizeTrigger(t.description);
+    const sev = priorityToSevName(pri);
+    const p_level = determinePLevel(pri);
+    const tg = determineTg(pri);
+
+    const sevPriority = { disaster: 5, high: 4, average: 3, warning: 2, info: 1, ok: 0, empty: -1 };
+    if (!cells[cat] || sevPriority[sev] > (sevPriority[cells[cat]] || 0)) {
+      cells[cat] = sev;
+      details[cat] = {
+        sev: pri,
+        text: `${sev.toUpperCase()}: ${t.description}`,
+        p_level,
+        tg
+      };
+    }
+  });
+
+  return {
+    name,
+    hostid,
+    sede,
+    tier,
+    maint: false,
+    cells,
+    details
+  };
+});
+
+// Sort hosts: SRO first, then SSJ, then OBRADOR; within each, by name
+const sedeOrder = { SRO: 1, SSJ: 2, OBRADOR: 3 };
+allHostsList.sort((a, b) => {
+  if (sedeOrder[a.sede] !== sedeOrder[b.sede]) return sedeOrder[a.sede] - sedeOrder[b.sede];
+  return a.name.localeCompare(b.name);
+});
+
+const counts = {
+  total: allHostsList.length,
+  sro: allHostsList.filter(h => h.sede === 'SRO').length,
+  ssj: allHostsList.filter(h => h.sede === 'SSJ').length,
+  obrador: allHostsList.filter(h => h.sede === 'OBRADOR').length,
+  degraded: allHostsList.filter(h => Object.keys(h.details || {}).length > 0).length
+};
+
+console.log('Processed Hosts Summary:', counts);
+
+// Column statistics across ALL 67 hosts for the PRO systemic summary row
+const colStats = {};
+categories.forEach(c => {
+  colStats[c] = { total: 0, maxSev: 0 };
+  allHostsList.forEach(h => {
+    const d = h.details && h.details[c];
+    if (d && d.sev > 0) {
+      colStats[c].total++;
+      if (d.sev > colStats[c].maxSev) colStats[c].maxSev = d.sev;
+    }
+  });
+});
+
+console.log('Column Stats Summary:');
+categories.forEach(c => console.log(`  ${c}: ${colStats[c].total} degraded (maxSev: ${colStats[c].maxSev})`));
+
+// ==========================================
+// BUILD PANEL 10 (ORIGINAL / ESTÁNDAR)
+// ==========================================
+function buildPanel10Html(hosts) {
+  let tableHtml = '<table class="matrixmax-table" id="matrixmax-main-table"><thead><tr>';
+  tableHtml += '<th class="th-host-corner"><span class="th-corner-text">HOST / DISPOSITIVO (' + hosts.length + ')</span></th>';
+  categories.forEach(c => {
+    tableHtml += '<th class="th-col-rotated"><div class="th-rot-wrapper"><span class="th-rot-text">' + c + '</span></div></th>';
+  });
+  tableHtml += '</tr></thead><tbody>';
+
+  hosts.forEach(h => {
+    const hostUrl = 'https://zabbix.mlccnet.local/zabbix.php?action=problem.view&hostids[]=' + h.hostid;
+    htmlRow: {
+      tableHtml += '<tr class="matrixmax-row" data-name="' + h.name.toLowerCase() + '">';
+      tableHtml += '<td style="vertical-align: middle;">';
+      tableHtml += '<a class="td-host-link" href="' + hostUrl + '" target="_blank" rel="noopener noreferrer" data-host="' + h.name + '" title="Abrir en Zabbix">';
+      tableHtml += '<span class="host-name-txt">' + h.name + '</span>';
+      tableHtml += ' <span style="font-size:10px; color:#64748B;">(' + h.sede + ')</span>';
+      tableHtml += '</a></td>';
+
+      categories.forEach(cat => {
+        const stateKey = (h.cells && h.cells[cat]) ? h.cells[cat] : 'empty';
+        const st = statusMap[stateKey] || statusMap.empty;
+        const d = (h.details && h.details[cat]) ? h.details[cat] : null;
+
+        let title = 'Host: ' + h.name + ' | Check: ' + cat + ' | Estado: ' + st.name;
+        if (d) {
+          title = 'Host: ' + h.name + ' | Check: ' + cat + '\n' + d.text;
+        }
+
+        let targetUrl = '';
+        if (st.sev > 0) {
+          targetUrl = 'https://zabbix.mlccnet.local/zabbix.php?action=problem.view&hostids[]=' + h.hostid;
+        } else {
+          targetUrl = 'https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=' + h.hostid;
+        }
+
+        tableHtml += '<td class="td-cell-container">';
+        tableHtml += '<a class="cell-tile ' + st.cls + '" href="' + targetUrl + '" target="_blank" rel="noopener noreferrer" data-host="' + h.name + '" data-tag="' + cat + '" title="' + title + '">';
+        tableHtml += st.icon;
+        tableHtml += '</a></td>';
+      });
+
+      tableHtml += '</tr>';
+    }
+  });
+
+  tableHtml += '</tbody></table>';
+
+  const fullHtml = `
+<div class="matrixmax-outer-container">
+  <div class="matrixmax-toolbar">
+    <div class="matrixmax-brand">
+      <span class="matrixmax-title-logo">🎯 matrixMAX <small style="font-size: 11px; color: #94A3B8; font-weight: normal;">(Original / Estándar)</small></span>
+      <span class="matrixmax-subtitle">Matriz de Salud de Infraestructura Completa (${hosts.length} Hosts) · Milicic S.A.</span>
+    </div>
+    <div class="matrixmax-actions">
+      <input type="text" id="matrixmax-search-box" class="matrixmax-search" placeholder="🔍 Filtrar host o check..." />
+      <button type="button" id="matrixmax-btn-sort-sev" class="matrixmax-btn" title="Ordenar por mayor severidad">Severidad ↓</button>
+      <button type="button" id="matrixmax-btn-sort-name" class="matrixmax-btn" title="Ordenar alfabéticamente">A-Z</button>
+    </div>
+  </div>
+
+  <div id="matrixmax-table-mount" class="matrixmax-scroll-pane">
+${tableHtml}
+  </div>
+
+  <div class="matrixmax-footer-legend">
+    <div class="legend-left">
+      <span class="legend-item"><span class="cell-tile-mini ok">✓</span> OK</span>
+      <span class="legend-item"><span class="cell-tile-mini info">i</span> Info</span>
+      <span class="legend-item"><span class="cell-tile-mini warning">▲</span> Warning</span>
+      <span class="legend-item"><span class="cell-tile-mini average">↑</span> Average</span>
+      <span class="legend-item"><span class="cell-tile-mini high">!</span> High</span>
+      <span class="legend-item"><span class="cell-tile-mini disaster">✕</span> Disaster</span>
+      <span class="legend-item"><span class="cell-tile-mini empty"></span> Sin Control</span>
+    </div>
+    <div class="legend-right">
+      <span class="legend-tip">Clic en celda o host abre vista en Zabbix Web</span>
+    </div>
+  </div>
+</div>
+`.split('\n').map(l => l.trim()).filter(Boolean).join('\n');
+
+  return fullHtml;
+}
+
+// ==========================================
+// BUILD PANEL 15 (MATRIXMAX PRO OPTIMIZADO)
+// ==========================================
+function buildPanel15Html(hosts) {
+  let tableHtml = '<table class="matrixpro-table" id="matrixpro-main-table"><thead><tr>';
+  tableHtml += '<th class="thpro-host-corner"><span class="thpro-corner-text">HOST / DISPOSITIVO &bull; SEDE &bull; TIER</span></th>';
+  categories.forEach(c => {
+    tableHtml += '<th class="thpro-col-rotated"><div class="thpro-rot-wrapper"><span class="thpro-rot-text">' + c + '</span></div></th>';
+  });
+  tableHtml += '</tr></thead><tbody>';
+
+  hosts.forEach(h => {
+    const hasAlarm = Object.keys(h.details || {}).length > 0;
+    const hostUrl = 'https://zabbix.mlccnet.local/zabbix.php?action=problem.view&hostids[]=' + h.hostid;
+
+    tableHtml += '<tr class="matrixpro-row" data-name="' + h.name.toLowerCase() + '" data-sede="' + h.sede + '" data-hasalarm="' + hasAlarm + '">';
+    tableHtml += '<td style="vertical-align: middle;">';
+    tableHtml += '<a class="tdpro-host" href="' + hostUrl + '" target="_blank" rel="noopener noreferrer" data-host="' + h.name + '" title="Abrir ' + h.name + ' en Zabbix (Clic abre nueva pestaña)">';
+    tableHtml += '<span class="host-name-txt">' + h.name + '</span>';
+    if (h.maint) {
+      tableHtml += ' <span class="maint-wrench" title="Mantenimiento programado activo">🔧</span>';
+    }
+    tableHtml += '<div class="host-meta-badges">';
+    tableHtml += '<span class="badge-sede ' + h.sede.toLowerCase() + '">' + h.sede + '</span>';
+    tableHtml += '<span class="badge-tier">' + h.tier + '</span>';
+    tableHtml += '</div>';
+    tableHtml += '</a></td>';
+
+    categories.forEach(cat => {
+      const stateKey = (h.cells && h.cells[cat]) ? h.cells[cat] : 'empty';
+      const st = statusMap[stateKey] || statusMap.empty;
+      const d = (h.details && h.details[cat]) ? h.details[cat] : null;
+
+      let title = 'Host: ' + h.name + ' (' + h.sede + ') | Check: ' + cat + ' | Estado: ' + st.name;
+      if (d) {
+        title = 'Host: ' + h.name + ' (' + h.sede + ') | Check: ' + cat + '\n' +
+                'Falla: ' + d.text + '\n' +
+                'Canal: ' + d.p_level + '\n' +
+                'Telegram: ' + d.tg + ' (Clic para ver en Zabbix)';
+      }
+
+      let targetUrl = '';
+      if (st.sev > 0) {
+        targetUrl = 'https://zabbix.mlccnet.local/zabbix.php?action=problem.view&hostids[]=' + h.hostid;
+      } else {
+        targetUrl = 'https://zabbix.mlccnet.local/zabbix.php?action=latest.view&hostids[]=' + h.hostid;
+      }
+
+      tableHtml += '<td class="tdpro-cell-container">';
+      tableHtml += '<a class="cell-tile ' + st.cls + '" href="' + targetUrl + '" target="_blank" rel="noopener noreferrer" data-host="' + h.name + '" data-tag="' + cat + '" data-sev="' + st.sev + '" data-hostid="' + h.hostid + '" title="' + title + '">';
+      tableHtml += st.icon;
+      tableHtml += '</a></td>';
+    });
+    tableHtml += '</tr>';
+  });
+
+  tableHtml += '</tbody>';
+
+  // TFOOT: IMPACTO SISTÉMICO / RESUMEN TRANSVERSAL
+  tableHtml += '<tfoot>';
+  tableHtml += '<tr class="matrixpro-summary-row">';
+  tableHtml += '<td class="tdpro-summary-label">';
+  tableHtml += '<div class="summary-label-content">';
+  tableHtml += '<span class="summary-title">🚨 IMPACTO SISTÉMICO (NODOS AFECTADOS)</span>';
+  tableHtml += '<span class="summary-sub">Detección O(1) de fallas transversales de servicio</span>';
+  tableHtml += '</div></td>';
+
+  categories.forEach(c => {
+    const stat = colStats[c];
+    let badgeClass = 'summary-ok';
+    let icon = '✓';
+    let badgeText = '0';
+
+    if (stat.total > 0) {
+      badgeText = String(stat.total);
+      if (stat.maxSev >= 4) {
+        badgeClass = 'summary-disaster';
+        icon = '✕';
+      } else if (stat.maxSev === 3) {
+        badgeClass = 'summary-avg';
+        icon = '↑';
+      } else {
+        badgeClass = 'summary-warn';
+        icon = '▲';
+      }
+    }
+
+    const colTitle = 'Categoría: ' + c + '\nTotal nodos degradados: ' + stat.total + (stat.total > 0 ? ' (ALERTA TRANSVERSAL)' : ' (ESTADO NORMAL)');
+
+    tableHtml += '<td class="tdpro-summary-cell" title="' + colTitle + '">';
+    tableHtml += '<div class="summary-pill ' + badgeClass + '">';
+    tableHtml += '<span class="summary-count">' + badgeText + '</span>';
+    tableHtml += '<span class="summary-icon">' + icon + '</span>';
+    tableHtml += '</div></td>';
+  });
+
+  tableHtml += '</tr></tfoot></table>';
+
+  const fullHtml = `
+<div class="matrixpro-outer-container">
+  <div class="matrixpro-toolbar">
+    <div class="matrixpro-brand">
+      <div class="brand-title-wrap">
+        <span class="matrixpro-title-logo">🔥 matrixMAX PRO</span>
+        <span class="matrixpro-version-badge">v2.0 NOC MEJORADO</span>
+      </div>
+      <span class="matrixpro-subtitle">Matriz de Salud con Detección Sistémica Transversal & Triage · Milicic S.A.</span>
+    </div>
+
+    <div class="matrixpro-actions">
+      <!-- Triage Filter Button -->
+      <button type="button" id="btn-triage-toggle" class="matrixpro-btn triage-btn" title="Alternar entre ver todos los hosts o solo los degradados">
+        <span class="btn-icon">🚨</span> <span id="triage-btn-text">Solo Alarmas (${counts.degraded})</span>
+      </button>
+
+      <!-- Sede Filter Pills -->
+      <div class="matrixpro-filter-group" id="filter-sede-group">
+        <button type="button" class="sede-pill active" data-sede="all">Todas (${counts.total})</button>
+        <button type="button" class="sede-pill" data-sede="SRO">Rosario (${counts.sro})</button>
+        <button type="button" class="sede-pill" data-sede="SSJ">San Juan (${counts.ssj})</button>
+        <button type="button" class="sede-pill" data-sede="OBRADOR">Obradores (${counts.obrador})</button>
+      </div>
+
+      <!-- Search -->
+      <input type="text" id="matrixpro-search-box" class="matrixpro-search" placeholder="🔍 Filtrar host, sede o check..." />
+
+      <!-- Sort -->
+      <button type="button" id="matrixpro-btn-sort-sev" class="matrixpro-btn" title="Ordenar por mayor severidad">Severidad ↓</button>
+      <button type="button" id="matrixpro-btn-sort-name" class="matrixpro-btn" title="Ordenar alfabéticamente">A-Z</button>
+    </div>
+  </div>
+
+  <div id="matrixpro-table-mount" class="matrixpro-scroll-pane">
+${tableHtml}
+  </div>
+
+  <div class="matrixpro-footer-legend">
+    <div class="legend-left">
+      <span class="legend-item"><span class="cell-tile-mini ok">✓</span> OK</span>
+      <span class="legend-item"><span class="cell-tile-mini info">i</span> Info (P3)</span>
+      <span class="legend-item"><span class="cell-tile-mini warning">▲</span> Warning (P3 30m)</span>
+      <span class="legend-item"><span class="cell-tile-mini average">↑</span> Average (P2 10m)</span>
+      <span class="legend-item"><span class="cell-tile-mini high">!</span> High (P1 0m)</span>
+      <span class="legend-item"><span class="cell-tile-mini disaster">✕</span> Disaster (P1 0m)</span>
+      <span class="legend-item"><span class="cell-tile-mini empty"></span> Sin Control</span>
+      <span class="legend-item"><span style="font-size: 13px;">🔧</span> Mantenimiento</span>
+    </div>
+    <div class="legend-right">
+      <span class="legend-tip">💡 <b>NOC TIP:</b> Fila roja = falla local en 1 host. Columna roja = falla sistémica transversal de servicio.</span>
+    </div>
+  </div>
+</div>
+`.split('\n').map(l => l.trim()).filter(Boolean).join('\n');
+
+  return fullHtml;
+}
+
+// CSS for Panel 10
+const matrix10Css = `
+.matrixmax-outer-container {
+  background: #0B0F19;
+  border: 1px solid #1E293B;
+  border-radius: 8px;
+  padding: 16px 20px 18px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #F8FAFC;
+  width: 100%;
+  box-sizing: border-box;
+}
+.matrixmax-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #1E293B;
+}
+.matrixmax-brand { display: flex; flex-direction: column; gap: 3px; }
+.matrixmax-title-logo { font-size: 18px; font-weight: 700; color: #38BDF8; letter-spacing: -0.02em; }
+.matrixmax-subtitle { font-size: 11px; color: #94A3B8; }
+.matrixmax-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.matrixmax-search {
+  background: #06090E; border: 1px solid #334155; border-radius: 4px;
+  color: #F8FAFC; padding: 6px 12px; font-size: 12px; outline: none; width: 220px;
+}
+.matrixmax-search:focus { border-color: #38BDF8; }
+.matrixmax-btn {
+  background: #1E293B; border: 1px solid #334155; border-radius: 4px;
+  color: #E2E8F0; padding: 6px 10px; font-size: 11px; font-weight: 600; cursor: pointer;
+}
+.matrixmax-btn:hover { background: #334155; color: #FFF; }
+.matrixmax-scroll-pane {
+  overflow-x: auto; overflow-y: auto; max-height: 480px; width: 100%;
+  border-radius: 6px; border: 1px solid #1E293B; background: #070B13;
+}
+.matrixmax-table {
+  width: 100% !important; min-width: 820px; border-collapse: collapse; table-layout: fixed !important;
+}
+.matrixmax-table thead th {
+  background: #0B0F19; position: sticky; top: 0; z-index: 10; border-bottom: 1px solid #1E293B;
+}
+.th-host-corner {
+  height: 85px; vertical-align: bottom; padding: 8px 12px 10px 12px;
+  text-align: left; width: 28% !important; border-right: 1px solid #1E293B;
+}
+.th-corner-text {
+  font-size: 10px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.th-col-rotated {
+  height: 85px; position: relative; vertical-align: bottom; padding: 0;
+  width: 6% !important; text-align: center; border-right: 1px solid #1E293B;
+}
+.th-rot-wrapper {
+  position: absolute; bottom: 10px; left: 50%; width: 20px; height: 60px;
+  transform: rotate(-45deg); transform-origin: 0 100%; white-space: nowrap; pointer-events: none;
+}
+.th-rot-text {
+  font-size: 11px; font-weight: 700; color: #CBD5E1; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.matrixmax-row { border-bottom: 1px solid #131B2A; transition: background 0.15s ease; }
+.matrixmax-row:hover { background: rgba(56, 189, 248, 0.06); }
+.matrixmax-row:nth-child(even) { background: rgba(15, 23, 42, 0.35); }
+.matrixmax-row:nth-child(even):hover { background: rgba(56, 189, 248, 0.08); }
+.td-host-link {
+  display: block; padding: 7px 12px; text-decoration: none; border-right: 1px solid #1E293B;
+}
+.host-name-txt { font-size: 12px; font-weight: 600; color: #F1F5F9; }
+.td-host-link:hover .host-name-txt { color: #38BDF8; text-decoration: underline; }
+.td-cell-container {
+  padding: 4px; text-align: center; vertical-align: middle;
+  border-right: 1px solid #131B2A; width: 6% !important;
+}
+.cell-tile {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 4px; font-size: 11px; font-weight: bold;
+  text-decoration: none; cursor: pointer; transition: transform 0.1s ease, filter 0.1s ease;
+}
+.cell-tile:hover { transform: scale(1.18); filter: brightness(1.2); }
+.cell-tile.ok { background: #16A34A; color: #FFFFFF; }
+.cell-tile.empty { background: rgba(30, 41, 59, 0.4); color: transparent; border: 1px solid rgba(51, 65, 85, 0.4); }
+.cell-tile.info { background: #0284C7; color: #FFFFFF; }
+.cell-tile.warning { background: #D97706; color: #FFFFFF; }
+.cell-tile.average { background: #EA580C; color: #FFFFFF; }
+.cell-tile.high { background: #DC2626; color: #FFFFFF; }
+.cell-tile.disaster { background: #991B1B; color: #FFFFFF; }
+.matrixmax-footer-legend {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid #1E293B;
+  flex-wrap: wrap; gap: 8px; font-size: 11px; color: #94A3B8;
+}
+.legend-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.cell-tile-mini {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; border-radius: 3px; font-size: 9px; font-weight: bold;
+}
+.cell-tile-mini.ok { background: #16A34A; color: #FFF; }
+.cell-tile-mini.info { background: #0284C7; color: #FFF; }
+.cell-tile-mini.warning { background: #D97706; color: #FFF; }
+.cell-tile-mini.average { background: #EA580C; color: #FFF; }
+.cell-tile-mini.high { background: #DC2626; color: #FFF; }
+.cell-tile-mini.disaster { background: #991B1B; color: #FFF; }
+.cell-tile-mini.empty { background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(51, 65, 85, 0.4); }
+`;
+
+const matrix10AfterRender = `
+setTimeout(function() {
+  const el = (typeof context !== 'undefined' && context && context.element) ? context.element : (typeof element !== 'undefined' ? element : document.querySelector('.matrixmax-outer-container'));
+  if (!el) return;
+
+  const sBox = el.querySelector('#matrixmax-search-box');
+  const rows = el.querySelectorAll('.matrixmax-row');
+
+  if (sBox) {
+    sBox.addEventListener('input', function(e) {
+      const q = (e.target.value || '').trim().toLowerCase();
+      rows.forEach(function(r) {
+        const name = r.getAttribute('data-name') || '';
+        if (!q || name.indexOf(q) !== -1) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  const sortNameBtn = el.querySelector('#matrixmax-btn-sort-name');
+  if (sortNameBtn) {
+    sortNameBtn.addEventListener('click', function() {
+      const tbody = el.querySelector('#matrixmax-main-table tbody');
+      if (!tbody) return;
+      const rowArr = Array.from(rows);
+      rowArr.sort(function(a, b) {
+        return (a.getAttribute('data-name') || '').localeCompare(b.getAttribute('data-name') || '');
+      });
+      rowArr.forEach(function(r) { tbody.appendChild(r); });
+    });
+  }
+}, 100);
+`;
+
+// CSS for Panel 15 (PRO)
+const matrixProCss = `
+.matrixpro-outer-container {
+  background: #0B0F19;
+  border: 1px solid #1E293B;
+  border-top: 3px solid #38BDF8;
+  border-radius: 8px;
+  padding: 16px 20px 18px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #F8FAFC;
+  width: 100%;
+  box-sizing: border-box;
+}
+.matrixpro-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #1E293B;
+}
+.matrixpro-brand { display: flex; flex-direction: column; gap: 3px; }
+.brand-title-wrap { display: flex; align-items: center; gap: 8px; }
+.matrixpro-title-logo { font-size: 18px; font-weight: 700; color: #38BDF8; letter-spacing: -0.02em; }
+.matrixpro-version-badge {
+  background: rgba(56, 189, 248, 0.15); border: 1px solid #38BDF8; color: #38BDF8;
+  padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;
+}
+.matrixpro-subtitle { font-size: 11px; color: #94A3B8; }
+.matrixpro-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.matrixpro-btn {
+  background: #1E293B; border: 1px solid #334155; border-radius: 4px;
+  color: #E2E8F0; padding: 6px 10px; font-size: 11px; font-weight: 600; cursor: pointer;
+  transition: all 0.15s ease;
+}
+.matrixpro-btn:hover { background: #334155; color: #FFF; }
+.triage-btn {
+  background: rgba(220, 38, 38, 0.15); border: 1px solid #DC2626; color: #FCA5A5; font-weight: 700;
+}
+.triage-btn:hover, .triage-btn.active {
+  background: #DC2626; color: #FFFFFF; border-color: #EF4444; box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+.matrixpro-filter-group {
+  display: inline-flex; background: #06090E; border: 1px solid #334155; border-radius: 4px; padding: 2px;
+}
+.sede-pill {
+  background: transparent; border: none; color: #94A3B8; padding: 4px 10px;
+  font-size: 11px; font-weight: 600; border-radius: 3px; cursor: pointer; transition: all 0.15s ease;
+}
+.sede-pill:hover { color: #F8FAFC; background: rgba(51, 65, 85, 0.5); }
+.sede-pill.active { background: #0284C7; color: #FFFFFF; }
+.matrixpro-search {
+  background: #06090E; border: 1px solid #334155; border-radius: 4px;
+  color: #F8FAFC; padding: 6px 12px; font-size: 12px; outline: none; width: 200px;
+}
+.matrixpro-search:focus { border-color: #38BDF8; }
+.matrixpro-scroll-pane {
+  overflow-x: auto; overflow-y: auto; max-height: 520px; width: 100%;
+  border-radius: 6px; border: 1px solid #1E293B; background: #070B13;
+}
+.matrixpro-table {
+  width: 100% !important; min-width: 820px; border-collapse: collapse; table-layout: fixed !important;
+}
+.matrixpro-table thead th {
+  background: #0B0F19; position: sticky; top: 0; z-index: 10; border-bottom: 1px solid #1E293B;
+}
+.thpro-host-corner {
+  height: 85px; vertical-align: bottom; padding: 8px 12px 10px 12px;
+  text-align: left; width: 28% !important; border-right: 1px solid #1E293B;
+}
+.thpro-corner-text {
+  font-size: 10px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.thpro-col-rotated {
+  height: 85px; position: relative; vertical-align: bottom; padding: 0;
+  width: 6% !important; text-align: center; border-right: 1px solid #1E293B;
+}
+.thpro-rot-wrapper {
+  position: absolute; bottom: 10px; left: 50%; width: 20px; height: 60px;
+  transform: rotate(-45deg); transform-origin: 0 100%; white-space: nowrap; pointer-events: none;
+}
+.thpro-rot-text {
+  font-size: 11px; font-weight: 700; color: #CBD5E1; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.matrixpro-row { border-bottom: 1px solid #131B2A; transition: background 0.15s ease; }
+.matrixpro-row:hover { background: rgba(56, 189, 248, 0.06); }
+.matrixpro-row:nth-child(even) { background: rgba(15, 23, 42, 0.35); }
+.matrixpro-row:nth-child(even):hover { background: rgba(56, 189, 248, 0.08); }
+.tdpro-host {
+  display: block; padding: 6px 12px; text-decoration: none; border-right: 1px solid #1E293B;
+}
+.host-meta-badges { display: flex; align-items: center; gap: 4px; margin-top: 3px; }
+.badge-sede {
+  font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 3px; text-transform: uppercase;
+}
+.badge-sede.sro { background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); }
+.badge-sede.ssj { background: rgba(168, 85, 247, 0.15); color: #C084FC; border: 1px solid rgba(168, 85, 247, 0.3); }
+.badge-sede.obrador { background: rgba(245, 158, 11, 0.15); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-tier {
+  font-size: 9px; font-weight: 600; padding: 1px 4px; border-radius: 3px;
+  background: rgba(100, 116, 139, 0.2); color: #94A3B8;
+}
+.tdpro-cell-container {
+  padding: 4px; text-align: center; vertical-align: middle;
+  border-right: 1px solid #131B2A; width: 6% !important;
+}
+.matrixpro-summary-row {
+  background: #080D1A; position: sticky; bottom: 0; z-index: 10;
+  border-top: 2px solid #38BDF8; box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+}
+.tdpro-summary-label {
+  padding: 8px 12px; border-right: 1px solid #1E293B; vertical-align: middle; width: 28% !important;
+}
+.summary-label-content { display: flex; flex-direction: column; gap: 2px; }
+.summary-title { font-size: 11px; font-weight: 800; color: #F8FAFC; letter-spacing: 0.02em; }
+.summary-sub { font-size: 9px; color: #38BDF8; font-weight: 600; }
+.tdpro-summary-cell {
+  padding: 4px; text-align: center; vertical-align: middle;
+  border-right: 1px solid #1E293B; width: 6% !important;
+}
+.summary-pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 2px;
+  padding: 3px 6px; border-radius: 4px; font-size: 11px; font-weight: 700; min-width: 24px;
+}
+.summary-pill.summary-ok { background: rgba(22, 163, 74, 0.2); color: #4ADE80; border: 1px solid #16A34A; }
+.summary-pill.summary-warn { background: rgba(217, 119, 6, 0.2); color: #FBBF24; border: 1px solid #D97706; }
+.summary-pill.summary-avg { background: rgba(234, 88, 12, 0.25); color: #FB923C; border: 1px solid #EA580C; }
+.summary-pill.summary-disaster { background: rgba(220, 38, 38, 0.25); color: #F87171; border: 1px solid #DC2626; }
+.matrixpro-footer-legend {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid #1E293B;
+  flex-wrap: wrap; gap: 8px; font-size: 11px; color: #94A3B8;
+}
+.legend-tip { color: #CBD5E1; }
+`;
+
+const matrixProAfterRender = `
+setTimeout(function() {
+  const el = (typeof context !== 'undefined' && context && context.element) ? context.element : (typeof element !== 'undefined' ? element : document.querySelector('.matrixpro-outer-container'));
+  if (!el) return;
+
+  const triageBtn = el.querySelector('#btn-triage-toggle');
+  const triageText = el.querySelector('#triage-btn-text');
+  const sedeBtns = el.querySelectorAll('.sede-pill');
+  const sBox = el.querySelector('#matrixpro-search-box');
+  const rows = el.querySelectorAll('.matrixpro-row');
+
+  let currentSede = 'all';
+  let onlyAlarms = false;
+
+  function applyFilters() {
+    const q = sBox ? (sBox.value || '').trim().toLowerCase() : '';
+    rows.forEach(function(r) {
+      const name = r.getAttribute('data-name') || '';
+      const sede = r.getAttribute('data-sede') || '';
+      const hasAlarm = r.getAttribute('data-hasalarm') === 'true';
+
+      let visible = true;
+      if (currentSede !== 'all' && sede !== currentSede) visible = false;
+      if (onlyAlarms && !hasAlarm) visible = false;
+      if (q && name.indexOf(q) === -1 && sede.toLowerCase().indexOf(q) === -1) visible = false;
+
+      r.style.display = visible ? '' : 'none';
+    });
+  }
+
+  if (triageBtn) {
+    triageBtn.addEventListener('click', function() {
+      onlyAlarms = !onlyAlarms;
+      triageBtn.classList.toggle('active', onlyAlarms);
+      if (triageText) {
+        triageText.textContent = onlyAlarms ? 'Ver Todos (${counts.total})' : 'Solo Alarmas (${counts.degraded})';
+      }
+      applyFilters();
+    });
+  }
+
+  sedeBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      sedeBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentSede = btn.getAttribute('data-sede');
+      applyFilters();
+    });
+  });
+
+  if (sBox) {
+    sBox.addEventListener('input', applyFilters);
+  }
+
+  const sortNameBtn = el.querySelector('#matrixpro-btn-sort-name');
+  if (sortNameBtn) {
+    sortNameBtn.addEventListener('click', function() {
+      const tbody = el.querySelector('#matrixpro-main-table tbody');
+      if (!tbody) return;
+      const rowArr = Array.from(rows);
+      rowArr.sort(function(a, b) {
+        return (a.getAttribute('data-name') || '').localeCompare(b.getAttribute('data-name') || '');
+      });
+      rowArr.forEach(function(r) { tbody.appendChild(r); });
+    });
+  }
+
+  const sortSevBtn = el.querySelector('#matrixpro-btn-sort-sev');
+  if (sortSevBtn) {
+    sortSevBtn.addEventListener('click', function() {
+      const tbody = el.querySelector('#matrixpro-main-table tbody');
+      if (!tbody) return;
+      const rowArr = Array.from(rows);
+      rowArr.sort(function(a, b) {
+        const aAlarm = a.getAttribute('data-hasalarm') === 'true' ? 1 : 0;
+        const bAlarm = b.getAttribute('data-hasalarm') === 'true' ? 1 : 0;
+        return bAlarm - aAlarm;
+      });
+      rowArr.forEach(function(r) { tbody.appendChild(r); });
+    });
+  }
+}, 100);
+`;
+
+async function main() {
+  console.log('Fetching dashboard from Grafana...');
+  const currentRes = await grafanaRequest('GET', '/api/dashboards/uid/zabbix-matrixmax-overview');
+  if (currentRes.status !== 200 || !currentRes.data?.dashboard) {
+    throw new Error('Failed to fetch dashboard: ' + JSON.stringify(currentRes));
+  }
+
+  const dashboard = currentRes.data.dashboard;
+  console.log('Current Dashboard Version:', dashboard.version);
+
+  const panel10Html = buildPanel10Html(allHostsList);
+  const panel15Html = buildPanel15Html(allHostsList);
+
+  // Update Panel 10 with all 67 hosts
+  const panel10 = dashboard.panels.find(p => p.id === 10);
+  if (panel10) {
+    panel10.title = '🎯 matrixMAX (Original / Estándar) · Control Matricial de Salud (' + counts.total + ' Hosts)';
+    panel10.gridPos = { x: 0, y: 5, w: 24, h: 16 };
+    panel10.options.content = panel10Html;
+    panel10.options.defaultContent = panel10Html;
+    panel10.options.styles = matrix10Css;
+    panel10.options.afterRender = matrix10AfterRender;
+  }
+
+  // Row 150
+  let row150 = dashboard.panels.find(p => p.id === 150);
+  if (!row150) {
+    row150 = {
+      id: 150,
+      title: '🚀 MATRIXMAX PRO (AVANZADO CON MEJORAS NOC): SALUD SISTÉMICA, TRIAGE & SEDES',
+      type: 'row',
+      gridPos: { x: 0, y: 21, w: 24, h: 1 },
+      collapsed: false
+    };
+  } else {
+    row150.gridPos = { x: 0, y: 21, w: 24, h: 1 };
+  }
+
+  // Panel 15 (PRO)
+  let panel15 = dashboard.panels.find(p => p.id === 15);
+  if (!panel15) {
+    panel15 = {
+      id: 15,
+      title: '🔥 matrixMAX PRO (Optimizado) · Salud Sistémica, Triage NOC & Segmentación de Sedes (' + counts.total + ' Hosts)',
+      description: 'Versión profesional con fila inferior de impacto sistémico (falla transversal vs local), filtro de triage rápido (solo alarmas), segmentación por sede (SRO/SSJ/Obradores) y escalamiento P1/P2/P3 a Telegram en tooltips.',
+      type: 'marcusolsson-dynamictext-panel',
+      gridPos: { x: 0, y: 22, w: 24, h: 18 },
+      options: {
+        wrap: false,
+        content: panel15Html,
+        defaultContent: panel15Html,
+        styles: matrixProCss,
+        afterRender: matrixProAfterRender
+      }
+    };
+  } else {
+    panel15.title = '🔥 matrixMAX PRO (Optimizado) · Salud Sistémica, Triage NOC & Segmentación de Sedes (' + counts.total + ' Hosts)';
+    panel15.gridPos = { x: 0, y: 22, w: 24, h: 18 };
+    panel15.options.content = panel15Html;
+    panel15.options.defaultContent = panel15Html;
+    panel15.options.styles = matrixProCss;
+    panel15.options.afterRender = matrixProAfterRender;
+  }
+
+  // Shift following panels down:
+  const row200 = dashboard.panels.find(p => p.id === 200);
+  if (row200) row200.gridPos = { x: 0, y: 40, w: 24, h: 1 };
+
+  const panel20 = dashboard.panels.find(p => p.id === 20);
+  if (panel20) panel20.gridPos = { x: 0, y: 41, w: 14, h: 11 };
+
+  const panel21 = dashboard.panels.find(p => p.id === 21);
+  if (panel21) panel21.gridPos = { x: 14, y: 41, w: 10, h: 11 };
+
+  const row300 = dashboard.panels.find(p => p.id === 300);
+  if (row300) row300.gridPos = { x: 0, y: 52, w: 24, h: 1 };
+
+  const panel30 = dashboard.panels.find(p => p.id === 30);
+  if (panel30) panel30.gridPos = { x: 0, y: 53, w: 24, h: 10 };
+
+  const existingOtherPanels = dashboard.panels.filter(p => ![150, 15].includes(p.id));
+  const idx10 = existingOtherPanels.findIndex(p => p.id === 10);
+  if (idx10 !== -1) {
+    existingOtherPanels.splice(idx10 + 1, 0, row150, panel15);
+  } else {
+    existingOtherPanels.push(row150, panel15);
+  }
+
+  dashboard.panels = existingOtherPanels;
+
+  console.log('Deploying dashboard with ALL 67 hosts to Grafana...');
+  const res = await grafanaRequest('POST', '/api/dashboards/db', {
+    dashboard: dashboard,
+    overwrite: true
+  });
+
+  if (res.status === 200 && res.data?.status === 'success') {
+    console.log('SUCCESS! Version', res.data.version, 'deployed at:', `http://${grafanaHost}:${grafanaPort}${res.data.url}`);
+    fs.writeFileSync('dashboards/zabbix-matrixmax.json', JSON.stringify(dashboard, null, 2), 'utf8');
+  } else {
+    throw new Error('Deploy failed: ' + JSON.stringify(res));
+  }
+}
+
+main().catch(err => {
+  console.error('Fatal error:', err);
+  process.exit(1);
+});

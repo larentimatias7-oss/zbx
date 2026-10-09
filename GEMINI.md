@@ -78,3 +78,4 @@ Milicic opera con un modelo unificado de notificaciones sobre dos grupos corpora
 - Skill de Auditoría y Documentación: [zabbix-config-docs](file:///c:/zabbix_anti/.agents/skills/zabbix-config-docs/SKILL.md)
 - Contexto Histórico y Matriz de Hallazgos: [operational_context_chatgpt.md](file:///c:/zabbix_anti/.zabbix_context/operational_context_chatgpt.md)
 - Scripts Operativos Locales: [scripts/](file:///c:/zabbix_anti/scripts/)
+- Módulo Ejecutivo y Reportes de Gerencia: [Gerencia/](file:///c:/zabbix_anti/Gerencia/) (Dashboard SLA mensual, Error Budget SRE y Manual de Oratoria para el Directorio)

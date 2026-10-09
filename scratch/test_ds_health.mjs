@@ -6,21 +6,15 @@ if (!token) {
   token = execSync('powershell.exe -NoProfile -Command "[System.Environment]::GetEnvironmentVariable(\'GRAFANA_SERVICE_ACCOUNT_TOKEN\', \'User\')"', { encoding: 'utf8' }).trim();
 }
 
-const req = http.request('http://172.27.210.154:3005/api/plugins?embedded=0', {
+const req = http.request('http://172.27.210.154:3005/api/datasources/uid/efz4nzx8r30g0c/health', {
   headers: { 'Authorization': 'Bearer ' + token }
 }, res => {
   let b = '';
   res.on('data', c => b += c);
   res.on('end', () => {
-    try {
-      const list = JSON.parse(b);
-      console.log('Total plugins:', list.length);
-      const appAndPanels = list.filter(p => p.type === 'panel' || p.type === 'app');
-      console.log('Panels and Apps:');
-      appAndPanels.forEach(p => console.log(`- ${p.id} (${p.name}) [${p.type}]`));
-    } catch(e) {
-      console.error(b);
-    }
+    console.log('Status Code:', res.statusCode);
+    console.log('Body:', b);
   });
 });
+req.on('error', console.error);
 req.end();

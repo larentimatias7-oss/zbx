@@ -1,0 +1,329 @@
+
+======================================================
+## Cabecera & KPIs Principales
+======================================================
+
+### (Banner / Cabecera) (ID: 1)
+- **Tipo:** `marcusolsson-dynamictext-panel`
+- **Umbrales:** 0 -> green | 80 -> red
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `Zabbix servers` | Host: `Zabbix server` | Item: `Zabbix agent ping`
+
+### Último dato recibido (ID: 16)
+- **Tipo:** `stat`
+- **Descripción:** Antigüedad de la última muestra del agente Zabbix. Si crece, la recolección se frenó.
+- **Unidad:** `dateTimeFromNow`
+- **Umbrales:** 0 -> #38BDF8
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `Zabbix servers` | Host: `Zabbix server` | Item: `Zabbix agent ping`
+
+### Facilities & Energía (UPS) (ID: 11)
+- **Tipo:** `stat`
+- **Descripción:** Estado de operación y conectividad de UPS en Datacenters.
+- **Umbrales:** 0 -> #E02F44 | 180 -> #73BF69
+- **Mapeos de Valor:** [{"options":{"from":180,"result":{"color":"#73BF69","index":0,"text":"ONLINE"},"to":260},"type":"range"},{"options":{"match":"null+nan","result":{"color":"#6B7280","index":1,"text":"SIN DATOS"}},"type":"special"}]
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `UPS` | Host: `/.*/` | Item: `/(Ups Input Voltage|Input Voltage|Input phase 1 voltage)/`
+
+### Nodos (ID: 3)
+- **Tipo:** `stat`
+- **Descripción:** Cantidad total de hosts distintos activos con ICMP ping o agent ping.
+- **Umbrales:** 0 -> #38BDF8
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/.*/` | Host: `/${sede:raw}/` | Item: `/(ICMP ping|agent.ping)/`
+
+### Salud Global (Disponibilidad) (ID: 7)
+- **Tipo:** `gauge`
+- **Descripción:** Porcentaje global de disponibilidad en vivo de toda la infraestructura.
+- **Unidad:** `percentunit`
+- **Umbrales:** 0 -> #E02F44 | 0.85 -> #F2CC0C | 0.92 -> #FADE2A | 0.96 -> #73BF69
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/.*/` | Host: `/${sede:raw}/` | Item: `/(ICMP ping|agent.ping)/`
+
+### Incidentes Críticos (Disaster/High) (ID: 4)
+- **Tipo:** `stat`
+- **Descripción:** Problemas activos en Zabbix con severidad High o Disaster.
+- **Umbrales:** 0 -> #73BF69 | 1 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=5] Group: `/.*/` | Host: `/${sede:raw}/` | Item: `*`
+
+### Alertas Preventivas (Warning/Average) (ID: 5)
+- **Tipo:** `stat`
+- **Descripción:** Problemas activos en Zabbix con severidad Warning o Average.
+- **Umbrales:** 0 -> #73BF69 | 1 -> #FADE2A
+- **Métricas / Targets Zabbix:**
+  * [queryType=5] Group: `/.*/` | Host: `/${sede:raw}/` | Item: `*`
+
+### Zabbix Server (ID: 2)
+- **Tipo:** `stat`
+- **Descripción:** Estado del agente en el host Zabbix server (1 = responde).
+- **Umbrales:** 0 -> #E02F44 | 1 -> #73BF69
+- **Mapeos de Valor:** [{"options":{"0":{"color":"#E02F44","index":0,"text":"CAÍDO"},"1":{"color":"#73BF69","index":1,"text":"ONLINE"}},"type":"value"},{"options":{"match":"null+nan","result":{"color":"#6B7280","index":2,"text":"SIN DATOS"}},"type":"special"}]
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `Zabbix servers` | Host: `Zabbix server` | Item: `Zabbix agent ping`
+
+### Redes (Switches) y APs (Aruba) (ID: 10)
+- **Tipo:** `stat`
+- **Descripción:** Switches de distribución/acceso y Access Points Aruba.
+- **Umbrales:** 0 -> #E02F44 | 1 -> #73BF69
+- **Mapeos de Valor:** [{"options":{"0":{"color":"#E02F44","index":0,"text":"DOWN"},"1":{"color":"#73BF69","index":1,"text":"UP"}},"type":"value"},{"options":{"match":"null+nan","result":{"color":"#6B7280","index":2,"text":"SIN DATOS"}},"type":"special"}]
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(switch|ARUBA APs|ANTENAS P2P)/` | Host: `/${sede:raw}/` | Item: `ICMP ping`
+
+### Infra. Core & Servidores (Cómputo & Storage) (ID: 9)
+- **Tipo:** `stat`
+- **Descripción:** Servidores físicos y virtuales, Hipervisores, Controladores de Dominio, Storage y Backup (26 hosts únicos).
+- **Umbrales:** 0 -> #E02F44 | 1 -> #73BF69
+- **Mapeos de Valor:** [{"options":{"0":{"color":"#E02F44","index":0,"text":"DOWN"},"1":{"color":"#73BF69","index":1,"text":"UP"}},"type":"value"},{"options":{"match":"null+nan","result":{"color":"#6B7280","index":2,"text":"SIN DATOS"}},"type":"special"}]
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|AD|Datacenter|Applications)/` | Host: `/${sede:raw}/` | Item: `ICMP ping`
+  * [queryType=0] Group: `/(Zabbix servers|Backup_Server|Applications)/` | Host: `/(Zabbix server|SSJ-BKP01|SSJ-SVC01|JumpServer)/` | Item: `Zabbix agent ping`
+
+### Tensión de entrada UPS (V) (ID: 17)
+- **Tipo:** `stat`
+- **Descripción:** Tensión de red eléctrica en cada UPS (Umbrales calibrados para red 220V).
+- **Unidad:** `volt`
+- **Umbrales:** 0 -> #E02F44 | 190 -> #FADE2A | 205 -> #73BF69 | 245 -> #FADE2A | 255 -> #E02F44
+- **Mapeos de Valor:** [{"options":{"match":"null+nan","result":{"color":"#6B7280","index":2,"text":"SIN DATOS"}},"type":"special"}]
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `UPS` | Host: `/.*/` | Item: `/(Ups Input Voltage|Input Voltage|Input phase 1 voltage)/`
+
+### Tráfico de Sesiones Activas (FortiGates SD-WAN) (ID: 15)
+- **Tipo:** `timeseries`
+- **Descripción:** Sesiones IPv4 concurrentes cursadas por los firewalls de borde.
+- **Unidad:** `short`
+- **Umbrales:** 0 -> green | 80 -> red
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/${sede:raw}/` | Item: `/IPv4 Active sessions/`
+
+### Perímetro SD-WAN (FortiGates) (ID: 8)
+- **Tipo:** `stat`
+- **Descripción:** Un cuadrado por FortiGate (ICMP ping). Verde = UP, Rojo = DOWN, Gris = Sin Datos.
+- **Umbrales:** 0 -> #E02F44 | 1 -> #73BF69
+- **Mapeos de Valor:** [{"options":{"0":{"color":"#E02F44","index":0,"text":"DOWN"},"1":{"color":"#73BF69","index":1,"text":"UP"}},"type":"value"},{"options":{"match":"null+nan","result":{"color":"#6B7280","index":2,"text":"SIN DATOS"}},"type":"special"}]
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/${sede:raw}/` | Item: `ICMP ping`
+
+### Top 5 Servidores (Consumo CPU %) (ID: 13)
+- **Tipo:** `bargauge`
+- **Descripción:** Servidores de cómputo con mayor utilización de CPU en tiempo real (excluye switches/firewalls).
+- **Unidad:** `percent`
+- **Umbrales:** 0 -> #73BF69 | 75 -> #FADE2A | 90 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/` | Host: `/${sede:raw}/` | Item: `/^CPU utilization$/`
+
+### Top 5 Servidores (Consumo RAM %) (ID: 18)
+- **Tipo:** `bargauge`
+- **Descripción:** Servidores de cómputo con mayor utilización de RAM en tiempo real (excluye switches/firewalls).
+- **Unidad:** `percent`
+- **Umbrales:** 0 -> #73BF69 | 75 -> #FADE2A | 90 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(Windows_Server|Linux servers|Virtual machines|Hypervisors|Storage_Server|Backup_Server|Zabbix servers|AD)/` | Host: `/${sede:raw}/` | Item: `Memory utilization`
+
+### Top 5 Servidores (Uso de Disco %) (ID: 19)
+- **Tipo:** `bargauge`
+- **Descripción:** Servidores de cómputo con mayor utilización de RAM en tiempo real (excluye switches/firewalls).
+- **Unidad:** `percent`
+- **Umbrales:** 0 -> #73BF69 | 80 -> #FADE2A | 90 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/` | Host: `/${sede:raw}/` | Item: `/FS \[.*(:\)|\/$)\].*Space: Used, in %/`
+
+### Top 5 Datacenters (Carga Eléctrica UPS %) (ID: 14)
+- **Tipo:** `bargauge`
+- **Descripción:** Porcentaje de carga eléctrica en las UPS monitoreadas (telemetría directa).
+- **Unidad:** `percent`
+- **Umbrales:** 0 -> #73BF69 | 60 -> #FADE2A | 80 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `UPS` | Host: `/.*/` | Item: `/^(UPS Load \(%\)|Output Load Estimated)$/`
+
+### Feed de Incidentes Activos en Tiempo Real (Alertas Zabbix) (ID: 12)
+- **Tipo:** `alexanderzobnin-zabbix-triggers-panel`
+- **Descripción:** Panel nativo Zabbix Problems (alexanderzobnin-zabbix-triggers-panel). Problemas abiertos ordenados por prioridad y filtrables por sede y severidad.
+- **Métricas / Targets Zabbix:**
+  * [queryType=5] Group: `/.*/` | Host: `/${sede:raw}/` | Item: `*`
+
+### Top 5 Sedes WAN (Mayor Latencia Ping ms) (ID: 20)
+- **Tipo:** `bargauge`
+- **Unidad:** `s`
+- **Umbrales:** 0 -> #73BF69 | 0.05 -> #FADE2A | 0.1 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(FortiGate|ANTENAS P2P)/` | Host: `/${sede:raw}/` | Item: `ICMP response time`
+
+### Top 5 Enlaces WAN / Internet (Ancho de Banda) (ID: 21)
+- **Tipo:** `bargauge`
+- **Unidad:** `bps`
+- **Umbrales:** 0 -> #73BF69 | 50000000 -> #FADE2A | 100000000 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/${sede:raw}/` | Item: `/Interface (port14|port15|wan|internet|claro|tasa|rosario|telecom).*: Bits received/`
+
+### Top Sedes WAN (Pérdida de Paquetes ICMP %) (ID: 22)
+- **Tipo:** `bargauge`
+- **Unidad:** `percent`
+- **Umbrales:** 0 -> #73BF69 | 1 -> #FADE2A | 5 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(FortiGate|ANTENAS P2P)/` | Host: `/${sede:raw}/` | Item: `ICMP loss`
+
+### Top 5 Storage SAN HPE MSA (Carga IOPS) (ID: 23)
+- **Tipo:** `bargauge`
+- **Unidad:** `iops`
+- **Umbrales:** 0 -> #73BF69 | 100 -> #FADE2A | 300 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(Storage_Server|Storage)/` | Host: `/${sede:raw}/` | Item: `/Disk group .*: IOPS, total rate/`
+
+### Teletrabajo (VPN SSL Activas) (ID: 24)
+- **Tipo:** `stat`
+- **Unidad:** `none`
+- **Umbrales:** 0 -> #5794F2 | 10 -> #73BF69 | 60 -> #FADE2A
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/milicic_border1/` | Item: `Active SSL VPN users`
+
+### Tendencia Comparativa de Tráfico WAN por Sede / Proyecto (Mbps) (ID: 27)
+- **Tipo:** `timeseries`
+- **Unidad:** `bps`
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/${sede:raw}/` | Item: `/Interface (port14|port15|wan1|wan).*: Bits received/`
+
+### Autonomía Baterías UPS (Min) (ID: 28)
+- **Tipo:** `stat`
+- **Unidad:** `m`
+- **Umbrales:** 0 -> #E02F44 | 30 -> #FADE2A | 60 -> #73BF69
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `UPS` | Host: `/.*/` | Item: `Battery Time Remaining`
+
+### Borde Central: Balanceo ISP (Telecom TASA vs Claro) - In/Out (ID: 29)
+- **Tipo:** `timeseries`
+- **Unidad:** `bps`
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/milicic_border1/` | Item: `/Interface port1[45].*: Bits received/`
+  * [queryType=0] Group: `FortiGate` | Host: `/milicic_border1/` | Item: `/Interface port1[45].*: Bits sent/`
+
+### Malla de Túneles IPsec Core (Interconexión Rosario ➔ San Juan & SAP Cloud) (ID: 30)
+- **Tipo:** `stat`
+- **Unidad:** `none`
+- **Umbrales:** 0 -> #E02F44 | 1 -> #5794F2 | 2 -> #73BF69
+- **Mapeos de Valor:** [{"options":{"0":{"color":"#E02F44","index":2,"text":"DOWN"},"1":{"color":"#5794F2","index":1,"text":"STANDBY"},"2":{"color":"#73BF69","index":0,"text":"UP (Activo)"}},"type":"value"}]
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/milicic_border1/` | Item: `/VPN (sap-pri|ros1sj1|ros1sj2|ros2sj1|ros2sj2|sap-bkp).*: Tunnel Status/`
+
+### Matriz WAN de Sedes & Enlaces Remotos (Estado, Latencia, Pérdida y Sesiones) (ID: 25)
+- **Tipo:** `table`
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/${sede:raw}/` | Item: `ICMP ping`
+  * [queryType=0] Group: `FortiGate` | Host: `/${sede:raw}/` | Item: `ICMP response time`
+  * [queryType=0] Group: `FortiGate` | Host: `/${sede:raw}/` | Item: `ICMP loss`
+  * [queryType=0] Group: `FortiGate` | Host: `/${sede:raw}/` | Item: `/IPv4 Active sessions/`
+
+### Matriz de Servidores & Roles Críticos (Salud, CPU, RAM y Disco C:) (ID: 26)
+- **Tipo:** `table`
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/` | Host: `/${sede:raw}/` | Item: `ICMP ping`
+  * [queryType=0] Group: `/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/` | Host: `/${sede:raw}/` | Item: `/^CPU utilization$/`
+  * [queryType=0] Group: `/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/` | Host: `/${sede:raw}/` | Item: `Memory utilization`
+  * [queryType=0] Group: `/(Windows_Server|Linux servers|AD|Backup_Server|Storage_Server|Virtual machines)/` | Host: `/${sede:raw}/` | Item: `FS [(C:)]: Space: Used, in %`
+
+
+======================================================
+## 🛡️ Cyber SOC & Seguridad de Identidades — Active Directory (Bosque MLCCNET.LOCAL)
+======================================================
+
+### Bloqueos AD (24h) (ID: 151)
+- **Tipo:** `stat`
+- **Descripción:** Total de cuentas bloqueadas en el bosque en las últimas 24 horas (Multi-DC). Métrica calculada en tiempo real.
+- **Umbrales:** Base -> #73BF69 | 1 -> #FA6400 | 5 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `AD` | Host: `SRO-DCO01` | Item: `Total Bloqueos de Cuenta (24h - Multi-DC)`
+
+### Fallos Logon (24h) (ID: 152)
+- **Tipo:** `stat`
+- **Descripción:** Intentos fallidos de autenticación (Event 4625) en el bosque en las últimas 24 horas. Tráfico de fondo normal < 400.
+- **Umbrales:** Base -> #73BF69 | 400 -> #F2CC0C | 1000 -> #FA6400 | 2500 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `AD` | Host: `SRO-DCO01` | Item: `Total Intentos Fallidos (24h - Multi-DC)`
+
+### 🚨 Detección de Bucle Kerberos (24h) (ID: 153)
+- **Tipo:** `stat`
+- **Descripción:** Detección de anomalías por bucles de reintentos continuos con credenciales expiradas (Event 4771 · Código 0x18). Umbral normal < 500. Alerta si > 2,000.
+- **Umbrales:** Base -> #73BF69 | 500 -> #F2CC0C | 2000 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `AD` | Host: `SRO-DCO01` | Item: `Fallos Preautenticación Kerberos (24h - Multi-DC)`
+
+### Ratio NTLM / Kerb (ID: 154)
+- **Tipo:** `stat`
+- **Descripción:** Proporción de autenticaciones legadas NTLM vs Kerberos moderno en el dominio (Postura de seguridad: <15% es óptimo).
+- **Unidad:** `percentunit`
+- **Umbrales:** Base -> #73BF69 | 0.15 -> #F2CC0C | 0.35 -> #FA6400
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `AD` | Host: `SRO-DCO01` | Item: `Ratio Autenticación NTLM / Kerberos (24h)`
+
+### 🚨 Detección Forense Dinámica: Bucles Kerberos (Event 4771) (ID: 155)
+- **Tipo:** `table`
+- **Descripción:** Telemetría dinámica de preautenticación Kerberos (Event 4771). Captura en tiempo real estaciones, usuarios y códigos de fallo (0x18 credencial vieja cacheada) en bucle de reintentos contra el PDC SRO-DCO01.
+- **Métricas / Targets Zabbix:**
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `Usuario Fallo Preauth Kerberos`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `IP Origen Fallo Preauth Kerberos`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `Código Fallo Preauth Kerberos`
+
+### 🔒 Historial Forense de Bloqueos de Cuenta (Event 4740) — Últimos 7 Días (ID: 156)
+- **Tipo:** `table`
+- **Descripción:** Correlación de cuenta bloqueada, workstation de origen y timestamp en el bosque MLCCNET.LOCAL.
+- **Métricas / Targets Zabbix:**
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `User locked Name`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `User Locked PC`
+
+### 👥 Auditoría Forense de Grupos Privilegiados (Event IDs 4728 · 4732 · 4756) (ID: 157)
+- **Tipo:** `table`
+- **Descripción:** Modificación de pertenencia a grupos de administración y seguridad.
+- **Métricas / Targets Zabbix:**
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `Operador de Modificación de Grupo`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `Nombre de Grupo Modificado`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `Miembro Afectado de Grupo`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `Acción de Modificación de Grupo`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO02` | Item: `Operador de Modificación de Grupo`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO02` | Item: `Nombre de Grupo Modificado`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO02` | Item: `Miembro Afectado de Grupo`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO02` | Item: `Acción de Modificación de Grupo`
+  * [queryType=2] Group: `AD` | Host: `SSJ-DCO01` | Item: `Operador de Modificación de Grupo`
+  * [queryType=2] Group: `AD` | Host: `SSJ-DCO01` | Item: `Nombre de Grupo Modificado`
+  * [queryType=2] Group: `AD` | Host: `SSJ-DCO01` | Item: `Miembro Afectado de Grupo`
+  * [queryType=2] Group: `AD` | Host: `SSJ-DCO01` | Item: `Acción de Modificación de Grupo`
+
+### 📈 Tasa Horaria de Fallos de Autenticación (Event 4625 · Multi-DC) (ID: 158)
+- **Tipo:** `timeseries`
+- **Descripción:** Evolución horaria de intentos de inicio de sesión fallidos en controladores de dominio. Permite identificar patrones de horarios y picos anómalos de contraseñas erróneas.
+- **Unidad:** `short`
+- **Umbrales:** Base -> #73BF69 | 25 -> #F2CC0C | 50 -> #FA6400 | 100 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `AD` | Host: `SRO-DCO01` | Item: `Tasa de Fallos de Autenticación (1h) · SRO-DCO01`
+  * [queryType=0] Group: `AD` | Host: `SRO-DCO02` | Item: `Tasa de Fallos de Autenticación (1h) · SRO-DCO02`
+
+### 🛡️ Telemetría de Protocolos: Kerberos vs NTLM Legado (Bosque MLCCNET) (ID: 159)
+- **Tipo:** `timeseries`
+- **Descripción:** Postura de ciberseguridad: Evolución del ratio de autenticaciones legadas NTLM vs Kerberos moderno y tasa de pre-autenticaciones.
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `AD` | Host: `SRO-DCO01` | Item: `Ratio Autenticación NTLM / Kerberos (24h)`
+  * [queryType=0] Group: `AD` | Host: `SRO-DCO01` | Item: `Fallos Preautenticación Kerberos (24h - Multi-DC)`
+
+### 🔌 Detección de Link Flapping: Puertos Inestables en Switches (Últimos 7 Días) (ID: 161)
+- **Tipo:** `table`
+- **Descripción:** Monitoreo dinámico de interfaces de acceso con flapping (>4 caídas/hora en últimos 7 días). Actualmente 0 puertos en flapping (Red de Acceso Saludable). Ante inestabilidad de enlace, el puerto aparecerá automáticamente en esta tabla.
+- **Métricas / Targets Zabbix:**
+  * [queryType=5] Group: `/.*Switches.*/` | Host: `/.*/` | Item: `*`
+
+### 📡 Matriz de Calidad SD-WAN: Pérdida de Paquetes en Overlays (Sedes & Minería) (ID: 162)
+- **Tipo:** `table`
+- **Descripción:** Monitoreo de calidad de servicio y pérdida de paquetes en los túneles SD-WAN IPsec hacia campamentos mineros y sedes remotas (Posco, Río Tinto, YPF, Las Flores). Alerta enlaces degradados.
+- **Unidad:** `percent`
+- **Umbrales:** 0 -> #73BF69 | 2 -> #F2CC0C | 5 -> #FA6400 | 10 -> #E02F44
+- **Métricas / Targets Zabbix:**
+  * [queryType=0] Group: `FortiGate` | Host: `/.*ar-.*/` | Item: `/.*Packets loss.*/`
+  * [queryType=0] Group: `FortiGate` | Host: `/.*ar-.*/` | Item: `/.*Latency.*/`
+
+### 🚨 Detección Forense Dinámica: Intentos Fallidos & Fuerza Bruta (Event 4625 · Multi-DC) (ID: 160)
+- **Tipo:** `table`
+- **Descripción:** Telemetría forense agrupada por cuenta de usuario en los Domain Controllers (SRO-DCO01, SRO-DCO02, SSJ-DCO01). Totaliza intentos fallidos, detecta ataques de fuerza bruta en curso (>5 fallos) y reporta IP de origen, último intento y causa exacta.
+- **Métricas / Targets Zabbix:**
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `Usuario con Fallo de Logon`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `IP Origen con Fallo de Logon`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `/.*Sub-Status.*/`
+  * [queryType=2] Group: `AD` | Host: `SRO-DCO01` | Item: `Controlador de Dominio Fallo Logon`
+

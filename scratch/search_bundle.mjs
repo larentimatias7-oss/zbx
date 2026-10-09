@@ -12,9 +12,11 @@ function fetchFile(path) {
 
 async function main() {
   const content = await fetchFile('/public/build/app.e91a84eaaa16c43f85f0.js');
-  // Find standardTransformers or transformation registry
-  const match = content.match(/id:\s*"([a-zA-Z0-9_-]+)",\s*name:/g);
-  console.log('Transformers found in app:', match);
+  console.log('App size:', content.length);
+  const match1 = content.match(/.{0,100}unkonwn.{0,100}/gi);
+  console.log('Matches for unkonwn:', match1);
+  const match2 = content.match(/.{0,100}extractFields.{0,100}/gi);
+  console.log('Matches for extractFields:', match2?.slice(0, 5));
 }
 
 main().catch(console.error);

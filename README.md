@@ -2,7 +2,7 @@
 
 Repositorio central de configuración, automatización con agentes IA, inventarios, directivas de gobernanza y documentación técnica oficial para la plataforma de monitoreo de **Milicic S.A.**
 
-> **Última actualización:** 24 de Septiembre de 2026 — Dashboards de observabilidad y Cyber SOC optimizados, auditoría forense interactiva desplegada, pipeline de incidentes Zabbix estandarizado.
+> **Última actualización:** 09 de Octubre de 2026 — Despliegue del Módulo Ejecutivo para Gerencia y Directorio (`Gerencia/`), Dashboard de SLA mensual y Error Budget SRE (`milicic-exec-monthly`), manual ejecutivo en PDF institucional con guion de oratoria y análisis predictivo CAPEX.
 
 ---
 
@@ -11,15 +11,17 @@ Repositorio central de configuración, automatización con agentes IA, inventari
 Cualquier agente o desarrollador que opere en este workspace debe regirse por las directivas mandatorias:
 * 📜 [**GEMINI.md**](file:///c:/zabbix_anti/GEMINI.md): Estándares universales, inspección previa, política de solo lectura, protección de secretos y verificación pre-flight MCP.
 * 🛡️ [**.agents/rules/milicic-zabbix-environment.md**](file:///c:/zabbix_anti/.agents/rules/milicic-zabbix-environment.md): Contexto de infraestructura, topología de contenedores, canales de Telegram y estado operativo activo al 23/09/2026.
+* 👔 [**Gerencia/README.md**](file:///c:/zabbix_anti/Gerencia/README.md): Módulo de reportes institucionales, SLA mensual y observabilidad SRE para la Gerencia de IT y Directorio.
 
 ---
 
 ## 2. Acceso Rápido a la Documentación Oficial
 
-El suite completo de documentación técnica, manuales de usuario y estándares operativos se encuentra estructurado en [`docs/zabbix/manuals/`](file:///c:/zabbix_anti/docs/zabbix/manuals/):
+El suite completo de documentación técnica, manuales de usuario y estándares operativos se encuentra estructurado en [`docs/zabbix/manuals/`](file:///c:/zabbix_anti/docs/zabbix/manuals/) y [`Gerencia/`](file:///c:/zabbix_anti/Gerencia/):
 
 | Documento | Descripción | Audiencia |
 | :--- | :--- | :--- |
+| 👔 [**Manual Ejecutivo Dashboard SLA & SRE**](file:///c:/zabbix_anti/Gerencia/MANUAL_EJECUTIVO_DASHBOARD_SLA.md) ([PDF](file:///c:/zabbix_anti/Gerencia/Manual_Ejecutivo_Dashboard_SLA_Milicic.pdf)) | Guía exhaustiva de KPIs de negocio, Uptime 99.82%, Error Budget, regresión CAPEX y guion de discurso para presentar al Directorio. | Gerencia de IT, C-Level, Directorio |
 | 📘 [**01. Arquitectura Técnica e Infraestructura**](file:///c:/zabbix_anti/docs/zabbix/manuals/01-arquitectura-tecnica-zabbix.md) | Topología del host Linux (`172.30.20.61`), contenedores Docker, base de datos TimescaleDB, red y webhooks de Telegram. | Administradores, SysAdmins, DevOps |
 | 🚨 [**02. Modelo de Alertas y Escalamiento**](file:///c:/zabbix_anti/docs/zabbix/manuals/02-modelo-alertas-y-escalamiento.md) ([PDF](file:///c:/zabbix_anti/docs/zabbix/manuals/MILICIC-MAN-002-MODELO-ALERTAS-Y-ESCALAMIENTO.pdf)) | Pirámide de criticidad P1/P2/P3, retardo de persistencia, supresión en mantenimiento y los dos canales de Telegram unificados. | SRE, NOC, Guardias |
 | 🏷️ [**03. Guía de Creación y Alta de Hosts**](file:///c:/zabbix_anti/docs/zabbix/manuals/03-guia-creacion-hosts.md) | Convención de nombres, plantillas oficiales, SNMP, macro `{$IFCONTROL}` y matriz de tags obligatorios (*Tag-driven Alerting*). | Operadores NOC, Administradores |
@@ -37,7 +39,7 @@ En [`docs/zabbix/prod/`](file:///c:/zabbix_anti/docs/zabbix/prod/) y [`.zabbix_c
 * 📊 [**Matriz de Cambios (Change Matrix)**](file:///c:/zabbix_anti/docs/zabbix/prod/change-matrix-ZBX-prod-20260916-ALERT-OPT.md): Trazabilidad de refactorizaciones y optimizaciones aplicadas.
 * ⏪ [**Plan de Rollback**](file:///c:/zabbix_anti/docs/zabbix/prod/rollback-plan-ZBX-prod-20260916-ALERT-OPT.md): Procedimiento de contingencia y marcha atrás.
 * 🗄️ [**Contexto Operativo e Histórico**](file:///c:/zabbix_anti/.zabbix_context/operational_context_chatgpt.md): Matriz completa de hallazgos (`AUD-001` a `AUD-009`), bitácoras cronológicas de remediación (08/09 al 23/09/2026), mapa de red LLDP y matriz de VLANs.
-* 📊 [**Inventario de Dashboards Grafana**](file:///c:/zabbix_anti/.zabbix_context/grafana_dashboards.md): Catálogo completo de los 12 tableros en producción, plugins instalados y estado de paneles.
+* 📊 [**Inventario de Dashboards Grafana**](file:///c:/zabbix_anti/.zabbix_context/grafana_dashboards.md): Catálogo completo de los tableros en producción, plugins instalados y estado de paneles.
 * 📁 **Repositorio Maestro en OneDrive:** `C:\Users\matias.larenti\OneDrive - Milicic SA\Documentos\Zabbix`
 
 ---
@@ -82,6 +84,7 @@ marcusolsson-sankey-panel
 
 | UID | Dashboard | URL |
 | :--- | :--- | :--- |
+| `milicic-exec-monthly` | 👔 **Dashboard Ejecutivo Mensual: SLA & SRE Governance** | [Abrir](http://172.27.210.154:3005/d/milicic-exec-monthly/68e5447) |
 | `milicic-switches-core` | 🌐 Networking: Switches Core y Distribución | [Abrir](http://172.27.210.154:3005/d/milicic-switches-core) |
 | `milicic-vmware-datastores` | 🖥️ Virtualización y Storage: VMware & Datastores | [Abrir](http://172.27.210.154:3005/d/milicic-vmware-datastores) |
 | `milicic-soc-overview` | 🛡️ Milicic SOC / NOC: Visión Ejecutiva Global | [Abrir](http://172.27.210.154:3005/d/milicic-soc-overview) |
@@ -100,23 +103,25 @@ marcusolsson-sankey-panel
 
 ## 6. Scripts de Diagnóstico y Automatización Local
 
-En [`scripts/`](file:///c:/zabbix_anti/scripts/):
+En [`scripts/`](file:///c:/zabbix_anti/scripts/) y [`Gerencia/`](file:///c:/zabbix_anti/Gerencia/):
 
-### Scripts de Build de Dashboards (`.mjs`)
+### Scripts de Telemetría Ejecutiva y Build de Dashboards (`.mjs`)
 
-| Script | Dashboard | Descripción |
+| Script | Ubicación | Descripción |
 | :--- | :--- | :--- |
-| `build_activedirectory_dashboard.mjs` | AD & Cyber SOC | DC health, servicios AD (6 targets exactos), Eventlog security, heatmap 7d |
-| `build_switches_dashboard.mjs` | Switches Core | Polystat de estado, heatmap de tráfico por puerto |
-| `build_servers_dashboard.mjs` | Servidores | CPU, RAM, disco, servicios Windows/Linux |
-| `build_vmware_dashboard.mjs` | VMware | VMs, datastores, hosts ESXi |
-| `build_soc_dashboard.mjs` | SOC/NOC | Visión ejecutiva global, problems, triggers críticos |
-| `build_sanjuan_dashboard.mjs` | San Juan | Infraestructura SSJ, Polystat + Treemap |
-| `build_fortigate_dashboard.mjs` | FortiGate | WAN, interfaces, CPU/RAM, VPN |
-| `build_facilities_ups_dashboard.mjs` | Facilities/UPS | Baterías, carga, autonomía, temperatura |
-| `build_backup_dashboard.mjs` | Backup/Veeam | Jobs, sesiones, ventana de backup |
-| `build_aruba_dashboard.mjs` | Aruba Wi-Fi | APs, radios, SSIDs, switches Instant On |
-| `build_new_plugins_gallery.mjs` | Galería Plugins | Showcase de los 11 nuevos plugins |
+| `build_milicic_exec_enterprise.mjs` | `Gerencia/` y `scripts/` | Cálculo SRE de Uptime (30d), Error Budget, MTTR, regresión CAPEX y despliegue a Grafana |
+| `build_executive_manual_pdf.mjs` | `Gerencia/` y `scripts/` | Generador de HTML corporativo y compilador de PDF institucional vía Chrome CDP |
+| `build_activedirectory_dashboard.mjs` | `scripts/` | AD & Cyber SOC: DC health, servicios AD (6 targets), Eventlog, heatmap 7d |
+| `build_switches_dashboard.mjs` | `scripts/` | Switches Core: Polystat de estado, heatmap de tráfico por puerto |
+| `build_servers_dashboard.mjs` | `scripts/` | Servidores: CPU, RAM, disco, servicios Windows/Linux |
+| `build_vmware_dashboard.mjs` | `scripts/` | VMware: VMs, datastores, hosts ESXi |
+| `build_soc_dashboard.mjs` | `scripts/` | SOC/NOC: Visión ejecutiva global, problems, triggers críticos |
+| `build_sanjuan_dashboard.mjs` | `scripts/` | San Juan: Infraestructura SSJ, Polystat + Treemap |
+| `build_fortigate_dashboard.mjs` | `scripts/` | FortiGate: WAN, interfaces, CPU/RAM, VPN |
+| `build_facilities_ups_dashboard.mjs` | `scripts/` | Facilities/UPS: Baterías, carga, autonomía, temperatura |
+| `build_backup_dashboard.mjs` | `scripts/` | Backup/Veeam: Jobs, sesiones, ventana de backup |
+| `build_aruba_dashboard.mjs` | `scripts/` | Aruba Wi-Fi: APs, radios, SSIDs, switches Instant On |
+| `build_new_plugins_gallery.mjs` | `scripts/` | Galería Plugins: Showcase de los 11 nuevos plugins |
 
 ### Scripts de Diagnóstico PowerShell
 
@@ -170,6 +175,14 @@ c:\zabbix_anti\
 │   ├── operational_context_chatgpt.md           # Acervo histórico y matriz de hallazgos
 │   ├── grafana_dashboards.md                    # Inventario completo de dashboards Grafana
 │   └── dashboards/                              # Exportaciones JSON y backups de tableros
+├── Gerencia/                                    # MÓDULO EJECUTIVO: REPORTES SLA & DIRECTORIO
+│   ├── Manual_Ejecutivo_Dashboard_SLA_Milicic.pdf # Reporte oficial PDF A4 (11 páginas, 300 DPI)
+│   ├── MANUAL_EJECUTIVO_DASHBOARD_SLA.md        # Manual ejecutivo completo en Markdown
+│   ├── manual_ejecutivo_dashboard_milicic.html  # Template HTML oficial con Design System Milicic
+│   ├── milicic-exec-monthly.json                # Definición JSON del dashboard Grafana mensual
+│   ├── build_milicic_exec_enterprise.mjs        # Script de telemetría y despliegue a Grafana
+│   ├── build_executive_manual_pdf.mjs           # Script de compilación de PDF vía Chrome CDP
+│   └── README.md                                # Índice y manual de uso del módulo Gerencia
 ├── docs/
 │   └── zabbix/
 │       ├── manuals/                             # Manuales técnicos oficiales (01 a 06)

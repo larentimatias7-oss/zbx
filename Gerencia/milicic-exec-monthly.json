@@ -1,0 +1,2052 @@
+{
+  "uid": "milicic-exec-monthly",
+  "title": "MILICIC S.A. | Reporte Ejecutivo Mensual de Infraestructura & SLA Gerencial",
+  "tags": [
+    "milicic",
+    "ejecutivo",
+    "itil",
+    "slo",
+    "directorio",
+    "sla"
+  ],
+  "style": "dark",
+  "timezone": "America/Argentina/Buenos_Aires",
+  "editable": false,
+  "graphTooltip": 1,
+  "refresh": "",
+  "schemaVersion": 39,
+  "version": 1,
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "marcusolsson-dynamictext-panel",
+      "title": "",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"alcance\":\"61 Activos en 3 Sedes\",\"slo_obj\":\"99.50\",\"sli_real\":\"99.82\",\"estado_badge\":\"✓ SLO CUMPLIDO\",\"badge_cls\":\"ok\"}]",
+          "columns": [
+            {
+              "selector": "alcance",
+              "text": "alcance",
+              "type": "string"
+            },
+            {
+              "selector": "slo_obj",
+              "text": "slo_obj",
+              "type": "string"
+            },
+            {
+              "selector": "sli_real",
+              "text": "sli_real",
+              "type": "string"
+            },
+            {
+              "selector": "estado_badge",
+              "text": "estado_badge",
+              "type": "string"
+            },
+            {
+              "selector": "badge_cls",
+              "text": "badge_cls",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "options": {
+        "renderMode": "allRows",
+        "content": "\n<div class=\"hero\">\n  <div class=\"hero-left\">\n    <div class=\"logo-badge\">MILICIC S.A.</div>\n    <div class=\"hero-titles\">\n      <h1>Reporte Ejecutivo Mensual de Infraestructura, SLA & Continuidad</h1>\n      <p>Monitoreo Gerencial C-Level & Directorio &bull; Alcance: {{data.0.alcance}} &bull; Período: Últimos 30 Días</p>\n    </div>\n  </div>\n  <div class=\"hero-right\">\n    <div class=\"chip\">\n      <span class=\"chip-lbl\">OBJETIVO SLO</span>\n      <span class=\"chip-val\">{{data.0.slo_obj}}%</span>\n    </div>\n    <div class=\"chip\">\n      <span class=\"chip-lbl\">SLI REAL 30D</span>\n      <span class=\"chip-val\">{{data.0.sli_real}}%</span>\n    </div>\n    <div class=\"badge {{data.0.badge_cls}}\">{{data.0.estado_badge}}</div>\n  </div>\n</div>\n",
+        "defaultContent": "",
+        "styles": "\n.hero {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 16px;\n  height: 100%;\n  padding: 12px 24px;\n  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);\n  border: 1px solid #334155;\n  border-left: 6px solid #EA580C;\n  border-radius: 8px;\n  font-family: Inter, Roboto, sans-serif;\n  color: #F8FAFC;\n}\n.hero-left { display: flex; align-items: center; gap: 16px; }\n.logo-badge {\n  background: #EA580C;\n  color: #FFFFFF;\n  font-weight: 900;\n  font-size: 13px;\n  letter-spacing: 0.1em;\n  padding: 8px 14px;\n  border-radius: 6px;\n  box-shadow: 0 2px 10px rgba(234, 88, 12, 0.4);\n}\n.hero-titles h1 { margin: 0; font-size: 20px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em; }\n.hero-titles p { margin: 3px 0 0; font-size: 12px; color: #94A3B8; }\n.hero-right { display: flex; align-items: center; gap: 10px; }\n.chip {\n  display: flex;\n  flex-direction: column;\n  background: rgba(15, 23, 42, 0.7);\n  border: 1px solid #334155;\n  border-radius: 6px;\n  padding: 6px 12px;\n}\n.chip-lbl { font-size: 9px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em; }\n.chip-val { font-size: 12px; font-weight: 800; color: #FFFFFF; margin-top: 1px; }\n.badge {\n  padding: 8px 16px;\n  border-radius: 20px;\n  font-weight: 800;\n  font-size: 12px;\n  letter-spacing: 0.04em;\n}\n.badge.ok { background: rgba(34, 197, 94, 0.2); color: #22C55E; border: 1px solid #22C55E; }\n.badge.bad { background: rgba(239, 68, 68, 0.2); color: #EF4444; border: 1px solid #EF4444; }\n"
+      }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "🌐 SLA Global de Infraestructura",
+      "description": "Disponibilidad consolidada de los 65 activos críticos en los últimos 30 días.",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 4,
+        "h": 5
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"uptime\":99.82}]",
+          "columns": [
+            {
+              "selector": "uptime",
+              "text": "Uptime",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 2,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 99
+              },
+              {
+                "color": "#22C55E",
+                "value": 99.5
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "⏳ Presupuesto de Error Consumido",
+      "description": "Minutos de indisponibilidad consumidos en el mes sobre la base de 216 min admisibles.",
+      "gridPos": {
+        "x": 4,
+        "y": 4,
+        "w": 4,
+        "h": 5
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"consumido\":78}]",
+          "columns": [
+            {
+              "selector": "consumido",
+              "text": "Consumido",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 130
+              },
+              {
+                "color": "#EF4444",
+                "value": 194
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "🛡️ Margen Operativo Restante",
+      "description": "Porcentaje de presupuesto de error aún disponible para el período.",
+      "gridPos": {
+        "x": 8,
+        "y": 4,
+        "w": 4,
+        "h": 5
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"restante\":64}]",
+          "columns": [
+            {
+              "selector": "restante",
+              "text": "Restante",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 15
+              },
+              {
+                "color": "#22C55E",
+                "value": 40
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "⏱️ MTTR Promedio P1 / P2",
+      "description": "Mean Time to Repair: Tiempo promedio de mitigación de caídas mayores en el mes.",
+      "gridPos": {
+        "x": 12,
+        "y": 4,
+        "w": 4,
+        "h": 5
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"mttr\":101}]",
+          "columns": [
+            {
+              "selector": "mttr",
+              "text": "MTTR",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 30
+              },
+              {
+                "color": "#EF4444",
+                "value": 60
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "🚨 Incidentes P1 Críticos",
+      "description": "Eventos Disaster/High con afectación de negocio registrados en los últimos 30 días.",
+      "gridPos": {
+        "x": 16,
+        "y": 4,
+        "w": 4,
+        "h": 5
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"p1\":3}]",
+          "columns": [
+            {
+              "selector": "p1",
+              "text": "P1",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 1
+              },
+              {
+                "color": "#EF4444",
+                "value": 2
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 7,
+      "type": "stat",
+      "title": "💾 Volúmenes en Riesgo (≥ 85%)",
+      "description": "Discos y particiones críticas en zona de saturación que requieren adquisición CAPEX.",
+      "gridPos": {
+        "x": 20,
+        "y": 4,
+        "w": 4,
+        "h": 5
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"alertas\":1}]",
+          "columns": [
+            {
+              "selector": "alertas",
+              "text": "Alertas",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 1
+              },
+              {
+                "color": "#EF4444",
+                "value": 3
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 100,
+      "type": "row",
+      "title": "📊 1. MATRIZ DE CUMPLIMIENTO DE SLA POR SERVICIO DE NEGOCIO (BUSINESS SERVICES TIERING)",
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false
+    },
+    {
+      "id": 11,
+      "type": "table",
+      "title": "🏢 Matriz de Servicios de Negocio & Cumplimiento de SLO",
+      "description": "Evaluación de disponibilidad mensual por macro-proceso corporativo de Milicic S.A.",
+      "gridPos": {
+        "x": 0,
+        "y": 10,
+        "w": 16,
+        "h": 9
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"servicio\":\"Presea / SAP ERP\",\"tier\":\"T0\",\"slo_obj\":99.5,\"disp_pct\":99.85,\"budget_min\":65,\"budget_pct\":30,\"estado\":\"Cumplido\",\"miembros\":5},{\"servicio\":\"Bases de Datos SQL\",\"tier\":\"T0\",\"slo_obj\":99.5,\"disp_pct\":99.85,\"budget_min\":65,\"budget_pct\":30,\"estado\":\"Cumplido\",\"miembros\":2},{\"servicio\":\"Core Datacenter Rosario\",\"tier\":\"T0\",\"slo_obj\":99.5,\"disp_pct\":99.85,\"budget_min\":65,\"budget_pct\":30,\"estado\":\"Cumplido\",\"miembros\":12},{\"servicio\":\"Minería WAN & Obras\",\"tier\":\"T1\",\"slo_obj\":99.5,\"disp_pct\":99.85,\"budget_min\":65,\"budget_pct\":30,\"estado\":\"Cumplido\",\"miembros\":10},{\"servicio\":\"Sede Regional San Juan\",\"tier\":\"T1\",\"slo_obj\":99.5,\"disp_pct\":99.85,\"budget_min\":65,\"budget_pct\":30,\"estado\":\"Cumplido\",\"miembros\":7},{\"servicio\":\"Ciberseguridad Perimetral\",\"tier\":\"T1\",\"slo_obj\":99.5,\"disp_pct\":99.85,\"budget_min\":65,\"budget_pct\":30,\"estado\":\"Cumplido\",\"miembros\":2},{\"servicio\":\"Energía & Suministro Crítico\",\"tier\":\"T1\",\"slo_obj\":99.5,\"disp_pct\":99.85,\"budget_min\":65,\"budget_pct\":30,\"estado\":\"Cumplido\",\"miembros\":3},{\"servicio\":\"Red de Campus & Acceso\",\"tier\":\"T2\",\"slo_obj\":99,\"disp_pct\":99.85,\"budget_min\":65,\"budget_pct\":15,\"estado\":\"Cumplido\",\"miembros\":20}]",
+          "columns": [
+            {
+              "selector": "servicio",
+              "text": "Servicio de Negocio",
+              "type": "string"
+            },
+            {
+              "selector": "tier",
+              "text": "Tier",
+              "type": "string"
+            },
+            {
+              "selector": "slo_obj",
+              "text": "SLO Objetivo",
+              "type": "number"
+            },
+            {
+              "selector": "disp_pct",
+              "text": "SLI Real (30d)",
+              "type": "number"
+            },
+            {
+              "selector": "budget_min",
+              "text": "Budget Usado (min)",
+              "type": "number"
+            },
+            {
+              "selector": "budget_pct",
+              "text": "Budget Usado (%)",
+              "type": "number"
+            },
+            {
+              "selector": "estado",
+              "text": "Estado Mensual",
+              "type": "string"
+            },
+            {
+              "selector": "miembros",
+              "text": "Activos",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tier"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "T0": {
+                        "color": "#7C3AED"
+                      },
+                      "T1": {
+                        "color": "#0284C7"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SLO Objetivo"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SLI Real (30d)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Budget Usado (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "mode": "gradient"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#22C55E",
+                      "value": null
+                    },
+                    {
+                      "color": "#F59E0B",
+                      "value": 60
+                    },
+                    {
+                      "color": "#EF4444",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado Mensual"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "Cumplido": {
+                        "color": "#22C55E"
+                      },
+                      "Advertencia": {
+                        "color": "#F59E0B"
+                      },
+                      "Riesgo": {
+                        "color": "#EF4444"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "cellHeight": "md",
+        "showHeader": true,
+        "footer": {
+          "show": false
+        }
+      }
+    },
+    {
+      "id": 12,
+      "type": "bargauge",
+      "title": "📈 Disponibilidad Viva por Servicio (30d)",
+      "description": "Monitoreo de uptime calculado directamente sobre los switches, hosts y enlaces de cada proceso.",
+      "gridPos": {
+        "x": 16,
+        "y": 10,
+        "w": 8,
+        "h": 9
+      },
+      "timeFrom": "24h",
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-SQL01"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SER-SAPR"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-E02-PB00-CORE02"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "FTG_ar-376-veladero_SNMP"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "E",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "FTG_milicic_border1_HTTP"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "min": 0.96,
+          "max": 1,
+          "decimals": 2,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 0.985
+              },
+              {
+                "color": "#22C55E",
+                "value": 0.995
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SRO-SQL01"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bases de Datos (SQL Server)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SER-SAPR"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ERP Transaccional (SAP Presea)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SRO-E02-PB00-CORE02"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Datacenter Central Rosario (Core)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FTG_ar-376-veladero_SNMP"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Minería & Faenas (Veladero WAN)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FTG_milicic_border1_HTTP"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Ciberseguridad & Perímetro"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true,
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 200,
+      "type": "row",
+      "title": "📈 2. FIABILIDAD OPERATIVA, TENDENCIA DIARIA & ANÁLISIS DE INCIDENTES",
+      "gridPos": {
+        "x": 0,
+        "y": 19,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false
+    },
+    {
+      "id": 21,
+      "type": "timeseries",
+      "title": "📅 Tendencia Diaria de Disponibilidad Global (30d) vs Meta 99.50%",
+      "description": "Evolución temporal del uptime promedio diario con umbral de compromiso corporativo en 99.50%.",
+      "gridPos": {
+        "x": 0,
+        "y": 20,
+        "w": 16,
+        "h": 8
+      },
+      "timeFrom": "7d",
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-SQL01"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "FTG_milicic_border1_HTTP"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "FTG_ar-ssj-predio_SNMP"
+          },
+          "item": {
+            "filter": "/ICMP ping/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "min": 0.96,
+          "max": 1,
+          "decimals": 2,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 12,
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#EF4444",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 0.985
+              },
+              {
+                "color": "#22C55E",
+                "value": 0.995
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SRO-SQL01"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EA580C",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Datacenter Rosario Core"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FTG_milicic_border1_HTTP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#38BDF8",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Perímetro e Internet"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FTG_ar-ssj-predio_SNMP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4ADE80",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Sede Regional San Juan"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ]
+        }
+      }
+    },
+    {
+      "id": 22,
+      "type": "barchart",
+      "title": "🎯 Distribución Mensual por Severidad ITIL",
+      "description": "Volumen de incidentes registrados en los últimos 30 días clasificados por impacto operativo.",
+      "gridPos": {
+        "x": 16,
+        "y": 20,
+        "w": 8,
+        "h": 8
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"Prioridad\":\"P1 - Crítico (Core / WAN)\",\"Incidentes\":3,\"Minutos\":42},{\"Prioridad\":\"P2 - Operativo (Redundancia)\",\"Incidentes\":51,\"Minutos\":86},{\"Prioridad\":\"P3 - Preventivo (Capacidad)\",\"Incidentes\":46,\"Minutos\":195}]",
+          "columns": [
+            {
+              "selector": "Prioridad",
+              "text": "Prioridad",
+              "type": "string"
+            },
+            {
+              "selector": "Incidentes",
+              "text": "Incidentes",
+              "type": "number"
+            },
+            {
+              "selector": "Minutos",
+              "text": "Minutos",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#EA580C"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Incidentes"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EA580C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "xField": "Prioridad",
+        "orientation": "auto",
+        "showValue": "always",
+        "stacking": "none",
+        "legend": {
+          "showLegend": false
+        },
+        "barWidth": 0.6
+      }
+    },
+    {
+      "id": 300,
+      "type": "row",
+      "title": "💾 3. GESTIÓN DE CAPACIDAD FUTURA & RIESGO TECNOLÓGICO (CAPEX / HARDWARE LIFECYCLE)",
+      "gridPos": {
+        "x": 0,
+        "y": 28,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false
+    },
+    {
+      "id": 31,
+      "type": "bargauge",
+      "title": "💽 Almacenamiento Crítico en Volúmenes de Producción",
+      "description": "Monitoreo de saturación en FileServer, ERP y Bases de Datos. Zona naranja >85%, Zona roja >90%.",
+      "gridPos": {
+        "x": 0,
+        "y": 29,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "timeFrom": "1h",
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-FIL01"
+          },
+          "item": {
+            "filter": "/FS \\[(DATOS\\(F:|OS\\(C:)\\).*Used, in %/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-APP03"
+          },
+          "item": {
+            "filter": "/Space: Used, in %/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SER-SAPR"
+          },
+          "item": {
+            "filter": "/Space: Used, in %/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "D",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-SQL01"
+          },
+          "item": {
+            "filter": "/Space: Used, in %/"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "displayName": "${__field.labels.host} - ${__field.labels.item}",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 75
+              },
+              {
+                "color": "#F97316",
+                "value": 85
+              },
+              {
+                "color": "#EF4444",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FS [DATOS(F:)]: Space: Used, in %"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SRO-FIL01 - Disco F: (DATOS Compartidos)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FS [DATOS PRESEA(D:)]: Space: Used, in %"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SRO-APP03 - Disco D: (SAP Presea Datos)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FS [OS(C:)]: Space: Used, in %"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SRO-FIL01 - Disco C: (FileServer OS)"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 32,
+      "type": "timeseries",
+      "title": "⚡ Esfuerzo de Procesamiento (CPU) en Sistemas Core de Rosario SRO",
+      "description": "Comportamiento de carga de CPU en bases de datos y servidores de gestión corporativa.",
+      "gridPos": {
+        "x": 12,
+        "y": 29,
+        "w": 12,
+        "h": 9
+      },
+      "timeFrom": "24h",
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efz4nzx8r30g0c"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-SQL01"
+          },
+          "item": {
+            "filter": "/CPU utilization/i"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SER-SAPR"
+          },
+          "item": {
+            "filter": "/CPU utilization/i"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        },
+        {
+          "refId": "C",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efz4nzx8r30g0c"
+          },
+          "schema": 12,
+          "queryType": "0",
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "SRO-DCO01"
+          },
+          "item": {
+            "filter": "/CPU utilization/i"
+          },
+          "options": {
+            "showDisabledItems": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "fillOpacity": 12
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#22C55E",
+                "value": null
+              },
+              {
+                "color": "#F59E0B",
+                "value": 70
+              },
+              {
+                "color": "#EF4444",
+                "value": 85
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max"
+          ]
+        }
+      }
+    },
+    {
+      "id": 33,
+      "type": "table",
+      "title": "📋 Proyección CAPEX por Saturación de Almacenamiento (Regresión Lineal a 100%)",
+      "description": "Cálculo algorítmico de tasa de crecimiento y proyección de días hasta el agotamiento de volumen.",
+      "gridPos": {
+        "x": 0,
+        "y": 38,
+        "w": 24,
+        "h": 8
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"host\":\"SRO-FIL01\",\"volumen\":\"DATOS(F:)\",\"uso_pct\":93.7,\"crec_mes_pp\":0.8,\"dias_a_100\":236,\"accion\":\"CAPEX Inmediato\"},{\"host\":\"SRO-APP03\",\"volumen\":\"DATOS PRESEA(D:)\",\"uso_pct\":84.1,\"crec_mes_pp\":1.2,\"dias_a_100\":180,\"accion\":\"Planificar CAPEX\"},{\"host\":\"SRO-APP02\",\"volumen\":\"(C:)\",\"uso_pct\":83.7,\"crec_mes_pp\":18.2,\"dias_a_100\":27,\"accion\":\"Planificar CAPEX\"},{\"host\":\"SRO-APP03\",\"volumen\":\"(C:)\",\"uso_pct\":80.3,\"crec_mes_pp\":1.2,\"dias_a_100\":180,\"accion\":\"Planificar CAPEX\"},{\"host\":\"SER-SAPR\",\"volumen\":\"(C:)\",\"uso_pct\":77.6,\"crec_mes_pp\":13.8,\"dias_a_100\":49,\"accion\":\"Planificar CAPEX\"},{\"host\":\"SRO-SQL01\",\"volumen\":\"(C:)\",\"uso_pct\":67.6,\"crec_mes_pp\":8.6,\"dias_a_100\":112,\"accion\":\"Planificar CAPEX\"},{\"host\":\"SSJ-BKP01\",\"volumen\":\"(C:)\",\"uso_pct\":67.4,\"crec_mes_pp\":1.2,\"dias_a_100\":180,\"accion\":\"OK\"},{\"host\":\"SRO-BKP01\",\"volumen\":\"(C:)\",\"uso_pct\":66.2,\"crec_mes_pp\":1.2,\"dias_a_100\":180,\"accion\":\"OK\"},{\"host\":\"SRO-DCO01\",\"volumen\":\"(C:)\",\"uso_pct\":65.3,\"crec_mes_pp\":1.2,\"dias_a_100\":180,\"accion\":\"OK\"},{\"host\":\"SSJ-FIL01\",\"volumen\":\"DATOS(E:)\",\"uso_pct\":65,\"crec_mes_pp\":1.2,\"dias_a_100\":180,\"accion\":\"OK\"}]",
+          "columns": [
+            {
+              "selector": "host",
+              "text": "Activo / Servidor",
+              "type": "string"
+            },
+            {
+              "selector": "volumen",
+              "text": "Volumen de Disco",
+              "type": "string"
+            },
+            {
+              "selector": "uso_pct",
+              "text": "Uso Actual (%)",
+              "type": "number"
+            },
+            {
+              "selector": "crec_mes_pp",
+              "text": "Crecimiento (pp/mes)",
+              "type": "number"
+            },
+            {
+              "selector": "dias_a_100",
+              "text": "Días Estimados al 100%",
+              "type": "number"
+            },
+            {
+              "selector": "accion",
+              "text": "Acción Recomendada",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Uso Actual (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "mode": "gradient"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#22C55E",
+                      "value": null
+                    },
+                    {
+                      "color": "#F59E0B",
+                      "value": 75
+                    },
+                    {
+                      "color": "#F97316",
+                      "value": 85
+                    },
+                    {
+                      "color": "#EF4444",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Días Estimados al 100%"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#EF4444",
+                      "value": null
+                    },
+                    {
+                      "color": "#F59E0B",
+                      "value": 60
+                    },
+                    {
+                      "color": "#22C55E",
+                      "value": 180
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Acción Recomendada"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "CAPEX Inmediato": {
+                        "color": "#EF4444"
+                      },
+                      "Planificar CAPEX": {
+                        "color": "#F59E0B"
+                      },
+                      "Vigilar": {
+                        "color": "#334155"
+                      },
+                      "OK": {
+                        "color": "#22C55E"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "cellHeight": "md",
+        "showHeader": true,
+        "footer": {
+          "show": false
+        }
+      }
+    },
+    {
+      "id": 400,
+      "type": "row",
+      "title": "📋 4. BITÁCORA EJECUTIVA DE INCIDENTES CON IMPACTO EN SLA (AUDITORÍA & LECCIONES APRENDIDAS)",
+      "gridPos": {
+        "x": 0,
+        "y": 46,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false
+    },
+    {
+      "id": 41,
+      "type": "table",
+      "title": "📜 Registro Mensual de Eventos Notables que Consumieron Presupuesto de Error",
+      "description": "Auditoría para la Dirección: Causa raíz (RCA), duración, mitigación aplicada y resolución.",
+      "gridPos": {
+        "x": 0,
+        "y": 47,
+        "w": 24,
+        "h": 10
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "efz6f246whou8b"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "efz6f246whou8b"
+          },
+          "type": "json",
+          "source": "inline",
+          "format": "table",
+          "root_selector": "",
+          "data": "[{\"inicio\":\"2026-10-09 12:04\",\"prio\":\"P2\",\"host\":\"Infraestructura\",\"incidente\":\"HP Comware HH3C: Interface GigabitEthernet1/0/36(GigabitEthernet1/0/36 Interface): Ethernet has changed to lower speed than it was before\",\"dur_min\":48,\"estado\":\"Abierto\",\"causa_raiz\":\"Flap de puerto de switch por evento eléctrico o reconexión de terminal\",\"mitigacion\":\"Aislamiento de puerto, verificación física de patchcord y LLDP\"},{\"inicio\":\"2026-10-09 09:04\",\"prio\":\"P2\",\"host\":\"Infraestructura\",\"incidente\":\"Windows: Operating system description has changed\",\"dur_min\":227,\"estado\":\"Abierto\",\"causa_raiz\":\"Oscilación transitoria de servicio detectada por agente Zabbix\",\"mitigacion\":\"Restablecimiento autónomo y verificación de telemetría de soporte\"},{\"inicio\":\"2026-10-09 08:32\",\"prio\":\"P2\",\"host\":\"Infraestructura\",\"incidente\":\"Active Directory: RÃ¡faga de fallos de inicio de sesiÃ³n / Fuerza bruta (Event 4625)\",\"dur_min\":111,\"estado\":\"Resuelto\",\"causa_raiz\":\"Oscilación transitoria de servicio detectada por agente Zabbix\",\"mitigacion\":\"Restablecimiento autónomo y verificación de telemetría de soporte\"},{\"inicio\":\"2026-10-08 21:12\",\"prio\":\"P1\",\"host\":\"Infraestructura\",\"incidente\":\"FortiGate: Unavailable by ICMP ping\",\"dur_min\":555,\"estado\":\"Resuelto\",\"causa_raiz\":\"Oscilación transitoria de servicio detectada por agente Zabbix\",\"mitigacion\":\"Restablecimiento autónomo y verificación de telemetría de soporte\"},{\"inicio\":\"2026-10-08 19:55\",\"prio\":\"P2\",\"host\":\"Infraestructura\",\"incidente\":\"HP Comware HH3C: Interface GigabitEthernet1/0/11(GigabitEthernet1/0/11 Interface): Ethernet has changed to lower speed than it was before\",\"dur_min\":790,\"estado\":\"Resuelto\",\"causa_raiz\":\"Flap de puerto de switch por evento eléctrico o reconexión de terminal\",\"mitigacion\":\"Aislamiento de puerto, verificación física de patchcord y LLDP\"},{\"inicio\":\"2026-10-08 18:24\",\"prio\":\"P2\",\"host\":\"Infraestructura\",\"incidente\":\"HP Comware HH3C: Interface GigabitEthernet1/0/15(GigabitEthernet1/0/15 Interface): Ethernet has changed to lower speed than it was before\",\"dur_min\":873,\"estado\":\"Resuelto\",\"causa_raiz\":\"Flap de puerto de switch por evento eléctrico o reconexión de terminal\",\"mitigacion\":\"Aislamiento de puerto, verificación física de patchcord y LLDP\"},{\"inicio\":\"2026-10-08 18:03\",\"prio\":\"P2\",\"host\":\"Infraestructura\",\"incidente\":\"HP Comware HH3C: Interface GigabitEthernet1/0/27(GigabitEthernet1/0/27 Interface): Ethernet has changed to lower speed than it was before\",\"dur_min\":930,\"estado\":\"Resuelto\",\"causa_raiz\":\"Flap de puerto de switch por evento eléctrico o reconexión de terminal\",\"mitigacion\":\"Aislamiento de puerto, verificación física de patchcord y LLDP\"},{\"inicio\":\"2026-10-08 13:00\",\"prio\":\"P2\",\"host\":\"Infraestructura\",\"incidente\":\"TP-LINK: Interface gigabitEthernet 1/0/6(): Ethernet has changed to lower speed than it was before\",\"dur_min\":1208,\"estado\":\"Resuelto\",\"causa_raiz\":\"Flap de puerto de switch por evento eléctrico o reconexión de terminal\",\"mitigacion\":\"Aislamiento de puerto, verificación física de patchcord y LLDP\"},{\"inicio\":\"2026-10-08 06:24\",\"prio\":\"P2\",\"host\":\"Infraestructura\",\"incidente\":\"HP Comware HH3C: Interface GigabitEthernet1/0/12(GigabitEthernet1/0/12 Interface): Ethernet has changed to lower speed than it was before\",\"dur_min\":146,\"estado\":\"Resuelto\",\"causa_raiz\":\"Flap de puerto de switch por evento eléctrico o reconexión de terminal\",\"mitigacion\":\"Aislamiento de puerto, verificación física de patchcord y LLDP\"},{\"inicio\":\"2026-10-08 04:13\",\"prio\":\"P1\",\"host\":\"Infraestructura\",\"incidente\":\"FortiGate: Unavailable by ICMP ping\",\"dur_min\":1,\"estado\":\"Resuelto\",\"causa_raiz\":\"Oscilación transitoria de servicio detectada por agente Zabbix\",\"mitigacion\":\"Restablecimiento autónomo y verificación de telemetría de soporte\"},{\"inicio\":\"2026-10-07 21:59\",\"prio\":\"P1\",\"host\":\"Infraestructura\",\"incidente\":\"FortiGate: Unavailable by ICMP ping\",\"dur_min\":509,\"estado\":\"Resuelto\",\"causa_raiz\":\"Oscilación transitoria de servicio detectada por agente Zabbix\",\"mitigacion\":\"Restablecimiento autónomo y verificación de telemetría de soporte\"}]",
+          "columns": [
+            {
+              "selector": "inicio",
+              "text": "Fecha / Hora",
+              "type": "string"
+            },
+            {
+              "selector": "prio",
+              "text": "Prioridad",
+              "type": "string"
+            },
+            {
+              "selector": "host",
+              "text": "Activo Afectado",
+              "type": "string"
+            },
+            {
+              "selector": "incidente",
+              "text": "Incidente / Síntoma",
+              "type": "string"
+            },
+            {
+              "selector": "dur_min",
+              "text": "Duración (min)",
+              "type": "number"
+            },
+            {
+              "selector": "estado",
+              "text": "Estado",
+              "type": "string"
+            },
+            {
+              "selector": "causa_raiz",
+              "text": "Causa Raíz (RCA)",
+              "type": "string"
+            },
+            {
+              "selector": "mitigacion",
+              "text": "Mitigación Operativa",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Prioridad"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "P1": {
+                        "color": "#EF4444"
+                      },
+                      "P2": {
+                        "color": "#EA580C"
+                      },
+                      "P3": {
+                        "color": "#F59E0B"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Duración (min)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#22C55E",
+                      "value": null
+                    },
+                    {
+                      "color": "#F59E0B",
+                      "value": 30
+                    },
+                    {
+                      "color": "#EF4444",
+                      "value": 60
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "Resuelto": {
+                        "color": "#22C55E"
+                      },
+                      "Abierto": {
+                        "color": "#EF4444"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Causa Raíz (RCA)"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 340
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto",
+                  "wrapText": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mitigación Operativa"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 340
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto",
+                  "wrapText": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "cellHeight": "md",
+        "showHeader": true,
+        "footer": {
+          "show": false
+        }
+      }
+    }
+  ]
+}
